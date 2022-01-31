@@ -10,9 +10,16 @@ Couple of sentences
 
 ### Steering committee
 
+Votes in strategic decisions, weekly gathering with internal team, first contributors hand-holding, t-shirt per PR, monthly prize
+
 ### Core team
 
+Allowed to approve PRs, first on the list, master a domain, 2 votes in ongoing decisions
+
 ### Collaborators
+
+Votes in ongoing decisions, two are needed to approve PR
+
 
 ### Domain masters
 
