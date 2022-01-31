@@ -36,6 +36,41 @@ Responsible for
 
 Domain master: John Doe
 
+**- Mongo DB**
+
+Responsible for 
+
+Domain master: John Doe
+
+**- Web layer express**
+
+Responsible for 
+
+Domain master: John Doe
+
+**- Web layer fastify**
+
+Responsible for 
+
+Domain master: John Doe
+
+
+**- Domain layer**
+
+Responsible for 
+
+Domain master: John Doe
+
+**- Security**
+
+Responsible for 
+
+Domain master: John Doe
+
+
+
+
+
 
 
 
