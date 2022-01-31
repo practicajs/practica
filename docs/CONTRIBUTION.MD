@@ -67,6 +67,10 @@ Responsible for
 
 Domain master: John Doe
 
+## Domains
+
+![domains](./domains.png)
+
 
 
 
