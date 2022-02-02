@@ -8,17 +8,25 @@ Couple of sentences
 
 ## Contribution levels
 
+
 ### Steering committee
 
-Votes in strategic decisions, weekly gathering with internal team, first contributors hand-holding, t-shirt per PR, monthly prize
+A marketing-based list with no rights
 
 ### Core team
 
-Allowed to approve PRs, first on the list, master a domain, 2 votes in ongoing decisions
+Who: Whomever the core team votes to join. Steering companies get 4 seats upfront
+
+Responsibilities: Any other votes, allowed to approve PRs, first on the list, master a domain, 2 votes in ongoing decisions
 
 ### Collaborators
 
 Votes in ongoing decisions, two are needed to approve PR
+
+### Owner
+
+Admin right in the repo, right to choose partners and change the project fundamentals
+
 
 
 ### Domain masters
