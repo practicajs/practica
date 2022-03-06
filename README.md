@@ -35,11 +35,27 @@ https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8
 
 - Open your terminal and type `npx practic`
 - Answer few questions to customize for your own needs
-- Start the project by typing `npm start` or run the test with `npm test`
-- Learn by skimming through the code, or specifically search for #best-practice to focus on insights
-- Search for #change-here to customize 
+- Start the project by typing `npm start` or run the test with `npm test`. Standard, ah?
+- Become familiar with the code by reading it starting from index.ts. This is the nice part - The code is yours, no abstractions hiding
+- Customize the routes and data model for your own needs by changing these 3 files (link soon)
+- Feel free to adjust the code, the tests with 100% coverage protect your back
+
+This is only the tip of the iceberg, read more at [https://practic.io](https://practic.io)
+
 
 ## Practices and features
+
+We apply more than 100 practices and optimizations, you can opt-in or out for most of these features using our CLI flags. Following is few examples of features, to learn about the full list of features, visit [https://practic.io/features]
+
+| Feature                        	| Explanation                                                                                        	| Flag              	| Documentation link 	|
+|--------------------------------	|----------------------------------------------------------------------------------------------------	|-------------------	|--------------------	|
+|         Monorepo setup         	| Get two examples components (e.g., Microservices) in a single repository with interaction examples 	| --monorepo, --mr  	| [Docs here]()      	|
+| Output escaping and sanitizing 	| Clean-out outgoing responses from potential HTML security risks like XSS                           	| --outescape, --oe 	| [Docs here]()      	|
+|                                	|                                                                                                    	|                   	|                    	|
+|                                	|                                                                                                    	|                   	|                    	|
+|                                	|                                                                                                    	|                   	|                    	|
+|                                	|                                                                                                    	|                   	|                    	|
+|                                	|                                                                                                    	|                   	|                    	|
 
 item, read full, flag, 
 
