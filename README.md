@@ -1,5 +1,7 @@
 🗓 **Alpha project:** This project is very premature WIP, please revisit by June 2022
 
+![Best practices starter](/docs/images/practick-logo.png)
+
 # Node.js best practices starter
 
 A generator of Node.js apps that is packed with best practices AND also build with simplicty in mind
@@ -45,19 +47,18 @@ This is only the tip of the iceberg, read more at [https://practic.io](https://p
 
 ## Practices and features
 
-We apply more than 100 practices and optimizations, you can opt-in or out for most of these features using our CLI flags. Following is few examples of features, to learn about the full list of features, visit [https://practic.io/features]
+We apply more than 100 practices and optimizations, you can opt-in or out for most of these features using our CLI flags. Following is few examples of features, to learn about the full list of features, visit [https://practick.io/features]
+| **Feature**                         	| **Explanation**                                                                                                                                                                                                                                                                        	| **Flag**                	| **Documentation link** 	|
+|-------------------------------------	|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|-------------------------	|------------------------	|
+|            Monorepo setup           	| Generates two components (e.g., Microservices) in a single repository with interactions between the two                                                                                                                                                                                	| --monorepo, --mr        	| [Docs here]()          	|
+| Output escaping and sanitizing      	| Clean-out outgoing responses from potential HTML security risks like XSS                                                                                                                                                                                                               	| --output-escape, --oe   	| [Docs here]()          	|
+| Integration (component) testing     	| Generates full-blown component/integration tests setup including DB                                                                                                                                                                                                                    	| --tests, --t            	| [Docs here]()          	|
+| Unique request ID (Correlation ID)  	| Generates module that creates a unique correlation/request ID for every incoming request. This is available for any other object during the request life-span. Internally it uses Node's built-in [AsyncLocalStorage](https://nodejs.org/api/async_hooks.html#class-asynclocalstorage) 	| --correlation-id, --coi 	| [Docs here]()          	|
+| Dockerfile                          	| Generates dockerfile that embodies 20> best practices                                                                                                                                                                                                                                  	| --docker-file, --df     	| [Docs here]()          	|
+|                                     	|                                                                                                                                                                                                                                                                                        	|                         	|                        	|
+|                                     	|                                                                                                                                                                                                                                                                                        	|                         	|                        	|
 
-| Feature                        	| Explanation                                                                                        	| Flag              	| Documentation link 	|
-|--------------------------------	|----------------------------------------------------------------------------------------------------	|-------------------	|--------------------	|
-|         Monorepo setup         	| Get two examples components (e.g., Microservices) in a single repository with interaction examples 	| --monorepo, --mr  	| [Docs here]()      	|
-| Output escaping and sanitizing 	| Clean-out outgoing responses from potential HTML security risks like XSS                           	| --outescape, --oe 	| [Docs here]()      	|
-|                                	|                                                                                                    	|                   	|                    	|
-|                                	|                                                                                                    	|                   	|                    	|
-|                                	|                                                                                                    	|                   	|                    	|
-|                                	|                                                                                                    	|                   	|                    	|
-|                                	|                                                                                                    	|                   	|                    	|
-
-item, read full, flag, 
+[Full features list](https://practick.io/features)
 
 ## Steering committee
 
