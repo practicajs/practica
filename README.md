@@ -80,5 +80,5 @@ Images of core contributors
 
 These companies are obliged to implement these best practices and daily routine and they also fund this project generously
 
-![Cox2m](/docs/images/cox2m.png)
+![Cox2m](/docs/images/minta.png)
 
