@@ -2,11 +2,9 @@
 
 ![Best practices starter](/docs/images/practick-logo.png)
 
-# Node.js best practices starter
+Generate Node.js app that is packed with best practices AND simplicty in mind. Based on our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices)
 
-A generator of Node.js apps that is packed with best practices AND also build with simplicty in mind
-
-## Three things you oughta to know
+# Three things you oughta to know
 
 ### 1. Best practices *on top of* known Node.js frameworks
 
@@ -33,7 +31,7 @@ https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8
 
 
 
-## A very quick start
+# A very quick start
 
 - Open your terminal and type `npx practic`
 - Answer few questions to customize for your own needs
@@ -45,7 +43,7 @@ https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8
 This is only the tip of the iceberg, read more at [https://practic.io](https://practic.io)
 
 
-## Practices and features
+# Practices and features
 
 We apply more than 100 practices and optimizations, you can opt-in or out for most of these features using our CLI flags. Following is few examples of features, to learn about the full list of features, visit [https://practick.io/features]
 | **Feature**                         	| **Explanation**                                                                                                                                                                                                                                                                        	| **Flag**                	| **Documentation link** 	|
@@ -60,10 +58,10 @@ We apply more than 100 practices and optimizations, you can opt-in or out for mo
 
 [Full features list](https://practick.io/features)
 
-## Steering committee
+# Steering committee
 
-## The people behind this
+# The people behind this
 
-## Partners
+# Partners
 
 
