@@ -4,6 +4,12 @@
 
 If you reached down to this page, you probably belong with us 💜. We are in an ever-going quest for better software practices. This journey can bring two things to your benefit: A lot of learning and global impact on many people's craft. Does this sounds attractive? 
 
+## A 3 min summary of this doc
+
+https://user-images.githubusercontent.com/8571500/156925380-024a1bab-54ec-4799-a1e6-aa21b99dcff3.mp4
+
+(Coming soon)
+
 ## Philosophy
 
 Our main selling point is our philosophy, our philosophy is 'make it SIMPLE'. There is one really important holy grail in software - Speed. The faster you move, the more features and value is created for the users. The faster you move, more improvements cycles are deployed and the software/ops become better. [Researches show](https://puppet.com/resources/report/2020-state-of-devops-report) that faster team produces software that is more reliable. Complexity is the enemy of speed - Commonly apps are big, sophisiticated, has a lot of internal abstractions and demand long training before being productive. Our mission is to minimize complexity, get onboarded developers up to speed quickly, or in simple words - Let the reader of the code understand it in a breeze. If you make simplicity a 1st principle - Great things will come your way.
@@ -21,17 +27,29 @@ Big words, how exactly? Here are few examples:
 [Our full coding guide will come here soon](./docs/coding-guide.MD)
 
 
-## Our workflow - A quick summary
+## Small changes workflow
+
+Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, linting rules, look&feel fixes, fixing TYPOs, comments or anything that is small and obvious - Just fork to your machine, code, ensure all tests pass (e.g., `npm test`), PR with a meaninful title, get **1** approver before merging
 
 
-https://user-images.githubusercontent.com/8571500/156925380-024a1bab-54ec-4799-a1e6-aa21b99dcff3.mp4
+## Workflow for new code
 
+|          	| **➡️ Idea**                                                                                    	| **➡ Design decisions**                                                                                                                                                                                                   	| **➡ Code**                                                                                                                                                       	| **➡️ Merge** 	|
+|----------	|-----------------------------------------------------------------------------------------------	|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------	|-------------	|
+| **When** 	| Got an idea how to improve? Want to handle an existing issue?                                 	| When the change implies some major decisions, those should be discussed in advance                                                                                                                                       	| When got confirmation from core maintainer that the design decisions are sensible                                                                                	|             	|
+| **What** 	| 1. Create an issue (if doesn't exist) 2. Comment and specify your intent to handle this issue 	| 1. Within the issue, specify your overall approach/design. Or just open a discussion 2. If choosing a 3rd party library, ensure to follow our vendor choosing principles (e.g., only top 3 most popular can be selected) 	| 1. Do it with passions 💜 2. Follow our coding guide. Keep it simple. Stay loyal to our philosophy. 3. Run all the quality measures frequently (testing, linting) 	|             	|
 
-## Workflow
 
 ## Roles
 
 ## Development machine setup
+
+✅ Node.js >= 16.0.0
+✅ Docker
+✅ GitHub 2FA
+✅ npm 2FA
+✅ [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
 
 ## Code structure
 
