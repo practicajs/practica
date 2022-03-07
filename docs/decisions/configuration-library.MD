@@ -19,70 +19,73 @@
     <td><h1>config</h2></td>
   </tr>
   <tr>
-    <td colspan="4" align="center"><h3>Executive Summary</h2></td>
+    <td colspan="5" align="center"><h3>Executive Summary</h2></td>
   </tr>
   <tr valign="top">
     <td>Performance (load time for 100 keys)</td>
-    <td><img src="./full.png"/><br/><br/><b>1ms</b>L</td>
-    <td><img src="./almost-full.png"/><br><br><b>Reasonable</b/>5ms</td>
+    <td><img src="./full.png"/><br/><br/>1ms</td>
+    <td><img src="./almost-full.png"/><br><br>5ms</td>
     <td>
-      <img src="./almost-full.png"/><br><br><b>Great</b>4ms</td>
-    <td><img src="./almost-full.png"/><br><br><b>Reasonable</b/>5ms</td>
+      <img src="./almost-full.png"/><br><br>4ms</td>
+    <td><img src="./almost-full.png"/><br><br>5ms</td>
   </tr>
   <tr valign="top">
     <td>Popularity</td>
-    <td><img src="./full.png"/><br/><br/><b>Not measureable</b>Superior</td>
-    <td><img src="./partial-full.png"/><br><br><b>Reasonable</b/>Less popular than competitors</td>
-    <td><img src="./almost-full.png"/><br><br><b>Reasonable</b/>Highly popular</td>
+    <td><img src="./full.png"/><br/><br/>Superior</td>
+    <td><img src="./partial.png"/><br><br>Less popular than competitors</td>
+    <td><img src="./almost-full.png"/><br><br>Highly popular</td>
     <td>
-      <img src="./almost-full.png"/>Highly popular</td>
+      <img src="./almost-full.png"/><br><br>Highly popular</td>
   </tr>
   <tr valign="top">
-    <td>Fail fast & strich schema</td>
-    <td><img src="./almost-full.png"/><br/><br/><b>Not measureable</b>. Lack many mandatory solution layers</td>
-    <td><img src="./almost-full.png"/><br><br><b>Reasonable</b/>. Throughout and start time are impacted by the many solution layers</td>
-    <td><img src="./almost-full.png"/><br><br><b>Reasonable</b/>. Throughout and start time are impacted by the many solution layers</td>
+    <td>❗ Fail fast & strich schema</td>
+    <td><img src="./almost-full.png"/><br/><br/>No</td>
+    <td><img src="./full.png"/><br><br>Yes</td>
+    <td><img src="./partial.png"/><br><br>No</td>
     <td>
-      <img src="./full.png"/><br><br><b>Great</b>. Performance as a first citizen</td>
+      <img src="./partial.png"/><br><br>No</td>
   </tr>
+
   <tr valign="top">
     <td>Items documentation</td>
-    <td><img src="./almost-full.png"/><br/><br/><b>Not measureable</b>. Lack many mandatory solution layers</td>
-    <td><img src="./almost-full.png"/><br><br><b>Reasonable</b/>. Throughout and start time are impacted by the many solution layers</td>
-    <td><img src="./almost-full.png"/><br><br><b>Reasonable</b/>. Throughout and start time are impacted by the many solution layers</td>
+    <td><img src="./partial.png"/><br/><br/>No</td>
+    <td><img src="./full.png"/><br><br>Yes</td>
+    <td><img src="./partial.png"/><br><br>No</td>
     <td>
-      <img src="./full.png"/><br><br><b>Great</b>. Performance as a first citizen</td>
-  </tr>
-    <tr valign="top">
+      <img src="./partial.png"/><br><br>No</td>
+  </tr>    
+
+  <tr valign="top">
     <td>Hirearchical configuration schema</td>
-    <td><img src="./almost-full.png"/><br/><br/><b>Not measureable</b>. Lack many mandatory solution layers</td>
-    <td><img src="./almost-full.png"/><br><br><b>Reasonable</b/>. Throughout and start time are impacted by the many solution layers</td>
-    <td><img src="./almost-full.png"/><br><br><b>Reasonable</b/>. Throughout and start time are impacted by the many solution layers</td>
+    <td><img src="./partial.png"/><br/><br/>No</td>
+    <td><img src="./full.png"/><br><br>Yes</td>
+        <td><img src="./full.png"/><br><br>Yes</td>
     <td>
-      <img src="./full.png"/><br><br><b>Great</b>. Performance as a first citizen</td>
+      <img src="./partial.png"/><br><br>No</td>
   </tr>
   <tr>
-    <td class="tg-ho3n" colspan="4" align="center"><h2>More details: Community & Popularity</h2></td>
+    <td class="tg-ho3n" colspan="5" align="center"><h2>More details: Community & Popularity - March 2022</h2></td>
   </tr>
   <tr>
-    <td>❗ Stars</td>
-    <td><br><br>Explanation</td>
-    <td><br><br>Explanation</td>
-    <td><br><br>Explanation</td>
-    <td><br><br>Explanation</td>
+    <td>Stars</td>
+    <td><br><br>4200 ✨</td>
+    <td><br><br>2500 ✨</td>
+    <td><br><br>2500 ✨</td>
+    <td><br><br>1000 ✨</td>
+    <td><br><br>2300 ✨</td>
   </tr>
   <tr>
     <td>Downloads/Week</td>
-    <td><br><br>Explanation</td>
-    <td><br><br>Explanation</td>
-    <td><br><br>Explanation</td>
-    <td><br><br>Explanation</td>
+    <td><br><br>12,900,223 📁</td>
+    <td><br><br>4,000,000 📁</td>
+    <td><br><br>6,000,000 📁</td>
+    <td><br><br>5,000,000 📁</td>
   </tr>
     <tr>
-    <td>Dependent upon</td>
-    <td><br><br>Explanation</td>
-    <td><br><br>Explanation</td>
-    <td><br><br>Explanation</td>
-    <td><br><br>Explanation</td>
+    <td>Dependents</td>
+    <td><br><br>26,000 👩‍👧</td>
+    <td><br><br>600 👧</td>
+    <td><br><br>800 👧</td>
+    <td><br><br>1000 👧</td>
   </tr>
 </table>
