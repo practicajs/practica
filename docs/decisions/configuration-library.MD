@@ -72,7 +72,6 @@
     <td><br><br>2500 ✨</td>
     <td><br><br>2500 ✨</td>
     <td><br><br>1000 ✨</td>
-    <td><br><br>2300 ✨</td>
   </tr>
   <tr>
     <td>Downloads/Week</td>
