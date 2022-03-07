@@ -40,11 +40,20 @@ Every small change can make this repo much better. If you intend to contribute a
 
 ## Development machine setup
 
-✅ Node.js >= 16.0.0
-✅ Docker
-✅ GitHub 2FA
-✅ npm 2FA
-✅ [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+✅ Install the node version that is specified in .nvmrc (at the project root)
+
+✅ Install Docker (needed for some tests)
+
+✅ Configure GitHub 2FA!
+
+✅ configure npm 2FA!
+
+✅ Install [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+✅ If not a core maintainer, fork the repo to your own machine
+
+✅ If not a core maintainer, fork the repo to your own machine
+
 
 
 ## Code structure
