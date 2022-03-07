@@ -23,10 +23,10 @@
   </tr>
   <tr valign="top">
     <td>Performance</td>
-    <td><img src="./graphics/almost-full.png"/><br/><br/><b>Not measureable</b>. Lack many mandatory solution layers</td>
-    <td><img src="./graphics/almost-full.png"/><br><br><b>Reasonable</b/>. Throughout and start time are impacted by the many solution layers</td>
+    <td><img src="./almost-full.png"/><br/><br/><b>Not measureable</b>. Lack many mandatory solution layers</td>
+    <td><img src="./almost-full.png"/><br><br><b>Reasonable</b/>. Throughout and start time are impacted by the many solution layers</td>
     <td>
-      <img src="./graphics/full.png"/><br><br><b>Great</b>. Performance as a first citizen</td>
+      <img src="./full.png"/><br><br><b>Great</b>. Performance as a first citizen</td>
   </tr>
   <tr valign="top">
     <td>Community & Popularity<br></td>
