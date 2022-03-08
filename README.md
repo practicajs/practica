@@ -26,7 +26,7 @@ Keeping it simple, flat and based on native Node/JS capabilities is part of this
 
 Since it's about good practices and simplicity, there is no need to narrow this code to specific framework or DB. We aim to support the major Node.js frameworks and databases
 
-![Built on top of known frameworks](/docs/images/tech.png)
+![Built on top of known frameworks](/docs/images/tech-stack.png)
 
 
 
@@ -36,7 +36,7 @@ https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8
 
 # A very quick start
 
-- Open your terminal and type `npx practic`
+- Open your terminal and type `npx practica`
 - Answer few questions to customize for your own needs
 - Start the project by typing `npm start` or run the test with `npm test`. Standard, ah?
 - Become familiar with the code by reading it starting from index.ts. This is the nice part - The code is yours, no abstractions hiding
@@ -59,7 +59,7 @@ We apply more than 100 practices and optimizations, you can opt-in or out for mo
 |                                     	|                                                                                                                                                                                                                                                                                        	|                         	|                        	|
 |                                     	|                                                                                                                                                                                                                                                                                        	|                         	|                        	|
 
-[Full features list](https://practick.io/features)
+[Full features list](https://practica.io/features)
 
 # Steering committee
 
