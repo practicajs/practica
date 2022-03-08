@@ -24,7 +24,5 @@
     "url": "https://github.com/bestpractices/practica/issues"
   },
   "homepage": "https://github.com/bestpractices/practica#readme",
-  "dependencies": {
-    "npm-user": "^4.1.1"
-  }
+  "dependencies": {}
 }
