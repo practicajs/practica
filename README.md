@@ -3,7 +3,7 @@
 ![Best practices starter](/docs/images/practica-logo.png)
 
 
-Generate a Node.js app that is packed with best practices AND simplicty in mind. Based on our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (77,000 stars)
+### Generate a Node.js app that is packed with best practices AND simplicty in mind. Based on our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (77,000 stars)
 
 🗓 **Alpha project:** This project is very premature WIP, please revisit by June 2022
 
