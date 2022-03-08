@@ -7,7 +7,7 @@
 
 🗓 **Alpha project:** This project is very premature WIP, please revisit by June 2022
 
-# Three things you oughta to know
+# 3 things you oughta to know first
 
 ### 1. Best practices *on top of* known Node.js frameworks
 
