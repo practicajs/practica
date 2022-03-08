@@ -63,7 +63,7 @@ We apply more than 100 practices and optimizations, you can opt-in or out for mo
 
 # Steering committee
 
-Practick is a community-driven open-source project. It's being led voluntarily by engineers from many companies. On top of this, these companies below which are keen to great engineeting practices chose to let their engineers contribute massively and push this project firmly 💚
+Practica is a community-driven open-source project. It's being led voluntarily by engineers from many companies. On top of this, these companies below which are keen to great engineeting practices chose to let their engineers contribute massively and push this project firmly 💚
 
 ![Autodesk](/docs/images/autodesk.png)
 
