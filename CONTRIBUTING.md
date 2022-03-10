@@ -62,6 +62,10 @@ Every small change can make this repo much better. If you intend to contribute a
 
 ✅ Code. Run the test. And vice versa
 
+## Areas to focus on
+
+![domains](https://user-images.githubusercontent.com/8571500/157631757-849584a3-1701-4248-8516-a7d60066089c.png)
+
 
 
 ## Code structure
