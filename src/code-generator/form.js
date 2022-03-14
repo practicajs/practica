@@ -9,6 +9,9 @@ const TextInput = require("ink-text-input").UncontrolledTextInput;
 const BigText = require("ink-big-text");
 var figlet = require("figlet");
 const util = require("util");
+const { generateApp } = require("./generation-logic/generate-service");
+const { createAsExpression, readBuilderProgram } = require("typescript");
+
 const promisifiedFiglet = util.promisify(figlet);
 
 const QuestionsWizard = () => {
@@ -51,7 +54,8 @@ const QuestionsWizard = () => {
   const handleFrameworkChoose = (chosenOption) => {
     setQuestionsWizard({ ...questionsWizard, showFrameworkQuestion: false, showDBTypeQuestion: true });
   };
-  const handleDBChoose = (chosenOption) => {
+  const handleDBChoose = await (chosenOption) => {
+    await generateApp({baseFramework: "express", DBType: "mongo", mainMicroserviceName: "microservice-1", emitBestPracticesHints : true,targetDirectory : "./"});
     setQuestionsWizard({
       ...questionsWizard,
       showFrameworkQuestion: false,
@@ -104,7 +108,7 @@ const QuestionsWizard = () => {
               </Box>
               <Box display={questionsWizard.showFinalMessage ? "flex" : "none"}>
                 <Text color="green" bold={true}>
-                  Your app is ready and packed with great practices
+                  Your app is ready and packed with great practices. CTRL+C to quit
                 </Text>
               </Box>
             </Box>
