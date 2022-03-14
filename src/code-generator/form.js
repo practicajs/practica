@@ -1,6 +1,6 @@
 "use strict";
 const React = require("react");
-const { render, Text, Box, useStdout } = require("ink");
+const { render, Text, Box, useStdout, Newline, Spacer } = require("ink");
 const MultiSelect = require("ink-multi-select").default;
 const Image = require("ink-image");
 const path = require("path");
@@ -15,107 +15,113 @@ const QuestionsWizard = () => {
   const initialQuestionsWizard = {
     showFrameworkQuestion: true,
     showDBTypeQuestion: false,
-    chosenD: "",
+    showFinalMessage: false,
+    advice:
+      "The name of your organization or project will determine the root folder and the libraries scope. For example, the logger library will be named: @your-org/logger",
+    title: figlet.textSync("Practica", {
+      font: "Banner",
+      horizontalLayout: "full",
+      verticalLayout: "default",
+      width: 80,
+      whitespaceBreak: true,
+    }),
   };
   const [questionsWizard, setQuestionsWizard] = React.useState(initialQuestionsWizard);
   const { stdout, write } = useStdout();
-  console.log("Start", questionsWizard);
 
-  const items = [
+  const databases = [
     {
       label: "Postgres",
       value: "pg",
+      advice:
+        "Strikes a great balance between popularity and flexibility. Can handle both relational workload and light noSQL/JSON workload. It's the best choice for most applications.",
     },
     {
       label: "mySQL",
       value: "my-sql",
+      advice: "Classic DB that mostly leans toward relational and structured data",
     },
     {
       label: "Mongo",
       value: "mongo",
+      advice: "Great DB for scenarios when a flexible schema is needed",
     },
   ];
 
-  let mainTitle;
-
-  
-
-  React.useEffect(() => {
-    figlet(
-      "Practica",
-      {
-        font: "Ghost",
-        horizontalLayout: "default",
-        verticalLayout: "default",
-        width: 80,
-        whitespaceBreak: true,
-      },
-      (error, result) => {
-        mainTitle = result;
-      }
-    );
-  }
-
-  // React.useEffect(async () => {
-  //   //await
-  //   mainTitle = data;
-  // });
-
   const handleFrameworkChoose = (chosenOption) => {
-    console.log(chosenOption, questionsWizard);
-    questionsWizard.showFrameworkQuestion = false;
-    questionsWizard.showDBTypeQuestion = true;
-    setQuestionsWizard({
-      showFrameworkQuestion: false,
-      showDBTypeQuestion: true,
-    });
+    setQuestionsWizard({ ...questionsWizard, showFrameworkQuestion: false, showDBTypeQuestion: true });
   };
   const handleDBChoose = (chosenOption) => {
-    console.log(chosenOption, questionsWizard);
     setQuestionsWizard({
+      ...questionsWizard,
       showFrameworkQuestion: false,
       showDBTypeQuestion: false,
+      showFinalMessage: true,
+      advice: "Inside the code you'll find ✅ icons. Those represents best practices to learn about",
     });
   };
-  const onChange = (value) => {
-    console.log("change", value);
-  };
 
-  const onSelectItemChange = (value) => {
-    const newState = { ...questionsWizard };
-    newState.chosenDB = value.label;
-    console.log(value.newState);
-    setQuestionsWizard(newState);
+  const onSelectItemChange = (selectedItem) => {
+    const advice = databases.find((db) => db.value === selectedItem.value).advice;
+    setQuestionsWizard({ ...questionsWizard, advice });
   };
 
   const logoPath = path.join(__dirname, "./practica-logo.png");
 
   return (
-    <Box width={"100%"} alignSelf="flex-start">
-      <Box width={"99%"} alignSelf="flex-center">
-        <Text>{mainTitle}</Text>
+    <Box width={"100%"} alignSelf="flex-start" flexDirection="column">
+      <Box flexDirection="row" width="100%" flexBasis="100%">
+        <Text flexBasis="100%" wrap="wrap">
+          {questionsWizard.title}
+        </Text>
       </Box>
-      <Box width="60%" alignSelf="flex-start" borderStyle="round" height="100%" paddingX="5">
-        {questionsWizard.showFrameworkQuestion ? (
-          <Box>
-            <Text>Framework:</Text>
-            <TextInput value="" onSubmit={handleFrameworkChoose} />
+      <Box flexDirection="row">
+        <Box width="50%" alignSelf="flex-start" borderStyle="round" height={20} paddingX="5" alignItems="flex-start">
+          <Box flexDirection="column">
+            <Box paddingY={1} alignSelf="flex-start">
+              <Text color="grey" bold={true}>
+                To pack the right code for you, please answer few questions first
+              </Text>
+              <Newline />
+              <Spacer />
+            </Box>
+            <Box>
+              <Box display={questionsWizard.showFrameworkQuestion ? "flex" : "none"}>
+                <Text color="green">Name of your app or organization:</Text>
+                <Spacer />
+                <TextInput value="" onSubmit={handleFrameworkChoose} />
+              </Box>
+              <Box display={questionsWizard.showDBTypeQuestion ? "flex" : "none"}>
+                <Text color="green">Which is your preferred DB:</Text>
+                <spacer />
+                <SelectInput
+                  items={databases}
+                  onSelect={handleDBChoose}
+                  onChange={onSelectItemChange}
+                  onSelectItemChange={onSelectItemChange}
+                  onHighlight={onSelectItemChange}
+                />
+              </Box>
+              <Box display={questionsWizard.showFinalMessage ? "flex" : "none"}>
+                <Text color="green" bold={true}>
+                  Your app is ready and packed with great practices
+                </Text>
+              </Box>
+            </Box>
           </Box>
-        ) : (
-          <Box>
-            <Text>DB:</Text>
-            <SelectInput
-              items={items}
-              onSelect={handleDBChoose}
-              onChange={onSelectItemChange}
-              onSelectItemChange={onSelectItemChange}
-              onHighlight={onSelectItemChange}
-            />
+        </Box>
+        <Box width="30%" borderStyle="round" height={20} paddingX="5" alignItems="flex-start" alignSelf="flex-end">
+          <Box flexDirection="column">
+            <Box paddingY={1} alignSelf="flex-start">
+              <Text color="grey" bold={true}>
+                Our advice here
+              </Text>
+            </Box>
+            <Box>
+              <Text>{questionsWizard.advice}</Text>
+            </Box>
           </Box>
-        )}
-      </Box>
-      <Box width="40%" alignSelf="flex-end" borderStyle="round" height="100%" paddingX="5">
-        <Text>{questionsWizard.chosenDB}</Text>
+        </Box>
       </Box>
     </Box>
   );
