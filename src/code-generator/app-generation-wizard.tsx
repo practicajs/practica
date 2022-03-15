@@ -11,11 +11,14 @@ var figlet = require("figlet");
 const util = require("util");
 const { generateApp } = require("./generation-logic/generate-service");
 const { createAsExpression, readBuilderProgram } = require("typescript");
+const terminalImage = require("terminal-image");
 
 const promisifiedFiglet = util.promisify(figlet);
 
 const QuestionsWizard = () => {
   const initialQuestionsWizard = {
+    chosenFramework: "",
+    chosenDB: "",
     showFrameworkQuestion: true,
     showDBTypeQuestion: false,
     showFinalMessage: false,
@@ -52,33 +55,45 @@ const QuestionsWizard = () => {
   ];
 
   const handleFrameworkChoose = (chosenOption) => {
-    setQuestionsWizard({ ...questionsWizard, showFrameworkQuestion: false, showDBTypeQuestion: true });
-  };
-  const handleDBChoose = await (chosenOption) => {
-    await generateApp({baseFramework: "express", DBType: "mongo", mainMicroserviceName: "microservice-1", emitBestPracticesHints : true,targetDirectory : "./"});
     setQuestionsWizard({
       ...questionsWizard,
+      chosenFramework: chosenOption.value,
+      showFrameworkQuestion: false,
+      showFinalMessage: false,
+      showDBTypeQuestion: true,
+    });
+  };
+
+  const handleDBChoose = async (chosenOption) => {
+    setQuestionsWizard({
+      ...questionsWizard,
+      chosenDB: chosenOption.value,
       showFrameworkQuestion: false,
       showDBTypeQuestion: false,
       showFinalMessage: true,
       advice: "Inside the code you'll find ✅ icons. Those represents best practices to learn about",
     });
+    const targetFolder = path.join(__dirname, "./");
+    console.log("loo", targetFolder);
+    await generateApp({
+      baseFramework: "express2",
+      DBType: "mongo",
+      mainMicroserviceName: "microservice-1",
+      emitBestPracticesHints: true,
+      targetDirectory: targetFolder,
+    });
   };
 
   const onSelectItemChange = (selectedItem) => {
-    const advice = databases.find((db) => db.value === selectedItem.value).advice;
+    const advice = databases.find((db) => db.value === selectedItem.value)?.advice;
     setQuestionsWizard({ ...questionsWizard, advice });
   };
 
   const logoPath = path.join(__dirname, "./practica-logo.png");
+  terminalImage.file(logoPath, { width: 70, preserveAspectRatio: true }).then((image) => stdout.write(image));
 
   return (
     <Box width={"100%"} alignSelf="flex-start" flexDirection="column">
-      <Box flexDirection="row" width="100%" flexBasis="100%">
-        <Text flexBasis="100%" wrap="wrap">
-          {questionsWizard.title}
-        </Text>
-      </Box>
       <Box flexDirection="row">
         <Box width="50%" alignSelf="flex-start" borderStyle="round" height={20} paddingX="5" alignItems="flex-start">
           <Box flexDirection="column">
@@ -97,7 +112,7 @@ const QuestionsWizard = () => {
               </Box>
               <Box display={questionsWizard.showDBTypeQuestion ? "flex" : "none"}>
                 <Text color="green">Which is your preferred DB:</Text>
-                <spacer />
+                <Spacer />
                 <SelectInput
                   items={databases}
                   onSelect={handleDBChoose}
@@ -135,3 +150,5 @@ render(<QuestionsWizard />);
 
 //<SelectInput items={items} onSelect={handleSubmit} />
 //<MultiSelect items={items} onSubmit={handleSubmit} />
+
+export {};
