@@ -49,7 +49,8 @@ This is only the tip of the iceberg, read more at [https://practic.io](https://p
 
 # Practices and features
 
-We apply more than 100 practices and optimizations, you can opt-in or out for most of these features using our CLI flags. Following is few examples of features, to learn about the full list of features, visit [https://practick.io/features]
+We apply more than 100 practices and optimizations, you can opt-in or out for most of these features using our CLI flags. Following is few examples of features, to learn about the full list of features, visit [https://practicajs.org/features]
+
 | **Feature**                         	| **Explanation**                                                                                                                                                                                                                                                                        	| **Flag**                	| **Documentation link** 	|
 |-------------------------------------	|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|-------------------------	|------------------------	|
 |            Monorepo setup           	| Generates two components (e.g., Microservices) in a single repository with interactions between the two                                                                                                                                                                                	| --monorepo, --mr        	| [Docs here]()          	|
@@ -57,10 +58,10 @@ We apply more than 100 practices and optimizations, you can opt-in or out for mo
 | Integration (component) testing     	| Generates full-blown component/integration tests setup including DB                                                                                                                                                                                                                    	| --tests, --t            	| [Docs here]()          	|
 | Unique request ID (Correlation ID)  	| Generates module that creates a unique correlation/request ID for every incoming request. This is available for any other object during the request life-span. Internally it uses Node's built-in [AsyncLocalStorage](https://nodejs.org/api/async_hooks.html#class-asynclocalstorage) 	| --correlation-id, --coi 	| [Docs here]()          	|
 | Dockerfile                          	| Generates dockerfile that embodies 20> best practices                                                                                                                                                                                                                                  	| --docker-file, --df     	| [Docs here]()          	|
-|                                     	|                                                                                                                                                                                                                                                                                        	|                         	|                        	|
-|                                     	|                                                                                                                                                                                                                                                                                        	|                         	|                        	|
+| Strong-schema configuration         	| A configuration module that dynamically load run-time configuration keys and includes a strong schema so it can fail fast                                                                                                                                                              	| Built-in with basic app 	| [Docs here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD)          	|
 
-[Full features list](https://practica.io/features)
+📗 **[Full features list](https://practica.io/features)**
+
 
 # Steering committee
 
