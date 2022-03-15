@@ -49,7 +49,7 @@ This is only the tip of the iceberg, read more at [https://practic.io](https://p
 
 # Practices and features
 
-We apply more than 100 practices and optimizations, you can opt-in or out for most of these features using our CLI flags. Following is few examples of features, to learn about the full list of features, visit [https://practicajs.org/features]
+We apply more than 100 practices and optimizations, you can opt-in or out for most of these features using our CLI flags. Following is few examples of features, to learn about the full list of features, [please visit here](https://practicajs.org/features)
 
 | **Feature**                         	| **Explanation**                                                                                                                                                                                                                                                                        	| **Flag**                	| **Documentation link** 	|
 |-------------------------------------	|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|-------------------------	|------------------------	|
@@ -60,7 +60,7 @@ We apply more than 100 practices and optimizations, you can opt-in or out for mo
 | Dockerfile                          	| Generates dockerfile that embodies 20> best practices                                                                                                                                                                                                                                  	| --docker-file, --df     	| [Docs here]()          	|
 | Strong-schema configuration         	| A configuration module that dynamically load run-time configuration keys and includes a strong schema so it can fail fast                                                                                                                                                              	| Built-in with basic app 	| [Docs here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD)          	|
 
-📗 **[Full features list](https://practica.io/features)**
+📗 **[Full features list - 100+ more](https://practica.io/features)**
 
 
 # Steering committee
