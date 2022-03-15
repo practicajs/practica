@@ -37,14 +37,29 @@ https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8
 
 # A very quick start
 
-- Open your terminal and type `npx practica`
-- Answer few questions to customize for your own needs
-- Start the project by typing `npm start` or run the test with `npm test`. Standard, ah?
-- Become familiar with the code by reading it starting from index.ts. This is the nice part - The code is yours, no abstractions hiding
-- Customize the routes and data model for your own needs by changing these 3 files (link soon)
-- Feel free to adjust the code, the tests with 100% coverage protect your back
+### Run this command from terminal
 
-This is only the tip of the iceberg, read more at [https://practic.io](https://practic.io)
+`npx practica`
+
+### Answer few questions to customize for your own needs
+
+
+### Start the project 
+
+`npm start`
+
+or
+
+`npm test`
+
+Standard, ah?
+
+### Make yourself acquainted with it
+
+- ✅ Run the routes with Postman
+- ✅ Understand the project structure by watch [this 5 min YouTube 📹](https://youtube.com)
+- ✅ Optional: Skim through the code, all the best practices are tagged inside the code
+- ✅ Master it by visiting our [documentation website](https://practica.org)
 
 
 # Practices and features
