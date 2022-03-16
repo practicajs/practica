@@ -28,6 +28,17 @@ Big words, how exactly? Here are few examples:
 
 [Our full coding guide will come here soon](./docs/coding-guide.MD)
 
+## Packages (domains)
+
+This solution is built around independent domains that share _almost_ nothing with others. It is recommended to start with understanding a single and small domain (package), then expanding and getting acquainted with more. This is also an opprtunity to master a specific topic that you're passionate about. Following is our packages list, choose where you wish to contribute first
+
+| **Package**             	| **What**                                                  	| **Status**                                    	| **Chosen libs**                                                                                                                                                     	| **Quick links**                      	|
+|-------------------------	|-----------------------------------------------------------	|-----------------------------------------------	|---------------------------------------------------------------------------------------------------------------------------------------------------------------------	|--------------------------------------	|
+| microservice/express    	| A web layer of an example Microservice based on expressjs 	| 🧓🏽 Stable                                     	| -                                                                                                                                                                   	| [Code & readme]() [Issues & ideas]() 	|
+| microservice/fastify    	| A web layer of an example Microservice based on Fastify   	| 🐣 Not started  (Take the heel, open an issue) 	| -                                                                                                                                                                   	| [Code & readme]() [Issues & ideas]() 	|
+| microservice/dal/prisma 	| A DAL layer of an example Microservice based on Prisma.js 	| 🐥 Beta/skeleton                               	| -                                                                                                                                                                   	| [Code & readme]() [Issues & ideas]() 	|
+| library/logger          	| A logging library wrapper                                 	| 🐥 Beta/skeleton  (Take it!)                   	| [Pino](https://github.com/pinojs/pino)  Why: [Decision here]()                                                                                                      	| [Code & readme]() [Issues & ideas]() 	|
+| library/configuration   	| A library that validates, reads and serve configuration   	| 🧒🏻 Solid  (Improvements needed)               	| [Convict](https://www.npmjs.com/package/convict)  Why: [Decision here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD) 	|                                      	|
 
 ## Workflow
 
