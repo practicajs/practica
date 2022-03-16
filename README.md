@@ -33,6 +33,15 @@ Since it's about good practices and simplicity, there is no need to narrow this 
 
 https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8117-04add11a5907.mp4
 
+# `Table of contents`
+
+- [`A very quick start`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup)
+- [`Example applications`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup)
+- [`Practices and features`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup)
+- [`Documentation site`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3-test-test-anatomy-basics) - The bread and butter of a component test (6 best practices)
+- [`YouTube channel`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
+- [`The people behind this project`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
+- [`Contribution guide`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data) - Patterns and practices for testing the application data and database (8 best practices)
 
 
 # A very quick start
