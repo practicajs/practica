@@ -49,6 +49,15 @@ This solution is built around independent domains that share _almost_ nothing wi
 
 Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, linting rules, look&feel fixes, fixing TYPOs, comments or anything that is small and obvious - Just fork to your machine, code, ensure all tests pass (e.g., `npm test`), PR with a meaninful title, get **1** approver before merging. That's it.
 
+
+|               Col1               |  Col2   |          Col3          | Numeric Column |
+|----------------------------------|---------|------------------------|----------------|
+| Value 1                          | Value 2 | 123                    |           10.0 |
+| Separate                         | cols    | with a tab or 4 spaces |       -2,027.1 |
+| This is a row with only one cell |         |                        |                |
+
+
+
 ### Need to change the code itself? Here is a typical workflow
 
 |          	| **➡️ Idea**                                                                                                                                                                                                                                            	| **➡ Design decisions**                                                                                                                                                                                                                                                   	| **➡ Code**                                                                                                                                                                                	| **➡️ Merge**                                                                                                                                                                                                                                        	|
