@@ -42,15 +42,6 @@ This solution is built around independent domains that share _almost_ nothing wi
 | library/jwt-based-authentication 	| A library that authenticates requests with JWT token      	| 🧓🏽 Stable                                           	| [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)<br><br>Why: <br>[Decision here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD) 	| - [Code & readme]()<br>- [Issues & ideas]() 	|
 
 
-+----------------------------------+---------+------------------------+----------------+
-|               Col1               |  Col2   |          Col3          | Numeric Column |
-+----------------------------------+---------+------------------------+----------------+
-| Value 1                          | Value 2 | 123                    |           10.0 |
-| Separate                         | cols    | with a tab or 4 spaces |       -2,027.1 |
-| This is a row with only one cell |         |                        |                |
-+----------------------------------+---------+------------------------+----------------+
-
-
 
 ## Workflow
 
