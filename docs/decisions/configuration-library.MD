@@ -6,7 +6,7 @@
 
 **📁 Corresponding discussion** - [Here](https://github.com/bestpractices/best-practice-starter/issues/10)
 
-**🎯Bottom-line** - convict ticks all the boxes by providing both strict schema, fail fast option, entry documentation and hirearchical structure
+**🎯Bottom-line: our recommednation** - **✨convict✨** ticks all the boxes by providing both strict schema, fail fast option, entry documentation and hirearchical structure
 
 **📊 Detailed comparison table** -
 
