@@ -6,9 +6,9 @@ If you reached down to this page, you probably belong with us 💜. We are in an
 
 ## A 3 min summary of this doc
 
-https://user-images.githubusercontent.com/8571500/156925380-024a1bab-54ec-4799-a1e6-aa21b99dcff3.mp4
 
-(Coming soon)
+https://user-images.githubusercontent.com/8571500/158583069-b8dceec0-81dc-4d90-9257-4eb89baeeeba.mp4
+
 
 ## Philosophy
 
