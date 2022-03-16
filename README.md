@@ -8,40 +8,17 @@
 
 🗓 **Alpha project:** This project is very premature WIP, please revisit by June 2022
 
-# 3 things you oughta to know first
-
-### 1. Best practices *on top of* known Node.js frameworks
-
-We don't invent new wheels rather use your favorite framework and empower it with more structure and practices. For example, with a single command you get express/fastify based code base with ~100 additional best practices inside
-
-![Built on top of known frameworks](/docs/images/on-top-of-frameworks.png)
-
-### 2. SIMPLE like Node.js was meant to be
-
-Keeping it simple, flat and based on native Node/JS capabilities is part of this project DNA. We believe that too many abstractions, high-complexity and fancy language features become soon a strategic slowdown for the team. To name a few example, our code flow is flat with almost no level of indirection, although using TypeScript - almost no features are being used besides types, for modularization we simply use... Node.js modules
-
-
-![Built on top of known frameworks](/docs/images/abstractions-vs-simplicity.png)
-
-### 3. Supports many technologies and frameworks
-
-Since it's about good practices and simplicity, there is no need to narrow this code to specific framework or DB. We aim to support the major Node.js frameworks and databases
-
-![Built on top of known frameworks](/docs/images/tech-stack.png)
-
-
-
-https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8117-04add11a5907.mp4
 
 # `Table of contents`
 
 - [`A very quick start`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup)
+- [`Our philosophy and unique value`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup)
 - [`Example applications`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup)
 - [`Practices and features`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup)
-- [`Documentation site`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3-test-test-anatomy-basics) - The bread and butter of a component test (6 best practices)
-- [`YouTube channel`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
-- [`The people behind this project`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world) - Techniques for testing collaborations with 3rd party components (8 best practices)
-- [`Contribution guide`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data) - Patterns and practices for testing the application data and database (8 best practices)
+- [`Documentation site`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3-test-test-anatomy-basics)
+- [`YouTube channel`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world)
+- [`The people behind this project`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world)
+- [`Contribution guide`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data)
 
 
 # A very quick start
@@ -69,6 +46,32 @@ Standard, ah?
 - ✅ Understand the project structure by watch [this 5 min YouTube 📹](https://youtube.com)
 - ✅ Optional: Skim through the code, all the best practices are tagged inside the code
 - ✅ Master it by visiting our [documentation website](https://practica.org)
+
+https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8117-04add11a5907.mp4
+
+# Our philosophy and unique value
+
+### 1. Best practices *on top of* known Node.js frameworks
+
+We don't invent new wheels rather use your favorite framework and empower it with more structure and practices. For example, with a single command you get express/fastify based code base with ~100 additional best practices inside
+
+![Built on top of known frameworks](/docs/images/on-top-of-frameworks.png)
+
+### 2. SIMPLE like Node.js was meant to be
+
+Keeping it simple, flat and based on native Node/JS capabilities is part of this project DNA. We believe that too many abstractions, high-complexity and fancy language features become soon a strategic slowdown for the team. To name a few example, our code flow is flat with almost no level of indirection, although using TypeScript - almost no features are being used besides types, for modularization we simply use... Node.js modules
+
+
+![Built on top of known frameworks](/docs/images/abstractions-vs-simplicity.png)
+
+### 3. Supports many technologies and frameworks
+
+Since it's about good practices and simplicity, there is no need to narrow this code to specific framework or DB. We aim to support the major Node.js frameworks and databases
+
+![Built on top of known frameworks](/docs/images/tech-stack.png)
+
+
+
 
 
 # Practices and features
