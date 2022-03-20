@@ -4,11 +4,13 @@
 
 If you reached down to this page, you probably belong with us 💜. We are in an ever-going quest for better software practices. This journey can bring two things to your benefit: A lot of learning and global impact on many people's craft. Does this sounds attractive? 
 
-## A 3 min summary of this doc
+## The shortened guide: A 3 min summary of this doc
 
-https://user-images.githubusercontent.com/8571500/156925380-024a1bab-54ec-4799-a1e6-aa21b99dcff3.mp4
+Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, linting rules, look&feel fixes, fixing TYPOs, comments or anything that is small and obvious - Just fork to your machine, code, ensure all tests pass (e.g., `npm test`), PR with a meaninful title, get **1** approver before merging. That's it.
 
-(Coming soon)
+
+https://user-images.githubusercontent.com/8571500/158583069-b8dceec0-81dc-4d90-9257-4eb89baeeeba.mp4
+
 
 ## Philosophy
 
@@ -28,12 +30,27 @@ Big words, how exactly? Here are few examples:
 
 [Our full coding guide will come here soon](./docs/coding-guide.MD)
 
+## Packages (domains)
+
+This solution is built around independent domains that share _almost_ nothing with others. It is recommended to start with understanding a single and small domain (package), then expanding and getting acquainted with more. This is also an opprtunity to master a specific topic that you're passionate about. Following is our packages list, choose where you wish to contribute first
+
+| **Package**                      	| **What**                                                  	| **Status**                                          	| **Chosen libs**                                                                                                                                                                         	| **Quick links**                             	|
+|----------------------------------	|-----------------------------------------------------------	|-----------------------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|---------------------------------------------	|
+| microservice/express             	| A web layer of an example Microservice based on expressjs 	| 🧓🏽 Stable                                           	| -                                                                                                                                                                                       	| - [Code & readme]()<br>- [Issues & ideas]() 	|
+| microservice/fastify             	| A web layer of an example Microservice based on Fastify   	| 🐣 Not started<br><br>(Take the heel, open an issue) 	| -                                                                                                                                                                                       	| - [Code & readme]()<br>- [Issues & ideas]() 	|
+| microservice/dal/prisma          	| A DAL layer of an example Microservice based on Prisma.js 	| 🐥 Beta/skeleton                                     	| -                                                                                                                                                                                       	| - [Code & readme]()<br>- [Issues & ideas]() 	|
+| library/logger                   	| A logging library wrapper                                 	| 🐥 Beta/skeleton<br><br>(Take it!)                   	| [Pino](https://github.com/pinojs/pino)<br><br>Why: [Decision here]()                                                                                                                    	| - [Code & readme]()<br>- [Issues & ideas]() 	|
+| library/configuration            	| A library that validates, reads and serve configuration   	| 🧒🏻 Solid<br><br>(Improvements needed)               	| [Convict](https://www.npmjs.com/package/convict)<br><br>Why: [Decision here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD)               	| - [Code & readme]()<br>- [Issues & ideas]() 	|
+| library/jwt-based-authentication 	| A library that authenticates requests with JWT token      	| 🧓🏽 Stable                                           	| [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)<br><br>Why: <br>[Decision here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD) 	| - [Code & readme]()<br>- [Issues & ideas]() 	|
+
+
 
 ## Workflow
 
 ### Got a small change? Choose the fast lane
 
 Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, linting rules, look&feel fixes, fixing TYPOs, comments or anything that is small and obvious - Just fork to your machine, code, ensure all tests pass (e.g., `npm test`), PR with a meaninful title, get **1** approver before merging. That's it.
+
 
 ### Need to change the code itself? Here is a typical workflow
 
