@@ -73,8 +73,7 @@ const QuestionsWizard = () => {
       showFinalMessage: true,
       advice: "Inside the code you'll find ✅ icons. Those represents best practices to learn about",
     });
-    const targetFolder = path.join(__dirname, "./");
-    console.log("loo", targetFolder);
+    const targetFolder = path.join(__dirname, "cox2m");
     await generateApp({
       baseFramework: "express2",
       DBType: "mongo",
@@ -89,11 +88,16 @@ const QuestionsWizard = () => {
     setQuestionsWizard({ ...questionsWizard, advice });
   };
 
-  const logoPath = path.join(__dirname, "./practica-logo.png");
-  terminalImage.file(logoPath, { width: 70, preserveAspectRatio: true }).then((image) => stdout.write(image));
+  //const logoPath = path.join(__dirname, "./practica-logo.png");
+  //terminalImage.file(logoPath, { width: 70, preserveAspectRatio: true }).then((image) => );
 
   return (
     <Box width={"100%"} alignSelf="flex-start" flexDirection="column">
+      <Box flexDirection="row" width="100%" flexBasis="100%">
+        <Text flexBasis="100%" wrap="wrap">
+          {questionsWizard.title}
+        </Text>
+      </Box>
       <Box flexDirection="row">
         <Box width="50%" alignSelf="flex-start" borderStyle="round" height={20} paddingX="5" alignItems="flex-start">
           <Box flexDirection="column">
