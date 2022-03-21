@@ -92,12 +92,12 @@ describe("generateApp", function () {
             switch (_a.label) {
                 case 0:
                     // Arrange
-                    console.log("fsd");
+                    console.log("fsd0");
                     options = getDefaultOptions();
                     // Act
+                    console.log("fsd01");
                     return [4 /*yield*/, (0, generate_service_1.generateApp)(options)];
                 case 1:
-                    // Act
                     _a.sent();
                     console.log("fsd1");
                     return [4 /*yield*/, fs_extra_1.default.readdir(options.targetDirectory)];
