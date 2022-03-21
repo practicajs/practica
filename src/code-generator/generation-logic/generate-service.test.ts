@@ -18,6 +18,7 @@ const createOrEmptyDestinationFolder = async (): Promise<void> => {
 
 const getDefaultOptions = (): generationOptions => {
   return {
+    appName: "test-app",
     targetDirectory: defaultDestinationFolder,
     DBType: "postgres",
     baseFramework: "express",
@@ -33,10 +34,13 @@ beforeEach(async () => {
 describe("generateApp", () => {
   test("When destination does not exist, then the destination folder created and includes content ", async () => {
     // Arrange
+    console.log("fsd0");
     const options = getDefaultOptions();
 
     // Act
+    console.log("fsd01");
     await generateApp(options);
+    console.log("fsd1");
 
     // Assert
     const destinationFolderContent = await fsExtra.readdir(options.targetDirectory);

@@ -6,11 +6,14 @@
   "directories": {
     "doc": "docs"
   },
+  "bin": {
+    "practica": "./bin/cli.js"
+  },
   "scripts": {
     "test": "jest",
     "test:dev": "jest --silent --watch",
     "test:dev:verbose": "jest --watch",
-    "build": "tsc",
+    "build": "tsc && cp -R ./src/code-templates/basic-app ./.dist/src/code-templates/basic-app",
     "build:watch": "tsc --watch",
     "start:dev:reload": "nodemon ./src/code-generator/index.js"
   },
@@ -31,8 +34,10 @@
   "homepage": "https://github.com/bestpractices/practica#readme",
   "dependencies": {
     "@types/blessed": "^0.1.19",
+    "@types/commander": "^2.12.2",
     "@types/fs-extra": "^9.0.13",
     "blessed": "^0.1.81",
+    "commander": "^9.1.0",
     "figlet": "^1.5.2",
     "fs-extra": "^10.0.1",
     "import-jsx": "^4.0.1",
@@ -50,6 +55,7 @@
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "@types/sinon": "^10.0.11",
+    "execa": "^5.1.1",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
     "sinon": "^13.0.1",

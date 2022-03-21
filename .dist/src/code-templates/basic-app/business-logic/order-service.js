@@ -38,7 +38,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUser = exports.deleteUser = exports.addOrder = void 0;
 var axios = require("axios");
-var mailer = require("../libraries/mailer");
 var OrderRepository = require("../data-access/order-repository");
 var AppError = require("../error-handling").AppError;
 var MessageQueueClient = require("../libraries/message-queue-client");
@@ -62,15 +61,9 @@ var addOrder = function (newOrder) {
                     return [4 /*yield*/, new OrderRepository().addOrder(newOrder)];
                 case 2:
                     DBResponse = _a.sent();
-                    if (!(process.env.SEND_MAILS === "true")) return [3 /*break*/, 4];
-                    return [4 /*yield*/, mailer.send("New order was placed", "user ".concat(DBResponse.userId, " ordered ").concat(DBResponse.productId), "admin@app.com")];
+                    // We should notify others that a new order was added - Let's put a message in a queue
+                    return [4 /*yield*/, new MessageQueueClient().sendMessage("new-order", newOrder)];
                 case 3:
-                    _a.sent();
-                    _a.label = 4;
-                case 4: 
-                // We should notify others that a new order was added - Let's put a message in a queue
-                return [4 /*yield*/, new MessageQueueClient().sendMessage("new-order", newOrder)];
-                case 5:
                     // We should notify others that a new order was added - Let's put a message in a queue
                     _a.sent();
                     return [2 /*return*/, DBResponse];
@@ -116,7 +109,6 @@ function getUserFromUsersService(userId) {
                         })];
                 case 1:
                     getUserResponse = _a.sent();
-                    console.log(getUserResponse.data);
                     return [2 /*return*/, getUserResponse.data];
                 case 2:
                     error_1 = _a.sent();

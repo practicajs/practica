@@ -1,4 +1,5 @@
 type generationOptions = {
+  appName: string;
   baseFramework: string;
   DBType: string;
   mainMicroserviceName: string;

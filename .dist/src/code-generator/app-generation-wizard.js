@@ -46,9 +46,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.renderWizard = void 0;
 var React = require("react");
-var _a = require("ink"), render = _a.render, Text = _a.Text, Box = _a.Box, useStdout = _a.useStdout, Newline = _a.Newline, Spacer = _a.Spacer;
+var _a = require("ink"), render = _a.render, Text = _a.Text, Box = _a.Box, useStdout = _a.useStdout, Newline = _a.Newline, Spacer = _a.Spacer, Transform = _a.Transform;
 var MultiSelect = require("ink-multi-select").default;
 var Image = require("ink-image");
 var path = require("path");
@@ -65,9 +75,11 @@ var QuestionsWizard = function () {
     var initialQuestionsWizard = {
         chosenFramework: "",
         chosenDB: "",
-        showFrameworkQuestion: true,
+        showNameQuestion: true,
+        showFrameworkQuestion: false,
         showDBTypeQuestion: false,
         showFinalMessage: false,
+        showFeatures: false,
         advice: "The name of your organization or project will determine the root folder and the libraries scope. For example, the logger library will be named: @your-org/logger",
         title: figlet.textSync("Practica", {
             font: "Banner",
@@ -79,11 +91,16 @@ var QuestionsWizard = function () {
     };
     var _a = React.useState(initialQuestionsWizard), questionsWizard = _a[0], setQuestionsWizard = _a[1];
     var _b = useStdout(), stdout = _b.stdout, write = _b.write;
+    var features = [
+        { label: "Logger", value: "logger" },
+        { label: "Request-ID - Correlation-ID", value: "request-id" },
+        { label: "Error-Handler", value: "error-handling" },
+    ];
     var databases = [
         {
             label: "Postgres",
             value: "pg",
-            advice: "Strikes a great balance between popularity and flexibility. Can handle both relational workload and light noSQL/JSON workload. It's the best choice for most applications.",
+            advice: "Strikes great balance between popularity and flexibility. Can handle both relational workload and light noSQL/JSON workload. It's the best choice for most applications.",
         },
         {
             label: "mySQL",
@@ -96,22 +113,47 @@ var QuestionsWizard = function () {
             advice: "Great DB for scenarios when a flexible schema is needed",
         },
     ];
+    var frameworks = [
+        {
+            label: "Express",
+            value: "express",
+            advice: "A super-popular and minimalist web library that is easy to learn and use. It's a great choice for small to medium sized applications. \n \n ⭐️ 91,000 stars \n \n ⬇️ 1,200,000 downloads/week",
+        },
+        {
+            label: "Fastify",
+            value: "my-fastify",
+            advice: "2A super-popular and minimalist web library that is easy to learn and use. It's a great choice for small to medium sized applications. /n ⭐️ 91,000 stars",
+        },
+        {
+            label: "Nest.JS",
+            value: "nestjs",
+            advice: "A super-popular and minimalist web library that is easy to learn and use. It's a great choice for small to medium sized applications. \n \n ⭐️ 91,000 stars \n \n ⬇️ 1,200,000 downloads/week",
+        },
+    ];
+    var handleNameChoose = function (name) {
+        setQuestionsWizard(__assign(__assign({}, questionsWizard), { showFinalMessage: false, showDBTypeQuestion: false, showNameQuestion: false, showFrameworkQuestion: true }));
+    };
     var handleFrameworkChoose = function (chosenOption) {
         setQuestionsWizard(__assign(__assign({}, questionsWizard), { chosenFramework: chosenOption.value, showFrameworkQuestion: false, showFinalMessage: false, showDBTypeQuestion: true }));
+    };
+    var handleFeaturesChoose = function (selected) {
+        console.log(selected);
     };
     var handleDBChoose = function (chosenOption) { return __awaiter(void 0, void 0, void 0, function () {
         var targetFolder;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    setQuestionsWizard(__assign(__assign({}, questionsWizard), { chosenDB: chosenOption.value, showFrameworkQuestion: false, showDBTypeQuestion: false, showFinalMessage: true, advice: "Inside the code you'll find ✅ icons. Those represents best practices to learn about" }));
-                    targetFolder = path.join(__dirname, "cox2m");
+                    setQuestionsWizard(__assign(__assign({}, questionsWizard), { chosenDB: chosenOption.value, showFrameworkQuestion: false, showDBTypeQuestion: false, showFinalMessage: false, showFwFeatures: true, advice: "Inside the code you'll find ✅ icons. Those represents best practices to learn about" }));
+                    console.log(__dirname);
+                    targetFolder = process.cwd();
                     return [4 /*yield*/, generateApp({
                             baseFramework: "express2",
                             DBType: "mongo",
                             mainMicroserviceName: "microservice-1",
                             emitBestPracticesHints: true,
                             targetDirectory: targetFolder,
+                            appName: "autodesk",
                         })];
                 case 1:
                     _a.sent();
@@ -121,37 +163,50 @@ var QuestionsWizard = function () {
     }); };
     var onSelectItemChange = function (selectedItem) {
         var _a;
-        var advice = (_a = databases.find(function (db) { return db.value === selectedItem.value; })) === null || _a === void 0 ? void 0 : _a.advice;
+        var allOptions = __spreadArray(__spreadArray([], databases, true), frameworks, true);
+        var advice = (_a = allOptions.find(function (option) { return option.value === selectedItem.value; })) === null || _a === void 0 ? void 0 : _a.advice;
         setQuestionsWizard(__assign(__assign({}, questionsWizard), { advice: advice }));
     };
     //const logoPath = path.join(__dirname, "./practica-logo.png");
     //terminalImage.file(logoPath, { width: 70, preserveAspectRatio: true }).then((image) => );
     return (React.createElement(Box, { width: "100%", alignSelf: "flex-start", flexDirection: "column" },
         React.createElement(Box, { flexDirection: "row", width: "100%", flexBasis: "100%" },
-            React.createElement(Text, { flexBasis: "100%", wrap: "wrap" }, questionsWizard.title)),
+            React.createElement(Text, { flexBasis: "100%", wrap: "wrap", alignSelf: "center" }, questionsWizard.title)),
         React.createElement(Box, { flexDirection: "row" },
             React.createElement(Box, { width: "50%", alignSelf: "flex-start", borderStyle: "round", height: 20, paddingX: "5", alignItems: "flex-start" },
                 React.createElement(Box, { flexDirection: "column" },
                     React.createElement(Box, { paddingY: 1, alignSelf: "flex-start" },
-                        React.createElement(Text, { color: "grey", bold: true }, "To pack the right code for you, please answer few questions first"),
+                        React.createElement(Text, { color: "white", bold: true }, "Just a few questions first"),
                         React.createElement(Newline, null),
                         React.createElement(Spacer, null)),
                     React.createElement(Box, null,
-                        React.createElement(Box, { display: questionsWizard.showFrameworkQuestion ? "flex" : "none" },
+                        React.createElement(Box, { display: questionsWizard.showFeaturesQuestion ? "flex" : "none" },
+                            React.createElement(Text, { color: "green" }, "Cherry-pick features:"),
+                            React.createElement(Spacer, null),
+                            React.createElement(MultiSelect, { items: features, onSelectItem: handleFeaturesChoose })),
+                        React.createElement(Box, { display: questionsWizard.showNameQuestion ? "flex" : "none" },
                             React.createElement(Text, { color: "green" }, "Name of your app or organization:"),
                             React.createElement(Spacer, null),
-                            React.createElement(TextInput, { value: "", onSubmit: handleFrameworkChoose })),
+                            React.createElement(TextInput, { value: "", onSubmit: handleNameChoose })),
                         React.createElement(Box, { display: questionsWizard.showDBTypeQuestion ? "flex" : "none" },
                             React.createElement(Text, { color: "green" }, "Which is your preferred DB:"),
                             React.createElement(Spacer, null),
                             React.createElement(SelectInput, { items: databases, onSelect: handleDBChoose, onChange: onSelectItemChange, onSelectItemChange: onSelectItemChange, onHighlight: onSelectItemChange })),
+                        React.createElement(Box, { display: questionsWizard.showFrameworkQuestion ? "flex" : "none" },
+                            React.createElement(Text, { color: "green" }, "Your preferred framework:"),
+                            React.createElement(Spacer, null),
+                            React.createElement(SelectInput, { items: frameworks, onSelect: handleFrameworkChoose, onChange: onSelectItemChange, onSelectItemChange: onSelectItemChange, onHighlight: onSelectItemChange })),
                         React.createElement(Box, { display: questionsWizard.showFinalMessage ? "flex" : "none" },
                             React.createElement(Text, { color: "green", bold: true }, "Your app is ready and packed with great practices. CTRL+C to quit"))))),
-            React.createElement(Box, { width: "30%", borderStyle: "round", height: 20, paddingX: "5", alignItems: "flex-start", alignSelf: "flex-end" },
+            React.createElement(Box, { width: "35%", borderStyle: "round", height: 20, paddingX: "10", alignItems: "flex-start", alignSelf: "flex-end" },
                 React.createElement(Box, { flexDirection: "column" },
                     React.createElement(Box, { paddingY: 1, alignSelf: "flex-start" },
-                        React.createElement(Text, { color: "grey", bold: true }, "Our advice here")),
+                        React.createElement(Text, { color: "white", bold: true }, "Our advice")),
                     React.createElement(Box, null,
                         React.createElement(Text, null, questionsWizard.advice)))))));
 };
-render(React.createElement(QuestionsWizard, null));
+//<SelectInput items={items} onSelect={handleSubmit} />
+var renderWizard = function () {
+    render(React.createElement(QuestionsWizard, null));
+};
+exports.renderWizard = renderWizard;

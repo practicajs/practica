@@ -42,16 +42,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateApp = void 0;
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var path_1 = __importDefault(require("path"));
-var generateApp = function (option) { return __awaiter(void 0, void 0, void 0, function () {
+var execa_1 = __importDefault(require("execa"));
+var generateApp = function (options) { return __awaiter(void 0, void 0, void 0, function () {
+    var targetDirectory, sourceDirectory, npmi;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: 
-            //console.log(`About to generate app with the following options: ${JSON.stringify(option)}`);
-            return [4 /*yield*/, fs_extra_1.default.copy(path_1.default.join(__dirname, "../../code-templates/basic-app"), option.targetDirectory)];
+            case 0:
+                console.log("ds2");
+                targetDirectory = path_1.default.join(options.targetDirectory, options.appName);
+                sourceDirectory = path_1.default.join(__dirname, "../../code-templates/basic-app");
+                console.log("About to generate app", options, targetDirectory, sourceDirectory);
+                return [4 /*yield*/, fs_extra_1.default.mkdir(targetDirectory)];
             case 1:
-                //console.log(`About to generate app with the following options: ${JSON.stringify(option)}`);
                 _a.sent();
-                //console.log(`App was generated successfully`);
+                return [4 /*yield*/, fs_extra_1.default.copy(sourceDirectory, targetDirectory)];
+            case 2:
+                _a.sent();
+                return [4 /*yield*/, (0, execa_1.default)("npm", ["install"], { cwd: targetDirectory })];
+            case 3:
+                npmi = _a.sent();
+                console.log(npmi);
+                console.log("App was generated successfully");
                 return [2 /*return*/];
         }
     });

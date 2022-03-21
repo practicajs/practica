@@ -35,10 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.stopWebServer = exports.initializeWebServer = void 0;
 var express = require("express");
 var util = require("util");
 var bodyParser = require("body-parser");
-var OrderRepository = require("../data-access/order-repository");
 var errorHandler = require("../error-handling").errorHandler;
 var orderService = require("../business-logic/order-service");
 var connection, expressApp;
@@ -53,11 +54,11 @@ var initializeWebServer = function () {
         defineRoutes(expressApp);
         var webServerPort = process.env.PORT ? process.env.PORT : 0;
         connection = expressApp.listen(webServerPort, function (error) {
-            console.log(error);
             resolve(connection.address());
         });
     });
 };
+exports.initializeWebServer = initializeWebServer;
 var stopWebServer = function () {
     return new Promise(function (resolve, reject) {
         connection.close(function () {
@@ -65,6 +66,7 @@ var stopWebServer = function () {
         });
     });
 };
+exports.stopWebServer = stopWebServer;
 var defineRoutes = function (expressApp) {
     var router = express.Router();
     // add new order
@@ -133,7 +135,7 @@ var defineRoutes = function (expressApp) {
                     return [4 /*yield*/, errorHandler.handleError(error)];
                 case 1:
                     _a.sent();
-                    res.status((error === null || error === void 0 ? void 0 : error.status) || 500).end();
+                    res.status((error === null || error === void 0 ? void 0 : error.HTTPStatus) || 500).end();
                     return [2 /*return*/];
             }
         });
@@ -145,7 +147,3 @@ process.on("uncaughtException", function (error) {
 process.on("unhandledRejection", function (reason) {
     errorHandler.handleError(reason);
 });
-module.exports = {
-    initializeWebServer: initializeWebServer,
-    stopWebServer: stopWebServer,
-};

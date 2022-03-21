@@ -35,9 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var MessageQueueClient = require('../libraries/message-queue-client');
-var _a = require('../error-handling'), errorHandler = _a.errorHandler, AppError = _a.AppError;
-var OrderRepository = require('../data-access/order-repository');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MessageQueueStarter = void 0;
+var MessageQueueClient = require("../libraries/message-queue-client");
+var _a = require("../error-handling"), errorHandler = _a.errorHandler, AppError = _a.AppError;
+var OrderRepository = require("../data-access/order-repository");
 // This is message queue entry point. Like API routes but for message queues.
 var MessageQueueStarter = /** @class */ (function () {
     function MessageQueueStarter(customMessageQueueProvider) {
@@ -68,7 +70,7 @@ var MessageQueueStarter = /** @class */ (function () {
                                         newMessageAsObject = JSON.parse(message);
                                         // ️️️✅ Best Practice: Validate incoming MQ messages using your validator framework (simplistic implementation below)
                                         if (!newMessageAsObject.id) {
-                                            return [2 /*return*/, reject(new AppError('invalid-message', true))];
+                                            throw new AppError("invalid-message", true);
                                         }
                                         orderRepository = new OrderRepository();
                                         return [4 /*yield*/, orderRepository.deleteOrder(newMessageAsObject.id)];
@@ -79,7 +81,7 @@ var MessageQueueStarter = /** @class */ (function () {
                             });
                         }); };
                         // Let's now register to new delete messages from the queue
-                        return [4 /*yield*/, this.messageQueueClient.consume('deleted-user', deletedOrderMessageHandler)];
+                        return [4 /*yield*/, this.messageQueueClient.consume("deleted-user", deletedOrderMessageHandler)];
                     case 1:
                         // Let's now register to new delete messages from the queue
                         _a.sent();
@@ -90,10 +92,10 @@ var MessageQueueStarter = /** @class */ (function () {
     };
     return MessageQueueStarter;
 }());
-process.on('uncaughtException', function (error) {
+exports.MessageQueueStarter = MessageQueueStarter;
+process.on("uncaughtException", function (error) {
     errorHandler.handleError(error);
 });
-process.on('unhandledRejection', function (reason) {
+process.on("unhandledRejection", function (reason) {
     errorHandler.handleError(reason);
 });
-module.exports = { MessageQueueStarter: MessageQueueStarter };

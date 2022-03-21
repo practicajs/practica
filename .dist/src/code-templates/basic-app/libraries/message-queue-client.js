@@ -50,10 +50,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var amqplib = require('amqplib');
-var EventEmitter = require('events').EventEmitter;
-var _a = require('../error-handling'), AppError = _a.AppError, errorHandler = _a.errorHandler;
-var FakeMessageQueueProvider = require('./fake-message-queue-provider').FakeMessageQueueProvider;
+Object.defineProperty(exports, "__esModule", { value: true });
+var amqplib = require("amqplib");
+var EventEmitter = require("events").EventEmitter;
+var _a = require("../error-handling"), AppError = _a.AppError, errorHandler = _a.errorHandler;
+var FakeMessageQueueProvider = require("./fake-message-queue-provider").FakeMessageQueueProvider;
 // This is a simplistic client for a popular message queue product - RabbitMQ
 // It's generic in order to be used by any service in the organization
 var MessageQueueClient = /** @class */ (function (_super) {
@@ -66,7 +67,7 @@ var MessageQueueClient = /** @class */ (function (_super) {
         if (customMessageQueueProvider) {
             _this.messageQueueProvider = customMessageQueueProvider;
         }
-        else if (process.env.MESSAGE_QUEUE_PROVIDER === 'real') {
+        else if (process.env.MESSAGE_QUEUE_PROVIDER === "real") {
             _this.messageQueueProvider = amqplib;
         }
         else {
@@ -81,15 +82,15 @@ var MessageQueueClient = /** @class */ (function (_super) {
                 switch (_c.label) {
                     case 0:
                         connectionProperties = {
-                            protocol: 'amqp',
-                            hostname: 'localhost',
+                            protocol: "amqp",
+                            hostname: "localhost",
                             port: 5672,
-                            username: 'rabbitmq',
-                            password: 'rabbitmq',
-                            locale: 'en_US',
+                            username: "rabbitmq",
+                            password: "rabbitmq",
+                            locale: "en_US",
                             frameMax: 0,
                             heartbeat: 0,
-                            vhost: '/',
+                            vhost: "/",
                         };
                         _a = this;
                         return [4 /*yield*/, this.messageQueueProvider.connect(connectionProperties)];
@@ -179,4 +180,4 @@ var MessageQueueClient = /** @class */ (function (_super) {
     };
     return MessageQueueClient;
 }(EventEmitter));
-module.exports = MessageQueueClient;
+exports.default = MessageQueueClient;

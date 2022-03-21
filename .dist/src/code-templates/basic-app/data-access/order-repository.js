@@ -35,11 +35,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.OrderRepository = void 0;
 var Sequelize = require('sequelize');
 var sequelizeConfig = require('./config/config');
 var repository;
 var orderModel;
-module.exports = /** @class */ (function () {
+var OrderRepository = /** @class */ (function () {
     function OrderRepository() {
         if (!repository) {
             repository = new Sequelize('shop', 'myuser', 'myuserpassword', sequelizeConfig);
@@ -115,3 +117,5 @@ module.exports = /** @class */ (function () {
     };
     return OrderRepository;
 }());
+exports.OrderRepository = OrderRepository;
+;

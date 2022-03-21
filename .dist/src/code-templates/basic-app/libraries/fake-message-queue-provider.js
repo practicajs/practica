@@ -50,7 +50,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var EventEmitter = require('events').EventEmitter;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FakeMessageQueueProvider = void 0;
+var EventEmitter = require("events").EventEmitter;
 // This class is the heart of the MQ testing - It replaces the MQ provider client library
 // and implement the same signature, but each method does nothing but emit an event which the test
 // can verify that indeed happened
@@ -63,9 +65,9 @@ var FakeMessageQueueProvider = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var eventDescription;
             return __generator(this, function (_a) {
-                eventDescription = { event: 'message-rejected' };
-                this.emit('message-rejected', eventDescription); // Multiple events allows the test to filter for the relevant event
-                this.emit('message-handled', eventDescription);
+                eventDescription = { event: "message-rejected" };
+                this.emit("message-rejected", eventDescription); // Multiple events allows the test to filter for the relevant event
+                this.emit("message-handled", eventDescription);
                 return [2 /*return*/];
             });
         });
@@ -74,9 +76,9 @@ var FakeMessageQueueProvider = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var eventDescription;
             return __generator(this, function (_a) {
-                eventDescription = { event: 'message-acknowledged' };
-                this.emit('message-acknowledged', eventDescription);
-                this.emit('message-handled', eventDescription);
+                eventDescription = { event: "message-acknowledged" };
+                this.emit("message-acknowledged", eventDescription);
+                this.emit("message-handled", eventDescription);
                 return [2 /*return*/];
             });
         });
@@ -84,7 +86,7 @@ var FakeMessageQueueProvider = /** @class */ (function (_super) {
     FakeMessageQueueProvider.prototype.sendToQueue = function (queueName, message) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.emit('message-sent', message);
+                this.emit("message-sent", message);
                 return [2 /*return*/];
             });
         });
@@ -118,7 +120,7 @@ var FakeMessageQueueProvider = /** @class */ (function (_super) {
                 }
                 else {
                     // Just warning and no exception because the test might want to simulate that
-                    console.error('A new message put into the fake queue but no handlers exist');
+                    console.error("A new message put into the fake queue but no handlers exist");
                 }
                 return [2 /*return*/];
             });
@@ -140,4 +142,4 @@ var FakeMessageQueueProvider = /** @class */ (function (_super) {
     };
     return FakeMessageQueueProvider;
 }(EventEmitter));
-module.exports = { FakeMessageQueueProvider: FakeMessageQueueProvider };
+exports.FakeMessageQueueProvider = FakeMessageQueueProvider;
