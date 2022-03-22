@@ -10,14 +10,16 @@ describe("Non-interactive", () => {
     // Arrange
     const targetDirectory = await testHelpers.createUniqueFolder(__dirname);
     await execa("npm", ["run", "build"]);
+    console.log("build");
     await execa("npm", ["link"], { cwd: path.join(__dirname, "../.dist") });
+    console.log("link");
 
     // Act
     const generateResult = await execa("practica", ["generate", "--install-dependencies"], { cwd: targetDirectory });
-    console.log(generateResult);
+    console.log("build", targetDirectory);
 
     // Assert
-    const testResult = await execa("npm", ["test"], { cwd: targetDirectory });
+    const testResult = await execa("npm", ["test"], { cwd: path.join(targetDirectory, "default-app-name") });
     console.log(testResult);
-  }, 70000);
+  }, 100000);
 });
