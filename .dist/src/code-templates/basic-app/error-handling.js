@@ -52,37 +52,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppError = exports.metricsExporter = exports.errorHandler = void 0;
-var mailer = require("./libraries/mailer");
 var logger = require("./libraries/logger");
 // This file simulates real-world error handler that makes this component observable
 var errorHandler = {
     handleError: function (errorToHandle) { return __awaiter(void 0, void 0, void 0, function () {
-        var e_1;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    logger.error(errorToHandle);
-                    metricsExporter.fireMetric("error", {
-                        errorName: errorToHandle.name || "generic-error",
-                    });
-                    // This is used to simulate sending email to admin when an error occurs
-                    // In real world - The right flow is sending alerts from the monitoring system
-                    return [4 /*yield*/, mailer.send("Error occured", "Error is ".concat(errorToHandle), "admin@our-domain.io")];
-                case 1:
-                    // This is used to simulate sending email to admin when an error occurs
-                    // In real world - The right flow is sending alerts from the monitoring system
-                    _a.sent();
-                    // A common best practice is to crash when an unknown error (non-trusted) is being thrown
-                    decideWhetherToCrash(errorToHandle);
-                    return [3 /*break*/, 3];
-                case 2:
-                    e_1 = _a.sent();
-                    // Continue the code flow if failed to handle the error
-                    console.log("handleError threw an error ".concat(e_1));
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+            try {
+                logger.error(errorToHandle);
+                metricsExporter.fireMetric("error", {
+                    errorName: errorToHandle.name || "generic-error",
+                });
+                // A common best practice is to crash when an unknown error (non-trusted) is being thrown
+                decideWhetherToCrash(errorToHandle);
             }
+            catch (e) {
+                // Continue the code flow if failed to handle the error
+                console.log("handleError threw an error ".concat(e));
+            }
+            return [2 /*return*/];
         });
     }); },
 };

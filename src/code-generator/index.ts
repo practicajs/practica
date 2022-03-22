@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-
 const { program } = require("commander");
 const util = require("util");
 
 import { renderWizard } from "./app-generation-wizard";
 const generateService = require("./generation-logic/generate-service");
+const { factorDefaultOptions } = require("./generation-logic/generation-options");
 
 export function startAppGenerator() {
   program
@@ -24,18 +24,16 @@ export function startAppGenerator() {
     .description("Generates code using flags")
     .option("-f, --framework <string>", "Framework to use")
     .option("-d, --db <string>", "DB to use")
+    .option("-id, --install-dependencies", "Whether to install dependencies")
     .action((options) => {
-      console.log(options.framework, options.db);
+      console.log(options.framework, options.db, options.installDependencies);
       console.log(program.args, program.opts());
       console.log(process.cwd());
-      generateService.generateApp({
-        baseFramework: "express2",
-        DBType: "mongo",
-        mainMicroserviceName: "microservice-1",
-        emitBestPracticesHints: true,
+      const generationOptions = factorDefaultOptions({
+        installDependencies: options.installDependencies,
         targetDirectory: process.cwd(),
-        appName: "test-app",
       });
+      generateService.generateApp(generationOptions);
     });
 
   program.option("--framework", "Use framework");

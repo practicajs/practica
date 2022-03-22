@@ -36,16 +36,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderRepository = void 0;
-var Sequelize = require('sequelize');
-var sequelizeConfig = require('./config/config');
+var Sequelize = require("sequelize");
+var sequelizeConfig = require("./config/config");
 var repository;
 var orderModel;
 var OrderRepository = /** @class */ (function () {
     function OrderRepository() {
         if (!repository) {
-            repository = new Sequelize('shop', 'myuser', 'myuserpassword', sequelizeConfig);
-            orderModel = repository.define('Order', {
+            repository = new Sequelize("shop", "myuser", "myuserpassword", sequelizeConfig);
+            orderModel = repository.define("Order", {
                 id: {
                     type: Sequelize.INTEGER,
                     primaryKey: true,
@@ -117,5 +116,4 @@ var OrderRepository = /** @class */ (function () {
     };
     return OrderRepository;
 }());
-exports.OrderRepository = OrderRepository;
-;
+exports.default = OrderRepository;

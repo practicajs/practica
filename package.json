@@ -13,7 +13,7 @@
     "test": "jest",
     "test:dev": "jest --silent --watch",
     "test:dev:verbose": "jest --watch",
-    "build": "tsc && cp -R ./src/code-templates/basic-app ./.dist/src/code-templates/basic-app",
+    "build": "tsc && cp -R ./src/code-templates/basic-app ./.dist/src/code-templates",
     "build:watch": "tsc --watch",
     "start:dev:reload": "nodemon ./src/code-generator/index.js"
   },

@@ -1,19 +1,14 @@
-const Sequelize = require('sequelize');
-const sequelizeConfig = require('./config/config');
+const Sequelize = require("sequelize");
+const sequelizeConfig = require("./config/config");
 
 let repository;
 let orderModel;
 
-export class OrderRepository {
+export default class OrderRepository {
   constructor() {
     if (!repository) {
-      repository = new Sequelize(
-        'shop',
-        'myuser',
-        'myuserpassword',
-        sequelizeConfig
-      );
-      orderModel = repository.define('Order', {
+      repository = new Sequelize("shop", "myuser", "myuserpassword", sequelizeConfig);
+      orderModel = repository.define("Order", {
         id: {
           type: Sequelize.INTEGER,
           primaryKey: true,
@@ -39,13 +34,12 @@ export class OrderRepository {
 
   async getOrderById(id) {
     return await orderModel.findOne({ where: { id } });
-
   }
 
   async addOrder(orderDetails) {
     const addingResponse = await orderModel.create(orderDetails);
 
-    return addingResponse.dataValues
+    return addingResponse.dataValues;
   }
 
   async deleteOrder(orderToDelete) {
@@ -56,4 +50,4 @@ export class OrderRepository {
   async cleanup() {
     await orderModel.truncate();
   }
-};
+}

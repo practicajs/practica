@@ -10,7 +10,8 @@
     "test": "jest",
     "test:dev": "jest --watch --silent --runInBand",
     "test:dev:verbose": "jest --watch",
-    "db:migrate": "cd data-access && sequelize-cli db:migrate"
+    "db:migrate": "cd data-access && sequelize-cli db:migrate",
+    "db:seed": "cd data-access && sequelize-cli db:seed:all"
   },
   "author": "Practica team",
   "license": "ISC",

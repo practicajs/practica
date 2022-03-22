@@ -38,9 +38,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUser = exports.deleteUser = exports.addOrder = void 0;
 var axios = require("axios");
-var OrderRepository = require("../data-access/order-repository");
+var OrderRepository = require("../data-access/order-repository").default;
+console.log(typeof OrderRepository);
 var AppError = require("../error-handling").AppError;
-var MessageQueueClient = require("../libraries/message-queue-client");
+var MessageQueueClient = require("../libraries/message-queue-client").default;
 var axiosHTTPClient = axios.create();
 var addOrder = function (newOrder) {
     return __awaiter(this, void 0, void 0, function () {
@@ -87,7 +88,9 @@ var getUser = function (userId) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, new OrderRepository().getOrderById(userId)];
+                case 0:
+                    console.log(OrderRepository);
+                    return [4 /*yield*/, new OrderRepository().getOrderById(userId)];
                 case 1: return [2 /*return*/, _a.sent()];
             }
         });

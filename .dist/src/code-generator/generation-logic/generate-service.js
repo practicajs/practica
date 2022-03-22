@@ -51,17 +51,20 @@ var generateApp = function (options) { return __awaiter(void 0, void 0, void 0, 
                 console.log("ds2");
                 targetDirectory = path_1.default.join(options.targetDirectory, options.appName);
                 sourceDirectory = path_1.default.join(__dirname, "../../code-templates/basic-app");
-                console.log("About to generate app", options, targetDirectory, sourceDirectory);
+                console.log("About to generate app", options, targetDirectory);
                 return [4 /*yield*/, fs_extra_1.default.mkdir(targetDirectory)];
             case 1:
                 _a.sent();
                 return [4 /*yield*/, fs_extra_1.default.copy(sourceDirectory, targetDirectory)];
             case 2:
                 _a.sent();
+                if (!options.installDependencies) return [3 /*break*/, 4];
                 return [4 /*yield*/, (0, execa_1.default)("npm", ["install"], { cwd: targetDirectory })];
             case 3:
                 npmi = _a.sent();
                 console.log(npmi);
+                _a.label = 4;
+            case 4:
                 console.log("App was generated successfully");
                 return [2 /*return*/];
         }

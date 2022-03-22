@@ -6,6 +6,7 @@ var program = require("commander").program;
 var util = require("util");
 var app_generation_wizard_1 = require("./app-generation-wizard");
 var generateService = require("./generation-logic/generate-service");
+var factorDefaultOptions = require("./generation-logic/generation-options").factorDefaultOptions;
 function startAppGenerator() {
     program
         .name("Practice - Best Practices Generator")
@@ -22,18 +23,16 @@ function startAppGenerator() {
         .description("Generates code using flags")
         .option("-f, --framework <string>", "Framework to use")
         .option("-d, --db <string>", "DB to use")
+        .option("-id, --install-dependencies", "Whether to install dependencies")
         .action(function (options) {
-        console.log(options.framework, options.db);
+        console.log(options.framework, options.db, options.installDependencies);
         console.log(program.args, program.opts());
         console.log(process.cwd());
-        generateService.generateApp({
-            baseFramework: "express2",
-            DBType: "mongo",
-            mainMicroserviceName: "microservice-1",
-            emitBestPracticesHints: true,
+        var generationOptions = factorDefaultOptions({
+            installDependencies: options.installDependencies,
             targetDirectory: process.cwd(),
-            appName: "test-app",
         });
+        generateService.generateApp(generationOptions);
     });
     program.option("--framework", "Use framework");
     program.option("--db", "Use DB");

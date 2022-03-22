@@ -1,46 +1,30 @@
+import { createUniqueFolder } from "./../../../test/test-helpers";
 import path from "path";
 import fsExtra from "fs-extra";
-
 import { generateApp } from "./generate-service";
-import generationOptions from "./generation-options";
+import * as generationOptions from "./generation-options";
+import * as testHelpers from "../../../test/test-helpers";
 
-let defaultDestinationFolder: string;
-
-const createOrEmptyDestinationFolder = async (): Promise<void> => {
-  defaultDestinationFolder = path.join(__dirname, "target-folder");
-  const doesPathExist = await fsExtra.pathExists(defaultDestinationFolder);
-  if (doesPathExist) {
-    await fsExtra.emptyDir(defaultDestinationFolder);
-  } else {
-    await fsExtra.mkdir(defaultDestinationFolder);
-  }
-};
-
-const getDefaultOptions = (): generationOptions => {
-  return {
-    appName: "test-app",
-    targetDirectory: defaultDestinationFolder,
-    DBType: "postgres",
-    baseFramework: "express",
-    mainMicroserviceName: "microservice-1",
-    emitBestPracticesHints: true,
-  };
-};
+let uniqueEmptyFolderForASingleTest: string;
 
 beforeEach(async () => {
-  await createOrEmptyDestinationFolder();
+  uniqueEmptyFolderForASingleTest = await testHelpers.createUniqueFolder(__dirname);
+});
+
+afterEach(async () => {
+  //await fsExtra.remove(uniqueEmptyFolderForASingleTest);
 });
 
 describe("generateApp", () => {
   test("When destination does not exist, then the destination folder created and includes content ", async () => {
     // Arrange
-    console.log("fsd0");
-    const options = getDefaultOptions();
+    console.log("fsd00");
+    const options = generationOptions.factorDefaultOptions({ targetDirectory: uniqueEmptyFolderForASingleTest });
 
     // Act
-    console.log("fsd01");
+    console.log("fsd11");
     await generateApp(options);
-    console.log("fsd1");
+    console.log("fsd22");
 
     // Assert
     const destinationFolderContent = await fsExtra.readdir(options.targetDirectory);

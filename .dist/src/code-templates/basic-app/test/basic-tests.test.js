@@ -195,38 +195,6 @@ describe("/api", function () {
                 }
             });
         }); });
-        // ️️️✅ Best Practice: Check external calls
-        test("When adding a new valid order, Then an email should be send to admin", function () { return __awaiter(void 0, void 0, void 0, function () {
-            var emailPayload, orderToAdd;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        //Arrange
-                        process.env.SEND_MAILS = "true";
-                        nock("http://mailer.com")
-                            .post("/send", function (payload) { return ((emailPayload = payload), true); })
-                            .reply(202);
-                        orderToAdd = {
-                            userId: 1,
-                            productId: 2,
-                            mode: "approved",
-                        };
-                        //Act
-                        return [4 /*yield*/, axiosAPIClient.post("/order", orderToAdd)];
-                    case 1:
-                        //Act
-                        _a.sent();
-                        //Assert
-                        // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
-                        expect(emailPayload).toMatchObject({
-                            subject: expect.any(String),
-                            body: expect.any(String),
-                            recipientAddress: expect.stringMatching(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/),
-                        });
-                        return [2 /*return*/];
-                }
-            });
-        }); });
         // ️️️✅ Best Practice: Check invalid input
         test("When adding an order without specifying product, stop and return 400", function () { return __awaiter(void 0, void 0, void 0, function () {
             var orderToAdd, orderAddResult;
@@ -269,38 +237,6 @@ describe("/api", function () {
                         orderAddResult = _a.sent();
                         //Assert
                         expect(orderAddResult.status).toBe(404);
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-        test("When order failed, send mail to admin", function () { return __awaiter(void 0, void 0, void 0, function () {
-            var emailPayload, orderToAdd;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        //Arrange
-                        process.env.SEND_MAILS = "true";
-                        nock("http://mailer.com")
-                            .post("/send", function (payload) { return ((emailPayload = payload), true); })
-                            .reply(202);
-                        sinon.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
-                        orderToAdd = {
-                            userId: 1,
-                            productId: 2,
-                            mode: "approved",
-                        };
-                        //Act
-                        return [4 /*yield*/, axiosAPIClient.post("/order", orderToAdd)];
-                    case 1:
-                        //Act
-                        _a.sent();
-                        //Assert
-                        // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
-                        expect(emailPayload).toMatchObject({
-                            subject: expect.any(String),
-                            body: expect.any(String),
-                            recipientAddress: expect.stringMatching(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/),
-                        });
                         return [2 /*return*/];
                 }
             });

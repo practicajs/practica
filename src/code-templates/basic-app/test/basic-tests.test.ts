@@ -136,36 +136,6 @@ describe("/api", () => {
       });
     });
 
-    // ️️️✅ Best Practice: Check external calls
-    test("When adding a new valid order, Then an email should be send to admin", async () => {
-      //Arrange
-      process.env.SEND_MAILS = "true";
-
-      // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
-      // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
-      let emailPayload;
-      nock("http://mailer.com")
-        .post("/send", (payload) => ((emailPayload = payload), true))
-        .reply(202);
-
-      const orderToAdd = {
-        userId: 1,
-        productId: 2,
-        mode: "approved",
-      };
-
-      //Act
-      await axiosAPIClient.post("/order", orderToAdd);
-
-      //Assert
-      // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
-      expect(emailPayload).toMatchObject({
-        subject: expect.any(String),
-        body: expect.any(String),
-        recipientAddress: expect.stringMatching(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/),
-      });
-    });
-
     // ️️️✅ Best Practice: Check invalid input
     test("When adding an order without specifying product, stop and return 400", async () => {
       //Arrange
@@ -204,35 +174,6 @@ describe("/api", () => {
 
       //Assert
       expect(orderAddResult.status).toBe(404);
-    });
-
-    test("When order failed, send mail to admin", async () => {
-      //Arrange
-      process.env.SEND_MAILS = "true";
-      // ️️️✅ Best Practice: Intercept requests for 3rd party services to eliminate undesired side effects like emails or SMS
-      // ️️️✅ Best Practice: Specify the body when you need to make sure you call the 3rd party service as expected
-      let emailPayload;
-      nock("http://mailer.com")
-        .post("/send", (payload) => ((emailPayload = payload), true))
-        .reply(202);
-
-      sinon.stub(OrderRepository.prototype, "addOrder").throws(new Error("Unknown error"));
-      const orderToAdd = {
-        userId: 1,
-        productId: 2,
-        mode: "approved",
-      };
-
-      //Act
-      await axiosAPIClient.post("/order", orderToAdd);
-
-      //Assert
-      // ️️️✅ Best Practice: Assert that the app called the mailer service appropriately
-      expect(emailPayload).toMatchObject({
-        subject: expect.any(String),
-        body: expect.any(String),
-        recipientAddress: expect.stringMatching(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/),
-      });
     });
   });
 });

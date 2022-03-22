@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -39,50 +62,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var path_1 = __importDefault(require("path"));
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var generate_service_1 = require("./generate-service");
-var defaultDestinationFolder;
-var createOrEmptyDestinationFolder = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var doesPathExist;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                defaultDestinationFolder = path_1.default.join(__dirname, "target-folder");
-                return [4 /*yield*/, fs_extra_1.default.pathExists(defaultDestinationFolder)];
-            case 1:
-                doesPathExist = _a.sent();
-                if (!doesPathExist) return [3 /*break*/, 3];
-                return [4 /*yield*/, fs_extra_1.default.emptyDir(defaultDestinationFolder)];
-            case 2:
-                _a.sent();
-                return [3 /*break*/, 5];
-            case 3: return [4 /*yield*/, fs_extra_1.default.mkdir(defaultDestinationFolder)];
-            case 4:
-                _a.sent();
-                _a.label = 5;
-            case 5: return [2 /*return*/];
-        }
-    });
-}); };
-var getDefaultOptions = function () {
-    return {
-        appName: "test-app",
-        targetDirectory: defaultDestinationFolder,
-        DBType: "postgres",
-        baseFramework: "express",
-        mainMicroserviceName: "microservice-1",
-        emitBestPracticesHints: true,
-    };
-};
+var generationOptions = __importStar(require("./generation-options"));
+var testHelpers = __importStar(require("../../../test/test-helpers"));
+var uniqueEmptyFolderForASingleTest;
 beforeEach(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, createOrEmptyDestinationFolder()];
+            case 0: return [4 /*yield*/, testHelpers.createUniqueFolder(__dirname)];
             case 1:
-                _a.sent();
+                uniqueEmptyFolderForASingleTest = _a.sent();
                 return [2 /*return*/];
         }
+    });
+}); });
+afterEach(function () { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/];
     });
 }); });
 describe("generateApp", function () {
@@ -92,14 +89,14 @@ describe("generateApp", function () {
             switch (_a.label) {
                 case 0:
                     // Arrange
-                    console.log("fsd0");
-                    options = getDefaultOptions();
+                    console.log("fsd00");
+                    options = generationOptions.factorDefaultOptions({ targetDirectory: uniqueEmptyFolderForASingleTest });
                     // Act
-                    console.log("fsd01");
+                    console.log("fsd11");
                     return [4 /*yield*/, (0, generate_service_1.generateApp)(options)];
                 case 1:
                     _a.sent();
-                    console.log("fsd1");
+                    console.log("fsd22");
                     return [4 /*yield*/, fs_extra_1.default.readdir(options.targetDirectory)];
                 case 2:
                     destinationFolderContent = _a.sent();
