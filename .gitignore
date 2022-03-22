@@ -1,4 +1,5 @@
 # Code build folder
+.dist
 
 # Logs
 .DS_Store
