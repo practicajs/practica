@@ -1,10 +1,4 @@
-# Running the example app
-
-## Prerequisites
-
-1. Docker
-2. Node.js
-3. nvm
+![Best practices starter](/docs/images/practica-logo.png)
 
 <br/>
 
@@ -31,6 +25,8 @@
 - [`Contribution guide`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data)
 
 # A very quick start
+
+🗓 **Alpha project:** This project is very premature WIP, please revisit by June 2022
 
 ### Run this command from terminal
 
