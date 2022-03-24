@@ -12,13 +12,16 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  await fsExtra.remove(uniqueEmptyFolderForASingleTest);
+  //  await fsExtra.remove(uniqueEmptyFolderForASingleTest);
 });
 
 describe("generateApp", () => {
   test("When destination does not exist, then the destination folder created and includes content ", async () => {
     // Arrange
-    const options = generationOptions.factorDefaultOptions({ targetDirectory: uniqueEmptyFolderForASingleTest });
+    const options = generationOptions.factorDefaultOptions({
+      targetDirectory: uniqueEmptyFolderForASingleTest,
+      installDependencies: false,
+    });
 
     // Act
     await generateApp(options);

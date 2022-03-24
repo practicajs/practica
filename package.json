@@ -11,9 +11,10 @@
   },
   "scripts": {
     "test": "jest",
+    "test:quick": "jest \"^((?!slow).)*$\"",
     "test:dev": "jest --silent --watch \"^((?!slow).)*$\"",
     "test:dev:verbose": "jest --watch \"^((?!slow).)*$\"",
-    "build": "tsc && cp -R ./src/code-templates/basic-app ./.dist/src/code-templates",
+    "build": "tsc && cp -R ./src/code-templates/ ./.dist/src/code-templates",
     "build:watch": "tsc --watch",
     "start:dev:reload": "nodemon ./src/code-generator/index.js"
   },
