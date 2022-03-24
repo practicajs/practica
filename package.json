@@ -1,5 +1,5 @@
 {
-  "name": "practica",
+  "name": "@practica/generate",
   "version": "0.0.1",
   "description": "Create Node.js app that is packed with best practices AND strive for simplicity",
   "main": "./src/code-generator/index.js",
@@ -11,15 +11,15 @@
   },
   "scripts": {
     "test": "jest",
-    "test:dev": "jest --silent --watch",
-    "test:dev:verbose": "jest --watch",
+    "test:dev": "jest --silent --watch \"^((?!slow).)*$\"",
+    "test:dev:verbose": "jest --watch \"^((?!slow).)*$\"",
     "build": "tsc && cp -R ./src/code-templates/basic-app ./.dist/src/code-templates",
     "build:watch": "tsc --watch",
     "start:dev:reload": "nodemon ./src/code-generator/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bestpractices/practica.git"
+    "url": "git+https://github.com/practicajs/practica"
   },
   "keywords": [
     "nodejs",

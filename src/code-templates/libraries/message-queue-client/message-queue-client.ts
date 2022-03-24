@@ -1,7 +1,7 @@
-const amqplib = require('amqplib');
-const { EventEmitter } = require('events');
-const { AppError, errorHandler } = require('../error-handling');
-const { FakeMessageQueueProvider } = require('./fake-message-queue-provider');
+const amqplib = require("amqplib");
+const { EventEmitter } = require("events");
+const { AppError, errorHandler } = require("../../libraries/error-handling/error-handling");
+const { FakeMessageQueueProvider } = require("./fake-message-queue-provider");
 
 // This is a simplistic client for a popular message queue product - RabbitMQ
 // It's generic in order to be used by any service in the organization
@@ -14,7 +14,7 @@ class MessageQueueClient extends EventEmitter {
     // It can get one in the constructor here or even change by environment variables
     if (customMessageQueueProvider) {
       this.messageQueueProvider = customMessageQueueProvider;
-    } else if (process.env.MESSAGE_QUEUE_PROVIDER === 'real') {
+    } else if (process.env.MESSAGE_QUEUE_PROVIDER === "real") {
       this.messageQueueProvider = amqplib;
     } else {
       this.messageQueueProvider = new FakeMessageQueueProvider();
@@ -23,19 +23,17 @@ class MessageQueueClient extends EventEmitter {
 
   async connect() {
     const connectionProperties = {
-      protocol: 'amqp',
-      hostname: 'localhost',
+      protocol: "amqp",
+      hostname: "localhost",
       port: 5672,
-      username: 'rabbitmq',
-      password: 'rabbitmq', // This is a demo app, no security considerations. This is the password for the local dev server
-      locale: 'en_US',
+      username: "rabbitmq",
+      password: "rabbitmq", // This is a demo app, no security considerations. This is the password for the local dev server
+      locale: "en_US",
       frameMax: 0,
       heartbeat: 0,
-      vhost: '/',
+      vhost: "/",
     };
-    this.connection = await this.messageQueueProvider.connect(
-      connectionProperties
-    );
+    this.connection = await this.messageQueueProvider.connect(connectionProperties);
     this.channel = await this.connection.createChannel();
   }
 
@@ -51,10 +49,7 @@ class MessageQueueClient extends EventEmitter {
       await this.connect();
     }
     await this.channel.assertQueue(queueName);
-    const sendResponse = await this.channel.sendToQueue(
-      queueName,
-      Buffer.from(JSON.stringify(message))
-    );
+    const sendResponse = await this.channel.sendToQueue(queueName, Buffer.from(JSON.stringify(message)));
 
     return sendResponse;
   }
@@ -82,4 +77,4 @@ class MessageQueueClient extends EventEmitter {
   }
 }
 
-module.exports = MessageQueueClient;
+export default MessageQueueClient;

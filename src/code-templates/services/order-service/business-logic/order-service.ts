@@ -1,8 +1,7 @@
 const axios = require("axios");
 const OrderRepository = require("../data-access/order-repository").default;
-console.log(typeof OrderRepository);
-const { AppError } = require("../error-handling");
-const MessageQueueClient = require("../libraries/message-queue-client").default;
+const { AppError } = require("../../../libraries/error-handling/error-handling");
+const MessageQueueClient = require("../../../libraries/message-queue-client/message-queue-client").default;
 
 const axiosHTTPClient = axios.create();
 

@@ -1,5 +1,6 @@
 {
   "files.exclude": {
     "**/.dist": true
-  }
+  },
+  "cSpell.words": ["practica"]
 }

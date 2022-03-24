@@ -1,4 +1,4 @@
-const MessageQueueClient = require("../libraries/message-queue-client");
+const MessageQueueClient = require(".../../libraries/message-queue-client");
 const { errorHandler, AppError } = require("../error-handling");
 const OrderRepository = require("../data-access/order-repository");
 

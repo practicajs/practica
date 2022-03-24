@@ -1,7 +1,7 @@
 const express = require("express");
 const util = require("util");
 const bodyParser = require("body-parser");
-const errorHandler = require("../error-handling").errorHandler;
+const errorHandler = require("../../../libraries/error-handling/error-handling").errorHandler;
 const orderService = require("../business-logic/order-service");
 
 let connection, expressApp;
