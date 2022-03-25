@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-const { program } = require("commander");
-const util = require("util");
+import { program } from "commander";
 
 import { renderWizard } from "./app-generation-wizard";
-const generateService = require("./generation-logic/generate-service");
-const { factorDefaultOptions } = require("./generation-logic/generation-options");
+import { generateApp } from "./generation-logic/generate-service";
+import { factorDefaultOptions } from "./generation-logic/generation-options";
 
 export function startAppGenerator() {
   program
@@ -33,7 +32,7 @@ export function startAppGenerator() {
         installDependencies: options.installDependencies,
         targetDirectory: process.cwd(),
       });
-      generateService.generateApp(generationOptions);
+      generateApp(generationOptions);
     });
 
   program.option("--framework", "Use framework");
