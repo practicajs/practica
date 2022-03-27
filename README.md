@@ -2,7 +2,7 @@
 
 <br/>
 
-### Generate a Node.js app that is packed with best practices AND simplicty in mind. Based on our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (77,000 stars)
+### Generate a Node.js app that is packed with best practices AND simplicty in mind. Based on our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (77,000 stars). Join our [discord server](https://discord.gg/9Nrarr7p)
 
 ❣️ **Don't use this project yet:** It's a very premature WIP, we're only kicking-off now, please revisit by June 2022🗓
 
