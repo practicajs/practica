@@ -5,7 +5,7 @@ const { initializeWebServer, stopWebServer } = require("../entry-points/api");
 const OrderRepository = require("../data-access/order-repository");
 
 // Configuring file-level HTTP client with base URL will allow
-// all the tests to approach with a shortened syntax
+// all the tests to approach using a shortened syntax
 let axiosAPIClient;
 
 beforeAll(async () => {
