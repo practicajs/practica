@@ -58,6 +58,7 @@
     "@types/sinon": "^10.0.11",
     "execa": "^5.1.1",
     "jest": "^27.5.1",
+    "node-notifier": "^10.0.1",
     "nodemon": "^2.0.15",
     "sinon": "^13.0.1",
     "ts-jest": "^27.1.3",
