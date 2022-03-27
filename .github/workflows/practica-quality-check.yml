@@ -1,4 +1,4 @@
-name: Practica quality check
+name: practica-quality-check
 
 on:
   push:
