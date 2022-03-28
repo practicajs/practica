@@ -16,7 +16,7 @@
     "test:dev:verbose": "jest --watch \"^((?!slow).)*$\"",
     "build": "tsc && cp -R ./src/code-templates/ ./.dist/src/code-templates",
     "build:watch": "tsc --watch",
-    "start:dev:reload": "nodemon ./src/code-generator/index.js"
+    "start:dev:reload": "nodemon ./bin/cli.ts"
   },
   "repository": {
     "type": "git",
