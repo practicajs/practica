@@ -1,4 +1,0 @@
-const path = require("path");
-
-const url = "/Users/yonigoldberg/Solutions/practica/src/code-templates/services/order-service/node_modules";
-console.log(path.dirname(url));
