@@ -3,7 +3,6 @@ import { renderWizard } from "./interactive-cli";
 const { handleNonInteractiveCommand } = require("./non-interactive-cli");
 
 export function startAppGenerator() {
-  console.log("Starting app generator");
   program
     .name("Practice - Best Practices Generator")
     .description("Generate best practices for your project")
