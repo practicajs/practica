@@ -1,7 +1,4 @@
 ![Best practices starter](/docs/images/practica-logo.png)
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
 
@@ -117,7 +114,14 @@ Practica is a community-driven open-source project. It's being led voluntarily b
 
 ## Core team
 
-Images of core team
+Images of core team soon
+
+# Partners
+
+These companies are obliged to implement these best practices and daily routine and they also fund this project generously
+
+![Minta](/docs/images/minta.png)
+
 
 ## Contributors
 
@@ -136,13 +140,3 @@ Images of core contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-# Partners
-
-These companies are obliged to implement these best practices and daily routine and they also fund this project generously
-
-![Cox2m](/docs/images/minta.png)
-
-1. Fork the repo
-2. Run `npm i`
-3. Run `nvm use`
-4. Run the tests `Run t`
