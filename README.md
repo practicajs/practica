@@ -123,9 +123,10 @@ These companies are obliged to implement these best practices and daily routine 
 ![Minta](/docs/images/minta.png)
 
 
-## Contributors
+## Amazing contributors 💚
 
-Images of core contributors
+Million thanks to these great people who contributed code:
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
