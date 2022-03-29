@@ -1,4 +1,7 @@
 ![Best practices starter](/docs/images/practica-logo.png)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
 
@@ -119,6 +122,19 @@ Images of core team
 ## Contributors
 
 Images of core contributors
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://www.clarkio.com"><img src="https://avatars.githubusercontent.com/u/6265396?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brian Clark</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=clarkio" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 # Partners
 
