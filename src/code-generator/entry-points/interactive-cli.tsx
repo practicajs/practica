@@ -2,18 +2,10 @@
 const React = require("react");
 const { render, Text, Box, useStdout, Newline, Spacer, Transform } = require("ink");
 const MultiSelect = require("ink-multi-select").default;
-const Image = require("ink-image");
-const path = require("path");
 const SelectInput = require("ink-select-input").default;
 const TextInput = require("ink-text-input").UncontrolledTextInput;
-const BigText = require("ink-big-text");
 var figlet = require("figlet");
-const util = require("util");
-const { generateApp } = require("./generation-logic/generate-service");
-const { createAsExpression, readBuilderProgram } = require("typescript");
-const terminalImage = require("terminal-image");
-
-const promisifiedFiglet = util.promisify(figlet);
+const { generateApp } = require("../generation-logic/generate-service");
 
 const QuestionsWizard = () => {
   const initialQuestionsWizard = {
@@ -24,8 +16,7 @@ const QuestionsWizard = () => {
     showDBTypeQuestion: false,
     showFinalMessage: false,
     showFeatures: false,
-    advice:
-      "The name of your organization or project will determine the root folder and the libraries scope. For example, the logger library will be named: @your-org/logger",
+    advice: "Determine the root folder and the libraries scope name. For example, @your-org/logger",
     title: figlet.textSync("Practica", {
       font: "Banner",
       horizontalLayout: "full",
@@ -43,12 +34,35 @@ const QuestionsWizard = () => {
     { label: "Error-Handler", value: "error-handling" },
   ];
 
+  const flavours = [
+    {
+      label: "Minimal",
+      value: "minimal",
+      advice: "Configuration only things such as linters. When you want to code everything yourself",
+    },
+    {
+      label: "Full-flow",
+      value: "full-flow",
+      advice: "Demonstrates full request flow. Packs common best practices. \n \n ✅ 82/120 Best Practices ",
+    },
+    {
+      label: "Fully featured",
+      value: "fully-featured",
+      advice: "All our best practices are packed inside. Might be an overkill for some apps",
+    },
+    {
+      label: "Cherry pick",
+      value: "cherry-pick",
+      advice: "Specifically choose the features that you need",
+    },
+  ];
+
   const databases = [
     {
       label: "Postgres",
       value: "pg",
       advice:
-        "Strikes great balance between popularity and flexibility. Can handle both relational workload and light noSQL/JSON workload. It's the best choice for most applications.",
+        "Strikes great balance between popularity and flexibility. Can handle both relational workload and light noSQL/JSON workload",
     },
     {
       label: "mySQL",
@@ -67,19 +81,19 @@ const QuestionsWizard = () => {
       label: "Express",
       value: "express",
       advice:
-        "A super-popular and minimalist web library that is easy to learn and use. It's a great choice for small to medium sized applications. \n \n ⭐️ 91,000 stars \n \n ⬇️ 1,200,000 downloads/week",
+        "A minimalist web library that is easy to learn. A great choice when in a need to have full-control. \n \n ⭐️ 91,000 stars \n \n ⬇️ 1,200,000 downloads/week",
     },
     {
       label: "Fastify",
       value: "my-fastify",
       advice:
-        "2A super-popular and minimalist web library that is easy to learn and use. It's a great choice for small to medium sized applications. /n ⭐️ 91,000 stars",
+        "A minimalist web library that is easy to learn. A great choice when in a need to have full-control. \n \n ⭐️ 91,000 stars \n \n ⬇️ 1,200,000 downloads/week",
     },
     {
       label: "Nest.JS",
       value: "nestjs",
       advice:
-        "A super-popular and minimalist web library that is easy to learn and use. It's a great choice for small to medium sized applications. \n \n ⭐️ 91,000 stars \n \n ⬇️ 1,200,000 downloads/week",
+        "A minimalist web library that is easy to learn. A great choice when in a need to have full-control. \n \n ⭐️ 91,000 stars \n \n ⬇️ 1,200,000 downloads/week",
     },
   ];
 
@@ -98,45 +112,43 @@ const QuestionsWizard = () => {
       ...questionsWizard,
       chosenFramework: chosenOption.value,
       showFrameworkQuestion: false,
-      showFinalMessage: false,
       showDBTypeQuestion: true,
     });
   };
 
   const handleFeaturesChoose = (selected) => {
-    console.log(selected);
+    console.log("fatuers", selected);
+  };
+
+  const handleFlavourChoose = (selected) => {
+    console.log("flavour", selected);
   };
 
   const handleDBChoose = async (chosenOption) => {
+    console.log("db choose");
     setQuestionsWizard({
       ...questionsWizard,
       chosenDB: chosenOption.value,
-      showFrameworkQuestion: false,
       showDBTypeQuestion: false,
-      showFinalMessage: false,
-      showFwFeatures: true,
-      advice: "Inside the code you'll find ✅ icons. Those represents best practices to learn about",
+      showFlavourQuestion: true,
     });
-    console.log(__dirname);
-    const targetFolder = process.cwd();
-    await generateApp({
-      baseFramework: "express2",
-      DBType: "mongo",
-      mainMicroserviceName: "microservice-1",
-      emitBestPracticesHints: true,
-      targetDirectory: targetFolder,
-      appName: "autodesk",
-    });
+
+    // await generateApp({
+    //   baseFramework: "express",
+    //   DBType: "mongo",
+    //   mainMicroserviceName: "microservice-1",
+    //   emitBestPracticesHints: true,
+    //   targetDirectory: process.cwd(),
+    //   appName: "autodesk",
+    // });
   };
 
   const onSelectItemChange = (selectedItem) => {
-    const allOptions = [...databases, ...frameworks];
-    const advice = allOptions.find((option) => option.value === selectedItem.value)?.advice;
-    setQuestionsWizard({ ...questionsWizard, advice });
+    const allOptions = [...databases, ...frameworks, ...flavours];
+    const chosenItem = allOptions.find((option) => option.value === selectedItem.value)?.advice;
+    const activeAdvice = chosenItem ? chosenItem : "";
+    setQuestionsWizard({ ...questionsWizard, advice: activeAdvice });
   };
-
-  //const logoPath = path.join(__dirname, "./practica-logo.png");
-  //terminalImage.file(logoPath, { width: 70, preserveAspectRatio: true }).then((image) => );
 
   return (
     <Box width={"100%"} alignSelf="flex-start" flexDirection="column">
@@ -161,33 +173,57 @@ const QuestionsWizard = () => {
                 <Spacer />
                 <MultiSelect items={features} onSelectItem={handleFeaturesChoose} />
               </Box>
+              {questionsWizard.showFlavourQuestion ? (
+                <Box display={questionsWizard.showFlavourQuestion ? "flex" : "none"}>
+                  <Text color="green">Which level of starter:</Text>
+                  <Spacer />
+                  <SelectInput
+                    items={flavours}
+                    onHighlight={onSelectItemChange}
+                    onSelectItemChange={onSelectItemChange}
+                    onSelect={handleFlavourChoose}
+                  />
+                </Box>
+              ) : (
+                <React.Fragment />
+              )}
               <Box display={questionsWizard.showNameQuestion ? "flex" : "none"}>
                 <Text color="green">Name of your app or organization:</Text>
                 <Spacer />
                 <TextInput value="" onSubmit={handleNameChoose} />
               </Box>
-              <Box display={questionsWizard.showDBTypeQuestion ? "flex" : "none"}>
-                <Text color="green">Which is your preferred DB:</Text>
-                <Spacer />
-                <SelectInput
-                  items={databases}
-                  onSelect={handleDBChoose}
-                  onChange={onSelectItemChange}
-                  onSelectItemChange={onSelectItemChange}
-                  onHighlight={onSelectItemChange}
-                />
-              </Box>
-              <Box display={questionsWizard.showFrameworkQuestion ? "flex" : "none"}>
-                <Text color="green">Your preferred framework:</Text>
-                <Spacer />
-                <SelectInput
-                  items={frameworks}
-                  onSelect={handleFrameworkChoose}
-                  onChange={onSelectItemChange}
-                  onSelectItemChange={onSelectItemChange}
-                  onHighlight={onSelectItemChange}
-                />
-              </Box>
+
+              {questionsWizard.showDBTypeQuestion ? (
+                <Box display={questionsWizard.showDBTypeQuestion ? "flex" : "none"}>
+                  <Text color="green">Which is your preferred DB:</Text>
+                  <Spacer />
+                  <SelectInput
+                    items={databases}
+                    onSelect={handleDBChoose}
+                    onChange={onSelectItemChange}
+                    onSelectItemChange={onSelectItemChange}
+                    onHighlight={onSelectItemChange}
+                  />
+                </Box>
+              ) : (
+                <React.Fragment />
+              )}
+
+              {questionsWizard.showFrameworkQuestion ? (
+                <Box display={questionsWizard.showFrameworkQuestion ? "flex" : "none"}>
+                  <Text color="green">Your preferred framework:</Text>
+                  <Spacer />
+                  <SelectInput
+                    items={frameworks}
+                    onSelect={handleFrameworkChoose}
+                    onChange={onSelectItemChange}
+                    onSelectItemChange={onSelectItemChange}
+                    onHighlight={onSelectItemChange}
+                  />
+                </Box>
+              ) : (
+                <React.Fragment />
+              )}
               <Box display={questionsWizard.showFinalMessage ? "flex" : "none"}>
                 <Text color="green" bold={true}>
                   Your app is ready and packed with great practices. CTRL+C to quit

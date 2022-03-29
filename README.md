@@ -1,4 +1,7 @@
 ![Best practices starter](/docs/images/practica-logo.png)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
 
@@ -17,13 +20,21 @@ Node.js has great frameworks, they never meant to be production ready - Practica
 - [`A very quick start`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup)
 - [`Our philosophy and unique value`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup)
 - [`Example applications`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup)
-  - [Express api, Postgresql database. Semi-hardened]()
-  - [Expressjs api, Mongodb database. Semi-hardened]()
-  - [Express api, Postgresql database. fully hardened with advanced features]()
+  - [Express, Postgresql, with common best practices]()
+  - [Express, Mongodb, with common best practices]()
+  - [Express, Postgresql, with all best practices (advanced)]()
+  - [Minimal with project setup configuration only]()
+  <details><summary>More flavours</summary>
+  
   - [soon] fastify, postgresql
+  
   - [soon] fastify, mongo
-  - More coming soon
+  
   - [Generate your own interactively]()
+  
+  - More coming soon
+  </details>
+
 - [`Practices and features`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup)
 - [`Documentation site`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3-test-test-anatomy-basics)
 - [`YouTube channel`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world)
@@ -111,6 +122,19 @@ Images of core team
 ## Contributors
 
 Images of core contributors
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://www.clarkio.com"><img src="https://avatars.githubusercontent.com/u/6265396?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brian Clark</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=clarkio" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 # Partners
 
