@@ -21,15 +21,17 @@ Node.js has great frameworks, they never meant to be production ready - Practica
   - [Expressjs api, Mongodb database. with common best practices]()
   - [Express api, Postgresql database. fully hardened with advanced features]()
   - [Minimal with project setup configuration only]()
-  <details><summary>More flavours</summary>
+  - <details><summary>More flavours</summary>
   
   - [soon] fastify, postgresql
   
   - [soon] fastify, mongo
   
+  - [Generate your own interactively]()
+  
   - More coming soon
   </details>
-  - [Generate your own interactively]()
+
 - [`Practices and features`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup)
 - [`Documentation site`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3-test-test-anatomy-basics)
 - [`YouTube channel`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world)
