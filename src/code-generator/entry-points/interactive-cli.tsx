@@ -2,18 +2,10 @@
 const React = require("react");
 const { render, Text, Box, useStdout, Newline, Spacer, Transform } = require("ink");
 const MultiSelect = require("ink-multi-select").default;
-const Image = require("ink-image");
-const path = require("path");
 const SelectInput = require("ink-select-input").default;
 const TextInput = require("ink-text-input").UncontrolledTextInput;
-const BigText = require("ink-big-text");
 var figlet = require("figlet");
-const util = require("util");
-const { generateApp } = require("./generation-logic/generate-service");
-const { createAsExpression, readBuilderProgram } = require("typescript");
-const terminalImage = require("terminal-image");
-
-const promisifiedFiglet = util.promisify(figlet);
+const { generateApp } = require("../generation-logic/generate-service");
 
 const QuestionsWizard = () => {
   const initialQuestionsWizard = {
