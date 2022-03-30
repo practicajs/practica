@@ -44,11 +44,17 @@ Node.js has great frameworks, they never meant to be production ready - Practica
 
 🗓 **Alpha project:** This project is very premature WIP, please revisit by June 2022
 
-### Run this command from terminal
+### Run this command from terminal (not working yet, but it should by April 5th. Please watch)
 
-`npx practica`
+Interactive mode with UI:
 
-### Answer few questions to customize for your own needs
+`npx practica wizard` 
+
+Command with flags:
+
+`npx practica generate --express --postgres` 
+
+### ✨ That's it, the code was generated for you 
 
 ### Start the project
 
@@ -60,12 +66,12 @@ or
 
 Standard, ah?
 
-### Make yourself acquainted with it
+### Enjoy
 
-- ✅ Run the routes with Postman
-- ✅ Understand the project structure by watch [this 5 min YouTube 📹](https://youtube.com)
+- ✅ Start coding. The code is short by design and you should get up to speed quick
+- ✅ Understand the project structure by watch [this 5 min YouTube (coming soon) 📹](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 - ✅ Optional: Skim through the code, all the best practices are tagged inside the code
-- ✅ Master it by visiting our [documentation website](https://practica.org)
+- ✅ Master it by visiting our [documentation website (coming soon)](https://practica.org)
 
 https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8117-04add11a5907.mp4
 
