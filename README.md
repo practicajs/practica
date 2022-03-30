@@ -16,13 +16,13 @@ Node.js has great frameworks, they never meant to be production ready - Practica
 
 # `Table of contents`
 
-- [`A very quick start`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup)
-- [`Our philosophy and unique value`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup)
-- [`Example applications`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup)
-  - [Express, Postgresql, with common best practices]()
-  - [Express, Mongodb, with common best practices]()
-  - [Express, Postgresql, with all best practices (advanced)]()
-  - [Minimal with project setup configuration only]()
+- [`A very quick start`](#a-very-quick-start)
+- [`Our philosophy and unique value`](#our-philosophy-and-unique-value)
+- [`Example applications (place holder, not ready yet)`]()
+  - [Express, Postgresql, with common best practices](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+  - [Express, Mongodb, with common best practices](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+  - [Express, Postgresql, with all best practices (advanced)](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+  - [Minimal with project setup configuration only](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
   <details><summary>More flavours</summary>
   
   - [soon] fastify, postgresql
@@ -34,11 +34,11 @@ Node.js has great frameworks, they never meant to be production ready - Practica
   - More coming soon
   </details>
 
-- [`Practices and features`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup)
-- [`Documentation site`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3-test-test-anatomy-basics)
-- [`YouTube channel`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world)
-- [`The people behind this project`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world)
-- [`Contribution guide`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data)
+- [`Practices and features`](#practices-and-features)
+- [`Documentation site (coming soon)`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+- [`YouTube channel (soon)`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+- [`The people behind this project`](#the-people-behind-this-project)
+- [`Contribution guide`](https://github.com/practicajs/practica/blob/main/CONTRIBUTING.md)
 
 # A very quick start
 
@@ -104,19 +104,25 @@ We apply more than 100 practices and optimizations, you can opt-in or out for mo
 
 📗 **[Full features list - 100+ more](https://practica.io/features)**
 
-# Steering committee
+
+# The people behind this project
+
+## Steering committee
 
 Practica is a community-driven open-source project. It's being led voluntarily by engineers from many companies. On top of this, these companies below which are keen to great engineeting practices chose to let their engineers contribute massively and push this project firmly 💚
 
 ![Autodesk](/docs/images/autodesk.png)
 
+A Nasdaq 100 company, world-leader in design software
+
 ![Cox2m](/docs/images/cox2m.png)
 
-# The people behind this
+Leader IoT provider, part of 'Cox Communication', 3rd largest US cable company
+
 
 ## Core team
 
-Images of core team soon
+Let's put our pictures here really soon
 
 # Partners
 
