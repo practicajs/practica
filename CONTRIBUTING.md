@@ -49,9 +49,6 @@ Every small change can make this repo much better. If you intend to contribute a
 
 ## Roles
 
-## Packages (domains)
-
-This solution is built around independent domains that share _almost_ nothing with others. It is recommended to start with understanding a single and small domain (package), then expanding and getting acquainted with more. This is also an opprtunity to master a specific topic that you're passionate about. Following is our packages list, choose where you wish to contribute first
 
 ## Project structure
 
@@ -71,10 +68,35 @@ graph
       A -->|How we explain ourself| D(Docs)
 
 
-
 ```
+
+### The example Microservice structure
+
+The entry-point of the generated code is an example Microservice that exposes API and has the traditional layers of a component:
+
+%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+graph
+      A[Code Templates] -->|The example Microservice/app| B(Services)
+      B -->|Where the API, logic and data lives| D(Example Microservice)
+      B -->|Almost empty, used to exemplify<br/> Microservice communication| E(Collaborator Microservice)
+      D -->|The web layer with REST/Graph| G(Web/API layer) 
+      N -->|Docker-compose based DB, MQ and Cache| F(Infrastructure)
+      D -->|Where the business lives| M(Domain layer) 
+      D -->|Anything related with database| N(Data-access layer)
+      A -->|Cross Microservice concerns| C(Libraries)
+      C -->|Explained in a dedicated section| K(See dedicated visual)
+      D -->|Component-wide testing| S(Testing)
+      style D stroke:#333,stroke-width:4px
+      style K fill: grey, stroke:#333,stroke-width:4px
+
+
     
 ### The code generator structure
+
+## Packages (domains)
+
+This solution is built around independent domains that share _almost_ nothing with others. It is recommended to start with understanding a single and small domain (package), then expanding and getting acquainted with more. This is also an opprtunity to master a specific topic that you're passionate about. Following is our packages list, choose where you wish to contribute first
+
 
     
 
