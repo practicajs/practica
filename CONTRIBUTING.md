@@ -106,6 +106,20 @@ graph
 
 **Libraries**
 
+All libraries are independent npm packages that can be testing in isolation
+
+```mermaid
+%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+graph
+      A[Libraries] --> B(Logger)
+      A[Libraries] --> |Token-based auth| C(Authorization)
+      A[Libraries] --> |Retrieve and validate the configuration| D(Configuration)
+      A[Libraries] -->  E(Error handler)
+      A[Libraries] -->  E(MetricsService)
+      A[Libraries] --> Z(More to come...)
+      style Z stroke:#333,stroke-width:4px
+```
+
 ### The code generator structure
 
 ## Packages (domains)
