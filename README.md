@@ -10,35 +10,51 @@
 
 # What in here for you in one paragraph
 
-Node.js has great frameworks, they never meant to be production ready - Practica.js bridges this gap. We generate application code that demonstrates a full flow, from API to DB, that is packed with good practices like hardened dockerfile, folder structure, testing templates, sanitized API response and more. This can save a great deal of time and painful mistakes. All our decisions are [neatly documented](/docs/decisions), we strive to keep things as simple and small as possible and base our work on the popular guide ['Node.js best practices'](https://github.com/goldbergyoni/nodebestpractices)
+Node.js has great frameworks, they never meant to be production ready - Practica.js bridges this gap. We generate application code that demonstrates a full flow, from API to DB, that is packed with good practices like hardened dockerfile, N-Tier folder structure, testing templates, sanitized API response and more. This can save a great deal of time and painful mistakes. All our decisions are transparent, [thoughtful and neatly documented](/docs/decisions), we strive to keep things as simple and small as possible and base our work on the popular guide ['Node.js best practices'](https://github.com/goldbergyoni/nodebestpractices)
+
+<br/>
 
 # `Table of contents`
 
-- [`A very quick start`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup)
-- [`Our philosophy and unique value`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-1-infrastructure-and-database-setup)
-- [`Example applications`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup)
-  - [Express api, Postgresql database. Semi-hardened]()
-  - [Expressjs api, Mongodb database. Semi-hardened]()
-  - [Express api, Postgresql database. fully hardened with advanced features]()
+- [`A very quick start`](#a-very-quick-start)
+- [`Our philosophy and unique value`](#our-philosophy-and-unique-value)
+- [`Example applications (place holder, not ready yet)`]()
+  - [Express, Postgresql, with common best practices](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+  - [Express, Mongodb, with common best practices](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+  - [Express, Postgresql, with all best practices (advanced)](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+  - [Minimal with project setup configuration only](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+  <details><summary>More flavours</summary>
+  
   - [soon] fastify, postgresql
+  
   - [soon] fastify, mongo
-  - More coming soon
+  
   - [Generate your own interactively]()
-- [`Practices and features`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-2-web-server-setup)
-- [`Documentation site`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-3-test-test-anatomy-basics)
-- [`YouTube channel`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world)
-- [`The people behind this project`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-4-isolating-from-the-external-world)
-- [`Contribution guide`](https://github.com/testjavascript/nodejs-integration-tests-best-practices#section-5-dealing-with-data)
+  
+  - More coming soon
+  </details>
+
+- [`Practices and features`](#practices-and-features)
+- [`Documentation site (coming soon)`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+- [`YouTube channel (soon)`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+- [`The people behind this project`](#the-people-behind-this-project)
+- [`Contribution guide`](https://github.com/practicajs/practica/blob/main/CONTRIBUTING.md)
 
 # A very quick start
 
 🗓 **Alpha project:** This project is very premature WIP, please revisit by June 2022
 
-### Run this command from terminal
+### Run this command from terminal (not working yet, but it should by April 5th. Please watch)
 
-`npx practica`
+Interactive mode with UI:
 
-### Answer few questions to customize for your own needs
+`npx practica wizard` 
+
+Command with flags:
+
+`npx practica generate --express --postgres` 
+
+### ✨ That's it, the code was generated for you 
 
 ### Start the project
 
@@ -50,12 +66,12 @@ or
 
 Standard, ah?
 
-### Make yourself acquainted with it
+### Enjoy
 
-- ✅ Run the routes with Postman
-- ✅ Understand the project structure by watch [this 5 min YouTube 📹](https://youtube.com)
+- ✅ Start coding. The code is short by design and you should get up to speed quick
+- ✅ Understand the project structure by watch [this 5 min YouTube (coming soon) 📹](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 - ✅ Optional: Skim through the code, all the best practices are tagged inside the code
-- ✅ Master it by visiting our [documentation website](https://practica.org)
+- ✅ Master it by visiting our [documentation website (coming soon)](https://practica.org)
 
 https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8117-04add11a5907.mp4
 
@@ -94,31 +110,49 @@ We apply more than 100 practices and optimizations, you can opt-in or out for mo
 
 📗 **[Full features list - 100+ more](https://practica.io/features)**
 
-# Steering committee
+
+# The people behind this project
+
+## Steering committee
 
 Practica is a community-driven open-source project. It's being led voluntarily by engineers from many companies. On top of this, these companies below which are keen to great engineeting practices chose to let their engineers contribute massively and push this project firmly 💚
 
 ![Autodesk](/docs/images/autodesk.png)
 
+A Nasdaq 100 company, world-leader in design software
+
 ![Cox2m](/docs/images/cox2m.png)
 
-# The people behind this
+Leader IoT provider, part of 'Cox Communication', 3rd largest US cable company
+
 
 ## Core team
 
-Images of core team
-
-## Contributors
-
-Images of core contributors
+Let's put our pictures here really soon
 
 # Partners
 
 These companies are obliged to implement these best practices and daily routine and they also fund this project generously
 
-![Cox2m](/docs/images/minta.png)
+![Minta](/docs/images/minta.png)
 
-1. Fork the repo
-2. Run `npm i`
-3. Run `nvm use`
-4. Run the tests `Run t`
+
+## Amazing contributors 💚
+
+Million thanks to these great people who contributed code:
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://www.clarkio.com"><img src="https://avatars.githubusercontent.com/u/6265396?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Brian Clark</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=clarkio" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/rluvaton"><img src="https://avatars.githubusercontent.com/u/16746759?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Raz Luvaton</b></sub></a><br /><a href="#content-rluvaton" title="Content">🖋</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+

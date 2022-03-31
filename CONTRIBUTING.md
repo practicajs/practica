@@ -30,9 +30,105 @@ Big words, how exactly? Here are few examples:
 
 [Our full coding guide will come here soon](./docs/coding-guide.MD)
 
+
+
+## Workflow
+
+### Got a small change? Choose the fast lane
+
+Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, linting rules, look&feel fixes, fixing TYPOs, comments or anything that is small and obvious - Just fork to your machine, code, ensure all tests pass (e.g., `npm test`), PR with a meaninful title, get **1** approver before merging. That's it.
+
+
+
+### Need to change the code itself? Here is a typical workflow
+
+|          	| **➡️ Idea**                                                                                                                                                                                                                                            	| **➡ Design decisions**                                                                                                                                                                                                                                                   	| **➡ Code**                                                                                                                                                                                	| **➡️ Merge**                                                                                                                                                                                                                                        	|
+|----------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| **When** 	| Got an idea how to improve? Want to handle an existing issue?                                                                                                                                                                                         	| When the change implies some major decisions, those should be discussed in advance                                                                                                                                                                                       	| When got confirmation from core maintainer that the design decisions are sensible                                                                                                         	| When you have accomplished a *short iteration* . If the whole change is small, PR in the end                                                                                                                                                       	|
+| **What** 	| **1.** Create an issue (if doesn't exist) <br/>  **2.** Label the issue with the its type (e.g., question, bug) and the area of improvement (e.g., area-generator, area-express)  <br/>   **3.** Comment and specify your intent to handle this issue 	| **1.** Within the issue, specify your overall approach/design. Or just open a discussion **2.** If choosing a 3rd party library, ensure to follow our standard decision and comparison template. [Example can be found here](./docs/decisions/configuration-library.MD)  	| **1.** Do it with passions 💜 <br/>  **2.** Follow our coding guide. Keep it simple. Stay loyal to our philosophy <br/>  **3.** Run all the quality measures frequently (testing, linting) 	| **1.** Share your progress early by submit a [work in progress PR](https://github.blog/2019-02-14-introducing-draft-pull-requests/) <br/>  **2.** Ensure all CI checks pass (e.g., testing) <br/>  **3.** Get at least one approval before merging 	|
+
+## Roles
+
+
+## Project structure
+
+### High-level sections
+
+The repo has 3 root folders that represents what we do:
+
+- **docs** - Anything we write to make this project super easy to work with
+- **code-generator** - A tool with great DX to choose and generate the right app for the user
+- **code-templates** - The code that we generate with the right patterns and practices
+
+```mermaid
+%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+graph
+      A[Practica] -->|How we create apps| B(Code Generators)
+      A -->|The code that we generate!| C(Code Templates)
+      A -->|How we explain ourself| D(Docs)
+
+
+```
+
+### The code templates
+
+Typically, the two main sections are the Microservice (apps) and cross-cutting-concern libraries:
+
+```mermaid
+%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+graph
+      A[Code Templates] -->|The example Microservice/app| B(Services)
+      B -->|Where the API, logic and data lives| D(Example Microservice)
+      A -->|Cross Microservice concerns| C(Libraries)
+      C -->|Explained in a dedicated section| K(*Multiple libraries like logger)
+      style D stroke:#333,stroke-width:4px
+
+
+```
+
+**The Microservice structure**
+
+
+The entry-point of the generated code is an example Microservice that exposes API and has the traditional layers of a component:
+
+```mermaid
+%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+graph
+      A[Services] -->|Where the API, logic and data lives| D(Example Microservice)
+      A -->|Almost empty, used to exemplify<br/> Microservice communication| E(Collaborator Microservice)
+      D -->|The web layer with REST/Graph| G(Web/API layer) 
+      N -->|Docker-compose based DB, MQ and Cache| F(Infrastructure)
+      D -->|Where the business lives| M(Domain layer) 
+      D -->|Anything related with database| N(Data-access layer)
+      D -->|Component-wide testing| S(Testing)
+      style D stroke:#333,stroke-width:4px
+```   
+
+**Libraries**
+
+All libraries are independent npm packages that can be testing in isolation
+
+```mermaid
+%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+graph
+      A[Libraries] --> B(Logger)
+      A[Libraries] --> |Token-based auth| C(Authorization)
+      A[Libraries] --> |Retrieve and validate the configuration| D(Configuration)
+      A[Libraries] -->  E(Error handler)
+      A[Libraries] -->  E(MetricsService)
+      A[Libraries] --> Z(More to come...)
+      style Z stroke:#333,stroke-width:4px
+```
+
+### The code generator structure
+
 ## Packages (domains)
 
 This solution is built around independent domains that share _almost_ nothing with others. It is recommended to start with understanding a single and small domain (package), then expanding and getting acquainted with more. This is also an opprtunity to master a specific topic that you're passionate about. Following is our packages list, choose where you wish to contribute first
+
+
+    
+
 
 | **Package**                      	| **What**                                                  	| **Status**                                          	| **Chosen libs**                                                                                                                                                                         	| **Quick links**                             	|
 |----------------------------------	|-----------------------------------------------------------	|-----------------------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|---------------------------------------------	|
@@ -44,22 +140,6 @@ This solution is built around independent domains that share _almost_ nothing wi
 | library/jwt-based-authentication 	| A library that authenticates requests with JWT token      	| 🧓🏽 Stable                                           	| [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)<br><br>Why: <br>[Decision here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD) 	| - [Code & readme]()<br>- [Issues & ideas]() 	|
 
 
-
-## Workflow
-
-### Got a small change? Choose the fast lane
-
-Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, linting rules, look&feel fixes, fixing TYPOs, comments or anything that is small and obvious - Just fork to your machine, code, ensure all tests pass (e.g., `npm test`), PR with a meaninful title, get **1** approver before merging. That's it.
-
-
-### Need to change the code itself? Here is a typical workflow
-
-|          	| **➡️ Idea**                                                                                                                                                                                                                                            	| **➡ Design decisions**                                                                                                                                                                                                                                                   	| **➡ Code**                                                                                                                                                                                	| **➡️ Merge**                                                                                                                                                                                                                                        	|
-|----------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
-| **When** 	| Got an idea how to improve? Want to handle an existing issue?                                                                                                                                                                                         	| When the change implies some major decisions, those should be discussed in advance                                                                                                                                                                                       	| When got confirmation from core maintainer that the design decisions are sensible                                                                                                         	| When you have accomplished a *short iteration* . If the whole change is small, PR in the end                                                                                                                                                       	|
-| **What** 	| **1.** Create an issue (if doesn't exist) <br/>  **2.** Label the issue with the its type (e.g., question, bug) and the area of improvement (e.g., area-generator, area-express)  <br/>   **3.** Comment and specify your intent to handle this issue 	| **1.** Within the issue, specify your overall approach/design. Or just open a discussion **2.** If choosing a 3rd party library, ensure to follow our standard decision and comparison template. [Example can be found here](./docs/decisions/configuration-library.MD)  	| **1.** Do it with passions 💜 <br/>  **2.** Follow our coding guide. Keep it simple. Stay loyal to our philosophy <br/>  **3.** Run all the quality measures frequently (testing, linting) 	| **1.** Share your progress early by submit a [work in progress PR](https://github.blog/2019-02-14-introducing-draft-pull-requests/) <br/>  **2.** Ensure all CI checks pass (e.g., testing) <br/>  **3.** Get at least one approval before merging 	|
-
-## Roles
 
 ## Development machine setup
 
