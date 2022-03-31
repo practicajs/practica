@@ -70,7 +70,24 @@ graph
 
 ```
 
-### The example Microservice structure
+### The code templates
+
+Typically, the two main sections are the Microservice (apps) and cross-cutting-concern libraries:
+
+```mermaid
+%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+graph
+      A[Code Templates] -->|The example Microservice/app| B(Services)
+      B -->|Where the API, logic and data lives| D(Example Microservice)
+      A -->|Cross Microservice concerns| C(Libraries)
+      C -->|Explained in a dedicated section| K(*Multiple libraries like logger)
+      style D stroke:#333,stroke-width:4px
+
+
+```
+
+**The Microservice structure**
+
 
 The entry-point of the generated code is an example Microservice that exposes API and has the traditional layers of a component:
 
@@ -91,7 +108,8 @@ graph
       style K fill: grey, stroke:#333,stroke-width:4px
 ```   
 
-    
+**Libraries**
+
 ### The code generator structure
 
 ## Packages (domains)
