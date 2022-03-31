@@ -74,6 +74,7 @@ graph
 
 The entry-point of the generated code is an example Microservice that exposes API and has the traditional layers of a component:
 
+```mermaid
 %%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
 graph
       A[Code Templates] -->|The example Microservice/app| B(Services)
@@ -88,7 +89,7 @@ graph
       D -->|Component-wide testing| S(Testing)
       style D stroke:#333,stroke-width:4px
       style K fill: grey, stroke:#333,stroke-width:4px
-
+```   
 
     
 ### The code generator structure
