@@ -18,18 +18,27 @@ describe("Non-interactive", () => {
     // Arrange
     console.time("build-link");
     await execa("npm", ["run", "build"]);
-    await execa("npm", ["link", "--force"], { cwd: path.join(__dirname, "../.dist") });
+    await execa("npm", ["link", "--force"], {
+      cwd: path.join(__dirname, "../.dist"),
+    });
     console.timeEnd("build-link");
 
     // Act
     console.time("generate");
-    const a = await execa("practica", ["generate", "--install-dependencies"], { cwd: emptyFolderForATest });
+    const a = await execa("practica", ["generate", "--install-dependencies"], {
+      cwd: emptyFolderForATest,
+    });
     console.timeEnd("generate");
 
     // Assert
     console.time("test");
     const testResult = await execa("npm", ["test"], {
-      cwd: path.join(emptyFolderForATest, "default-app-name", "services", "order-service"),
+      cwd: path.join(
+        emptyFolderForATest,
+        "default-app-name",
+        "services",
+        "order-service"
+      ),
     });
     console.timeEnd("test");
     expect(testResult.exitCode).toBe(0);

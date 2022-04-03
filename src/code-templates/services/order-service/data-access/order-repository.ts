@@ -7,7 +7,12 @@ let orderModel;
 export default class OrderRepository {
   constructor() {
     if (!repository) {
-      repository = new Sequelize("shop", "myuser", "myuserpassword", sequelizeConfig);
+      repository = new Sequelize(
+        "shop",
+        "myuser",
+        "myuserpassword",
+        sequelizeConfig
+      );
       orderModel = repository.define("Order", {
         id: {
           type: Sequelize.INTEGER,

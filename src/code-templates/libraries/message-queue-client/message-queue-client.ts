@@ -1,6 +1,9 @@
 const amqplib = require("amqplib");
 const { EventEmitter } = require("events");
-const { AppError, errorHandler } = require("../../libraries/error-handling/error-handling");
+const {
+  AppError,
+  errorHandler,
+} = require("../../libraries/error-handling/error-handling");
 const { FakeMessageQueueProvider } = require("./fake-message-queue-provider");
 
 // This is a simplistic client for a popular message queue product - RabbitMQ
@@ -33,7 +36,9 @@ class MessageQueueClient extends EventEmitter {
       heartbeat: 0,
       vhost: "/",
     };
-    this.connection = await this.messageQueueProvider.connect(connectionProperties);
+    this.connection = await this.messageQueueProvider.connect(
+      connectionProperties
+    );
     this.channel = await this.connection.createChannel();
   }
 
@@ -49,7 +54,10 @@ class MessageQueueClient extends EventEmitter {
       await this.connect();
     }
     await this.channel.assertQueue(queueName);
-    const sendResponse = await this.channel.sendToQueue(queueName, Buffer.from(JSON.stringify(message)));
+    const sendResponse = await this.channel.sendToQueue(
+      queueName,
+      Buffer.from(JSON.stringify(message))
+    );
 
     return sendResponse;
   }

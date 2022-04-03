@@ -15,9 +15,13 @@ module.exports = async () => {
       log: true,
     });
 
-    await dockerCompose.exec("database", ["sh", "-c", "until pg_isready ; do sleep 1; done"], {
-      cwd: path.join(__dirname),
-    });
+    await dockerCompose.exec(
+      "database",
+      ["sh", "-c", "until pg_isready ; do sleep 1; done"],
+      {
+        cwd: path.join(__dirname),
+      }
+    );
 
     // ️️️✅ Best Practice: Use npm script for data seeding and migrations
     execSync("npm run db:migrate");
