@@ -21,6 +21,7 @@ export function startAppGenerator() {
     .option("-f, --framework <string>", "Framework to use")
     .option("-d, --db <string>", "DB to use")
     .option("-id, --install-dependencies", "Whether to install dependencies")
+    .option("--emit-best-practices", "Whether to remove all best paractices comments in the generated code")
     .action((options) => {
       handleNonInteractiveCommand(options);
     });

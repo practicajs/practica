@@ -41,6 +41,7 @@
     "commander": "^9.1.0",
     "figlet": "^1.5.2",
     "fs-extra": "^10.0.1",
+    "handlebars": "^4.7.7",
     "import-jsx": "^4.0.1",
     "ink": "^3.2.0",
     "ink-big-text": "^1.2.0",
