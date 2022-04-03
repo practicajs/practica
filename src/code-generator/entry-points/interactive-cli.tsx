@@ -41,8 +41,8 @@ const QuestionsWizard = () => {
       advice: "Configuration only things such as linters. When you want to code everything yourself",
     },
     {
-      label: "Full-flow",
-      value: "full-flow",
+      label: "Typical flow",
+      value: "typical-flow",
       advice: "Demonstrates full request flow. Packs common best practices. \n \n ✅ 82/120 Best Practices ",
     },
     {
