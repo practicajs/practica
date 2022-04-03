@@ -38,7 +38,7 @@ Node.js has great frameworks, they never meant to be production ready - Practica
 - [`Documentation site (coming soon)`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 - [`YouTube channel (soon)`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 - [`The people behind this project`](#the-people-behind-this-project)
-- [Our best practices guide, 77,000 stars ✨](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+- [`Our best practices guide, 77,000 stars ✨`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 - [`Contribution guide`](https://github.com/practicajs/practica/blob/main/CONTRIBUTING.md)
 
 # A very quick start
