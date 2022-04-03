@@ -1,7 +1,8 @@
 const express = require("express");
 const util = require("util");
 const bodyParser = require("body-parser");
-const errorHandler = require("../../../libraries/error-handling/error-handling").errorHandler;
+const errorHandler =
+  require("../../../libraries/error-handling/error-handling").errorHandler;
 const orderService = require("../business-logic/order-service");
 
 let connection, expressApp;
@@ -38,7 +39,9 @@ const defineRoutes = (expressApp) => {
   // add new order
   router.post("/", async (req, res, next) => {
     try {
-      console.log(`Order API was called to add new Order ${util.inspect(req.body)}`);
+      console.log(
+        `Order API was called to add new Order ${util.inspect(req.body)}`
+      );
       const addOrderResponse = await orderService.addOrder(req.body);
       return res.json(addOrderResponse);
     } catch (error) {

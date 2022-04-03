@@ -1,4 +1,6 @@
-const { factorDefaultOptions } = require("../generation-logic/generation-options");
+const {
+  factorDefaultOptions,
+} = require("../generation-logic/generation-options");
 const generateService = require("../generation-logic/generate-service");
 
 export function handleNonInteractiveCommand(options: any) {

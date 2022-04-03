@@ -1,7 +1,10 @@
 const axios = require("axios");
 const OrderRepository = require("../data-access/order-repository").default;
-const { AppError } = require("../../../libraries/error-handling/error-handling");
-const MessageQueueClient = require("../../../libraries/message-queue-client/message-queue-client").default;
+const {
+  AppError,
+} = require("../../../libraries/error-handling/error-handling");
+const MessageQueueClient =
+  require("../../../libraries/message-queue-client/message-queue-client").default;
 
 const axiosHTTPClient = axios.create();
 
@@ -15,7 +18,11 @@ export const addOrder = async function (newOrder) {
   const userWhoOrdered = await getUserFromUsersService(newOrder.userId);
 
   if (!userWhoOrdered) {
-    throw new AppError("user-doesnt-exist", `The user ${newOrder.userId} doesnt exist`, 404);
+    throw new AppError(
+      "user-doesnt-exist",
+      `The user ${newOrder.userId} doesnt exist`,
+      404
+    );
   }
 
   // save to DB (Caution: simplistic code without layers and validation)
@@ -38,16 +45,23 @@ export const getUser = async function (userId) {
 
 async function getUserFromUsersService(userId) {
   try {
-    const getUserResponse = await axiosHTTPClient.get(`http://localhost/user/${userId}`, {
-      timeout: 2000,
-      validateStatus: (status) => {
-        return status < 500;
-      },
-    });
+    const getUserResponse = await axiosHTTPClient.get(
+      `http://localhost/user/${userId}`,
+      {
+        timeout: 2000,
+        validateStatus: (status) => {
+          return status < 500;
+        },
+      }
+    );
     return getUserResponse.data;
   } catch (error: any) {
     if (error?.code === "ECONNABORTED") {
-      throw new AppError("user-verification-failed", `Request to user service failed so user cant be verified`, 503);
+      throw new AppError(
+        "user-verification-failed",
+        `Request to user service failed so user cant be verified`,
+        503
+      );
     }
 
     throw error;

@@ -8,8 +8,13 @@ export const getRandomFolderPath = (basePath: string) => {
 };
 
 export const createUniqueFolder = async (basePath: string): Promise<string> => {
-  const folderForCodeGenerationOutput = path.join(basePath, specialFolderForTesting);
-  const randomFolderForSpecificTest = getRandomFolderPath(folderForCodeGenerationOutput);
+  const folderForCodeGenerationOutput = path.join(
+    basePath,
+    specialFolderForTesting
+  );
+  const randomFolderForSpecificTest = getRandomFolderPath(
+    folderForCodeGenerationOutput
+  );
   const doesPathExist = await fsExtra.pathExists(randomFolderForSpecificTest);
   if (!doesPathExist) {
     await fsExtra.mkdir(randomFolderForSpecificTest, { recursive: true });

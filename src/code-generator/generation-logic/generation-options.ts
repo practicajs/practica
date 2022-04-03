@@ -8,7 +8,9 @@ export type generationOptions = {
   installDependencies: boolean;
 };
 
-export const factorDefaultOptions = (overrides: Partial<generationOptions>): generationOptions => {
+export const factorDefaultOptions = (
+  overrides: Partial<generationOptions>
+): generationOptions => {
   const defaults: generationOptions = {
     appName: "default-app-name",
     baseFramework: "express",
