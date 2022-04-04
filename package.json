@@ -1,6 +1,6 @@
 {
   "name": "@practica/generate",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Create Node.js app that is packed with best practices AND strive for simplicity",
   "main": "./src/code-generator/index.js",
   "directories": {
@@ -16,7 +16,8 @@
     "test:dev:verbose": "jest --watch \"^((?!slow).)*$\"",
     "build": "tsc && cp -R ./src/code-templates/ ./.dist/src/code-templates",
     "build:watch": "tsc --watch",
-    "start:dev:reload": "nodemon ./src/code-generator/index.js"
+    "start:dev:reload": "nodemon ./src/code-generator/index.js",
+    "publish:build": "npm run build && npm publish --access public ./.dist"
   },
   "repository": {
     "type": "git",
