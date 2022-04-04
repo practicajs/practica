@@ -75,7 +75,9 @@ describe("/api", () => {
       const nonExistingOrderId = -1;
 
       //Act
-      const getResponse = await axiosAPIClient.get(`/order/${nonExistingOrderId}`);
+      const getResponse = await axiosAPIClient.get(
+        `/order/${nonExistingOrderId}`
+      );
 
       //Assert
       expect(getResponse.status).toBe(404);
@@ -93,7 +95,10 @@ describe("/api", () => {
       };
 
       //Act
-      const receivedAPIResponse = await axiosAPIClient.post("/order", orderToAdd);
+      const receivedAPIResponse = await axiosAPIClient.post(
+        "/order",
+        orderToAdd
+      );
 
       //Assert
       expect(receivedAPIResponse).toMatchObject({
@@ -121,7 +126,9 @@ describe("/api", () => {
       } = await axiosAPIClient.post("/order", orderToAdd);
 
       //Assert
-      const { data, status } = await axiosAPIClient.get(`/order/${addedOrderId}`);
+      const { data, status } = await axiosAPIClient.get(
+        `/order/${addedOrderId}`
+      );
 
       expect({
         data,
@@ -155,10 +162,14 @@ describe("/api", () => {
     test.todo("When a new order failed, an invalid-order error was handled");
 
     // ️️️✅ Best Practice: Check monitoring metrics
-    test.todo("When a new valid order was added, then order-added metric was fired");
+    test.todo(
+      "When a new valid order was added, then order-added metric was fired"
+    );
 
     // ️️️✅ Best Practice: Simulate external failures
-    test.todo("When the user service is down, then order is still added successfully");
+    test.todo(
+      "When the user service is down, then order is still added successfully"
+    );
 
     test("When the user does not exist, return 404 response", async () => {
       //Arrange

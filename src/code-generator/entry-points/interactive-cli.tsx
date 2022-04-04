@@ -1,6 +1,14 @@
 "use strict";
 const React = require("react");
-const { render, Text, Box, useStdout, Newline, Spacer, Transform } = require("ink");
+const {
+  render,
+  Text,
+  Box,
+  useStdout,
+  Newline,
+  Spacer,
+  Transform,
+} = require("ink");
 const MultiSelect = require("ink-multi-select").default;
 const SelectInput = require("ink-select-input").default;
 const TextInput = require("ink-text-input").UncontrolledTextInput;
@@ -16,7 +24,8 @@ const QuestionsWizard = () => {
     showDBTypeQuestion: false,
     showFinalMessage: false,
     showFeatures: false,
-    advice: "Determine the root folder and the libraries scope name. For example, @your-org/logger",
+    advice:
+      "Determine the root folder and the libraries scope name. For example, @your-org/logger",
     title: figlet.textSync("Practica", {
       font: "Banner",
       horizontalLayout: "full",
@@ -25,7 +34,9 @@ const QuestionsWizard = () => {
       whitespaceBreak: true,
     }),
   };
-  const [questionsWizard, setQuestionsWizard] = React.useState(initialQuestionsWizard);
+  const [questionsWizard, setQuestionsWizard] = React.useState(
+    initialQuestionsWizard
+  );
   const { stdout, write } = useStdout();
 
   const features = [
@@ -38,17 +49,20 @@ const QuestionsWizard = () => {
     {
       label: "Minimal",
       value: "minimal",
-      advice: "Configuration only things such as linters. When you want to code everything yourself",
+      advice:
+        "Configuration only things such as linters. When you want to code everything yourself",
     },
     {
-      label: "Typical flow",
-      value: "typical-flow",
-      advice: "Demonstrates full request flow. Packs common best practices. \n \n ✅ 82/120 Best Practices ",
+      label: "Full-flow",
+      value: "full-flow",
+      advice:
+        "Demonstrates full request flow. Packs common best practices. \n \n ✅ 82/120 Best Practices ",
     },
     {
       label: "Fully featured",
       value: "fully-featured",
-      advice: "All our best practices are packed inside. Might be an overkill for some apps",
+      advice:
+        "All our best practices are packed inside. Might be an overkill for some apps",
     },
     {
       label: "Cherry pick",
@@ -67,7 +81,8 @@ const QuestionsWizard = () => {
     {
       label: "mySQL",
       value: "my-sql",
-      advice: "Classic DB that mostly leans toward relational and structured data",
+      advice:
+        "Classic DB that mostly leans toward relational and structured data",
     },
     {
       label: "Mongo",
@@ -145,7 +160,9 @@ const QuestionsWizard = () => {
 
   const onSelectItemChange = (selectedItem) => {
     const allOptions = [...databases, ...frameworks, ...flavours];
-    const chosenItem = allOptions.find((option) => option.value === selectedItem.value)?.advice;
+    const chosenItem = allOptions.find(
+      (option) => option.value === selectedItem.value
+    )?.advice;
     const activeAdvice = chosenItem ? chosenItem : "";
     setQuestionsWizard({ ...questionsWizard, advice: activeAdvice });
   };
@@ -158,7 +175,14 @@ const QuestionsWizard = () => {
         </Text>
       </Box>
       <Box flexDirection="row">
-        <Box width="50%" alignSelf="flex-start" borderStyle="round" height={20} paddingX="5" alignItems="flex-start">
+        <Box
+          width="50%"
+          alignSelf="flex-start"
+          borderStyle="round"
+          height={20}
+          paddingX="5"
+          alignItems="flex-start"
+        >
           <Box flexDirection="column">
             <Box paddingY={1} alignSelf="flex-start">
               <Text color="white" bold={true}>
@@ -168,13 +192,22 @@ const QuestionsWizard = () => {
               <Spacer />
             </Box>
             <Box>
-              <Box display={questionsWizard.showFeaturesQuestion ? "flex" : "none"}>
+              <Box
+                display={questionsWizard.showFeaturesQuestion ? "flex" : "none"}
+              >
                 <Text color="green">Cherry-pick features:</Text>
                 <Spacer />
-                <MultiSelect items={features} onSelectItem={handleFeaturesChoose} />
+                <MultiSelect
+                  items={features}
+                  onSelectItem={handleFeaturesChoose}
+                />
               </Box>
               {questionsWizard.showFlavourQuestion ? (
-                <Box display={questionsWizard.showFlavourQuestion ? "flex" : "none"}>
+                <Box
+                  display={
+                    questionsWizard.showFlavourQuestion ? "flex" : "none"
+                  }
+                >
                   <Text color="green">Which level of starter:</Text>
                   <Spacer />
                   <SelectInput
@@ -194,7 +227,9 @@ const QuestionsWizard = () => {
               </Box>
 
               {questionsWizard.showDBTypeQuestion ? (
-                <Box display={questionsWizard.showDBTypeQuestion ? "flex" : "none"}>
+                <Box
+                  display={questionsWizard.showDBTypeQuestion ? "flex" : "none"}
+                >
                   <Text color="green">Which is your preferred DB:</Text>
                   <Spacer />
                   <SelectInput
@@ -210,7 +245,11 @@ const QuestionsWizard = () => {
               )}
 
               {questionsWizard.showFrameworkQuestion ? (
-                <Box display={questionsWizard.showFrameworkQuestion ? "flex" : "none"}>
+                <Box
+                  display={
+                    questionsWizard.showFrameworkQuestion ? "flex" : "none"
+                  }
+                >
                   <Text color="green">Your preferred framework:</Text>
                   <Spacer />
                   <SelectInput
@@ -226,13 +265,21 @@ const QuestionsWizard = () => {
               )}
               <Box display={questionsWizard.showFinalMessage ? "flex" : "none"}>
                 <Text color="green" bold={true}>
-                  Your app is ready and packed with great practices. CTRL+C to quit
+                  Your app is ready and packed with great practices. CTRL+C to
+                  quit
                 </Text>
               </Box>
             </Box>
           </Box>
         </Box>
-        <Box width="35%" borderStyle="round" height={20} paddingX="10" alignItems="flex-start" alignSelf="flex-end">
+        <Box
+          width="35%"
+          borderStyle="round"
+          height={20}
+          paddingX="10"
+          alignItems="flex-start"
+          alignSelf="flex-end"
+        >
           <Box flexDirection="column">
             <Box paddingY={1} alignSelf="flex-start">
               <Text color="white" bold={true}>

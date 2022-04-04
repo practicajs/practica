@@ -1,21 +1,21 @@
 import fsExtra from "fs-extra";
 import path from "path";
+import os from "os";
 
-export const getRandomFolderPath = (basePath: string) => {
+
+function getRandomFolderPath (basePath: string) {
   const randomFolderName = new Date().getTime().toString();
 
   return path.join(basePath, randomFolderName);
 };
 
-export const createUniqueFolder = async (basePath: string): Promise<string> => {
-  const folderForCodeGenerationOutput = path.join(basePath, specialFolderForTesting);
-  const randomFolderForSpecificTest = getRandomFolderPath(folderForCodeGenerationOutput);
-  const doesPathExist = await fsExtra.pathExists(randomFolderForSpecificTest);
+export const createUniqueFolder = async (): Promise<string> => {
+  const testOutputFolder = path.join(os.tmpdir(), "practica-tests-output");
+  const doesPathExist = await fsExtra.pathExists(testOutputFolder);
   if (!doesPathExist) {
-    await fsExtra.mkdir(randomFolderForSpecificTest, { recursive: true });
+    await fsExtra.mkdir(testOutputFolder, { recursive: true });
   }
+    const uniqueTestFolderPath = await fsExtra.mkdtemp(`${testOutputFolder}${path.sep}`);
 
-  return randomFolderForSpecificTest;
+  return uniqueTestFolderPath;
 };
-
-export const specialFolderForTesting = "output-folders-for-testing";

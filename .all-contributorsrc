@@ -1,0 +1,60 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 200,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "clarkio",
+      "name": "Brian Clark",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6265396?v=4",
+      "profile": "https://www.clarkio.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rluvaton",
+      "name": "Raz Luvaton",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16746759?v=4",
+      "profile": "https://github.com/rluvaton",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "mikicho",
+      "name": "Michael Solomon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11459632?v=4",
+      "profile": "https://github.com/mikicho",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "itainoam",
+      "name": "itainoam",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12605830?v=4",
+      "profile": "https://github.com/itainoam",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "shanizlo",
+      "name": "shanizlo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39856071?v=4",
+      "profile": "https://github.com/shanizlo",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 4,
+  "projectName": "practica",
+  "projectOwner": "practicajs",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

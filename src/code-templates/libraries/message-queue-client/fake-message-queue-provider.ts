@@ -38,7 +38,9 @@ class FakeMessageQueueProvider extends EventEmitter {
       this.messageHandler(wrappedMessage);
     } else {
       // Just warning and no exception because the test might want to simulate that
-      console.error("A new message put into the fake queue but no handlers exist");
+      console.error(
+        "A new message put into the fake queue but no handlers exist"
+      );
     }
   }
 

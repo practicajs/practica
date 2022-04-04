@@ -7,7 +7,9 @@ class MessageQueueStarter {
   messageQueueClient: any;
 
   constructor(customMessageQueueProvider) {
-    this.messageQueueClient = new MessageQueueClient(customMessageQueueProvider);
+    this.messageQueueClient = new MessageQueueClient(
+      customMessageQueueProvider
+    );
   }
 
   async start() {
@@ -29,7 +31,10 @@ class MessageQueueStarter {
     };
 
     // Let's now register to new delete messages from the queue
-    await this.messageQueueClient.consume("deleted-user", deletedOrderMessageHandler);
+    await this.messageQueueClient.consume(
+      "deleted-user",
+      deletedOrderMessageHandler
+    );
     return;
   }
 }

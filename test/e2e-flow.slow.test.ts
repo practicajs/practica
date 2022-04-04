@@ -6,7 +6,7 @@ import * as testHelpers from "./test-helpers";
 let emptyFolderForATest: string;
 
 beforeEach(async () => {
-  emptyFolderForATest = await testHelpers.createUniqueFolder(__dirname);
+  emptyFolderForATest = await testHelpers.createUniqueFolder();
 });
 
 afterEach(async () => {
@@ -17,14 +17,20 @@ describe("Non-interactive", () => {
   test("When passing no parameters, the generated app sanity tests pass", async () => {
     // Arrange
     await execa("npm", ["run", "build"]);
-    await execa("npm", ["link", "--force"], { cwd: path.join(__dirname, "../.dist") });
+    const npm = await execa("npm", ["link", "--force"], { cwd: path.join(__dirname, "../.dist") });
+    console.log(npm);
 
     // Act
     await execa("practica", ["generate", "--install-dependencies"], { cwd: emptyFolderForATest });
 
     // Assert
     const testResult = await execa("npm", ["test"], {
-      cwd: path.join(emptyFolderForATest, "default-app-name", "services", "order-service"),
+      cwd: path.join(
+        emptyFolderForATest,
+        "my-org",
+        "services",
+        "order-service"
+      ),
     });
     expect(testResult.exitCode).toBe(0);
   }, 100000);
