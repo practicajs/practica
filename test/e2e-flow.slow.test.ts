@@ -10,24 +10,27 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  await fsExtra.remove(emptyFolderForATest);
+  //await fsExtra.remove(emptyFolderForATest);
 });
 
 describe("Non-interactive", () => {
   test("When passing no parameters, the generated app sanity tests pass", async () => {
     // Arrange
     await execa("npm", ["run", "build"]);
-    const npm = await execa("npm", ["link", "--force"], { cwd: path.join(__dirname, "../.dist") });
-    console.log(npm);
+    await execa("npm", ["link", "--force"], {
+      cwd: path.join(__dirname, "../.dist"),
+    });
 
     // Act
-    await execa("practica", ["generate", "--install-dependencies"], { cwd: emptyFolderForATest });
+    await execa("practica", ["generate", "--install-dependencies"], {
+      cwd: emptyFolderForATest,
+    });
 
     // Assert
     const testResult = await execa("npm", ["test"], {
       cwd: path.join(
         emptyFolderForATest,
-        "my-org",
+        "default-app-name",
         "services",
         "order-service"
       ),
