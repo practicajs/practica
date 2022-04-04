@@ -20,7 +20,7 @@ class FakeMessageQueueProvider extends EventEmitter {
     this.emit("message-sent", message);
   }
 
-  async assertQueue() {}
+  // async assertQueue() {}
 
   async consume(queueName, messageHandler) {
     // We just save the callback (handler) locally, whenever a message will put into this queue

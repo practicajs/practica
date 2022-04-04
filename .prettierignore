@@ -8,9 +8,5 @@ tsconfig.json
 node_modules/
 jspm_packages/
 
-# TypeScript v1 declaration files
-typings/
-
-
 # Ignore all markdown files:
 *.md

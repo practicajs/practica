@@ -72,7 +72,7 @@ class MessageQueueClient extends EventEmitter {
       //Not awaiting because some MQ client implementation get back to fetch messages again only after handling a message
       onMessageCallback(theNewMessage.content.toString())
         .then(() => {
-          this.channel.ack(theNewMessage);
+          return this.channel.ack(theNewMessage);
         })
         .catch((error) => {
           this.channel.nack(theNewMessage);

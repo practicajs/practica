@@ -18,7 +18,7 @@ afterEach(async () => {
 });
 
 describe("generateApp", () => {
-  test("When destination does not exist, then the destination folder created and includes content ", async () => {
+  test("When destination does not exist, then the destination folder created and includes content", async () => {
     // Arrange
     const options = generationOptions.factorDefaultOptions({
       targetDirectory: uniqueEmptyFolderForASingleTest,
