@@ -49,11 +49,11 @@ Node.js has great frameworks, they never meant to be production ready - Practica
 
 Interactive mode with UI:
 
-`npx practica wizard` 
+`npx @practica/generate interactive` 
 
-Command with flags:
+Or a typical terminal command using flags (without UI):
 
-`npx practica generate --express --postgres` 
+`npx @practica/generate generate` 
 
 ### ✨ That's it, the code was generated for you 
 
