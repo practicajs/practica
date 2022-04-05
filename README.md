@@ -133,7 +133,7 @@ Let's put our pictures here really soon
 
 # Partners
 
-These companies are obliged to implement these best practices and daily routine and they also fund this project generously
+These companies are keen for continous improvements and encouraging their engineers to contribute during work hours
 
 ![Minta](/docs/images/minta.png)
 
