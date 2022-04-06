@@ -10,7 +10,7 @@
 
 # What in here for you in one paragraph
 
-Node.js has great frameworks, they never meant to be production ready - Practica.js bridges this gap. We generate application code that demonstrates a full flow, from API to DB, that is packed with good practices like hardened dockerfile, N-Tier folder structure, testing templates, sanitized API response and more. This can save a great deal of time and painful mistakes. All our decisions are transparent, [thoughtful and neatly documented](/docs/decisions), we strive to keep things as simple and small as possible and base our work on the popular guide ['Node.js best practices'](https://github.com/goldbergyoni/nodebestpractices)
+Node.js has great frameworks 💚, they never meant to be production ready - Practica.js bridges this gap. Based on your preferred framework, we generate a small code that demonstrates a full flow, from API to DB, that is packed with good practices. For example, we incude a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This can save a great deal of time and painful mistakes. All our decisions are being made, [thoughtfully and neatly documented](/docs/decisions), we strive to keep things as simple and standard as possible and base our work on the popular guide ['Node.js best practices'](https://github.com/goldbergyoni/nodebestpractices)
 
 <br/>
 
@@ -49,11 +49,11 @@ Node.js has great frameworks, they never meant to be production ready - Practica
 
 Interactive mode with UI:
 
-`npx practica wizard` 
+`npx @practica/generate interactive` 
 
-Command with flags:
+Or a typical terminal command using flags (without UI):
 
-`npx practica generate --express --postgres` 
+`npx @practica/generate generate` 
 
 ### ✨ That's it, the code was generated for you 
 
@@ -133,7 +133,7 @@ Let's put our pictures here really soon
 
 # Partners
 
-These companies are obliged to implement these best practices and daily routine and they also fund this project generously
+These companies are keen for continous improvements and encouraging their engineers to contribute during work hours
 
 ![Minta](/docs/images/minta.png)
 

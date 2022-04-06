@@ -2,5 +2,7 @@
   "files.exclude": {
     "**/.dist": true
   },
-  "cSpell.words": ["practica"]
+  "cSpell.words": ["practica"],
+  "editor.suggest.showStatusBar": true,
+  "debug.showInStatusBar": "onFirstSessionStart"
 }

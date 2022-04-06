@@ -164,6 +164,12 @@ This solution is built around independent domains that share _almost_ nothing wi
 ![domains](https://user-images.githubusercontent.com/8571500/157631757-849584a3-1701-4248-8516-a7d60066089c.png)
 
 
+## Supported Node.js version
+
+- The generated code should be compatible with Node.js versions >14.0.0.
+- It's fair to demand LTS version from the repository maintainers (the generator code)
+
 
 ## Code structure
 
+Soon
