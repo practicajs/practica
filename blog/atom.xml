@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://your-docusaurus-test-site.com/blog</id>
+    <title>Practica.js Blog</title>
+    <updated>2022-04-03T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://your-docusaurus-test-site.com/blog"/>
+    <subtitle>Practica.js Blog</subtitle>
+    <icon>https://your-docusaurus-test-site.com/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Welcome]]></title>
+        <id>welcome</id>
+        <link href="https://your-docusaurus-test-site.com/blog/welcome"/>
+        <updated>2022-04-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Practic.js]]></summary>
+        <content type="html"><![CDATA[<p><img loading="lazy" alt="Practic.js" src="/assets/images/practica-banner-b3525fbec95196426fe7c192918c22a5.png" width="1397" height="410" class="img_E7b_"></p>]]></content>
+        <author>
+            <name>Yoni Goldberg</name>
+            <uri>https://github.com/goldbergyoni</uri>
+        </author>
+        <category label="hello" term="hello"/>
+        <category label="practicajs" term="practicajs"/>
+    </entry>
+</feed>

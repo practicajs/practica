@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Practica.js Blog</title>
+        <link>https://your-docusaurus-test-site.com/blog</link>
+        <description>Practica.js Blog</description>
+        <lastBuildDate>Sun, 03 Apr 2022 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Welcome]]></title>
+            <link>https://your-docusaurus-test-site.com/blog/welcome</link>
+            <guid>welcome</guid>
+            <pubDate>Sun, 03 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Practic.js]]></description>
+            <content:encoded><![CDATA[<p><img loading="lazy" alt="Practic.js" src="/assets/images/practica-banner-b3525fbec95196426fe7c192918c22a5.png" width="1397" height="410" class="img_E7b_"></p>]]></content:encoded>
+            <category>hello</category>
+            <category>practicajs</category>
+        </item>
+    </channel>
+</rss>
