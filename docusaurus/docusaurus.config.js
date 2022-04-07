@@ -8,13 +8,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Practica.js',
   tagline: 'Best Practices Starter',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://practicajs.github.io',
+  baseUrl: '/practica/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'practica.js', // Usually your GitHub org/user name.
-  projectName: 'practica', // Usually your repo name.
+  organizationName: 'practicajs',
+  projectName: 'practica',
 
   presets: [
     [
