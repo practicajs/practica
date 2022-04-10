@@ -1,6 +1,5 @@
 const { EventEmitter } = require("events");
 const {
-  AppError,
   errorHandler,
 } = require("../../libraries/error-handling/error-handling");
 const { FakeMessageQueueProvider } = require("./fake-message-queue-provider");
