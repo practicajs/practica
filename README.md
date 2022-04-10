@@ -4,6 +4,8 @@
 
 ### Generate a Node.js app that is packed with best practices AND simplicty in mind. Based on our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (77,000 stars)
 
+<br/>
+
 ❣️ **Alpha stage:** It's a very premature work-in-progress, we're only kicking-off now, please revisit by June 2022🗓
 
 ![Discord](/docs/images/discord-logo.png) [Discord discussions](https://discord.gg/9Nrarr7p) | ![Twitter](/docs/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices)
