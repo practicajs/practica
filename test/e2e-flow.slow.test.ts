@@ -22,7 +22,7 @@ describe("Non-interactive", () => {
     });
 
     // Act
-    await execa("practica", ["generate", "--install-dependencies"], {
+    await execa("generate", ["generate", "--install-dependencies"], {
       cwd: emptyFolderForATest,
     });
 
