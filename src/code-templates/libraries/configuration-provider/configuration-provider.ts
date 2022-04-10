@@ -8,6 +8,15 @@ export const configurationProvider = convict({
     nullable: true,
     env: "PORT",
   },
+  logger: {
+    level: {
+      doc: "Which type of logger entries should actually be written to the target medium (e.g., stdout)",
+      format: ["debug", "info", "warn", "error", "critical"],
+      default: "info",
+      nullable: false,
+      env: "LOGGER_LEVEL",
+    },
+  },
   DB: {
     userName: {
       doc: "The DB connection user name",

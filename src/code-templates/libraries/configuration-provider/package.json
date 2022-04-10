@@ -2,7 +2,7 @@
   "name": "configuration-provider",
   "version": "0.0.1",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "test": "test"
   },
@@ -24,4 +24,3 @@
     "@types/convict": "^6.1.1"
   }
 }
-
