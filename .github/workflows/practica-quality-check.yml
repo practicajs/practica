@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        platform: [ ubuntu-latest, windows-latest ]
+        platform: [ ubuntu-latest ]
         node: [ 14, 16 ]
     runs-on: ${{ matrix.platform }}
     steps:
