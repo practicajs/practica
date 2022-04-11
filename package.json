@@ -17,7 +17,8 @@
     "build": "tsc && cp -R ./src/code-templates/ ./.dist/src/code-templates",
     "build:watch": "tsc --watch",
     "start:dev:reload": "nodemon ./src/code-generator/index.js",
-    "publish:build": "npm run build && npm publish ./.dist --access public"
+    "publish:build": "npm run build && npm publish ./.dist --access public",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -58,7 +59,6 @@
     "@types/jest": "^27.4.1",
     "@types/sinon": "^10.0.11",
     "eslint": "^8.13.0",
-    "eslint-plugin-react": "^7.29.4",
     "execa": "^5.1.1",
     "jest": "^27.5.1",
     "node-notifier": "^10.0.1",
