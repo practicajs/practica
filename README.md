@@ -154,6 +154,7 @@ Million thanks to these great people who contributed code:
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/shanizlo"><img src="https://avatars.githubusercontent.com/u/39856071?v=4?s=200" width="200px;" alt=""/><br /><sub><b>shanizlo</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=shanizlo" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/RonDaha"><img src="https://avatars.githubusercontent.com/u/30000700?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Ron Dahan</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=RonDaha" title="Code">💻</a></td>
   </tr>
 </table>
 
