@@ -9,8 +9,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        platform: [ ubuntu-latest, macos-latest, windows-latest ]
+        node: [ 10, 12, 14 ]
+    runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v2
 
@@ -21,7 +24,7 @@ jobs:
       - name: Use Node.js (.nvmrc)
         uses: actions/setup-node@v2
         with:
-          node-version: "${{ steps.nvm.outputs.NVMRC }}"
+          node-version: ${{ matrix.node }}
 
       - run: npm ci
       - run: npm test
