@@ -23,5 +23,12 @@ jobs:
         with:
           node-version: "${{ steps.nvm.outputs.NVMRC }}"
 
+      - name: Annotate Code Linting Results
+        uses: ataylorme/eslint-annotate-action@1.0.4
+        if: always()
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          report-json: 'eslint_report.json'
+
       - run: npm ci
       - run: npm test
