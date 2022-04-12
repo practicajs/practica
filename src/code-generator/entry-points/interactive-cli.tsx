@@ -1,14 +1,6 @@
 "use strict";
 const React = require("react");
-const {
-  render,
-  Text,
-  Box,
-  useStdout,
-  Newline,
-  Spacer,
-  Transform,
-} = require("ink");
+const { render, Text, Box, Newline, Spacer } = require("ink");
 const MultiSelect = require("ink-multi-select").default;
 const SelectInput = require("ink-select-input").default;
 const TextInput = require("ink-text-input").UncontrolledTextInput;
@@ -37,7 +29,6 @@ const QuestionsWizard = () => {
   const [questionsWizard, setQuestionsWizard] = React.useState(
     initialQuestionsWizard
   );
-  const { stdout, write } = useStdout();
 
   const features = [
     { label: "Logger", value: "logger" },

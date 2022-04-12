@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelizeConfig = require("./config/config");
+import { configurationProvider } from "../../../libraries/configuration-provider/index";
 
 let repository;
 let orderModel;
@@ -8,9 +9,9 @@ export default class OrderRepository {
   constructor() {
     if (!repository) {
       repository = new Sequelize(
-        "shop",
-        "myuser",
-        "myuserpassword",
+        configurationProvider.get("DB.dbName"),
+        configurationProvider.get("DB.userName"),
+        configurationProvider.get("DB.password"),
         sequelizeConfig
       );
       orderModel = repository.define("Order", {
