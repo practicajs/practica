@@ -22,20 +22,29 @@ export const generateApp = async (options: generationOptions) => {
   });
 
   if (options.installDependencies) {
+    await execa("npm", ["install"], {
+      cwd: targetDirectory,
+    });
+
+    await execa("npm", ["run", "lerna", "--", "bootstrap"], {
+      cwd: targetDirectory,
+    });
+    
+    // await execa("npm", ["install"], { cwd: microserviceDirectory });
     // Dependencies should be installed from the app/microservice directory. All the rest is dependency of the app
-    const microserviceDirectory = path.join(
-      targetDirectory,
-      "services",
-      "order-service"
-    );
-    await execa("npm", ["install"], { cwd: microserviceDirectory });
-    // Temporarily install libraries modules, in the near future we will use a monorepo framework
-    const MQLibraryDirectory = path.join(
-      targetDirectory,
-      "libraries",
-      "message-queue-client"
-    );
-    await execa("npm", ["install"], { cwd: MQLibraryDirectory });
+    // const microserviceDirectory = path.join(
+    //   targetDirectory,
+    //   "services",
+    //   "order-service"
+    // );
+    // await execa("npm", ["install"], { cwd: microserviceDirectory });
+    // // Temporarily install libraries modules, in the near future we will use a monorepo framework
+    // const generatedCodeRootPath = path.join(
+    //   targetDirectory,
+    //   "libraries",
+    //   "message-queue-client"
+    // );
+    // await execa("npm", ["install"], { cwd: MQLibraryDirectory });
   }
 
   console.log(`App was generated successfully`);

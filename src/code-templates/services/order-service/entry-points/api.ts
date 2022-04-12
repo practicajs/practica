@@ -5,15 +5,14 @@ import { configurationProvider } from "configuration-provider";
 const errorHandler =
   require("../../../libraries/error-handling/error-handling").errorHandler;
 const orderService = require("../business-logic/order-service");
-
 let connection, expressApp;
 
 const initializeWebServer = () => {
   return new Promise<string>((resolve, reject) => {
     // A typical Express setup
     expressApp = express();
-    defineRoutes(expressApp);
     expressApp.use(bodyParser.json());
+    defineRoutes(expressApp);
     const portToListenTo = configurationProvider.get("port");
     const webServerPort = portToListenTo || 0;
     console.log(`About to listen to port ${webServerPort}`);

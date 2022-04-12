@@ -1,5 +1,5 @@
 {
-  "name": "example-app",
+  "name": "order-service",
   "version": "0.0.1",
   "description": "An example Node.js app that is packed with best practices",
   "main": "start.js",
@@ -31,7 +31,8 @@
     "pg": "^8.7.3",
     "sequelize": "^6.17.0",
     "sequelize-cli": "^6.4.1",
-    "configuration-provider": "^0.0.1"
+    "configuration-provider": "^0.0.1",
+    "logger": "^0.0.1"
   },
   "devDependencies": {
     "@types/is-ci": "^3.0.0",

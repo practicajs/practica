@@ -1,7 +1,8 @@
 import { configurationProvider } from "configuration-provider";
 
+// example on how to read the level: configurationProvider.get("logger.level")
 export const info = (message) => {
-  console.log("💪", configurationProvider.get("logger.level"));
+  console.log(message);
 };
 
 export const error = (message) => {

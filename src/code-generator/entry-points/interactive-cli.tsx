@@ -5,6 +5,7 @@ const {
   Text,
   Box,
   useStdout,
+  useStdin,
   Newline,
   Spacer,
   Transform,
@@ -37,7 +38,12 @@ const QuestionsWizard = () => {
   const [questionsWizard, setQuestionsWizard] = React.useState(
     initialQuestionsWizard
   );
-  const { stdout, write } = useStdout();
+  const { stdout, write, set } = useStdout();
+
+  const { setRawMode } = useStdin();
+  React.useEffect(() => {
+    setRawMode(true);
+  });
 
   const features = [
     { label: "Logger", value: "logger" },
