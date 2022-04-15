@@ -3,10 +3,8 @@ const util = require("util");
 const bodyParser = require("body-parser");
 import { configurationProvider } from "configuration-provider";
 import orderCOntroller from "./controllers/order-controller";
-
 const errorHandler =
   require("../../../libraries/error-handling/error-handling").errorHandler;
-
 
 let connection, expressApp;
 
