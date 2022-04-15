@@ -4,6 +4,8 @@
   "description": "An example Node.js app that is packed with best practices",
   "main": "start.js",
   "scripts": {
+    "start": "node start.js",
+    "start:dev": "nodemon start.ts",
     "test": "jest --forceExit",
     "test:dev": "jest --watch --silent --runInBand",
     "test:dev:verbose": "jest --watch",
@@ -11,8 +13,7 @@
     "db:seed": "cd data-access && sequelize-cli db:seed:all",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "start": "node start.js",
-    "start:dev": "nodemon start.ts"
+    "swagger": "tsoa spec"
   },
   "author": "Practica team",
   "license": "ISC",
