@@ -34,12 +34,11 @@ export const addOrder = async function (newOrder) {
   return DBResponse;
 };
 
-export const deleteUser = async function (userId) {
+export const deleteOrder = async function (userId) {
   return await new OrderRepository().deleteOrder(userId);
 };
 
-export const getUser = async function (userId) {
-  console.log(OrderRepository);
+export const getOrder = async function (userId) {
   return await new OrderRepository().getOrderById(userId);
 };
 
