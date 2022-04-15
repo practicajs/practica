@@ -13,7 +13,8 @@
     "db:migrate": "cd data-access && sequelize-cli db:migrate",
     "db:seed": "cd data-access && sequelize-cli db:seed:all",
     "build": "tsc",
-    "build:watch": "tsc --watch"
+    "build:watch": "tsc --watch",
+    "swagger": "tsoa spec"
   },
   "author": "Practica team",
   "license": "ISC",
@@ -31,7 +32,8 @@
     "node-notifier": "^10.0.1",
     "pg": "^8.7.3",
     "sequelize": "^6.17.0",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1",
+    "tsoa": "^3.14.1"
   },
   "devDependencies": {
     "@types/is-ci": "^3.0.0",

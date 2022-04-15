@@ -3,7 +3,8 @@ const util = require("util");
 const bodyParser = require("body-parser");
 const errorHandler =
   require("../../../libraries/error-handling/error-handling").errorHandler;
-const orderService = require("../business-logic/order-service");
+
+import orderController from "./controllers/order-controller";
 
 let connection, expressApp;
 
@@ -42,7 +43,7 @@ const defineRoutes = (expressApp) => {
       console.log(
         `Order API was called to add new Order ${util.inspect(req.body)}`
       );
-      const addOrderResponse = await orderService.addOrder(req.body);
+      const addOrderResponse = await new orderController().addOrder(req.body);
       return res.json(addOrderResponse);
     } catch (error) {
       next(error);
@@ -51,8 +52,8 @@ const defineRoutes = (expressApp) => {
 
   // get existing order by id
   router.get("/:id", async (req, res, next) => {
-    console.log(`Order API was called to get user by id ${req.params.id}`);
-    const response = await orderService.getUser(req.params.id);
+    console.log(`Order API was called to get order by id ${req.params.id}`);
+    const response = await new orderController().getOrder(req.params.id);
 
     if (!response) {
       res.status(404).end();
@@ -65,7 +66,7 @@ const defineRoutes = (expressApp) => {
   // delete order by id
   router.delete("/:id", async (req, res, next) => {
     console.log(`Order API was called to delete order ${req.params.id}`);
-    await orderService.deleteUser(req.params.id);
+    await new orderController().deleteOrder(req.params.id);
     res.status(204).end();
   });
 
