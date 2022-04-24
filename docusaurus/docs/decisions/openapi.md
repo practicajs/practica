@@ -28,27 +28,27 @@ sidebar_label: OpenAPI Decision
   </tr>
   <tr valign="top">
     <td>Some dimension</td>
-    <td><img src="./full.png"/><br/><br/>1ms</td>
-    <td><img src="./almost-full.png"/><br><br>5ms</td>
+    <td><img src="./img/full.png"/><br/><br/>1ms</td>
+    <td><img src="./img/almost-full.png"/><br><br>5ms</td>
     <td>
-      <img src="./almost-full.png"/><br><br>4ms</td>
-    <td><img src="./almost-full.png"/><br><br>5ms</td>
+      <img src="./img/almost-full.png"/><br><br>4ms</td>
+    <td><img src="./img/almost-full.png"/><br><br>5ms</td>
   </tr>
   <tr valign="top">
     <td>Some dimension</td>
-    <td><img src="./full.png"/><br/><br/>Superior</td>
-    <td><img src="./partial.png"/><br><br>Less popular than competitors</td>
-    <td><img src="./almost-full.png"/><br><br>Highly popular</td>
+    <td><img src="./img/full.png"/><br/><br/>Superior</td>
+    <td><img src="./img/partial.png"/><br><br>Less popular than competitors</td>
+    <td><img src="./img/almost-full.png"/><br><br>Highly popular</td>
     <td>
-      <img src="./almost-full.png"/><br><br>Highly popular</td>
+      <img src="./img/almost-full.png"/><br><br>Highly popular</td>
   </tr>
   <tr valign="top">
     <td>❗ Important factor</td>
-    <td><img src="./almost-full.png"/><br/><br/>No</td>
-    <td><img src="./full.png"/><br><br>Yes</td>
-    <td><img src="./partial.png"/><br><br>No</td>
+    <td><img src="./img/almost-full.png"/><br/><br/>No</td>
+    <td><img src="./img/full.png"/><br><br>Yes</td>
+    <td><img src="./img/partial.png"/><br><br>No</td>
     <td>
-      <img src="./partial.png"/><br><br>No</td>
+      <img src="./img/partial.png"/><br><br>No</td>
   </tr>
 
   <tr>
