@@ -15,17 +15,64 @@ sidebar_label: OpenAPI Decision
 
 **📊 Detailed comparison table**
 
-| | tsoa | JSON Schema | Other tool 1 | Other tool 2 |
-| --- | --- | --- | --- | --- |
-| **Executive Summary** |
-| Some dimension | ![Full](./img/full.png) <br/> 1ms | ![Almost full](./img/almost-full.png) <br/> 5ms |  ![Almost full](./img/almost-full.png) <br/> 4ms | ![Almost full](./img/almost-full.png) <br/> 5ms |
-| Some feature | ![Full](./img/full.png) <br/> Superior | ![Partial](./img/partial.png) <br/> Less popular than competitors | ![Almost full](./img/almost-full.png) <br/> Highly popular | ![Almost full](./img/almost-full.png) <br/> Highly popular |
-| ❗ Important factor | ![Almost full](./img/almost-full.png) <br/> No | ![Full](./img/full.png) <br/> Yes | ![Partial](./img/partial.png) <br/> No |  ![Partial](./img/partial.png) <br/> No |
-| Items documentation | ![Partial](./img/partial.png) <br/> No | ![Full](./img/full.png) <br/> Yes | ![Partial](./img/partial.png) <br/> No |  ![Partial](./img/partial.png) <br/> No |
+<table width="80%" valign="top">
+  <tr>
+    <td></td>
+    <td><h1>tsoa</h1></td>
+    <td><h1>JSON Schema</h2></td>
+    <td><h1>Other option 1</h2></td>
+    <td><h1>Other option 2</h2></td>
+  </tr>
+  <tr>
+    <td colspan="5" align="center"><h3>Executive Summary</h2></td>
+  </tr>
+  <tr valign="top">
+    <td>Some dimension</td>
+    <td><img src="./full.png"/><br/><br/>1ms</td>
+    <td><img src="./almost-full.png"/><br><br>5ms</td>
+    <td>
+      <img src="./almost-full.png"/><br><br>4ms</td>
+    <td><img src="./almost-full.png"/><br><br>5ms</td>
+  </tr>
+  <tr valign="top">
+    <td>Some dimension</td>
+    <td><img src="./full.png"/><br/><br/>Superior</td>
+    <td><img src="./partial.png"/><br><br>Less popular than competitors</td>
+    <td><img src="./almost-full.png"/><br><br>Highly popular</td>
+    <td>
+      <img src="./almost-full.png"/><br><br>Highly popular</td>
+  </tr>
+  <tr valign="top">
+    <td>❗ Important factor</td>
+    <td><img src="./almost-full.png"/><br/><br/>No</td>
+    <td><img src="./full.png"/><br><br>Yes</td>
+    <td><img src="./partial.png"/><br><br>No</td>
+    <td>
+      <img src="./partial.png"/><br><br>No</td>
+  </tr>
 
-<br/><br/>
-
-| **Community & Popularity** |
-| Stars | 4200 ✨ | 2500 ✨ | 2500 ✨ | 1000 ✨ |
-| Downloads/Week | 12,900,223 📁 | 4,000,000 📁 | 6,000,000 📁 | 5,000,000 📁 |
-| Dependents | 26,000 👩‍👧 | 600 👧 | 800 👧 | 1000 👧 |
+  <tr>
+    <td class="tg-ho3n" colspan="5" align="center"><h2>More details: Community & Popularity - March 2022</h2></td>
+  </tr>
+  <tr>
+    <td>Stars</td>
+    <td><br><br>4200 ✨</td>
+    <td><br><br>2500 ✨</td>
+    <td><br><br>2500 ✨</td>
+    <td><br><br>1000 ✨</td>
+  </tr>
+  <tr>
+    <td>Downloads/Week</td>
+    <td><br><br>12,900,223 📁</td>
+    <td><br><br>4,000,000 📁</td>
+    <td><br><br>6,000,000 📁</td>
+    <td><br><br>5,000,000 📁</td>
+  </tr>
+    <tr>
+    <td>Dependents</td>
+    <td><br><br>26,000 👩‍👧</td>
+    <td><br><br>600 👧</td>
+    <td><br><br>800 👧</td>
+    <td><br><br>1000 👧</td>
+  </tr>
+</table>
