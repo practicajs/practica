@@ -48,7 +48,7 @@ sidebar_label: OpenAPI Decision
     <td><img src="./img/full.png"/><br/><br/>Yes</td>
     <td><img src="./img/partial.png"/><br/><br/>No</td>
     <td>
-      <img src="./img/partial.png"/><br><br>No</td>
+      <img src="./img/partial.png"/><br/><br/>No</td>
   </tr>
 
   <tr>
