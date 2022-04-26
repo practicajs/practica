@@ -24,7 +24,7 @@ describe("Non-interactive", () => {
     // Act
     await execa("generate", ["generate", "--install-dependencies"], {
       cwd: emptyFolderForATest,
-    });
+    });ls
 
     // Assert
     const testResult = await execa("npm", ["test"], {
