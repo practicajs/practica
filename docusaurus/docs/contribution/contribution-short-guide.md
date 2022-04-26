@@ -50,9 +50,9 @@ generate generate --install-dependencies
 
 ## Workflow
 
-1. Idea
-2. Optional: Design
-3. PR
+1. Idea - Claim an existing issue or open a new one
+2. Optional: Design - If you're doing something that is not straighforward, share your high-level approach to this within the issue
+3. PR - Once you're done, run the tests locally then PR to main. Ensure all checks pass. If you introduced a new feature - Update the docs
 
 ## Development machine setup
 
