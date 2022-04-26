@@ -36,7 +36,7 @@ afterEach(() => {
 
 afterAll(async () => {
   // ️️️✅ Best Practice: Clean-up resources after each run
-  await stopWebServer();
+  //await stopWebServer();
   nock.enableNetConnect();
 });
 

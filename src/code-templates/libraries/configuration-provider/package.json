@@ -1,0 +1,26 @@
+{
+  "name": "configuration-provider",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/practicajs/practica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/practicajs/practica/issues"
+  },
+  "homepage": "https://github.com/practicajs/practica#readme",
+  "dependencies": {
+    "convict": "^6.2.2",
+    "env-var": "^7.1.1"
+  },
+  "devDependencies": {
+    "@types/convict": "^6.1.1"
+  }
+}

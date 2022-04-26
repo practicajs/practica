@@ -14,9 +14,10 @@
     "test:quick": "jest \"^((?!slow).)*$\"",
     "test:dev": "jest --silent --watch \"^((?!slow).)*$\"",
     "test:dev:verbose": "jest --watch \"^((?!slow).)*$\"",
-    "build": "tsc && cp -R ./src/code-templates/ ./.dist/src/code-templates",
+    "build": "tsc && npm run copy-templates",
+    "copy-templates": "rsync -av --exclude '*node_modules*' ./src/code-templates/ ./.dist/src/code-templates",
     "build:watch": "tsc --watch",
-    "start:dev:reload": "nodemon ./src/code-generator/index.js",
+    "start:cli": "node ./.dist/bin/cli.js interactive",
     "publish:build": "npm run build && npm publish ./.dist --access public"
   },
   "repository": {
@@ -56,6 +57,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
+    "@types/prettier": "^2.4.4",
     "@types/sinon": "^10.0.11",
     "execa": "^5.1.1",
     "jest": "^27.5.1",
