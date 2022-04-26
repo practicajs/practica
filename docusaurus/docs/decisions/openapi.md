@@ -19,9 +19,9 @@ sidebar_label: OpenAPI Decision
   <tr>
     <td></td>
     <td><h1>tsoa</h1></td>
-    <td><h1>JSON Schema</h2></td>
-    <td><h1>Other option 1</h2></td>
-    <td><h1>Other option 2</h2></td>
+    <td><h1>JSON Schema</h1></td>
+    <td><h1>Other option 1</h1></td>
+    <td><h1>Other option 2</h1></td>
   </tr>
   <tr>
     <td colspan="5" align="center"><h3>Executive Summary</h2></td>
