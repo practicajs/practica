@@ -10,7 +10,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-   await fsExtra.remove(emptyFolderForATest);
+  await fsExtra.remove(emptyFolderForATest);
 });
 
 describe("Non-interactive", () => {
@@ -27,7 +27,7 @@ describe("Non-interactive", () => {
     // Act
     await execa("generate", ["generate", "--install-dependencies"], {
       cwd: emptyFolderForATest,
-    });ls
+    });
 
     // Assert
     const testResult = await execa("npm", ["test"], {
