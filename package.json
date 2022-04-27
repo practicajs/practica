@@ -1,5 +1,5 @@
 {
-  "name": "@practica/generate",
+  "name": "@practica/create-app",
   "version": "0.0.9",
   "description": "Create Node.js app that is packed with best practices AND strive for simplicity",
   "main": "./src/code-generator/index.js",
@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "bin": {
-    "generate": "./bin/cli.js"
+    "create-app": "./bin/cli.js"
   },
   "scripts": {
     "test": "jest",
@@ -39,6 +39,7 @@
     "@types/blessed": "^0.1.19",
     "@types/commander": "^2.12.2",
     "@types/fs-extra": "^9.0.13",
+    "@types/ink-spinner": "^3.0.1",
     "blessed": "^0.1.81",
     "commander": "^9.1.0",
     "figlet": "^1.5.2",
@@ -48,7 +49,10 @@
     "ink-big-text": "^1.2.0",
     "ink-image": "^2.0.0",
     "ink-multi-select": "^2.0.0",
+    "ink-progress-bar": "^3.0.0",
     "ink-select-input": "^4.2.1",
+    "ink-spinner": "^4.0.3",
+    "ink-task-list": "^1.1.1",
     "ink-text-input": "^4.0.3",
     "prompts": "^2.4.2",
     "react": "^17.0.2",

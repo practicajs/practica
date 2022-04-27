@@ -6,6 +6,7 @@ export function startAppGenerator() {
   program
     .name("Practice - Best Practices Generator")
     .description("Generate best practices for your project")
+    // TODO: Take this value from package.json
     .version("0.0.1");
 
   program
@@ -16,7 +17,7 @@ export function startAppGenerator() {
     });
 
   program
-    .command("generate")
+    .command("immediate")
     .description("Generates code using flags (a non-interactive CLI)")
     .option("-f, --framework <string>", "Framework to use")
     .option("-d, --db <string>", "DB to use")
@@ -24,9 +25,6 @@ export function startAppGenerator() {
     .action((options) => {
       handleNonInteractiveCommand(options);
     });
-
-  program.option("--framework", "Use framework");
-  program.option("--db", "Use DB");
 
   program.parse();
 }
