@@ -25,7 +25,7 @@ describe("Non-interactive", () => {
     });
 
     // Act
-    await execa("generate", ["generate", "--install-dependencies"], {
+    await execa("create-node-app", ["immediate", "--install-dependencies"], {
       cwd: emptyFolderForATest,
     });
 

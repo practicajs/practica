@@ -8,5 +8,5 @@ export function handleNonInteractiveCommand(options: any) {
     installDependencies: options.installDependencies,
     targetDirectory: process.cwd(),
   });
-  generateService.generateApp(generationOptions);
+  generateService.generateApp(generationOptions); //TODO: Make this async, show progress bar and nice message in the end
 }
