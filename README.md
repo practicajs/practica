@@ -45,7 +45,7 @@ Node.js has great frameworks 💚, they never meant to be production ready - Pra
 
 🗓 **Alpha project:** This project is very premature WIP, please revisit by June 2022
 
-### Run this command from terminal (not working yet, but it should by April 5th. Please watch)
+### Run this command from terminal
 
 Interactive mode with UI:
 
