@@ -8,8 +8,10 @@ import { generationOptions } from "./generation-options";
 export const generateApp = async (options: generationOptions) => {
   const targetDirectory = path.join(options.targetDirectory, options.appName);
   const sourceDirectory = path.join(__dirname, "../../code-templates");
-  console.log(`About to generate app`, options, targetDirectory);
-  await fsExtra.mkdir(targetDirectory);
+  if (await fsExtra.pathExists(targetDirectory)) {
+    await fsExtra.rm(targetDirectory, { recursive: true }); //TODO: Revisit this default and consider
+  }
+  await fsExtra.mkdir(targetDirectory, {});
   await fsExtra.copy(sourceDirectory, targetDirectory, {
     // We don't want to copy the node_modules folder since it's slow and error-prone
     filter: (copyFromPath, copyToPath) => {
@@ -19,6 +21,7 @@ export const generateApp = async (options: generationOptions) => {
         return true;
       }
     },
+    overwrite: true,
   });
 
   if (options.installDependencies) {

@@ -1,30 +1,35 @@
 "use strict";
 const React = require("react");
-const { render, Text, Box, Newline, Spacer } = require("ink");
+const { render, Text, Box, Newline, Spacer, useStdout } = require("ink");
 const MultiSelect = require("ink-multi-select").default;
 const SelectInput = require("ink-select-input").default;
 const TextInput = require("ink-text-input").UncontrolledTextInput;
 var figlet = require("figlet");
-const { generateApp } = require("../generation-logic/generate-service");
+const generateService = require("../generation-logic/generate-service");
+const {
+  factorDefaultOptions,
+} = require("../generation-logic/generation-options");
 
 const QuestionsWizard = () => {
   const initialQuestionsWizard = {
+    isOver: false,
+    finalMessage: "",
     chosenFramework: "",
     chosenDB: "",
-    showNameQuestion: true,
+    showWarningMessage: true,
+    showNameQuestion: false,
     showFrameworkQuestion: false,
     showDBTypeQuestion: false,
-    showFinalMessage: false,
     showFeatures: false,
-    advice:
-      "Determine the root folder and the libraries scope name. For example, @your-org/logger",
+    advice: "",
     title: figlet.textSync("Practica", {
-      font: "Banner",
+      font: "big", //Good options: big, contessa, doom, straight
       horizontalLayout: "full",
       verticalLayout: "default",
-      width: 80,
+      width: 60,
       whitespaceBreak: true,
     }),
+    generationStatusMessage: "",
   };
   const [questionsWizard, setQuestionsWizard] = React.useState(
     initialQuestionsWizard
@@ -106,10 +111,19 @@ const QuestionsWizard = () => {
   const handleNameChoose = (name) => {
     setQuestionsWizard({
       ...questionsWizard,
-      showFinalMessage: false,
       showDBTypeQuestion: false,
       showNameQuestion: false,
       showFrameworkQuestion: true,
+    });
+  };
+
+  const warningWasConfirmed = () => {
+    setQuestionsWizard({
+      ...questionsWizard,
+      showWarningMessage: false,
+      advice:
+        "Determines the root folder and the libraries scope name. For example, @your-org/logger",
+      showNameQuestion: true,
     });
   };
 
@@ -122,31 +136,36 @@ const QuestionsWizard = () => {
     });
   };
 
-  const handleFeaturesChoose = (selected) => {
-    console.log("fatuers", selected);
-  };
+  const handleFeaturesChoose = (selected) => {};
 
-  const handleFlavourChoose = (selected) => {
-    console.log("flavour", selected);
+  const handleFlavourChoose = async (selected) => {
+    setQuestionsWizard({
+      ...questionsWizard,
+      finalMessage:
+        "🔁 Creating your app now. This might take a few seconds...",
+      isOver: true,
+    });
+    const generationOptions = factorDefaultOptions({
+      installDependencies: true,
+      targetDirectory: process.cwd(),
+      baseFramework: questionsWizard.chosenFramework,
+    });
+    await generateService.generateApp(generationOptions);
+    setQuestionsWizard({
+      ...questionsWizard,
+      isOver: true,
+      finalMessage:
+        "✅ Your app is ready and packed with great practices inside",
+    });
   };
 
   const handleDBChoose = async (chosenOption) => {
-    console.log("db choose");
     setQuestionsWizard({
       ...questionsWizard,
       chosenDB: chosenOption.value,
       showDBTypeQuestion: false,
       showFlavourQuestion: true,
     });
-
-    // await generateApp({
-    //   baseFramework: "express",
-    //   DBType: "mongo",
-    //   mainMicroserviceName: "microservice-1",
-    //   emitBestPracticesHints: true,
-    //   targetDirectory: process.cwd(),
-    //   appName: "autodesk",
-    // });
   };
 
   const onSelectItemChange = (selectedItem) => {
@@ -158,131 +177,179 @@ const QuestionsWizard = () => {
     setQuestionsWizard({ ...questionsWizard, advice: activeAdvice });
   };
 
+  React.useEffect(async () => {}, []);
+
   return (
-    <Box width={"100%"} alignSelf="flex-start" flexDirection="column">
+    <Box width={"100%"} alignSelf="center" flexDirection="column">
       <Box flexDirection="row" width="100%" flexBasis="100%">
         <Text flexBasis="100%" wrap="wrap" alignSelf="center">
           {questionsWizard.title}
         </Text>
       </Box>
-      <Box flexDirection="row">
-        <Box
-          width="50%"
-          alignSelf="flex-start"
-          borderStyle="round"
-          height={20}
-          paddingX="5"
-          alignItems="flex-start"
-        >
-          <Box flexDirection="column">
-            <Box paddingY={1} alignSelf="flex-start">
-              <Text color="white" bold={true}>
-                Just a few questions first
-              </Text>
-              <Newline />
-              <Spacer />
+      {!questionsWizard.isOver ? (
+        <Box flexDirection="row">
+          <Box
+            width="50%"
+            alignSelf="flex-start"
+            borderStyle="classic"
+            borderColor="grey"
+            height={15}
+            paddingX="3"
+            marginX="3"
+            alignItems="flex-start"
+          >
+            <Box flexDirection="column">
+              <Box paddingY={1} alignSelf="flex-start">
+                <Text color="white" bold={true}>
+                  ⦾ Just a few questions first
+                </Text>
+                <Newline />
+                <Spacer />
+              </Box>
+              <Box>
+                <Box
+                  display={
+                    questionsWizard.showFeaturesQuestion ? "flex" : "none"
+                  }
+                >
+                  <Text color="green">Cherry-pick features:</Text>
+                  <Spacer />
+                  <MultiSelect
+                    items={features}
+                    onSelectItem={handleFeaturesChoose}
+                  />
+                </Box>
+                {questionsWizard.showWarningMessage ? (
+                  <Box
+                    display={
+                      questionsWizard.showWarningMessage ? "flex" : "none"
+                    }
+                  >
+                    <Text color="grey">
+                      🔖 This is an alpha version of this wizard which is meant
+                      for demo purposes. Whatever technologies you'll choose,
+                      for now the generated app will be based on Express +
+                      Postgres. Enter to continue or CTRL + C to exit
+                    </Text>
+                    <Spacer />
+                    <TextInput value="" onSubmit={warningWasConfirmed} />
+                  </Box>
+                ) : (
+                  <React.Fragment />
+                )}
+                {questionsWizard.showFlavourQuestion ? (
+                  <Box
+                    display={
+                      questionsWizard.showFlavourQuestion ? "flex" : "none"
+                    }
+                  >
+                    <Text color="green">Which level of starter:</Text>
+                    <Spacer />
+                    <SelectInput
+                      items={flavours}
+                      onHighlight={onSelectItemChange}
+                      onSelectItemChange={onSelectItemChange}
+                      onSelect={handleFlavourChoose}
+                    />
+                  </Box>
+                ) : (
+                  <React.Fragment />
+                )}
+
+                {questionsWizard.showNameQuestion ? (
+                  <Box
+                    display={questionsWizard.showNameQuestion ? "flex" : "none"}
+                  >
+                    <Text color="green">Name of your app or organization:</Text>
+                    <Spacer />
+                    <TextInput value="" onSubmit={handleNameChoose} />
+                  </Box>
+                ) : (
+                  <React.Fragment />
+                )}
+
+                {questionsWizard.showDBTypeQuestion ? (
+                  <Box
+                    display={
+                      questionsWizard.showDBTypeQuestion ? "flex" : "none"
+                    }
+                  >
+                    <Text color="green">Which is your preferred DB:</Text>
+                    <Spacer />
+                    <SelectInput
+                      items={databases}
+                      onSelect={handleDBChoose}
+                      onChange={onSelectItemChange}
+                      onSelectItemChange={onSelectItemChange}
+                      onHighlight={onSelectItemChange}
+                    />
+                  </Box>
+                ) : (
+                  <React.Fragment />
+                )}
+
+                {questionsWizard.showFrameworkQuestion ? (
+                  <Box
+                    display={
+                      questionsWizard.showFrameworkQuestion ? "flex" : "none"
+                    }
+                  >
+                    <Text color="green">Your preferred framework:</Text>
+                    <Spacer />
+                    <SelectInput
+                      items={frameworks}
+                      onSelect={handleFrameworkChoose}
+                      onChange={onSelectItemChange}
+                      onSelectItemChange={onSelectItemChange}
+                      onHighlight={onSelectItemChange}
+                    />
+                  </Box>
+                ) : (
+                  <React.Fragment />
+                )}
+              </Box>
             </Box>
-            <Box>
-              <Box
-                display={questionsWizard.showFeaturesQuestion ? "flex" : "none"}
-              >
-                <Text color="green">Cherry-pick features:</Text>
-                <Spacer />
-                <MultiSelect
-                  items={features}
-                  onSelectItem={handleFeaturesChoose}
-                />
-              </Box>
-              {questionsWizard.showFlavourQuestion ? (
-                <Box
-                  display={
-                    questionsWizard.showFlavourQuestion ? "flex" : "none"
-                  }
-                >
-                  <Text color="green">Which level of starter:</Text>
-                  <Spacer />
-                  <SelectInput
-                    items={flavours}
-                    onHighlight={onSelectItemChange}
-                    onSelectItemChange={onSelectItemChange}
-                    onSelect={handleFlavourChoose}
-                  />
-                </Box>
-              ) : (
-                <React.Fragment />
-              )}
-              <Box display={questionsWizard.showNameQuestion ? "flex" : "none"}>
-                <Text color="green">Name of your app or organization:</Text>
-                <Spacer />
-                <TextInput value="" onSubmit={handleNameChoose} />
-              </Box>
-
-              {questionsWizard.showDBTypeQuestion ? (
-                <Box
-                  display={questionsWizard.showDBTypeQuestion ? "flex" : "none"}
-                >
-                  <Text color="green">Which is your preferred DB:</Text>
-                  <Spacer />
-                  <SelectInput
-                    items={databases}
-                    onSelect={handleDBChoose}
-                    onChange={onSelectItemChange}
-                    onSelectItemChange={onSelectItemChange}
-                    onHighlight={onSelectItemChange}
-                  />
-                </Box>
-              ) : (
-                <React.Fragment />
-              )}
-
-              {questionsWizard.showFrameworkQuestion ? (
-                <Box
-                  display={
-                    questionsWizard.showFrameworkQuestion ? "flex" : "none"
-                  }
-                >
-                  <Text color="green">Your preferred framework:</Text>
-                  <Spacer />
-                  <SelectInput
-                    items={frameworks}
-                    onSelect={handleFrameworkChoose}
-                    onChange={onSelectItemChange}
-                    onSelectItemChange={onSelectItemChange}
-                    onHighlight={onSelectItemChange}
-                  />
-                </Box>
-              ) : (
-                <React.Fragment />
-              )}
-              <Box display={questionsWizard.showFinalMessage ? "flex" : "none"}>
-                <Text color="green" bold={true}>
-                  Your app is ready and packed with great practices. CTRL+C to
-                  quit
+          </Box>
+          <Box
+            width="30%"
+            borderStyle="classic"
+            borderColor="grey"
+            height={15}
+            paddingX="5"
+            marginX="3"
+            alignItems="flex-start"
+            alignSelf="flex-end"
+          >
+            <Box flexDirection="column">
+              <Box paddingY={1} alignSelf="flex-start">
+                <Text color="white" bold={true}>
+                  ⦾ More Info
                 </Text>
               </Box>
+              <Box>
+                <Text>{questionsWizard.advice}</Text>
+              </Box>
             </Box>
           </Box>
         </Box>
-        <Box
-          width="35%"
-          borderStyle="round"
-          height={20}
-          paddingX="10"
-          alignItems="flex-start"
-          alignSelf="flex-end"
-        >
-          <Box flexDirection="column">
-            <Box paddingY={1} alignSelf="flex-start">
-              <Text color="white" bold={true}>
-                Our advice
-              </Text>
-            </Box>
-            <Box>
-              <Text>{questionsWizard.advice}</Text>
-            </Box>
-          </Box>
+      ) : (
+        <React.Fragment />
+      )}
+      {questionsWizard.isOver ? (
+        <Box flexDirection="row" width="100%" flexBasis="100%">
+          <Text
+            flexBasis="100%"
+            wrap="wrap"
+            alignSelf="center"
+            color="white"
+            bold={true}
+          >
+            {questionsWizard.finalMessage}
+          </Text>
         </Box>
-      </Box>
+      ) : (
+        <React.Fragment />
+      )}
     </Box>
   );
 };

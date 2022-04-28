@@ -49,11 +49,11 @@ Node.js has great frameworks 💚, they never meant to be production ready - Pra
 
 Interactive mode with UI:
 
-`npx @practica/generate interactive` 
+`npx @practica/create-node-app interactive` 
 
 Or a typical terminal command using flags (without UI):
 
-`npx @practica/generate generate` 
+`npx @practica/create-node-app immediate` 
 
 ### ✨ That's it, the code was generated for you 
 

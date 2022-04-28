@@ -12,7 +12,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  //  await fsExtra.remove(uniqueEmptyFolderForASingleTest);
+  await fsExtra.remove(uniqueEmptyFolderForASingleTest);
 });
 
 describe("generateApp", () => {
