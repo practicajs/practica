@@ -15,7 +15,9 @@ Note: This is a shortened guide that suits those are willing to quickly contribu
 
 Practica is divided into two main worlds:
 
-**- The code generator - Code and CLI to get the user preferences and copy the right code to her computer**
+### 1. The code generator
+
+**Code and CLI to get the user preferences and copy the right code to her computer**
 
 Here you will find CLI, UI, and logic to generate the right code. We use a templating library to go through the code-template files and filter out parts/files based on the user preferences. For example, should she ask NOT to get a github action file - The generator will remove this file from the output
 
@@ -36,7 +38,9 @@ npm run start:cli
 npm run start:cli
 `
 
-**- The code templates - The output of our program: An example Microservice and libraries**
+### 2. The code templates
+
+**The output of our program: An example Microservice and libraries**
 
 Here you will the generated code that we will selectivelly copy to the user's computer. This files are not pure TS/JS files rather template files, to code with these files, you must first generate aside code for yourself, then you'll receive valid TS files which you can run and modify. 
 
