@@ -6,11 +6,10 @@ We are in an ever-going quest for better software practices. If you reached down
 
 Note: This is a shortened guide that suits those are willing to quickly contribute. Once you deepen your relations with Practica.js - It's a good idea to read the [full guide](https://github.com/practicajs/practica/blob/main/CONTRIBUTING.md)
 
-## 3 things to consider
+## 2 things to consider
 
 - Our philospophy is all about minimalism and simplicity - We strive to write less code, rely on existing and reputable libraries, stick to Node/JS standards and avoid adding our own abstractions
-- Popular vendors only - Each technology and vendor that we introduce must super popular and reliable. For example, a library must one of the top 5 most starred and downloaded in its category
-- 
+- Popular vendors only - Each technology and vendor that we introduce must super popular and reliable. For example, a library must one of the top 5 most starred and downloaded in its category. . See [full vendor choose instructions here](./vendor-pick-guidelines.MD)
 
 ## The internals in a nutshell
 
@@ -19,6 +18,23 @@ Practica is divided into two main worlds:
 **- The code generator - Code and CLI to get the user preferences and copy the right code to her computer**
 
 Here you will find CLI, UI, and logic to generate the right code. We use a templating library to go through the code-template files and filter out parts/files based on the user preferences. For example, should she ask NOT to get a github action file - The generator will remove this file from the output
+
+How to work with it?
+
+1. If all you need is to alter the logic, you may just code in the ~/code-generator/generation-logic folder and run the tests
+2. If you wish to include the CLI UI, then you'll need to terminals: 
+
+- Open one terminal to to compile the code:
+
+`
+npm run start:cli
+`
+
+- Open second terminal to run the CLI UI:
+
+`
+npm run start:cli
+`
 
 **- The code templates - The output of our program: An example Microservice and libraries**
 
