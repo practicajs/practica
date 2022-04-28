@@ -62,7 +62,7 @@ cd .dist && npm link
 
 ```
 cd {some folder like $HOME}
-generate generate --install-dependencies
+create-node-app immediate --install-dependencies
 ```
 
 4. Now you can work on the generated code. Later on, once your tests pass and you're happy - copy the chages back to ~practica/src/code-templates
