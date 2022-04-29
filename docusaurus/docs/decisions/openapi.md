@@ -11,7 +11,7 @@ sidebar_label: OpenAPI Decision
 
 **📁 Corresponding discussion** - [Here](https://github.com/practicajs/practica/issues/67)
 
-**🎯Bottom-line: our recommednation** - TBD
+**🎯Bottom-line: our recommendation** - TBD
 
 **📊 Detailed comparison table**
 

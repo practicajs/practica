@@ -11,7 +11,7 @@ sidebar_label: Configuration Library
 
 **📁 Corresponding discussion** - [Here](https://github.com/practicajs/practica/issues/10)
 
-**🎯Bottom-line: our recommednation** - **✨convict✨** ticks all the boxes by providing both strict schema, fail fast option, entry documentation and hirearchical structure
+**🎯Bottom-line: our recommendation** - **✨convict✨** ticks all the boxes by providing both strict schema, fail fast option, entry documentation and hierarchical structure
 
 **📊 Detailed comparison table**
 
@@ -22,7 +22,7 @@ sidebar_label: Configuration Library
 | Popularity | ![Full](./img/full.png) <br/> Superior | ![Partial](./img/partial.png) <br/> Less popular than competitors | ![Almost full](./img/almost-full.png) <br/> Highly popular | ![Almost full](./img/almost-full.png) <br/> Highly popular |
 | ❗ Fail fast & strich schema | ![Almost full](./img/almost-full.png) <br/> No | ![Full](./img/full.png) <br/> Yes | ![Partial](./img/partial.png) <br/> No |  ![Partial](./img/partial.png) <br/> No |
 | Items documentation | ![Partial](./img/partial.png) <br/> No | ![Full](./img/full.png) <br/> Yes | ![Partial](./img/partial.png) <br/> No |  ![Partial](./img/partial.png) <br/> No |
-| Hirearchical configuration schema | ![Partial](./img/partial.png) <br/> No | ![Full](./img/full.png) <br/> Yes | ![Full](./img/full.png) <br/> Yes |  ![Partial](./img/partial.png) <br/> No |
+| Hierarchical configuration schema | ![Partial](./img/partial.png) <br/> No | ![Full](./img/full.png) <br/> Yes | ![Full](./img/full.png) <br/> Yes |  ![Partial](./img/partial.png) <br/> No |
 | **More details: Community & Popularity - March 2022** |
 | Stars | 4200 ✨ | 2500 ✨ | 2500 ✨ | 1000 ✨ |
 | Downloads/Week | 12,900,223 📁 | 4,000,000 📁 | 6,000,000 📁 | 5,000,000 📁 |
