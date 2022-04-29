@@ -29,7 +29,7 @@ How to work with it?
 - Open one terminal to to compile the code:
 
 `
-npm run start:cli
+npm run build:watch
 `
 
 - Open second terminal to run the CLI UI:
