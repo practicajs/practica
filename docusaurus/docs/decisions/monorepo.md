@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-sidebar_label: OpenAPI Decision
+sidebar_label: Monorepo Decision
 ---
 
 # Decision: Choosing **Monorepo** approach and tooling
