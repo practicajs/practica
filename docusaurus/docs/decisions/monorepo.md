@@ -3,7 +3,7 @@ sidebar_position: 4
 sidebar_label: OpenAPI Decision
 ---
 
-# Decision: Choosing **_Monorepo** approach and tool
+# Decision: Choosing **Monorepo** approach and tooling
 
 **📔 What is it** - Choosing the right Monorepo tool and features for the boilerplate
 
@@ -27,52 +27,72 @@ sidebar_label: OpenAPI Decision
     <td colspan="5" align="center"><h2>Executive Summary</h2></td>
   </tr>
   <tr valign="top">
-    <td>Maintainability</td>
-    <td><img src="./img/full.png"/><br/><br/>1ms</td>
-    <td><img src="./img/almost-full.png"/><br/><br/>5ms</td>
+    <td>Community and maintenance</td>
+    <td><img src="./img/full.png"/><br/><br/>Huge eco-system and commercial-grade maintenance</td>
+    <td><img src="./img/full.png"/><br/><br/>Tredning, commercial-grade maintenance</td>
     <td>
-      <img src="./img/almost-full.png"/><br/><br/>4ms</td>
-    <td><img src="./img/almost-full.png"/><br/><br/>5ms</td>
+      <img src="./img/partial.png"/><br/><br/>None maintained anymore</td>
+    <td><img src="./img/almost-full.png"/><br/><br/>Solid</td>
   </tr>
   <tr valign="top">
-    <td>Some dimension</td>
-    <td><img src="./img/full.png"/><br/><br/>Superior</td>
-    <td><img src="./img/partial.png"/><br/><br/>Less popular than competitors</td>
-    <td><img src="./img/almost-full.png"/><br/><br/>Highly popular</td>
+    <td>❗Encourage comonent autonomy</td>
+    <td><img src="./img/partial.png"/><br/><br/>Packages are highly coupled</td>
+    <td><img src="./img/partial.png"/><br/><br/>Packages are highly coupled</td>
+    <td><img src="./img/almost-full.png"/><br/><br/>npm link prevents bypasses the SemVer</td>
     <td>
-      <img src="./img/almost-full.png"/><br/><br/>Highly popular</td>
+      <img src="./img/full.png"/><br/><br/>Minor concern: shared NODE_MODULES on the root</td>
   </tr>
   <tr valign="top">
-    <td>❗ Important factor</td>
-    <td><img src="./img/almost-full.png"/><br/><br/>No</td>
-    <td><img src="./img/full.png"/><br/><br/>Yes</td>
-    <td><img src="./img/partial.png"/><br/><br/>No</td>
+    <td>Build speed</td>
+    <td><img src="./img/full.png"/><br/><br/>Smart inference and execution plan, shared depedencies</td>
+    <td><img src="./img/full.png"/><br/><br/>Smart inference and execution plan, shared depedencies</td>
+    <td><img src="./img/partial.png"/><br/><br/>Parallel tasks execution, copied dependencies</td>
     <td>
-      <img src="./img/partial.png"/><br/><br/>No</td>
+      <img src="./img/almost-full.png"/><br/><br/>Shared depedencies</td>
   </tr>
 
   <tr>
-    <td class="tg-ho3n" colspan="5" align="center"><h2>More details: Community & Popularity - March 2022</h2></td>
+    <td class="tg-ho3n" colspan="5" align="center"><h2>Core differences</h2></td>
   </tr>
   <tr>
-    <td>Stars</td>
-    <td><br/>4200 ✨</td>
-    <td><br/>2500 ✨</td>
-    <td><br/>2500 ✨</td>
-    <td><br/>1000 ✨</td>
+    <td>Linking packages</td>
+    <td><br/>Via TypeScript paths and webpack</td>
+    <td><br/>?</td>
+    <td><br/>npm link</td>
+    <td><br/>npm link</td>
+  </tr>
+    <td>Boost npm installs</td>
+    <td><br/>Root package.json and NODE_MODULES</td>
+    <td><br/>Root package.json and NODE_MODULES</td>
+    <td><br/>None</td>
+    <td><br/>Link root NODE_MODULES to packages/NODE_MODULES</td>
   </tr>
   <tr>
-    <td>Downloads/Week</td>
-    <td><br/>12,900,223 📁</td>
-    <td><br/>4,000,000 📁</td>
-    <td><br/>6,000,000 📁</td>
-    <td><br/>5,000,000 📁</td>
+    <td>Parallel tasks execution</td>
+    <td><br/>Supported</td>
+    <td><br/>Supported</td>
+    <td><br/>Supported</td>
+    <td><br/>-</td>
   </tr>
     <tr>
-    <td>Dependents</td>
-    <td><br/>26,000 👩‍👧</td>
-    <td><br/>600 👧</td>
-    <td><br/>800 👧</td>
-    <td><br/>1000 👧</td>
+    <td>Infer and optimize tasks plans</td>
+    <td><br/>Supported</td>
+    <td><br/>Supported</td>
+    <td><br/>-</td>
+    <td><br/>-</td>
+  </tr>
+  <tr>
+    <td>Scaffold new component from a gallery</td>
+    <td><br/>Supported</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+  </tr>
+  <tr>
+    <td>Dependency graph</td>
+    <td><br/>Supported</td>
+    <td><br/>Supported</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
   </tr>
 </table>
