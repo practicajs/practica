@@ -31,7 +31,7 @@ describe("generateApp", () => {
     expect(destinationFolderContent.length).toBeGreaterThan(0);
   });
 
-  test("When destination exists, has content inside, and i --override-if-exists is passed as false, then should throw error", async () => {
+  test("When destination exists, has content inside, and flag --override-if-exists is passed as false, then should throw error", async () => {
     // Arrange
     const options = generationOptions.factorDefaultOptions({
       targetDirectory: uniqueEmptyFolderForASingleTest,
