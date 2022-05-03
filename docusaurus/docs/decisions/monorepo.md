@@ -79,7 +79,7 @@ sidebar_label: Monorepo Decision
     <tr>
     <td>Visual dependency graph</td>
     <td><br/>Supported</td>
-    <td><br/>Supported</td>
+    <td><br/>Supported, task dependencies</td>
     <td><br/>None</td>
     <td><br/>None</td>
   </tr>
