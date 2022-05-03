@@ -1,9 +1,4 @@
 
----
-sidebar_position: 4
-sidebar_label: Monorepo Decision
----
-
 # Decision: Choosing **Monorepo** approach and tooling
 
 **📔 What is it** - Choosing the right Monorepo tool and features for the boilerplate
