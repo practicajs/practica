@@ -8,10 +8,19 @@ import { generationOptions } from "./generation-options";
 export const generateApp = async (options: generationOptions) => {
   const targetDirectory = path.join(options.targetDirectory, options.appName);
   const sourceDirectory = path.join(__dirname, "../../code-templates");
-  if (await fsExtra.pathExists(targetDirectory)) {
-    await fsExtra.rm(targetDirectory, { recursive: true }); //TODO: Revisit this default and consider
+
+  const targetDirectoryExists = await fsExtra.pathExists(targetDirectory);
+
+  if (targetDirectoryExists) {
+    const isTargetDirectoryEmpty = (await fsExtra.readdir(targetDirectory)).length === 0;
+    if (!isTargetDirectoryEmpty && !options.overrideIfExists) {
+      throw new Error('Generated app already exists, if you want to override it please provide option --overrideIfExists=true or -ov=true')
+    } else {
+      await fsExtra.rm(targetDirectory, { recursive: true });
+      await fsExtra.mkdir(targetDirectory, {});
+    }
   }
-  await fsExtra.mkdir(targetDirectory, {});
+
   await fsExtra.copy(sourceDirectory, targetDirectory, {
     // We don't want to copy the node_modules folder since it's slow and error-prone
     filter: (copyFromPath, copyToPath) => {
