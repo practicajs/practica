@@ -2,15 +2,15 @@
 
 <br/>
 
-### Generate a Node.js app that is packed with best practices AND simplicty in mind. Based on our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (77,000 stars)
+### Generate a Node.js app that is packed with best practices AND simplicity in mind. Based on our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (77,000 stars)
 
-❣️ **Alpha stage:** It's a very premature work-in-progress, we're only kicking-off now, please revisit by June 2022🗓
+❣️ **Alpha stage:** It's a very premature work-in-progress; we're only kicking off now; please revisit by June 2022🗓
 
 ![Discord](/docs/images/discord-logo.png) [Discord discussions](https://discord.gg/9Nrarr7p) | ![Twitter](/docs/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices)
 
 # What in here for you in one paragraph
 
-Node.js has great frameworks 💚, they never meant to be production ready - Practica.js bridges this gap. Based on your preferred framework, we generate a small code that demonstrates a full flow, from API to DB, that is packed with good practices. For example, we incude a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This can save a great deal of time and painful mistakes. All our decisions are being made, [thoughtfully and neatly documented](/docs/decisions), we strive to keep things as simple and standard as possible and base our work on the popular guide ['Node.js best practices'](https://github.com/goldbergyoni/nodebestpractices)
+Node.js has great frameworks 💚, but they are never meant to be production-ready - Practica.js bridges this gap. Based on your preferred framework, we generate a small code that demonstrates a full flow, from API to DB, that is packed with good practices. For example, we include a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This can save a great deal of time and painful mistakes. All our decisions being made are [thoughtfully and neatly documented](/docs/decisions). We strive to keep things as simple and standard as possible and base our work on the popular guide ['Node.js best practices'](https://github.com/goldbergyoni/nodebestpractices)
 
 <br/>
 
@@ -36,14 +36,14 @@ Node.js has great frameworks 💚, they never meant to be production ready - Pra
 
 - [`Practices and features`](#practices-and-features)
 - [`Documentation site (coming soon)`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
-- [`YouTube channel (soon)`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+- [`YouTube channel (coming soon)`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 - [`The people behind this project`](#the-people-behind-this-project)
-- [`Our best practices guide, 77,000 stars ✨`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+- [`Our best practices guide: 77,000 stars ✨`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 - [`Contribution guide`](https://github.com/practicajs/practica/blob/main/CONTRIBUTING.md)
 
 # A very quick start
 
-🗓 **Alpha project:** This project is very premature WIP, please revisit by June 2022
+🗓 **Alpha project:** This project is a very premature WIP, please revisit by June 2022
 
 ### Run this command from terminal
 
@@ -69,8 +69,8 @@ Standard, ah?
 
 ### Enjoy
 
-- ✅ Start coding. The code is short by design and you should get up to speed quick
-- ✅ Understand the project structure by watch [this 5 min YouTube (coming soon) 📹](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+- ✅ Start coding. The code is short by design and you should get up to speed quickly
+- ✅ Understand the project structure by watching [this 5 min YouTube (coming soon) 📹](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 - ✅ Optional: Skim through the code, all the best practices are tagged inside the code
 - ✅ Master it by visiting our [documentation website (coming soon)](https://practica.org)
 
@@ -80,25 +80,25 @@ https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8
 
 ### 1. Best practices _on top of_ known Node.js frameworks
 
-We don't invent new wheels rather use your favorite framework and empower it with more structure and practices. For example, with a single command you get express/fastify based code base with ~100 additional best practices inside
+We don't invent new wheels; rather, we use your favorite framework and empower it with more structure and practices. For example, with a single command, you get express/fastify-based code base with ~100 additional best practices inside.
 
 ![Built on top of known frameworks](/docs/images/on-top-of-frameworks.png)
 
 ### 2. SIMPLE like Node.js was meant to be
 
-Keeping it simple, flat and based on native Node/JS capabilities is part of this project DNA. We believe that too many abstractions, high-complexity and fancy language features become soon a strategic slowdown for the team. To name a few example, our code flow is flat with almost no level of indirection, although using TypeScript - almost no features are being used besides types, for modularization we simply use... Node.js modules
+Keeping it simple, flat and based on native Node/JS capabilities is part of this project's DNA. We believe that too many abstractions, high complexity and fancy language features become soon a strategic slowdown for the team. To name a few examples, our code flow is flat with almost no level of indirection. We use TypeScript, although almost no features are being used besides types. For modularization, we simply use Node.js modules
 
 ![Built on top of known frameworks](/docs/images/abstractions-vs-simplicity.png)
 
 ### 3. Supports many technologies and frameworks
 
-Since it's about good practices and simplicity, there is no need to narrow this code to specific framework or DB. We aim to support the major Node.js frameworks and databases
+Since it's about good practices and simplicity, there is no need to narrow this code to a specific framework or DB. We aim to support the major Node.js frameworks and databases.
 
 ![Built on top of known frameworks](/docs/images/tech-stack.png)
 
 # Practices and features
 
-We apply more than 100 practices and optimizations, you can opt-in or out for most of these features using our CLI flags. Following is few examples of features, to learn about the full list of features, [please visit here](https://practicajs.org/features)
+We apply more than 100 practices and optimizations; you can opt in or out for most of these features using our CLI flags. The following are a few examples of features; to learn about the full list of features, [please visit here](https://practicajs.org/features)
 
 | **Feature**                        | **Explanation**                                                                                                                                                                                                                                                                        | **Flag**                | **Documentation link**                                                                                   |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -116,7 +116,7 @@ We apply more than 100 practices and optimizations, you can opt-in or out for mo
 
 ## Steering committee
 
-Practica is a community-driven open-source project. It's being led voluntarily by engineers from many companies. On top of this, these companies below which are keen to great engineeting practices chose to let their engineers contribute massively and push this project firmly 💚
+Practica is a community-driven open-source project. It's being led voluntarily by engineers from many companies. On top of this, the companies below are keen to great engineering practices and have chosen to let their engineers contribute massively and push this project firmly 💚
 
 ![Autodesk](/docs/images/autodesk.png)
 
@@ -133,7 +133,7 @@ Let's put our pictures here really soon
 
 # Partners
 
-These companies are keen for continous improvements and encouraging their engineers to contribute during work hours
+These companies are keen for continuous improvements and encouraging their engineers to contribute during work hours
 
 ![Minta](/docs/images/minta.png)
 
