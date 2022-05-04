@@ -35,7 +35,7 @@
     <td>❗Encourage component autonomy</td>
     <td><img src="./img/partial.png"/><br/><br/>Packages are highly coupled</td>
     <td><img src="./img/almost-full.png"/><br/><br/>Workflow is coupled</td>
-    <td><img src="./img/almost-full.png"/><br/><br/>npm link prevents bypasses the SemVer</td>
+    <td><img src="./img/almost-full.png"/><br/><br/>npm link bypasses the SemVer</td>
     <td>
       <img src="./img/full.png"/><br/><br/>Minor concern: shared NODE_MODULES on the root</td>
   </tr>
@@ -48,12 +48,12 @@
       <img src="./img/partial.png"/><br/><br/>Shared depedencies</td>
   </tr>
     <tr valign="top">
-    <td>Versioning strategy</td>
-    <td><img src="./img/almost-full.png"/><br/><br/>Only fixed versioning</td>
-    <td><img src="./img/almost-full.png"/><br/><br/>Only independent versioning</td>
-    <td><img src="./img/full.png"/><br/><br/>Both fixed and independent versioning</td>
+    <td>Standardization</td>
+    <td><img src="./img/partial.png"/><br/><br/>Non standard Node.js stuff: One single root package.json by default, TS-paths for linking</td>
+    <td><img src="./img/full.png"/><br/><br/>An externous build layer</td>
+    <td><img src="./img/full.png"/><br/><br/>An externous build layer</td>
     <td>
-      <img src="./img/almost-full.png"/><br/><br/>Only independent versioning</td>
+      <img src="./img/full.png"/><br/><br/>An externous package centralizer</td>
   </tr>
     <tr>
     <td class="tg-ho3n" colspan="5" align="center"><h2>Tasks and build pipeline</h2></td>
