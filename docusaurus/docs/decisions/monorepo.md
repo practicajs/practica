@@ -1,4 +1,5 @@
 
+
 # Decision: Choosing **Monorepo** approach and tooling
 
 **📔 What is it** - Choosing the right Monorepo tool and features for the boilerplate
@@ -73,13 +74,13 @@
   </tr>
     <tr>
     <td>Visual dependency graph</td>
-    <td><br/>Supported</td>
+    <td><br/>Supported, rich & interactive</td>
     <td><br/>Supported, task dependencies</td>
     <td><br/>None</td>
     <td><br/>None</td>
   </tr>
   <tr>
-    <td>Depndency resolution</td>
+    <td>Depndency resolution ("affected")</td>
     <td><br/>Supported</td>
     <td><br/>Supported</td>
     <td><br/>None</td>
@@ -114,9 +115,58 @@
   <tr>
     <td class="tg-ho3n" colspan="5" align="center"><h2>Others</h2></td>
   </tr>
+   <tr>
+    <td>Plugins</td>
+    <td><br/>Supported</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+  </tr>
   <tr>
     <td>Scaffold new component from a gallery</td>
     <td><br/>Supported</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+  </tr>
+  <tr>
+    <td>Distributed task execution</td>
+    <td><br/>Supported</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+  </tr>
+  <tr>
+    <td>Detecting affected packages</td>
+    <td><br/>Supported</td>
+    <td><br/>Supported</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+  </tr>
+  <tr>
+    <td>Create a new package to the repo</td>
+    <td><br/>Built it code genreation with useful templates</td>
+    <td><br/>None, 3rd party code gernator can be used</td>
+    <td><br/>None, 3rd party code gernator can be used</td>
+    <td><br/>None, 3rd party code gernator can be used</td>
+  </tr>
+  <tr>
+    <td>Adapt changes in the monorepo tool</td>
+    <td><br/>Supported via nx migrate</td>
+    <td><br/>Supported via codemod</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+  </tr>
+  <tr>
+    <td>Incremental builds</td>
+    <td><br/>Supported</td>
+    <td><br/>Supported</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+  </tr>
+  <tr>
+    <td>Cross-package modifications</td>
+    <td><br/>Supported via nx generate</td>
     <td><br/>None</td>
     <td><br/>None</td>
     <td><br/>None</td>
