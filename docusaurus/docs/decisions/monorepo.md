@@ -26,7 +26,7 @@
   <tr valign="top">
     <td>Community and maintenance</td>
     <td><img src="./img/full.png"/><br/><br/>Huge eco-system and commercial-grade maintenance</td>
-    <td><img src="./img/full.png"/><br/><br/>Tredning, commercial-grade maintenance</td>
+    <td><img src="./img/full.png"/><br/><br/>Trending, commercial-grade maintenance</td>
     <td>
       <img src="./img/partial.png"/><br/><br/>Not maintained anymore</td>
     <td><img src="./img/almost-full.png"/><br/><br/>Solid</td>
@@ -41,8 +41,8 @@
   </tr>
   <tr valign="top">
     <td>Build speed</td>
-    <td><img src="./img/full.png"/><br/><br/>Smart inference and execution plan, shared depedencies, cache</td>
-    <td><img src="./img/full.png"/><br/><br/>Smart inference and execution plan, shared depedencies, cache</td>
+    <td><img src="./img/full.png"/><br/><br/>Smart inference and execution plan, shared dependencies, cache</td>
+    <td><img src="./img/full.png"/><br/><br/>Smart inference and execution plan, shared dependencies, cache</td>
     <td><img src="./img/partial.png"/><br/><br/>Parallel tasks execution, copied dependencies</td>
     <td>
       <img src="./img/partial.png"/><br/><br/>Shared depedencies</td>
@@ -60,10 +60,10 @@
   </tr>
   <tr>
     <td>Parallel task execution</td>
-    <td><br/>Supports parllel execution</td>
-    <td><br/>Supports parllel execution</td>
-    <td><br/>Seuqence execution only</td>
-    <td><br/>Sequance execution only</td>
+    <td><br/>Supports parallel execution</td>
+    <td><br/>Supports parallel execution</td>
+    <td><br/>Sequential execution only</td>
+    <td><br/>Sequential execution only</td>
   </tr>
   <tr>
     <td>Cache</td>
@@ -145,10 +145,10 @@
   </tr>
   <tr>
     <td>Create a new package to the repo</td>
-    <td><br/>Built it code genreation with useful templates</td>
-    <td><br/>None, 3rd party code gernator can be used</td>
-    <td><br/>None, 3rd party code gernator can be used</td>
-    <td><br/>None, 3rd party code gernator can be used</td>
+    <td><br/>Built it code generation with useful templates</td>
+    <td><br/>None, 3rd party code generator can be used</td>
+    <td><br/>None, 3rd party code generator can be used</td>
+    <td><br/>None, 3rd party code generator can be used</td>
   </tr>
   <tr>
     <td>Adapt changes in the monorepo tool</td>
