@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelizeConfig = require("./config/config");
-import { configurationProvider } from "../../../libraries/configuration-provider/index";
+import { configurationProvider } from "configuration-provider";
 
 let repository;
 let orderModel;

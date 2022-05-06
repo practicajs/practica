@@ -2,9 +2,9 @@ const axios = require("axios");
 const OrderRepository = require("../data-access/order-repository").default;
 const {
   AppError,
-} = require("../../../libraries/error-handling/error-handling");
+} = require("error-handling");
 const MessageQueueClient =
-  require("../../../libraries/message-queue-client/message-queue-client").default;
+  require("message-queue-client").default;
 
 const axiosHTTPClient = axios.create();
 
@@ -34,12 +34,11 @@ export const addOrder = async function (newOrder) {
   return DBResponse;
 };
 
-export const deleteUser = async function (userId) {
+export const deleteOrder = async function (userId) {
   return await new OrderRepository().deleteOrder(userId);
 };
 
-export const getUser = async function (userId) {
-  console.log(OrderRepository);
+export const getOrder = async function (userId) {
   return await new OrderRepository().getOrderById(userId);
 };
 

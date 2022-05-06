@@ -3,12 +3,7 @@
     "module": "CommonJS",
     "noImplicitAny": false,
     "removeComments": true,
-    "preserveConstEnums": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "outDir": "dist",
-    "esModuleInterop": true,
-    "allowJs": true
   },
   "exclude": ["node_modules"]
 }

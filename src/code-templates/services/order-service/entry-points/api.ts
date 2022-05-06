@@ -2,9 +2,9 @@ const express = require("express");
 const util = require("util");
 const bodyParser = require("body-parser");
 import { configurationProvider } from "configuration-provider";
-const errorHandler =
-  require("../../../libraries/error-handling/error-handling").errorHandler;
+const errorHandler = require("error-handling").errorHandler;
 const orderService = require("../business-logic/order-service");
+
 let connection, expressApp;
 
 const initializeWebServer = () => {
@@ -49,7 +49,7 @@ const defineRoutes = (expressApp) => {
   // get existing order by id
   router.get("/:id", async (req, res, next) => {
     console.log(`Order API was called to get user by id ${req.params.id}`);
-    const response = await orderService.getUser(req.params.id);
+    const response = await orderService.getOrder(req.params.id);
 
     if (!response) {
       res.status(404).end();
@@ -62,7 +62,7 @@ const defineRoutes = (expressApp) => {
   // delete order by id
   router.delete("/:id", async (req, res, next) => {
     console.log(`Order API was called to delete order ${req.params.id}`);
-    await orderService.deleteUser(req.params.id);
+    await orderService.deleteOrder(req.params.id);
     res.status(204).end();
   });
 

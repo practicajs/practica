@@ -1,7 +1,7 @@
 const { EventEmitter } = require("events");
 const {
   errorHandler,
-} = require("../../libraries/error-handling/error-handling");
+} = require("error-handling");
 const { FakeMessageQueueProvider } = require("./fake-message-queue-provider");
 const amqplib = require("amqplib");
 

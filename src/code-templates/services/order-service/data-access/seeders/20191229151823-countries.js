@@ -6,9 +6,13 @@ module.exports = {
       [
         {
           name: "Italy",
-          name: "USA",
-          name: "India",
         },
+        {
+          name: "USA",
+        },
+        {
+          name: "India",
+        }
       ],
       {}
     );
