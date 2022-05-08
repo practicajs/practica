@@ -1,4 +1,4 @@
-import Sequelize from "sequelize";
+import { Sequelize, DataTypes } from "sequelize";
 import sequelizeConfig from "./config/config";
 import { configurationProvider } from "../../../libraries/configuration-provider/index";
 
@@ -16,23 +16,23 @@ export default class OrderRepository {
       );
       orderModel = repository.define("Order", {
         id: {
-          type: Sequelize.INTEGER,
+          type: DataTypes.INTEGER,
           primaryKey: true,
           autoIncrement: true,
         },
         externalIdentifier: {
-          type: Sequelize.STRING,
+          type: DataTypes.STRING,
           unique: true,
           allowNull: true,
         },
         mode: {
-          type: Sequelize.STRING,
+          type: DataTypes.STRING,
         },
         userId: {
-          type: Sequelize.INTEGER,
+          type: DataTypes.INTEGER,
         },
         productId: {
-          type: Sequelize.INTEGER,
+          type: DataTypes.INTEGER,
         },
       });
     }

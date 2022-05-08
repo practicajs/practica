@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import { render, Text, Box, Newline, Spacer } from "ink";
 import MultiSelect from "ink-multi-select"

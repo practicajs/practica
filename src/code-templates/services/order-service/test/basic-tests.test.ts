@@ -9,9 +9,9 @@ let axiosAPIClient;
 
 beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  const port = await initializeWebServer();
+  const apiConnection = await initializeWebServer();
   const axiosConfig = {
-    baseURL: `http://127.0.0.1:${port}`,
+    baseURL: `http://127.0.0.1:${apiConnection.port}`,
     validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
@@ -172,7 +172,7 @@ describe("/api", () => {
 
     test("When the user does not exist, return 404 response", async () => {
       //Arrange
-      nock("http://localhost/user/").get(`/7`).reply(404, null);
+      nock("http://localhost/user/").get(`/7`).reply(404);
       const orderToAdd = {
         userId: 7,
         productId: 2,
