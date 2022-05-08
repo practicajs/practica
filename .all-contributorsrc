@@ -76,6 +76,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "reinaldo-calderon-team",
+      "name": "reinaldo-calderon-team",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60945397?v=4",
+      "profile": "https://github.com/reinaldo-calderon-team",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
