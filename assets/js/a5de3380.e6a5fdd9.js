@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpractica_docs=self.webpackChunkpractica_docs||[]).push([[682],{9270:function(a){a.exports=JSON.parse('{"allTagsPath":"/practica/blog/tags","name":"practicajs","count":1,"permalink":"/practica/blog/tags/practicajs"}')}}]);

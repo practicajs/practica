@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus=self.webpackChunkdocusaurus||[]).push([[682],{9270:function(a){a.exports=JSON.parse('{"allTagsPath":"/practica/blog/tags","name":"practicajs","count":1,"permalink":"/practica/blog/tags/practicajs"}')}}]);
