@@ -16,6 +16,13 @@ export const configurationProvider = convict({
       nullable: false,
       env: "LOGGER_LEVEL",
     },
+    destination: {
+      doc: "destination in which the logger should be written",
+      format: '*',
+      default: "stdout",
+      nullable: false,
+      env: "LOGGER_DEST",
+    }
   },
   DB: {
     userName: {

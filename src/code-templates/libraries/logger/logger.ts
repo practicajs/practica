@@ -1,10 +1,16 @@
-import { configurationProvider } from "configuration-provider";
+import {configurationProvider} from "../configuration-provider";
+import {pino} from "pino";
 
-// example on how to read the level: configurationProvider.get("logger.level")
-export const info = (message) => {
-  console.log(message);
-};
 
-export const error = (message) => {
-  console.error(message);
-};
+const logFile = configurationProvider.get("logger.destination");
+export default pino(
+    {
+        level: configurationProvider.get("logger.level"),
+        prettyPrint: {
+            colorize: true, // colorizes the log
+            levelFirst: true,
+            translateTime: 'yyyy-dd-mm, h:MM:ss TT',
+        },
+    },
+    pino.destination(logFile == 'stdout' ? undefined: `${__dirname}/${logFile}`)
+)
