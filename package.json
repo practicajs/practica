@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/bestpractices/practica#readme",
   "dependencies": {
+    "@nodelib/fs.walk": "^1.2.8",
     "@types/blessed": "^0.1.19",
     "@types/commander": "^2.12.2",
     "@types/fs-extra": "^9.0.13",

@@ -16,7 +16,7 @@ export const factorDefaultOptions = (
     baseFramework: "express",
     DBType: "pg",
     mainMicroserviceName: "microservice-example-1",
-    emitBestPracticesHints: true,
+    emitBestPracticesHints: false,
     targetDirectory: process.cwd(),
     installDependencies: false,
   };
