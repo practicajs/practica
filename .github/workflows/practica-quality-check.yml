@@ -8,12 +8,12 @@ on:
     branches: [main]
 
 jobs:
-  strategy:
+  build:
+    strategy:
       matrix:
-        node-version: [10.x, 14.x, 16.x]
+        node-version: [12.x, 14.x, 16.x]
         os: [ubuntu-latest, windows-latest]
 
-  build:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
