@@ -1,5 +1,5 @@
 {
-  "name": "@practica/generate",
+  "name": "@practica/create-node-app",
   "version": "0.0.1",
   "description": "Create Node.js app that is packed with best practices AND strive for simplicity",
   "main": "./src/code-generator/index.js",
@@ -7,16 +7,18 @@
     "doc": "docs"
   },
   "bin": {
-    "practica": "./bin/cli.js"
+    "create-node-app": "./bin/cli.js"
   },
   "scripts": {
     "test": "jest",
     "test:quick": "jest \"^((?!slow).)*$\"",
     "test:dev": "jest --silent --watch \"^((?!slow).)*$\"",
     "test:dev:verbose": "jest --watch \"^((?!slow).)*$\"",
-    "build": "tsc && cp -R ./src/code-templates/ ./.dist/src/code-templates",
+    "build": "tsc && npm run copy-templates",
+    "copy-templates": "rsync -av --exclude '*node_modules*' ./src/code-templates/ ./.dist/src/code-templates",
     "build:watch": "tsc --watch",
-    "start:dev:reload": "nodemon ./src/code-generator/index.js"
+    "start:cli": "node ./.dist/bin/cli.js interactive",
+    "publish:build": "npm run build && npm publish ./.dist --access public"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
     "@types/blessed": "^0.1.19",
     "@types/commander": "^2.12.2",
     "@types/fs-extra": "^9.0.13",
+    "@types/ink-spinner": "^3.0.1",
     "blessed": "^0.1.81",
     "commander": "^9.1.0",
     "figlet": "^1.5.2",
@@ -47,7 +50,10 @@
     "ink-big-text": "^1.2.0",
     "ink-image": "^2.0.0",
     "ink-multi-select": "^2.0.0",
+    "ink-progress-bar": "^3.0.0",
     "ink-select-input": "^4.2.1",
+    "ink-spinner": "^4.0.3",
+    "ink-task-list": "^1.1.1",
     "ink-text-input": "^4.0.3",
     "prompts": "^2.4.2",
     "react": "^17.0.2",
@@ -56,6 +62,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
+    "@types/prettier": "^2.4.4",
     "@types/sinon": "^10.0.11",
     "execa": "^5.1.1",
     "jest": "^27.5.1",

@@ -143,27 +143,45 @@ This solution is built around independent domains that share _almost_ nothing wi
 
 ## Development machine setup
 
-✅ Install the node version that is specified in .nvmrc (at the project root)
+✅ Ensure Node, Docker and [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) are installed
 
-✅ Install Docker (needed for some tests)
+✅ Configure GitHub and npm 2FA!
 
-✅ Configure GitHub 2FA!
+✅ Close the repo if you are a maintainer, or fork it if have no collaborators permissions
 
-✅ configure npm 2FA!
+✅ With your terminal, ensure the right Node version is installed:
 
-✅ Install [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```
+nvm use
+```
 
-✅ If not a core maintainer, fork the repo to your own machine
+✅ Install dependencies:
 
-✅ Ensure all tests pass by running `npm test`
+
+```
+nvm i
+```
+
+✅ Ensure all tests pass:
+
+```
+npm t
+```
 
 ✅ Code. Run the test. And vice versa
+
 
 ## Areas to focus on
 
 ![domains](https://user-images.githubusercontent.com/8571500/157631757-849584a3-1701-4248-8516-a7d60066089c.png)
 
 
+## Supported Node.js version
+
+- The generated code should be compatible with Node.js versions >14.0.0.
+- It's fair to demand LTS version from the repository maintainers (the generator code)
+
 
 ## Code structure
 
+Soon

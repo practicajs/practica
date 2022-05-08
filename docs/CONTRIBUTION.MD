@@ -1,4 +1,4 @@
-# WE are thirilled to have you here
+# WE are thrilled to have you here
 
 Couple of sentences
 

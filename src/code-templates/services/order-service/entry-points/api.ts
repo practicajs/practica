@@ -1,24 +1,21 @@
 const express = require("express");
 const util = require("util");
 const bodyParser = require("body-parser");
+import { configurationProvider } from "configuration-provider";
 const errorHandler =
   require("../../../libraries/error-handling/error-handling").errorHandler;
 const orderService = require("../business-logic/order-service");
-
 let connection, expressApp;
 
 const initializeWebServer = () => {
   return new Promise<string>((resolve, reject) => {
     // A typical Express setup
     expressApp = express();
-    expressApp.use(
-      bodyParser.urlencoded({
-        extended: true,
-      })
-    );
     expressApp.use(bodyParser.json());
     defineRoutes(expressApp);
-    const webServerPort = process.env.PORT ? process.env.PORT : 0;
+    const portToListenTo = configurationProvider.get("port");
+    const webServerPort = portToListenTo || 0;
+    console.log(`About to listen to port ${webServerPort}`);
     connection = expressApp.listen(webServerPort, (error) => {
       resolve(connection.address());
     });

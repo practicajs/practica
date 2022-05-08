@@ -10,7 +10,7 @@
 
 # What in here for you in one paragraph
 
-Node.js has great frameworks, they never meant to be production ready - Practica.js bridges this gap. We generate application code that demonstrates a full flow, from API to DB, that is packed with good practices like hardened dockerfile, N-Tier folder structure, testing templates, sanitized API response and more. This can save a great deal of time and painful mistakes. All our decisions are transparent, [thoughtful and neatly documented](/docs/decisions), we strive to keep things as simple and small as possible and base our work on the popular guide ['Node.js best practices'](https://github.com/goldbergyoni/nodebestpractices)
+Node.js has great frameworks 💚, they never meant to be production ready - Practica.js bridges this gap. Based on your preferred framework, we generate a small code that demonstrates a full flow, from API to DB, that is packed with good practices. For example, we incude a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This can save a great deal of time and painful mistakes. All our decisions are being made, [thoughtfully and neatly documented](/docs/decisions), we strive to keep things as simple and standard as possible and base our work on the popular guide ['Node.js best practices'](https://github.com/goldbergyoni/nodebestpractices)
 
 <br/>
 
@@ -45,15 +45,15 @@ Node.js has great frameworks, they never meant to be production ready - Practica
 
 🗓 **Alpha project:** This project is very premature WIP, please revisit by June 2022
 
-### Run this command from terminal (not working yet, but it should by April 5th. Please watch)
+### Run this command from terminal
 
 Interactive mode with UI:
 
-`npx practica wizard` 
+`npx @practica/create-node-app interactive` 
 
-Command with flags:
+Or a typical terminal command using flags (without UI):
 
-`npx practica generate --express --postgres` 
+`npx @practica/create-node-app immediate` 
 
 ### ✨ That's it, the code was generated for you 
 
@@ -133,7 +133,7 @@ Let's put our pictures here really soon
 
 # Partners
 
-These companies are obliged to implement these best practices and daily routine and they also fund this project generously
+These companies are keen for continous improvements and encouraging their engineers to contribute during work hours
 
 ![Minta](/docs/images/minta.png)
 
@@ -151,6 +151,12 @@ Million thanks to these great people who contributed code:
     <td align="center"><a href="https://github.com/rluvaton"><img src="https://avatars.githubusercontent.com/u/16746759?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Raz Luvaton</b></sub></a><br /><a href="#content-rluvaton" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/mikicho"><img src="https://avatars.githubusercontent.com/u/11459632?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Michael Solomon</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=mikicho" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/itainoam"><img src="https://avatars.githubusercontent.com/u/12605830?v=4?s=200" width="200px;" alt=""/><br /><sub><b>itainoam</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=itainoam" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/shanizlo"><img src="https://avatars.githubusercontent.com/u/39856071?v=4?s=200" width="200px;" alt=""/><br /><sub><b>shanizlo</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=shanizlo" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/RonDaha"><img src="https://avatars.githubusercontent.com/u/30000700?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Ron Dahan</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=RonDaha" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/alonkishoni"><img src="https://avatars.githubusercontent.com/u/49868301?v=4?s=200" width="200px;" alt=""/><br /><sub><b>AlonK</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=alonkishoni" title="Code">💻</a></td>
+    <td align="center"><a href="https://twitter.com/joseluah53"><img src="https://avatars.githubusercontent.com/u/11966345?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Jose Luis Alvarez Herrera</b></sub></a><br /><a href="#content-jalvar53" title="Content">🖋</a></td>
   </tr>
 </table>
 

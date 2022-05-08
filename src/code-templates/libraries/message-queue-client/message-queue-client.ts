@@ -1,10 +1,9 @@
-const amqplib = require("amqplib");
 const { EventEmitter } = require("events");
 const {
-  AppError,
   errorHandler,
 } = require("../../libraries/error-handling/error-handling");
 const { FakeMessageQueueProvider } = require("./fake-message-queue-provider");
+const amqplib = require("amqplib");
 
 // This is a simplistic client for a popular message queue product - RabbitMQ
 // It's generic in order to be used by any service in the organization

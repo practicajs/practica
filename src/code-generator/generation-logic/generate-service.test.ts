@@ -8,13 +8,11 @@ import * as testHelpers from "../../../test/test-helpers";
 let uniqueEmptyFolderForASingleTest: string;
 
 beforeEach(async () => {
-  uniqueEmptyFolderForASingleTest = await testHelpers.createUniqueFolder(
-    __dirname
-  );
+  uniqueEmptyFolderForASingleTest = await testHelpers.createUniqueFolder();
 });
 
 afterEach(async () => {
-  //  await fsExtra.remove(uniqueEmptyFolderForASingleTest);
+  await fsExtra.remove(uniqueEmptyFolderForASingleTest);
 });
 
 describe("generateApp", () => {

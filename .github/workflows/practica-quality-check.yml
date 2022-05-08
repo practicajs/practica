@@ -24,4 +24,4 @@ jobs:
           node-version: "${{ steps.nvm.outputs.NVMRC }}"
 
       - run: npm ci
-      - run: npm test
+      - run: npm test 
