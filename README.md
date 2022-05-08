@@ -160,6 +160,7 @@ Million thanks to these great people who contributed code:
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/reinaldo-calderon-team"><img src="https://avatars.githubusercontent.com/u/60945397?v=4?s=200" width="200px;" alt=""/><br /><sub><b>reinaldo-calderon-team</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=reinaldo-calderon-team" title="Code">💻</a> <a href="#content-reinaldo-calderon-team" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/KarelVerschraegen"><img src="https://avatars.githubusercontent.com/u/11301291?v=4?s=200" width="200px;" alt=""/><br /><sub><b>KarelVerschraegen</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=KarelVerschraegen" title="Documentation">📖</a></td>
   </tr>
 </table>
 
