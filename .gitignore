@@ -114,3 +114,6 @@ dist
 # Test artifacts
 
 output-folders-for-testing
+
+# macOS
+.DS_Store
