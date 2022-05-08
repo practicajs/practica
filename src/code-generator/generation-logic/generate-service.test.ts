@@ -11,9 +11,9 @@ beforeEach(async () => {
   uniqueEmptyFolderForASingleTest = await testHelpers.createUniqueFolder();
 });
 
-// afterEach(async () => {
-//   await fsExtra.remove(uniqueEmptyFolderForASingleTest);
-// });
+afterEach(async () => {
+  await fsExtra.remove(uniqueEmptyFolderForASingleTest);
+});
 
 describe("generateApp", () => {
   test("When destination does not exist, then the destination folder created and includes content ", async () => {
