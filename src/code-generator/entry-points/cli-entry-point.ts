@@ -1,6 +1,6 @@
-const { program } = require("commander");
+import { program } from "commander";
 import { renderWizard } from "./interactive-cli";
-const { handleNonInteractiveCommand } = require("./non-interactive-cli");
+import { handleNonInteractiveCommand } from "./non-interactive-cli";
 
 export function startAppGenerator() {
   program

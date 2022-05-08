@@ -1,14 +1,19 @@
-const { EventEmitter } = require("events");
-const {
+import { EventEmitter } from "events";
+import {
   errorHandler,
-} = require("../../libraries/error-handling/error-handling");
-const { FakeMessageQueueProvider } = require("./fake-message-queue-provider");
-const amqplib = require("amqplib");
+} from "../../libraries/error-handling/error-handling";
+import { FakeMessageQueueProvider } from "./fake-message-queue-provider";
+import amqplib from "amqplib";
 
 // This is a simplistic client for a popular message queue product - RabbitMQ
 // It's generic in order to be used by any service in the organization
 class MessageQueueClient extends EventEmitter {
-  constructor(customMessageQueueProvider) {
+  private isReady: boolean;
+  private messageQueueProvider: any;
+  private connection: any;
+  private channel: any
+
+  constructor(customMessageQueueProvider?) {
     super();
     this.isReady = false;
 

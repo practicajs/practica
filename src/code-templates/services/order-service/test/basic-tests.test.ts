@@ -1,8 +1,7 @@
-const axios = require("axios");
-const sinon = require("sinon");
-const nock = require("nock");
-const { initializeWebServer, stopWebServer } = require("../entry-points/api");
-const OrderRepository = require("../data-access/order-repository");
+import axios from "axios";
+import sinon from "sinon";
+import nock from "nock";
+import { initializeWebServer, stopWebServer } from "../entry-points/api";
 
 // Configuring file-level HTTP client with base URL will allow
 // all the tests to approach with a shortened syntax
@@ -10,9 +9,9 @@ let axiosAPIClient;
 
 beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  const apiConnection = await initializeWebServer();
+  const port = await initializeWebServer();
   const axiosConfig = {
-    baseURL: `http://127.0.0.1:${apiConnection.port}`,
+    baseURL: `http://127.0.0.1:${port}`,
     validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);

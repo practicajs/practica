@@ -1,10 +1,10 @@
-const express = require("express");
-const util = require("util");
-const bodyParser = require("body-parser");
+import express from "express";
+import util from "util";
+import bodyParser from "body-parser";
 import { configurationProvider } from "configuration-provider";
-const errorHandler =
-  require("../../../libraries/error-handling/error-handling").errorHandler;
-const orderService = require("../business-logic/order-service");
+import { errorHandler }
+  from "../../../libraries/error-handling/error-handling";
+import * as orderService from "../business-logic/order-service";
 let connection, expressApp;
 
 const initializeWebServer = () => {

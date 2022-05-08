@@ -1,10 +1,9 @@
-const axios = require("axios");
-const OrderRepository = require("../data-access/order-repository").default;
-const {
+import axios from "axios";
+import OrderRepository from "../data-access/order-repository";
+import {
   AppError,
-} = require("../../../libraries/error-handling/error-handling");
-const MessageQueueClient =
-  require("../../../libraries/message-queue-client/message-queue-client").default;
+} from "../../../libraries/error-handling/error-handling";
+import MessageQueueClient from "../../../libraries/message-queue-client/message-queue-client";
 
 const axiosHTTPClient = axios.create();
 

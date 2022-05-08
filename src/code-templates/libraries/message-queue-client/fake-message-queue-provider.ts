@@ -1,4 +1,4 @@
-const { EventEmitter } = require("events");
+import { EventEmitter } from "events";
 
 // This class is the heart of the MQ testing - It replaces the MQ provider client library
 // and implement the same signature, but each method does nothing but emit an event which the test

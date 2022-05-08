@@ -1,5 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelizeConfig = require("./config/config");
+import Sequelize from "sequelize";
+import sequelizeConfig from "./config/config";
 import { configurationProvider } from "../../../libraries/configuration-provider/index";
 
 let repository;
