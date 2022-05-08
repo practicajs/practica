@@ -150,9 +150,9 @@ sidebar_label: Monorepo
   <tr>
     <td>Create a new package to the repo</td>
     <td><br/>Built it code genreation with useful templates</td>
-    <td><br/>None, 3rd party code gernator can be used</td>
-    <td><br/>None, 3rd party code gernator can be used</td>
-    <td><br/>None, 3rd party code gernator can be used</td>
+    <td><br/>None, 3rd party code generator can be used</td>
+    <td><br/>None, 3rd party code generator can be used</td>
+    <td><br/>None, 3rd party code generator can be used</td>
   </tr>
   <tr>
     <td>Adapt changes in the monorepo tool</td>
