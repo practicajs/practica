@@ -16,7 +16,7 @@ https://user-images.githubusercontent.com/8571500/158583069-b8dceec0-81dc-4d90-9
 
 Our main selling point is our philosophy, our philosophy is 'make it SIMPLE'. There is one really important holy grail in software - Speed. The faster you move, the more features and value is created for the users. The faster you move, more improvements cycles are deployed and the software/ops become better. [Researches show](https://puppet.com/resources/report/2020-state-of-devops-report) that faster team produces software that is more reliable. Complexity is the enemy of speed - Commonly apps are big, sophisiticated, has a lot of internal abstractions and demand long training before being productive. Our mission is to minimize complexity, get onboarded developers up to speed quickly, or in simple words - Let the reader of the code understand it in a breeze. If you make simplicity a 1st principle - Great things will come your way.
 
-![The sweet spot](/docs/images/balance.png)
+![The sweet spot](/static/images/balance.png)
 
 Big words, how exactly? Here are few examples:
 
