@@ -1,104 +1,114 @@
 {
-	"files": [
-		"README.md"
-	],
-	"imageSize": 200,
-	"commit": false,
-	"contributors": [{
-			"login": "clarkio",
-			"name": "Brian Clark",
-			"avatar_url": "https://avatars.githubusercontent.com/u/6265396?v=4",
-			"profile": "https://www.clarkio.com",
-			"contributions": [
-				"code"
-			]
-		},
-		{
-			"login": "rluvaton",
-			"name": "Raz Luvaton",
-			"avatar_url": "https://avatars.githubusercontent.com/u/16746759?v=4",
-			"profile": "https://github.com/rluvaton",
-			"contributions": [
-				"content"
-			]
-		},
-		{
-			"login": "mikicho",
-			"name": "Michael Solomon",
-			"avatar_url": "https://avatars.githubusercontent.com/u/11459632?v=4",
-			"profile": "https://github.com/mikicho",
-			"contributions": [
-				"code"
-			]
-		},
-		{
-			"login": "itainoam",
-			"name": "itainoam",
-			"avatar_url": "https://avatars.githubusercontent.com/u/12605830?v=4",
-			"profile": "https://github.com/itainoam",
-			"contributions": [
-				"code"
-			]
-		},
-		{
-			"login": "shanizlo",
-			"name": "shanizlo",
-			"avatar_url": "https://avatars.githubusercontent.com/u/39856071?v=4",
-			"profile": "https://github.com/shanizlo",
-			"contributions": [
-				"code"
-			]
-		},
-		{
-			"login": "RonDaha",
-			"name": "Ron Dahan",
-			"avatar_url": "https://avatars.githubusercontent.com/u/30000700?v=4",
-			"profile": "https://github.com/RonDaha",
-			"contributions": [
-				"code"
-			]
-		},
-		{
-			"login": "alonkishoni",
-			"name": "AlonK",
-			"avatar_url": "https://avatars.githubusercontent.com/u/49868301?v=4",
-			"profile": "https://github.com/alonkishoni",
-			"contributions": [
-				"code"
-			]
-		},
-		{
-			"login": "jalvar53",
-			"name": "Jose Luis Alvarez Herrera",
-			"avatar_url": "https://avatars.githubusercontent.com/u/11966345?v=4",
-			"profile": "https://twitter.com/joseluah53",
-			"contributions": [
-				"content"
-			]
-		},
-		{
-			"login": "reinaldo-calderon-team",
-			"name": "reinaldo-calderon-team",
-			"avatar_url": "https://avatars.githubusercontent.com/u/60945397?v=4",
-			"profile": "https://github.com/reinaldo-calderon-team",
-			"contributions": [
-				"code"
-			]
-		},
-		{
-			"login": "KarelVerschraegen",
-			"name": "KarelVerschraegen",
-			"avatar_url": "https://avatars.githubusercontent.com/u/11301291?v=4",
-			"profile": "https://github.com/KarelVerschraegen",
-			"contributions": [
-				"doc"
-			]
-		}
-	],
-	"contributorsPerLine": 4,
-	"projectName": "practica",
-	"projectOwner": "practicajs",
-	"repoType": "github",
-	"repoHost": "https://github.com",
-	"skipCi": true
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 200,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "clarkio",
+      "name": "Brian Clark",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6265396?v=4",
+      "profile": "https://www.clarkio.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rluvaton",
+      "name": "Raz Luvaton",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16746759?v=4",
+      "profile": "https://github.com/rluvaton",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "mikicho",
+      "name": "Michael Solomon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11459632?v=4",
+      "profile": "https://github.com/mikicho",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "itainoam",
+      "name": "itainoam",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12605830?v=4",
+      "profile": "https://github.com/itainoam",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "shanizlo",
+      "name": "shanizlo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39856071?v=4",
+      "profile": "https://github.com/shanizlo",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "RonDaha",
+      "name": "Ron Dahan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30000700?v=4",
+      "profile": "https://github.com/RonDaha",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "alonkishoni",
+      "name": "AlonK",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49868301?v=4",
+      "profile": "https://github.com/alonkishoni",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jalvar53",
+      "name": "Jose Luis Alvarez Herrera",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11966345?v=4",
+      "profile": "https://twitter.com/joseluah53",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "reinaldo-calderon-team",
+      "name": "reinaldo-calderon-team",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60945397?v=4",
+      "profile": "https://github.com/reinaldo-calderon-team",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "KarelVerschraegen",
+      "name": "KarelVerschraegen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11301291?v=4",
+      "profile": "https://github.com/KarelVerschraegen",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "danm",
+      "name": "Daniel Morrison",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6394846?v=4",
+      "profile": "https://github.com/danm",
+      "contributions": [
+        "content"
+      ]
+    }
+  ],
+  "contributorsPerLine": 4,
+  "projectName": "practica",
+  "projectOwner": "practicajs",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
 }
