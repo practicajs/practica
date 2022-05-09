@@ -7,3 +7,5 @@ In this folder, all decisions should be documented using our decision template
 
 ## Index
 - [Configuration Library](./configurationLibrary.md)
+- [Monorepo](./monorepo.md)
+- [OpenAPI](./openapi.md)
