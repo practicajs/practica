@@ -1,4 +1,4 @@
-![Best practices starter](/docs/images/practica-logo.png)
+![Best practices starter](/static/images/practica-logo.png)
 
 <br/>
 
@@ -6,7 +6,7 @@
 
 ❣️ **Alpha stage:** It's a very premature work-in-progress, we're only kicking-off now, please revisit by June 2022🗓
 
-![Discord](/docs/images/discord-logo.png) [Discord discussions](https://discord.gg/9Nrarr7p) | ![Twitter](/docs/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices)
+![Discord](/static/images/discord-logo.png) [Discord discussions](https://discord.gg/9Nrarr7p) | ![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices)
 
 # What in here for you in one paragraph
 
@@ -82,19 +82,19 @@ https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8
 
 We don't invent new wheels rather use your favorite framework and empower it with more structure and practices. For example, with a single command you get express/fastify based code base with ~100 additional best practices inside
 
-![Built on top of known frameworks](/docs/images/on-top-of-frameworks.png)
+![Built on top of known frameworks](/static/images/on-top-of-frameworks.png)
 
 ### 2. SIMPLE like Node.js was meant to be
 
 Keeping it simple, flat and based on native Node/JS capabilities is part of this project DNA. We believe that too many abstractions, high-complexity and fancy language features become soon a strategic slowdown for the team. To name a few example, our code flow is flat with almost no level of indirection, although using TypeScript - almost no features are being used besides types, for modularization we simply use... Node.js modules
 
-![Built on top of known frameworks](/docs/images/abstractions-vs-simplicity.png)
+![Built on top of known frameworks](/static/images/abstractions-vs-simplicity.png)
 
 ### 3. Supports many technologies and frameworks
 
 Since it's about good practices and simplicity, there is no need to narrow this code to specific framework or DB. We aim to support the major Node.js frameworks and databases
 
-![Built on top of known frameworks](/docs/images/tech-stack.png)
+![Built on top of known frameworks](/static/images/tech-stack.png)
 
 # Practices and features
 
@@ -118,11 +118,11 @@ We apply more than 100 practices and optimizations, you can opt-in or out for mo
 
 Practica is a community-driven open-source project. It's being led voluntarily by engineers from many companies. On top of this, these companies below which are keen to great engineeting practices chose to let their engineers contribute massively and push this project firmly 💚
 
-![Autodesk](/docs/images/autodesk.png)
+![Autodesk](/static/images/autodesk.png)
 
 A Nasdaq 100 company, world-leader in design software
 
-![Cox2m](/docs/images/cox2m.png)
+![Cox2m](/static/images/cox2m.png)
 
 Leader IoT provider, part of 'Cox Communication', 3rd largest US cable company
 
@@ -135,7 +135,7 @@ Let's put our pictures here really soon
 
 These companies are keen for continous improvements and encouraging their engineers to contribute during work hours
 
-![Minta](/docs/images/minta.png)
+![Minta](/static/images/minta.png)
 
 
 ## Amazing contributors 💚
@@ -157,6 +157,11 @@ Million thanks to these great people who contributed code:
     <td align="center"><a href="https://github.com/RonDaha"><img src="https://avatars.githubusercontent.com/u/30000700?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Ron Dahan</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=RonDaha" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/alonkishoni"><img src="https://avatars.githubusercontent.com/u/49868301?v=4?s=200" width="200px;" alt=""/><br /><sub><b>AlonK</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=alonkishoni" title="Code">💻</a></td>
     <td align="center"><a href="https://twitter.com/joseluah53"><img src="https://avatars.githubusercontent.com/u/11966345?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Jose Luis Alvarez Herrera</b></sub></a><br /><a href="#content-jalvar53" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/reinaldo-calderon-team"><img src="https://avatars.githubusercontent.com/u/60945397?v=4?s=200" width="200px;" alt=""/><br /><sub><b>reinaldo-calderon-team</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=reinaldo-calderon-team" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/KarelVerschraegen"><img src="https://avatars.githubusercontent.com/u/11301291?v=4?s=200" width="200px;" alt=""/><br /><sub><b>KarelVerschraegen</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=KarelVerschraegen" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/danm"><img src="https://avatars.githubusercontent.com/u/6394846?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Daniel Morrison</b></sub></a><br /><a href="#content-danm" title="Content">🖋</a></td>
   </tr>
 </table>
 
