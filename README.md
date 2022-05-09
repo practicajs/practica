@@ -12,19 +12,15 @@
 
 <br/>
 
-# What's in here? An Overview
+# A One Paragraph Overview
 
-Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. 
-
-Based on your preferred framework, we generate some example code that demonstrates a full workflow, from API to DB, that is packed with good practices. For example, we include a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](/docs/decisions). 
-
-We strive to keep things as simple and standard as possible and base our work off the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate some example code that demonstrates a full workflow, from API to DB, that is packed with good practices. For example, we include a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](/docs/decisions). We strive to keep things as simple and standard as possible and base our work off the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
 
 <br/>
 
 # `Table of Contents`
 
-- [`Installation and Usage`](#installation-and-usage)
+- [`Super-Quick Setup`](#super-quick-setup)
 - [`Our Philosophies and Unique Values`](#our-philosophies-and-unique-values)
 - [`Practices and Features`](#practices-and-features)
 - [`The People Behind Practica.js`](#the-people-behind-practicajs)
@@ -48,7 +44,7 @@ We strive to keep things as simple and standard as possible and base our work of
 
 <br />
 
-# Installation and Usage
+# Super-Quick Setup
 
 **Note:** Practica.js is a work-in-progress. To have a more complete experience, please check back after June 2022.
 
@@ -115,7 +111,7 @@ To name a few examples, our code flow is flat with almost no level of indirectio
 
 ![Built on top of known frameworks](/docs/images/abstractions-vs-simplicity.png)
 
-### 3. Accessibility, supporting many technologies and frameworks
+### 3. Supports many technologies and frameworks
 
 Good Practices and Simplicity is the name of the game with Practica. There is no need to narrow our code to a specific framework or database. We aim to support a majority of popular Node.js frameworks and databases.
 
