@@ -144,7 +144,7 @@ sidebar_label: Monorepo
     <td>Detecting affected packages</td>
     <td><br/>Supported</td>
     <td><br/>Supported</td>
-    <td><br/>None</td>
+    <td><br/>Supported</td>
     <td><br/>None</td>
   </tr>
   <tr>
