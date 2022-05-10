@@ -76,6 +76,33 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "reinaldo-calderon-team",
+      "name": "reinaldo-calderon-team",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60945397?v=4",
+      "profile": "https://github.com/reinaldo-calderon-team",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "KarelVerschraegen",
+      "name": "KarelVerschraegen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11301291?v=4",
+      "profile": "https://github.com/KarelVerschraegen",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "danm",
+      "name": "Daniel Morrison",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6394846?v=4",
+      "profile": "https://github.com/danm",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 4,

@@ -1,3 +1,8 @@
+---
+sidebar_position: 1
+sidebar_label: Contribution - Short guide
+---
+
 # Contributing to Practica.js - The short guide
 
 ## You belong with us
