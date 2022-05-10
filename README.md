@@ -189,6 +189,7 @@ A million thanks to these great people who have contributed code to our project:
     <td align="center"><a href="https://github.com/reinaldo-calderon-team"><img src="https://avatars.githubusercontent.com/u/60945397?v=4?s=200" width="200px;" alt=""/><br /><sub><b>reinaldo-calderon-team</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=reinaldo-calderon-team" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/KarelVerschraegen"><img src="https://avatars.githubusercontent.com/u/11301291?v=4?s=200" width="200px;" alt=""/><br /><sub><b>KarelVerschraegen</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=KarelVerschraegen" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/danm"><img src="https://avatars.githubusercontent.com/u/6394846?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Daniel Morrison</b></sub></a><br /><a href="#content-danm" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/seanlowe"><img src="https://avatars.githubusercontent.com/u/35589586?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Sean Lowe</b></sub></a><br /><a href="#example-seanlowe" title="Examples">💡</a> <a href="#content-seanlowe" title="Content">🖋</a></td>
   </tr>
 </table>
 
