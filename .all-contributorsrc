@@ -103,6 +103,16 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "seanlowe",
+      "name": "Sean Lowe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35589586?v=4",
+      "profile": "https://github.com/seanlowe",
+      "contributions": [
+        "example",
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 4,
