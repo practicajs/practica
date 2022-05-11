@@ -1,13 +1,19 @@
+import { AppError } from "../error-handling";
 const {
   factorDefaultOptions,
 } = require("../generation-logic/generation-options");
 const generateService = require("../generation-logic/generate-service");
 
-export function handleNonInteractiveCommand(options: any) {
-  const generationOptions = factorDefaultOptions({
-    installDependencies: options.installDependencies,
-    overrideIfExists: options.overrideIfExists,
-    targetDirectory: process.cwd(),
-  });
-  generateService.generateApp(generationOptions); //TODO: Make this async, show progress bar and nice message in the end
+export async function handleNonInteractiveCommand(options: any) {
+  try {
+    const generationOptions = factorDefaultOptions({
+      installDependencies: options.installDependencies,
+      overrideIfExists: options.overrideIfExists,
+      targetDirectory: process.cwd(),
+    });
+    await generateService.generateApp(generationOptions);
+  } catch (error: AppError | any) {
+    console.error(`❣️ ${error.message}`);
+    process.exit(1);
+  }
 }

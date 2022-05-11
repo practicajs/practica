@@ -1,3 +1,4 @@
+import path from "path";
 import fsExtra from "fs-extra";
 import { generateApp } from "./generate-service";
 import * as generationOptions from "./generation-options";
@@ -10,7 +11,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  await fsExtra.remove(uniqueEmptyFolderForASingleTest);
+  //await fsExtra.remove(uniqueEmptyFolderForASingleTest);
 });
 
 describe("generateApp", () => {
@@ -35,13 +36,18 @@ describe("generateApp", () => {
     // Arrange
     const options = generationOptions.factorDefaultOptions({
       targetDirectory: uniqueEmptyFolderForASingleTest,
-      installDependencies: false,
       overrideIfExists: false,
     });
     await generateApp(options);
 
     // Act
+    const generateAppWrapper = async () => {
+      await generateApp(options);
+    };
+
     // Assert
-    expect(generateApp(options)).rejects.toThrow("Generated app already exists, if you want to override it please provide option --overrideIfExists=true or -ov=true");
+    expect(generateAppWrapper()).rejects.toMatchObject({
+      name: "directory-is-not-empty",
+    });
   });
 });
