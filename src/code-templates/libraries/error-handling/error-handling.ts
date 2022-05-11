@@ -1,4 +1,4 @@
-const logger = require("../../libraries/logger/logger");
+import * as logger from "../../libraries/logger/logger";
 
 // This file simulates real-world error handler that makes this component observable
 const errorHandler = {
@@ -25,10 +25,8 @@ const decideWhetherToCrash = (error) => {
 };
 
 class AppError extends Error {
-  constructor(name, message, public HTTPStatus, public isTrusted) {
+  constructor(readonly name: string, readonly message: string, public readonly HTTPStatus, public readonly isTrusted = true) {
     super(message);
-    this.name = name;
-    this.isTrusted = isTrusted === undefined ? true : false;
   }
 }
 

@@ -1,7 +1,7 @@
-const {
+import {
   factorDefaultOptions,
-} = require("../generation-logic/generation-options");
-const generateService = require("../generation-logic/generate-service");
+} from "../generation-logic/generation-options";
+import { generateApp } from "../generation-logic/generate-service";
 
 export function handleNonInteractiveCommand(options: any) {
   const generationOptions = factorDefaultOptions({
@@ -9,5 +9,5 @@ export function handleNonInteractiveCommand(options: any) {
     overrideIfExists: options.overrideIfExists,
     targetDirectory: process.cwd(),
   });
-  generateService.generateApp(generationOptions); //TODO: Make this async, show progress bar and nice message in the end
+  generateApp(generationOptions); //TODO: Make this async, show progress bar and nice message in the end
 }

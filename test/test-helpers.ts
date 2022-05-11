@@ -15,7 +15,7 @@ export const createUniqueFolder = async (): Promise<string> => {
   if (!doesPathExist) {
     await fsExtra.mkdir(testOutputFolder, { recursive: true });
   }
-    const uniqueTestFolderPath = await fsExtra.mkdtemp(`${testOutputFolder}${path.sep}`);
+  const uniqueTestFolderPath = await fsExtra.mkdtemp(`${testOutputFolder}${path.sep}`);
 
   return uniqueTestFolderPath;
 };
