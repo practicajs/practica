@@ -6,6 +6,7 @@ export type generationOptions = {
   emitBestPracticesHints: boolean;
   targetDirectory: string;
   installDependencies: boolean;
+  overrideIfExists: boolean;
 };
 
 export const factorDefaultOptions = (
@@ -19,6 +20,7 @@ export const factorDefaultOptions = (
     emitBestPracticesHints: true,
     targetDirectory: process.cwd(),
     installDependencies: false,
+    overrideIfExists: true,
   };
 
   const result = Object.assign(defaults, overrides);
