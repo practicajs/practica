@@ -14,7 +14,7 @@ Note: This is a shortened guide that suits those are willing to quickly contribu
 ## 2 things to consider
 
 - Our philosophy is all about minimalism and simplicity - We strive to write less code, rely on existing and reputable libraries, stick to Node/JS standards and avoid adding our own abstractions
-- Popular vendors only - Each technology and vendor that we introduce must super popular and reliable. For example, a library must one of the top 5 most starred and downloaded in its category. . See [full vendor choose instructions here](./vendor-pick-guidelines.MD)
+- Popular vendors only - Each technology and vendor that we introduce must super popular and reliable. For example, a library must one of the top 5 most starred and downloaded in its category. . See [full vendor choose instructions here](./vendor-pick-guidelines.md)
 
 ## The internals in a nutshell
 
