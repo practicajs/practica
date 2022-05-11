@@ -2,7 +2,7 @@ import fsExtra from "fs-extra";
 import path from "path";
 import execa from "execa";
 import { generationOptions } from "./generation-options";
-
+import { AppError } from "../error-handling";
 // This is where the code generation logic lives. In high-level, based on the provided option, it creates
 // a folder, decides which code to generate, run the code through a templating engine and emit it to the target folder
 export const generateApp = async (options: generationOptions) => {
