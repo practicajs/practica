@@ -13,7 +13,10 @@ export async function handleNonInteractiveCommand(options: any) {
     });
     await generateService.generateApp(generationOptions);
   } catch (error: AppError | any) {
-    console.error(`❣️ ${error.message}`);
+    const errorMessageToUser = error.message
+      ? `❣️ ${error.message}`
+      : `❣️ Embarrassingly our code generator failed. Yeah, almost 100% test coverage did not help here. Could you be nice to us and open an issue?`;
+    console.error(errorMessageToUser);
     process.exit(1);
   }
 }
