@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Practica.js',
   tagline: 'Best Practices Starter',
-  url: 'https://practicajs.github.io',
+  url: 'https://practica.dev',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
