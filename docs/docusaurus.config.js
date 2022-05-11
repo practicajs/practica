@@ -9,7 +9,7 @@ const config = {
   title: 'Practica.js',
   tagline: 'Best Practices Starter',
   url: 'https://practicajs.github.io',
-  baseUrl: '/practica/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
