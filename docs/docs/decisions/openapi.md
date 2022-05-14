@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-sidebar_label: OpenAPI Decision
+sidebar_label: OpenAPI
 ---
 
 # Decision: Choosing **_OpenAPI** generator tooling
@@ -11,7 +11,7 @@ sidebar_label: OpenAPI Decision
 
 **📁 Corresponding discussion** - [Here](https://github.com/practicajs/practica/issues/67)
 
-**🎯Bottom-line: our recommednation** - TBD
+**🎯Bottom-line: our recommendation** - TBD
 
 **📊 Detailed comparison table**
 
@@ -28,27 +28,27 @@ sidebar_label: OpenAPI Decision
   </tr>
   <tr valign="top">
     <td>Some dimension</td>
-    <td><img src="./img/full.png"/><br/><br/>1ms</td>
-    <td><img src="./img/almost-full.png"/><br/><br/>5ms</td>
+    <td><img src="/practica/img/docs/decisions/full.png"/><br/><br/>1ms</td>
+    <td><img src="/practica/img/docs/decisions/almost-full.png"/><br/><br/>5ms</td>
     <td>
-      <img src="./img/almost-full.png"/><br/><br/>4ms</td>
-    <td><img src="./img/almost-full.png"/><br/><br/>5ms</td>
+      <img src="/practica/img/docs/decisions/almost-full.png"/><br/><br/>4ms</td>
+    <td><img src="/practica/img/docs/decisions/almost-full.png"/><br/><br/>5ms</td>
   </tr>
   <tr valign="top">
     <td>Some dimension</td>
-    <td><img src="./img/full.png"/><br/><br/>Superior</td>
-    <td><img src="./img/partial.png"/><br/><br/>Less popular than competitors</td>
-    <td><img src="./img/almost-full.png"/><br/><br/>Highly popular</td>
+    <td><img src="/practica/img/docs/decisions/full.png"/><br/><br/>Superior</td>
+    <td><img src="/practica/img/docs/decisions/partial.png"/><br/><br/>Less popular than competitors</td>
+    <td><img src="/practica/img/docs/decisions/almost-full.png"/><br/><br/>Highly popular</td>
     <td>
-      <img src="./img/almost-full.png"/><br/><br/>Highly popular</td>
+      <img src="/practica/img/docs/decisions/almost-full.png"/><br/><br/>Highly popular</td>
   </tr>
   <tr valign="top">
     <td>❗ Important factor</td>
-    <td><img src="./img/almost-full.png"/><br/><br/>No</td>
-    <td><img src="./img/full.png"/><br/><br/>Yes</td>
-    <td><img src="./img/partial.png"/><br/><br/>No</td>
+    <td><img src="/practica/img/docs/decisions/almost-full.png"/><br/><br/>No</td>
+    <td><img src="/practica/img/docs/decisions/full.png"/><br/><br/>Yes</td>
+    <td><img src="/practica/img/docs/decisions/partial.png"/><br/><br/>No</td>
     <td>
-      <img src="./img/partial.png"/><br/><br/>No</td>
+      <img src="/practica/img/docs/decisions/partial.png"/><br/><br/>No</td>
   </tr>
 
   <tr>

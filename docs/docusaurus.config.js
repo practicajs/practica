@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Practica.js',
   tagline: 'Best Practices Starter',
-  url: 'https://practicajs.github.io',
-  baseUrl: '/practica/',
+  url: 'https://practica.dev',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -23,11 +23,11 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/practicajs/practica/tree/main/docusaurus/',
+          editUrl: 'https://github.com/practicajs/practica/tree/main/docs/',
         },
         blog: {
           showReadingTime: true,
-          editUrl: 'https://github.com/practicajs/practica/tree/main/docusaurus/',
+          editUrl: 'https://github.com/practicajs/practica/tree/main/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -99,7 +99,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Practica.js, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Practica.js`,
       },
       prism: {
         theme: lightCodeTheme,

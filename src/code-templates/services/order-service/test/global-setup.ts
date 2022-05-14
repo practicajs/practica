@@ -1,7 +1,7 @@
-const isPortReachable = require("is-port-reachable");
-const path = require("path");
-const dockerCompose = require("docker-compose");
-const { execSync } = require("child_process");
+import isPortReachable from "is-port-reachable";
+import path from "path";
+import dockerCompose from "docker-compose";
+import { execSync } from "child_process";
 
 module.exports = async () => {
   console.time("global-setup");

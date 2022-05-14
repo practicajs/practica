@@ -54,10 +54,10 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  globalSetup: "./test/global-setup.js",
+  globalSetup: "./test/global-setup.ts",
 
   // A path to a module which exports an async function that is triggered once after all test suites
-  globalTeardown: "./test/global-teardown.js",
+  globalTeardown: "./test/global-teardown.ts",
 
   // A set of global variables that need to be available in all test environments
   // globals: {},
