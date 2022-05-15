@@ -1,8 +1,6 @@
 import { AppError } from "../error-handling";
-const {
-  factorDefaultOptions,
-} = require("../generation-logic/generation-options");
-const generateService = require("../generation-logic/generate-service");
+import { factorDefaultOptions } from "../generation-logic/generation-options";
+import { generateApp } from "../generation-logic/generate-service";
 
 export async function handleNonInteractiveCommand(options: any) {
   try {
@@ -11,7 +9,7 @@ export async function handleNonInteractiveCommand(options: any) {
       overrideIfExists: options.overrideIfExists,
       targetDirectory: process.cwd(),
     });
-    await generateService.generateApp(generationOptions);
+    await generateApp(generationOptions);
   } catch (error: AppError | any) {
     const errorMessageToUser = error.message
       ? `❣️ ${error.message}`
