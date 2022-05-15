@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x]
         # Uncomment and replace with current `os` when windows-run bug is fixed
         # os: [ubuntu-latest, windows-latest]
         os: [ubuntu-latest]
