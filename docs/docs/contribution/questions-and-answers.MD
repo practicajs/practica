@@ -2,7 +2,7 @@
 
 ## Code generator
 
-**Question-** When running the local shell command 'create-node-app' a wrong version of the code is running or it is not running at all
+**1. Question-** When running the local shell command 'create-node-app' a wrong version of the code is running or it is not running at all
 
 **Answer-** Consider re-linking the local command to the code: 
 
