@@ -3,9 +3,8 @@ import { AddressInfo } from "net";
 import express from "express";
 import util from "util";
 import bodyParser from "body-parser";
-import { configurationProvider } from "configuration-provider";
-import { errorHandler }
-  from "../../../libraries/error-handling/error-handling";
+import { configurationProvider } from "@practica/configuration-provider";
+import { errorHandler } from "@practica/error-handling";
 import * as orderService from "../business-logic/order-service";
 
 let connection: Server;
@@ -39,9 +38,7 @@ const defineRoutes = (expressApp) => {
   // add new order
   router.post("/", async (req, res, next) => {
     try {
-      console.log(
-        `Order API was called to add new Order ${util.inspect(req.body)}`
-      );
+      console.log(`Order API was called to add new Order ${util.inspect(req.body)}`);
       const addOrderResponse = await orderService.addOrder(req.body);
       return res.json(addOrderResponse);
     } catch (error) {
@@ -52,7 +49,7 @@ const defineRoutes = (expressApp) => {
   // get existing order by id
   router.get("/:id", async (req, res, next) => {
     console.log(`Order API was called to get user by id ${req.params.id}`);
-    const response = await orderService.getUser(req.params.id);
+    const response = await orderService.getOrder(req.params.id);
 
     if (!response) {
       res.status(404).end();
@@ -65,7 +62,7 @@ const defineRoutes = (expressApp) => {
   // delete order by id
   router.delete("/:id", async (req, res, next) => {
     console.log(`Order API was called to delete order ${req.params.id}`);
-    await orderService.deleteUser(req.params.id);
+    await orderService.deleteOrder(req.params.id);
     res.status(204).end();
   });
 

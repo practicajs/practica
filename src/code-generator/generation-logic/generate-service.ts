@@ -36,15 +36,18 @@ export const generateApp = async (options: generationOptions) => {
     },
     overwrite: true,
   });
-
   if (options.installDependencies) {
     await execa("npm", ["install"], {
       cwd: targetDirectory,
     });
 
-    await execa("npm", ["run", "lerna", "--", "bootstrap"], {
-      cwd: targetDirectory,
-    });
+    await execa(
+      "npm",
+      ["run", "lerna", "--", "exec", "--scope", "order-service", "npm install"],
+      {
+        cwd: targetDirectory,
+      }
+    );
   }
 
   console.log(`App was generated successfully`);

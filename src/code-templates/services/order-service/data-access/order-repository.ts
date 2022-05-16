@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 import sequelizeConfig from "./config/config";
-import { configurationProvider } from "../../../libraries/configuration-provider/index";
+import { configurationProvider } from "@practica/configuration-provider";
 
 let repository;
 let orderModel;
