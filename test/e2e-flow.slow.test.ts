@@ -38,7 +38,6 @@ describe("Non-interactive", () => {
         "order-service"
       ),
     });
-    console.log("3");
 
     expect(testResult.exitCode).toBe(0);
   }, 100000);
