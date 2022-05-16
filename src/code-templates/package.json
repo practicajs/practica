@@ -7,7 +7,8 @@
     "test": "lerna run --parallel --scope order-service test",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "lerna": "lerna"
+    "lerna": "lerna",
+    "maintenance:delete-node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
   },
   "author": "",
   "license": "ISC",
