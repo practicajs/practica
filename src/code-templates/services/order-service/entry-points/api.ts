@@ -1,23 +1,26 @@
-const express = require("express");
-const util = require("util");
-const bodyParser = require("body-parser");
+import { Server } from "http";
+import { AddressInfo } from "net";
+import express from "express";
+import util from "util";
+import bodyParser from "body-parser";
 import { configurationProvider } from "configuration-provider";
-const errorHandler =
-  require("../../../libraries/error-handling/error-handling").errorHandler;
-const orderService = require("../business-logic/order-service");
-let connection, expressApp;
+import { errorHandler }
+  from "../../../libraries/error-handling/error-handling";
+import * as orderService from "../business-logic/order-service";
+
+let connection: Server;
 
 const initializeWebServer = () => {
-  return new Promise<string>((resolve, reject) => {
+  return new Promise<AddressInfo>((resolve, reject) => {
     // A typical Express setup
-    expressApp = express();
+    const expressApp = express();
     expressApp.use(bodyParser.json());
     defineRoutes(expressApp);
     const portToListenTo = configurationProvider.get("port");
     const webServerPort = portToListenTo || 0;
     console.log(`About to listen to port ${webServerPort}`);
-    connection = expressApp.listen(webServerPort, (error) => {
-      resolve(connection.address());
+    connection = expressApp.listen(webServerPort, () => {
+      resolve(connection.address() as AddressInfo);
     });
   });
 };

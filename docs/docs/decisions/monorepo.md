@@ -31,32 +31,32 @@ sidebar_label: Monorepo
     <td><img src="/practica/img/docs/decisions/full.png"/><br/><br/>Huge eco-system and commercial-grade maintenance</td>
     <td><img src="/practica/img/docs/decisions/full.png"/><br/><br/>Trending, commercial-grade maintenance</td>
     <td>
-      <img src="/practica/img/docs/decisions/partial.png"/><br/><br/>Not maintained anymore</td>
-    <td><img src="/practica/img/docs/decisions/almost-full.png"/><br/><br/>Solid</td>
+      <img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/partial.png"/><br/><br/>Not maintained anymore</td>
+    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/almost-full.png"/><br/><br/>Solid</td>
   </tr>
   <tr valign="top">
     <td>❗Encourage component autonomy</td>
-    <td><img src="/practica/img/docs/decisions/partial.png"/><br/><br/>Packages are highly coupled</td>
-    <td><img src="/practica/img/docs/decisions/almost-full.png"/><br/><br/>Workflow is coupled</td>
-    <td><img src="/practica/img/docs/decisions/almost-full.png"/><br/><br/>npm link bypasses the SemVer</td>
+    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/partial.png"/><br/><br/>Packages are highly coupled</td>
+    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/almost-full.png"/><br/><br/>Workflow is coupled</td>
+    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/almost-full.png"/><br/><br/>npm link bypasses the SemVer</td>
     <td>
-      <img src="/practica/img/docs/decisions/full.png"/><br/><br/>Minor concern: shared NODE_MODULES on the root</td>
+      <img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/full.png"/><br/><br/>Minor concern: shared NODE_MODULES on the root</td>
   </tr>
   <tr valign="top">
     <td>Build speed</td>
-    <td><img src="/practica/img/docs/decisions/full.png"/><br/><br/>Smart inference and execution plan, shared depedencies, cache</td>
-    <td><img src="/practica/img/docs/decisions/full.png"/><br/><br/>Smart inference and execution plan, shared depedencies, cache</td>
-    <td><img src="/practica/img/docs/decisions/partial.png"/><br/><br/>Parallel tasks execution, copied dependencies</td>
+    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/full.png"/><br/><br/>Smart inference and execution plan, shared depedencies, cache</td>
+    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/full.png"/><br/><br/>Smart inference and execution plan, shared depedencies, cache</td>
+    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/partial.png"/><br/><br/>Parallel tasks execution, copied dependencies</td>
     <td>
-      <img src="/practica/img/docs/decisions/partial.png"/><br/><br/>Shared depedencies</td>
+      <img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/partial.png"/><br/><br/>Shared depedencies</td>
   </tr>
     <tr valign="top">
     <td>Standardization</td>
-    <td><img src="/practica/img/docs/decisions/partial.png"/><br/><br/>Non standard Node.js stuff: One single root package.json by default, TS-paths for linking</td>
-    <td><img src="/practica/img/docs/decisions/full.png"/><br/><br/>An externous build layer</td>
-    <td><img src="/practica/img/docs/decisions/full.png"/><br/><br/>An externous build layer</td>
+    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/partial.png"/><br/><br/>Non standard Node.js stuff: One single root package.json by default, TS-paths for linking</td>
+    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/full.png"/><br/><br/>An externous build layer</td>
+    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/full.png"/><br/><br/>An externous build layer</td>
     <td>
-      <img src="/practica/img/docs/decisions/full.png"/><br/><br/>An externous package centralizer</td>
+      <img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/full.png"/><br/><br/>An externous package centralizer</td>
   </tr>
     <tr>
     <td class="tg-ho3n" colspan="5" align="center"><h2>Tasks and build pipeline</h2></td>
@@ -144,15 +144,15 @@ sidebar_label: Monorepo
     <td>Detecting affected packages</td>
     <td><br/>Supported</td>
     <td><br/>Supported</td>
-    <td><br/>None</td>
+    <td><br/>Supported</td>
     <td><br/>None</td>
   </tr>
   <tr>
     <td>Create a new package to the repo</td>
     <td><br/>Built it code genreation with useful templates</td>
-    <td><br/>None, 3rd party code gernator can be used</td>
-    <td><br/>None, 3rd party code gernator can be used</td>
-    <td><br/>None, 3rd party code gernator can be used</td>
+    <td><br/>None, 3rd party code generator can be used</td>
+    <td><br/>None, 3rd party code generator can be used</td>
+    <td><br/>None, 3rd party code generator can be used</td>
   </tr>
   <tr>
     <td>Adapt changes in the monorepo tool</td>

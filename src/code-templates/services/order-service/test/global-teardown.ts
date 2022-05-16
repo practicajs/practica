@@ -1,6 +1,6 @@
-const isCI = require("is-ci");
-const dockerCompose = require("docker-compose");
-const OrderRepository = require("../data-access/order-repository").default;
+import isCI from "is-ci";
+import dockerCompose from "docker-compose";
+import OrderRepository from "../data-access/order-repository";
 
 module.exports = async () => {
   if (isCI) {

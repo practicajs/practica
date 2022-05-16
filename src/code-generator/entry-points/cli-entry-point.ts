@@ -1,6 +1,6 @@
-const { program } = require("commander");
+import { program } from "commander";
 import { renderWizard } from "./interactive-cli";
-const { handleNonInteractiveCommand } = require("./non-interactive-cli");
+import { handleNonInteractiveCommand } from "./non-interactive-cli";
 
 export function startAppGenerator() {
   program
@@ -22,6 +22,7 @@ export function startAppGenerator() {
     .option("-f, --framework <string>", "Framework to use")
     .option("-d, --db <string>", "DB to use")
     .option("-id, --install-dependencies", "Whether to install dependencies")
+    .option("-ov, --override-if-exists", "If set to true, the existing generated app will be overriden")
     .action((options) => {
       handleNonInteractiveCommand(options);
     });
