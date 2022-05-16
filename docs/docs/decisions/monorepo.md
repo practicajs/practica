@@ -28,8 +28,8 @@ sidebar_label: Monorepo
   </tr>
   <tr valign="top">
     <td>Community and maintenance</td>
-    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/full.png"/><br/><br/>Huge eco-system and commercial-grade maintenance</td>
-    <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/full.png"/><br/><br/>Tredning, commercial-grade maintenance</td>
+    <td><img src="/practica/img/docs/decisions/full.png"/><br/><br/>Huge eco-system and commercial-grade maintenance</td>
+    <td><img src="/practica/img/docs/decisions/full.png"/><br/><br/>Trending, commercial-grade maintenance</td>
     <td>
       <img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/partial.png"/><br/><br/>Not maintained anymore</td>
     <td><img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/almost-full.png"/><br/><br/>Solid</td>
