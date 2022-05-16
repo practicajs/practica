@@ -47,6 +47,6 @@ export const generateApp = async (options: generationOptions) => {
     });
   }
 
-  console.log(`App was generated successfully`);
+  console.log(`App was generated successfully1`);
   return;
 };
