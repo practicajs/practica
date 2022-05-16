@@ -1,15 +1,27 @@
 {
-  "name": "logger",
-  "version": "0.0.1",
+  "name": "@practica/logger",
+  "version": "0.0.1-alpha.1",
   "description": "",
-  "main": "logger",
+  "main": "dist/logger.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "test",
+    "build": "tsc",
+    "prepare": "npm run build"
   },
-  "dependencies": {
-    "configuration-provider": "^0.0.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/practicajs/practica.git"
   },
-  "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/practicajs/practica/issues"
+  },
+  "homepage": "https://github.com/practicajs/practica#readme",
+  "dependencies": {
+    "@practica/configuration-provider": "^0.0.1-alpha.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  }
 }

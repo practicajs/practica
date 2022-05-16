@@ -1,4 +1,4 @@
-import * as logger from "../../libraries/logger/logger";
+import * as logger from "@practica/logger";
 
 // This file simulates real-world error handler that makes this component observable
 const errorHandler = {
@@ -25,7 +25,12 @@ const decideWhetherToCrash = (error) => {
 };
 
 class AppError extends Error {
-  constructor(readonly name: string, readonly message: string, public readonly HTTPStatus, public readonly isTrusted = true) {
+  constructor(
+    readonly name: string,
+    readonly message: string,
+    public readonly HTTPStatus,
+    public readonly isTrusted = true
+  ) {
     super(message);
   }
 }
