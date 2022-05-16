@@ -4,7 +4,6 @@ import { generateApp } from "../generation-logic/generate-service";
 
 export async function handleNonInteractiveCommand(options: any) {
   try {
-    console.log("fa3");
     const generationOptions = factorDefaultOptions({
       installDependencies: options.installDependencies,
       overrideIfExists: options.overrideIfExists,
