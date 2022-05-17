@@ -15,6 +15,8 @@ sidebar_label: Monorepo
 
 **📊 Detailed comparison table**
 
+<small>*For some lacking features there is a community package that bridges the gap; For workspace, we evaluated whether most of them support a specific feature</small>
+
 <table width="80%" valign="top">
   <tr>
     <td></td>
@@ -68,6 +70,20 @@ sidebar_label: Monorepo
     <td><br/>No</td>
     <td><br/>Yes* (Yarn & Pnpm)</td>
   </tr>
+    <tr>
+    <td><b>❗️Realize which packages changed</b></td>
+    <td><br/>Yes</td>
+    <td><br/>Yes</td>
+    <td><br/>Yes</td>
+    <td><br/>No</td>
+  </tr>
+    <tr>
+    <td><b>❗️Realize packages that are affected by a change</b></td>
+    <td><br/>Yes<br/>both through package.json and code</td>
+    <td><br/>Yes<br/>through package.json</td>
+    <td><br/>None</td>
+    <td><br/>None</td>
+  </tr>
   <tr>
     <td><b>Ignore missing commands/scripts</b></td>
     <td><br/>No</td>
@@ -90,38 +106,53 @@ sidebar_label: Monorepo
     <td><br/>No</td>
   </tr>
   <tr>
-    <td>❗️Realize packages that are affected by a change</td>
-    <td><br/>Yes, both through package.json and code</td>
-    <td><br/>Yes, through package.json</td>
-    <td><br/>None</td>
-    <td><br/>None</td>
+    <td class="tg-ho3n" colspan="5" align="center"><h2>Locally linking packages</h2></td>
   </tr>
   <tr>
-    <td class="tg-ho3n" colspan="5" align="center"><h2>Linking packages</h2></td>
+    <td>❗️Is supported</td>
+    <td>Partially<br/>Achieved through TS paths</td>
+    <td><br/>No<br/>Relies on workspaces</td>
+    <td><br/>Yes</td>
+    <td><br/>Yes</td>
   </tr>
   <tr>
-    <td>Mechanism</td>
-    <td><br/>Via TypeScript paths and webpack</td>
-    <td><br/>Symlinks via the package manager</td>
-    <td><br/>Symlinks via the package manager</td>
-    <td><br/>Symlinks</td>
+    <td><b>How</b></td>
+    <td><br/>❗️Via TypeScript paths and webpack</td>
+    <td><br/>Relies on workspaces</td>
+    <td><br/>Symlink</td>
+    <td><br/>Symlink</td>
   </tr>
    <tr>
-    <td>Can opt-out?</td>
-    <td><br/>No</td>
-    <td><br/>Yes</td>
-    <td><br/>Yes</td>
-    <td><br/>Yes</td>
+     <td><b>❗️Can opt-out?</b></td>
+    <td>Yes<br/>By default local packages are linked</td>
+    <td>-</td>
+    <td>No</td>
+    <td>Partially<br/>Pnpm allows prefering remote packages, Yarn has a [focused package](https://classic.yarnpkg.com/blog/2018/05/18/focused-workspaces/) option which only works per a single package</td>
+  </tr>
+     <tr>
+     <td><b>Link a range - only specific versions will be symlinked</b></td>
+    <td>No</td>
+    <td>-</td>
+    <td>No</td>
+    <td>Some<br/>Yarn and Pnpm allows workspace versioning</td>
+  </tr>
+
+  <tr>
+    <td class="tg-ho3n" colspan="5" align="center"><h2>Optimizing dependencies installation speed</h2></td>
   </tr>
   <tr>
-    <td class="tg-ho3n" colspan="5" align="center"><h2>Hoisting</h2></td>
+    <td><b>Supported</b></td>
+    <td>Yes<br/>Via a single Root package.json and NODE_MODULES</td>
+    <td>Yes<br/>Via caching</td>
+    <td>No<br/>Can be used on top of yarn workspace</td>
+    <td>Yes<br/>Via single node_modules folder</td>
   </tr>
   <tr>
-    <td>Boost npm installs</td>
-    <td><br/>Root package.json and NODE_MODULES</td>
-    <td><br/>Yes via workspaces</td>
-    <td><br/>Yes via workspaces</td>
-    <td><br/>Yes via workspaces</td>
+    <td><b>Retain origin file path (some module refers to relative paths)</b></td>
+    <td>Partially<br/>NODE_MODULES is on the root, not per package</td>
+    <td>Yes</td>
+    <td>Not relevant</td>
+    <td>Partially<br>Pnpm uses hard link instead of symlinks</td>
   </tr>
   <tr>
     <td class="tg-ho3n" colspan="5" align="center"><h2>Others</h2></td>
