@@ -17,7 +17,7 @@ sidebar_label: Monorepo
 
 <small>*For some lacking features there is a community package that bridges the gap; For workspace, we evaluated whether most of them support a specific feature</small>
 
-<table width="80%" valign="top">
+<table valign="top">
   <tr>
     <td></td>
     <td><h1>nx</h1></td>
