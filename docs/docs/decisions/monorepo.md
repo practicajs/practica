@@ -64,6 +64,13 @@ sidebar_label: Monorepo
     <td class="tg-ho3n" colspan="5" align="center"><h2>Tasks and build pipeline</h2></td>
   </tr>
   <tr>
+    <td><b>Run recursive commands (affect a group of packages)</b></td>
+    <td><br/>Yes</td>
+    <td><br/>Yes</td>
+    <td><br/>Yes</td>
+    <td><br/>Yes</td>
+  </tr>
+  <tr>
     <td><b>❗️Parallel task execution</b></td>
     <td><br/>Yes</td>
     <td><br/>Yes</td>
@@ -92,7 +99,14 @@ sidebar_label: Monorepo
     <td><br/>Yes</td>
   </tr>
   <tr>
-    <td><b>❗️In-project cache</b></td>
+    <td><b>❗️In-project cache - Skip tasks if local result exists</b></td>
+    <td><br/>Yes</td>
+    <td><br/>Yes</td>
+    <td><br/>No</td>
+    <td><br/>No</td>
+  </tr>
+  <tr>
+    <td><b>Remote cache - Skip tasks if remote result exists</b></td>
     <td><br/>Yes</td>
     <td><br/>Yes</td>
     <td><br/>No</td>
@@ -103,6 +117,20 @@ sidebar_label: Monorepo
     <td><br/>Yes</td>
     <td><br/>Yes</td>
     <td><br/>Partially, via plugin</td>
+    <td><br/>No</td>
+  </tr>
+  <tr>
+    <td><b>❗️Smart waterfall pipeline - Schedule unrelated tasks parallelly, not topologically</b></td>
+    <td><br/>Yes</td>
+    <td><br/>Yes</td>
+    <td><br/>No</td>
+    <td><br/>No</td>
+  </tr>
+  <tr>
+    <td><b>Distributed task execution - Spread tasks across machines</b></td>
+    <td><br/>Yes</td>
+    <td><br/>No</td>
+    <td><br/>No</td>
     <td><br/>No</td>
   </tr>
   <tr>
@@ -136,7 +164,6 @@ sidebar_label: Monorepo
     <td>No</td>
     <td>Some<br/>Yarn and Pnpm allows workspace versioning</td>
   </tr>
-
   <tr>
     <td class="tg-ho3n" colspan="5" align="center"><h2>Optimizing dependencies installation speed</h2></td>
   </tr>
@@ -155,62 +182,57 @@ sidebar_label: Monorepo
     <td>Partially<br>Pnpm uses hard link instead of symlinks</td>
   </tr>
   <tr>
-    <td class="tg-ho3n" colspan="5" align="center"><h2>Others</h2></td>
+    <td><b>Keep single NODE_MODULES per machine (faster, less disc space)</b></td>
+    <td>No<br/></td>
+    <td>No</td>
+    <td>No</td>
+    <td>Partially<br>Pnpm supports this</td>
+  </tr>
+  <tr>
+    <td class="tg-ho3n" colspan="5" align="center"><h2>Other features and considerations</h2></td>
   </tr>
    <tr>
-    <td>Plugins</td>
-    <td><br/>Supported</td>
+     <td><b>Community plugins</b></td>
+    <td><br/>Yes</td>
+    <td><br/>No</td>
+    <td><br/>Yes</td>
+    <td><br/>Yes</td>
+  </tr>
+  <tr>
+    <td><b>Scaffold new component from a gallery</b></td>
+    <td><br/>Yes</td>
     <td><br/>None</td>
     <td><br/>None</td>
     <td><br/>None</td>
   </tr>
   <tr>
-    <td>Scaffold new component from a gallery</td>
-    <td><br/>Supported</td>
-    <td><br/>None</td>
-    <td><br/>None</td>
-    <td><br/>None</td>
-  </tr>
-  <tr>
-    <td>Distributed task execution</td>
-    <td><br/>Supported</td>
-    <td><br/>None</td>
-    <td><br/>None</td>
-    <td><br/>None</td>
-  </tr>
-  <tr>
-    <td>Detecting affected packages</td>
-    <td><br/>Supported</td>
-    <td><br/>Supported</td>
-    <td><br/>Supported</td>
-    <td><br/>None</td>
-  </tr>
-  <tr>
-    <td>Create a new package to the repo</td>
-    <td><br/>Built it code genreation with useful templates</td>
-    <td><br/>None, 3rd party code generator can be used</td>
-    <td><br/>None, 3rd party code generator can be used</td>
-    <td><br/>None, 3rd party code generator can be used</td>
-  </tr>
-  <tr>
-    <td>Adapt changes in the monorepo tool</td>
+    <td><b>Adapt changes in the monorepo tool</b></td>
     <td><br/>Supported via nx migrate</td>
     <td><br/>Supported via codemod</td>
     <td><br/>None</td>
     <td><br/>None</td>
   </tr>
   <tr>
-    <td>Incremental builds</td>
+    <td><b>Incremental builds</b></td>
     <td><br/>Supported</td>
     <td><br/>Supported</td>
     <td><br/>None</td>
     <td><br/>None</td>
   </tr>
   <tr>
-    <td>Cross-package modifications</td>
+    <td><b>Cross-package modifications</b></td>
     <td><br/>Supported via nx generate</td>
     <td><br/>None</td>
     <td><br/>None</td>
     <td><br/>None</td>
   </tr>
 </table>
+
+__
+
+Ideas for next iteration:
+- Separate command execution and pipeline section
+- Stars and popularity
+- Features summary
+- Polyrepo support
+
