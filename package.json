@@ -60,6 +60,7 @@
     "terminal-image-cli": "^1.1.0"
   },
   "devDependencies": {
+    "@types/figlet": "^1.5.4",
     "@types/jest": "^27.4.1",
     "@types/prettier": "^2.4.4",
     "@types/sinon": "^10.0.11",

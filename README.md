@@ -16,7 +16,8 @@
 
 # A One Paragraph Overview
 
-Although Node.js has great frameworks 💚, they were never meant to be production-ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate some example code that demonstrates a full workflow, from API to DB, that is packed with good practices. For example, we include a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](/docs/decisions). We strive to keep things as simple and standard as possible and base our work off the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate some example code that demonstrates a full workflow, from API to DB, that is packed with good practices. For example, we include a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](/docs/decisions). We strive to keep things as simple and standard as possible and base our work off the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+
 
 <br/>
 
@@ -159,8 +160,7 @@ Leader IoT provider, part of 'Cox Communication', the 3rd largest cable company 
 	<td align="center"><img src="./static/images/yoni.jpeg" width="300px" alt=""/><br /><h3>Yoni Goldberg</h3><br/>Independent Node.js consultant<br/><a href="https://twitter.com/goldbergyoni"><img src="./static/images/twitter-symbol.png" width="16" height="16"></img></a>
 <a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
 </td>
-<td align="center"><img src="./static/images/michael.jpeg" width="300px" alt=""/><br /><h3>Michael Salomon</h3><br/>Node.js lead<br/><a href="https://twitter.com/goldbergyoni"><img src="./static/images/twitter-symbol.png" width="16" height="16"></img></a>
-<a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
+<td align="center"><img src="./static/images/michael1.jpg" width="300px" alt=""/><br /><h3>Michael Solomon</h3><br/>Node.js lead<br/><a href="https://twitter.com/JMichaelShlomo"><img src="./static/images/twitter-symbol.png" width="16" height="16"></img></a>
 </td>
 </tr>
 <tr>

@@ -1,10 +1,6 @@
-const axios = require("axios");
-const OrderRepository = require("../data-access/order-repository").default;
-const {
-  AppError,
-} = require("../../../libraries/error-handling/error-handling");
-const MessageQueueClient =
-  require("../../../libraries/message-queue-client/message-queue-client").default;
+import axios from "axios";
+import OrderRepository from "../data-access/order-repository";
+import { AppError } from "@practica/error-handling";
 
 const axiosHTTPClient = axios.create();
 
@@ -28,17 +24,14 @@ export const addOrder = async function (newOrder) {
   // save to DB (Caution: simplistic code without layers and validation)
   const DBResponse = await new OrderRepository().addOrder(newOrder);
 
-  // We should notify others that a new order was added - Let's put a message in a queue
-  await new MessageQueueClient().sendMessage("new-order", newOrder);
-
   return DBResponse;
 };
 
-export const deleteUser = async function (userId) {
+export const deleteOrder = async function (userId) {
   return await new OrderRepository().deleteOrder(userId);
 };
 
-export const getUser = async function (userId) {
+export const getOrder = async function (userId) {
   console.log(OrderRepository);
   return await new OrderRepository().getOrderById(userId);
 };

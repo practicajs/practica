@@ -1,4 +1,3 @@
-import { createUniqueFolder } from "../../../test/test-helpers";
 import path from "path";
 import fsExtra from "fs-extra";
 import { generateApp } from "./generate-service";
@@ -31,5 +30,24 @@ describe("generateApp", () => {
       options.targetDirectory
     );
     expect(destinationFolderContent.length).toBeGreaterThan(0);
+  });
+
+  test("When destination exists, has content inside, and flag --override-if-exists is passed as false, then should throw error", async () => {
+    // Arrange
+    const options = generationOptions.factorDefaultOptions({
+      targetDirectory: uniqueEmptyFolderForASingleTest,
+      overrideIfExists: false,
+    });
+    await generateApp(options);
+
+    // Act
+    const generateAppWrapper = async () => {
+      await generateApp(options);
+    };
+
+    // Assert
+    expect(generateAppWrapper()).rejects.toMatchObject({
+      name: "directory-is-not-empty",
+    });
   });
 });
