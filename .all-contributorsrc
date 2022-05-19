@@ -114,6 +114,15 @@
         "example",
         "content"
       ]
+    },
+    {
+      "login": "idobetesh",
+      "name": "idobetesh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58806763?v=4",
+      "profile": "https://github.com/idobetesh",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
