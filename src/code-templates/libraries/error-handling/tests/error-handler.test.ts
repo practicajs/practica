@@ -1,3 +1,0 @@
-describe('Error Handler', () => {
-    test('', () => {})
-})

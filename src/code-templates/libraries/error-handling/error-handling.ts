@@ -7,7 +7,7 @@ let httpServerRef: Http.Server
 const errorHandler = {
 
   // Listen to the error events which won't be handled by programmer
-  listenToErrorEvents: (httpServer: Http.Server, options) => {
+  listenToErrorEvents: (httpServer: Http.Server, options?) => {
     httpServerRef = httpServer
     process.on('uncaughtException', async error => {
       await errorHandler.handleError(error)
@@ -69,9 +69,10 @@ const normalizeError = (errorToHandle: any): AppError => {
 
 
 class AppError extends Error {
-  constructor(name, message, public HTTPStatus?, public isTrusted = true) {
+  constructor(name, message, public cause?: Error | any, public HTTPStatus?, public isTrusted = true) {
     super(message);
     this.name = name;
+    this.cause = cause;
     this.HTTPStatus = HTTPStatus;
     this.isTrusted = isTrusted;
   }
