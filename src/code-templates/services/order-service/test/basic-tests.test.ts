@@ -1,7 +1,7 @@
 import axios from "axios";
 import sinon from "sinon";
 import nock from "nock";
-import { initializeWebServer, stopWebServer } from "../entry-points/api";
+import { startWebServer, stopWebServer } from "../entry-points/api/server";
 
 // Configuring file-level HTTP client with base URL will allow
 // all the tests to approach with a shortened syntax
@@ -9,7 +9,7 @@ let axiosAPIClient;
 
 beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  const apiConnection = await initializeWebServer();
+  const apiConnection = await startWebServer();
   const axiosConfig = {
     baseURL: `http://127.0.0.1:${apiConnection.port}`,
     validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
@@ -22,24 +22,25 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
+  // ️️️✅ Best Practice: Start each test with a clean slate
+  nock.cleanAll();
+  sinon.restore();
+
   nock("http://localhost/user/").get(`/1`).reply(200, {
     id: 1,
     name: "John",
+    terms: 45,
   });
 });
 
-afterEach(() => {
-  nock.cleanAll();
-  sinon.restore();
-});
+afterEach(() => {});
 
 afterAll(async () => {
-  // ️️️✅ Best Practice: Clean-up resources after each run
-  //await stopWebServer();
   nock.enableNetConnect();
+  stopWebServer();
 });
 
-// ️️️✅ Best Practice: Structure tests
+// ️️️✅ Best Practice: Structure tests by routes and stories
 describe("/api", () => {
   describe("GET /order", () => {
     test("When asked for an existing order, Then should retrieve it and receive 200 response", async () => {
@@ -47,7 +48,8 @@ describe("/api", () => {
       const orderToAdd = {
         userId: 1,
         productId: 2,
-        mode: "approved",
+        deliveryAddress: "123 Main St, New York, NY 10001",
+        paymentTermsInDays: 30,
       };
       const {
         data: { id: addedOrderId },
@@ -62,9 +64,7 @@ describe("/api", () => {
       expect(getResponse).toMatchObject({
         status: 200,
         data: {
-          userId: 1,
-          productId: 2,
-          mode: "approved",
+          ...orderToAdd,
         },
       });
     });
@@ -90,7 +90,8 @@ describe("/api", () => {
       const orderToAdd = {
         userId: 1,
         productId: 2,
-        mode: "approved",
+        deliveryAddress: "123 Main St, New York, NY 10001",
+        paymentTermsInDays: 30,
       };
 
       //Act
@@ -104,7 +105,6 @@ describe("/api", () => {
         status: 200,
         data: {
           id: expect.any(Number),
-          mode: "approved",
         },
       });
     });
@@ -116,7 +116,8 @@ describe("/api", () => {
       const orderToAdd = {
         userId: 1,
         productId: 2,
-        mode: "approved",
+        deliveryAddress: "123 Main St, New York, NY 10001",
+        paymentTermsInDays: 30,
       };
 
       //Act
@@ -135,9 +136,7 @@ describe("/api", () => {
       }).toMatchObject({
         status: 200,
         data: {
-          id: addedOrderId,
-          userId: 1,
-          productId: 2,
+          ...orderToAdd,
         },
       });
     });
@@ -147,7 +146,8 @@ describe("/api", () => {
       //Arrange
       const orderToAdd = {
         userId: 1,
-        mode: "draft",
+        deliveryAddress: "123 Main St, New York, NY 10001",
+        paymentTermsInDays: 30,
       };
 
       //Act
