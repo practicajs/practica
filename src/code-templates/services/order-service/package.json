@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@types/is-ci": "^3.0.0",
-    "@types/  ": "^27.4.1",
+    "@types/jest": "^27.4.1",
     "@types/nock": "^11.1.0",
     "@types/sinon": "^10.0.11",
     "docker-compose": "^0.23.17",
