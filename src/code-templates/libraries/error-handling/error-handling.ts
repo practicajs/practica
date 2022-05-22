@@ -1,3 +1,4 @@
+import * as logger from "@practica/logger";
 import * as Http from "http";
 const logger = require("../../libraries/logger/logger");
 
@@ -69,7 +70,10 @@ const normalizeError = (errorToHandle: any): AppError => {
 
 
 class AppError extends Error {
-  constructor(name, message, public cause?: Error | any, public HTTPStatus?, public isTrusted = true) {
+  constructor(
+    name, message,
+    public cause?: Error | any, public HTTPStatus?,
+    public isTrusted = true) {
     super(message);
     this.name = name;
     this.cause = cause;

@@ -1,16 +1,10 @@
 import * as logger from "logger";
 import { initializeWebServer } from "./entry-points/api";
-import { MessageQueueStarter } from "./entry-points/message-queue-starter";
 
 // ⚠️❗️ The example app is very simplistic now and contains many errors
-// We're still crafting it. There is no point in trying to learn from it
-// how a production-ready should look like
-
+// We're still crafting it
 async function start() {
-  return Promise.all([
-    initializeWebServer(),
-    new MessageQueueStarter().start(),
-  ]);
+  return Promise.all([initializeWebServer()]);
 }
 
 start()

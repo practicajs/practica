@@ -2,7 +2,7 @@ import fsExtra from "fs-extra";
 import path from "path";
 import execa from "execa";
 import { generationOptions } from "./generation-options";
-
+import { AppError } from "../error-handling";
 // This is where the code generation logic lives. In high-level, based on the provided option, it creates
 // a folder, decides which code to generate, run the code through a templating engine and emit it to the target folder
 export const generateApp = async (options: generationOptions) => {
@@ -12,9 +12,13 @@ export const generateApp = async (options: generationOptions) => {
   const targetDirectoryExists = await fsExtra.pathExists(targetDirectory);
 
   if (targetDirectoryExists) {
-    const isTargetDirectoryEmpty = (await fsExtra.readdir(targetDirectory)).length === 0;
+    const isTargetDirectoryEmpty =
+      (await fsExtra.readdir(targetDirectory)).length === 0;
     if (!isTargetDirectoryEmpty && !options.overrideIfExists) {
-      throw new Error('Generated app already exists, if you want to override it please provide option --overrideIfExists=true or -ov=true')
+      throw new AppError(
+        "directory-is-not-empty",
+        "The target directory is not empty, if you want to override it please provide option --overrideIfExists=true or -ov=true"
+      );
     } else {
       await fsExtra.rm(targetDirectory, { recursive: true });
       await fsExtra.mkdir(targetDirectory, {});
@@ -32,15 +36,18 @@ export const generateApp = async (options: generationOptions) => {
     },
     overwrite: true,
   });
-
   if (options.installDependencies) {
     await execa("npm", ["install"], {
       cwd: targetDirectory,
     });
 
-    await execa("npm", ["run", "lerna", "--", "bootstrap"], {
-      cwd: targetDirectory,
-    });
+    await execa(
+      "npm",
+      ["run", "lerna", "--", "exec", "--scope", "order-service", "npm install"],
+      {
+        cwd: targetDirectory,
+      }
+    );
   }
 
   console.log(`App was generated successfully`);
