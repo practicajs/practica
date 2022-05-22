@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import { Server } from 'http';
-import * as logger from '../../logger/logger';
+import * as logger from "@practica/logger";
 import { AppError, errorHandler } from '../error-handling';
 
 beforeEach(() => {

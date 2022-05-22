@@ -1,6 +1,5 @@
 import * as logger from "@practica/logger";
 import * as Http from "http";
-const logger = require("../../libraries/logger/logger");
 
 let httpServerRef: Http.Server
 
