@@ -23,7 +23,7 @@ module.exports = async () => {
       }
     );
 
-     // ️️️✅ Best Practice: Use npm script for data seeding and migrations
+    // ️️️✅ Best Practice: Use npm script for data seeding and migrations
     execSync("npm run db:migrate");
     // ✅ Best Practice: Seed only metadata and not test record, read "Dealing with data" section for further information
     execSync("npm run db:seed");
