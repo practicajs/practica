@@ -12,14 +12,17 @@ module.exports = {
         unique: true,
         allowNull: true,
       },
-      mode: {
-        type: Sequelize.STRING,
-      },
       userId: {
         type: Sequelize.INTEGER,
       },
       productId: {
         type: Sequelize.INTEGER,
+      },
+      paymentTermsInDays: {
+        type: Sequelize.INTEGER,
+      },
+      deliveryAddress: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
