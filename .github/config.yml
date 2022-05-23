@@ -1,0 +1,7 @@
+requestInfoReplyComment: >
+  We would appreciate it if you could provide us with more info about this pr :)
+
+requestInfoLabelToAdd: needs-more-info
+
+requestInfoOn:
+  pullRequest: true
