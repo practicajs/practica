@@ -18,6 +18,11 @@
 
 Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate some example code that demonstrates a full workflow, from API to DB, that is packed with good practices. For example, we include a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](/docs/decisions). We strive to keep things as simple and standard as possible and base our work off the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
 
+**1 min video 👇, ensure audio is activated**
+
+https://user-images.githubusercontent.com/8571500/170463347-49fb5afb-a595-4c31-af4f-7199f997123d.mp4
+
+
 <br/>
 
 # `Table of Contents`
@@ -93,7 +98,7 @@ Pretty straight forward, right?
 - ✅ Understand the project's structure by watching this short, 5 minute [video](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md) on YouTube. (coming soon)
 - ✅ Master it by reading our [docs](https://practica.org). (coming soon)
 
-https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8117-04add11a5907.mp4
+
 
 <br />
 
