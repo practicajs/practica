@@ -23,6 +23,9 @@
     "typescript": "^4.6.4"
   },
   "dependencies": {
-    "@practica/logger": "^0.0.1-alpha.1"
+    "@practica/logger": "^0.0.1-alpha.1",
+    "jest": "^28.1.0",
+    "jest-sinon": "^1.0.4",
+    "sinon": "^14.0.0"
   }
 }
