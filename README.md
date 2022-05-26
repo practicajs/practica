@@ -20,8 +20,7 @@ Although Node.js has great frameworks 💚, they were never meant to be producti
 
 **1 min video 👇, ensure audio is activated**
 
-https://user-images.githubusercontent.com/8571500/170260219-8ec24ec5-4573-423c-9088-b75d20efcee6.mp4
-
+https://user-images.githubusercontent.com/8571500/170463347-49fb5afb-a595-4c31-af4f-7199f997123d.mp4
 
 
 <br/>
