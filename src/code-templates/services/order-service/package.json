@@ -12,7 +12,8 @@
     "db:migrate": "cd data-access && sequelize-cli db:migrate",
     "db:seed": "cd data-access && sequelize-cli db:seed:all",
     "build": "tsc",
-    "build:watch": "tsc --watch"
+    "build:watch": "tsc --watch",
+    "prepare": "husky install"
   },
   "author": "Practica team",
   "license": "ISC",
@@ -44,6 +45,7 @@
     "is-ci": "^3.0.1",
     "is-port-reachable": "^3.0.0",
     "jest": "^27.5.1",
+    "husky": "^8.0.1",
     "nock": "^13.2.4",
     "nodemon": "^2.0.15",
     "sinon": "^13.0.1",
