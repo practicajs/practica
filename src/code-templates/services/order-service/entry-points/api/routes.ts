@@ -38,16 +38,5 @@ export const defineRoutes = (expressApp: express.Application) => {
     res.status(204).end();
   });
 
-  expressApp.use("/order", router);
-
-  expressApp.use(async (error, req, res, next) => {
-    if (typeof error === "object") {
-      if (error.isTrusted === undefined || error.isTrusted === null) {
-        error.isTrusted = true; //Error during a specific request is usually not catastrophic and should not lead to process exit
-      }
-    }
-    await errorHandler.handleError(error);
-
-    res.status(error?.HTTPStatus || 500).end();
-  });
+  expressApp.use("/order", router)
 };
