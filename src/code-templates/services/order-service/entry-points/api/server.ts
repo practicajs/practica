@@ -40,5 +40,4 @@ process.on("uncaughtException", (error) => {
 process.on("unhandledRejection", (reason) => {
   errorHandler.handleError(reason);
 });
-
 export { startWebServer, stopWebServer };
