@@ -17,8 +17,8 @@
   "author": "Practica team",
   "license": "ISC",
   "dependencies": {
-    "@practica/configuration-provider": "^0.0.1-alpha.2",
-    "@practica/error-handling": "^0.0.1-alpha.2",
+    "@practica/configuration-provider": "^0.0.1-alpha.3",
+    "@practica/error-handling": "^0.0.1-alpha.3",
     "@practica/logger": "^0.0.1-alpha.1",
     "@types/amqplib": "^0.8.2",
     "@types/axios": "^0.14.0",

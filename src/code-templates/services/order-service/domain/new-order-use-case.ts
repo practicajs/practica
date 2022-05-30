@@ -29,6 +29,7 @@ async function getUserOrThrowIfNotExist(userId: number) {
     throw new AppError(
       "user-doesnt-exist",
       `The user ${userId} doesnt exist`,
+      null,
       userVerificationRequest.status
     );
   }
@@ -39,7 +40,7 @@ async function getUserOrThrowIfNotExist(userId: number) {
 function assertNewOrderRequest(newOrderRequest) {
   // TODO: Use validation framework
   if (!newOrderRequest.productId) {
-    throw new AppError("invalid-order", `No product-id specified`, 400);
+    throw new AppError("invalid-order", `No product-id specified`, null, 400);
   }
 }
 

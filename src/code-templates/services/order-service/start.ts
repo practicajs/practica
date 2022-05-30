@@ -1,12 +1,12 @@
-import * as logger from "logger";
-import { initializeWebServer } from "./entry-points/api/server";
+import * as logger from "@practica/logger";
+import { startWebServer } from "./entry-points/api/server";
 import { AppError, errorHandler } from "@practica/error-handling";
 
 // ⚠️❗️ The example app is very simplistic now and lacks many good practices. Consider visiting
 // again in 2-3 months
 async function start() {
-  // 🦉 Array of entry point is being used to support more kinds like message queue, scheduled job,
-  return Promise.all([initializeWebServer()]);
+  // 🦉 Array of entry point is being used to support more entry-points kinds like message queue, scheduled job,
+  return Promise.all([startWebServer()]);
 }
 
 start()

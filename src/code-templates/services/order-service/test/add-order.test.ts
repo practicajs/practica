@@ -42,47 +42,6 @@ afterAll(async () => {
 
 // ️️️✅ Best Practice: Structure tests by routes and stories
 describe("/api", () => {
-  describe("GET /order", () => {
-    test("When asked for an existing order, Then should retrieve it and receive 200 response", async () => {
-      //Arrange
-      const orderToAdd = {
-        userId: 1,
-        productId: 2,
-        deliveryAddress: "123 Main St, New York, NY 10001",
-        paymentTermsInDays: 30,
-      };
-      const {
-        data: { id: addedOrderId },
-      } = await axiosAPIClient.post(`/order`, orderToAdd);
-
-      //Act
-      // ️️️✅ Best Practice: Use generic and reputable HTTP client like Axios or Fetch. Avoid libraries that are coupled to
-      // the web framework or include custom assertion syntax (e.g. Supertest)
-      const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
-
-      //Assert
-      expect(getResponse).toMatchObject({
-        status: 200,
-        data: {
-          ...orderToAdd,
-        },
-      });
-    });
-
-    test("When asked for an non-existing order, Then should receive 404 response", async () => {
-      //Arrange
-      const nonExistingOrderId = -1;
-
-      //Act
-      const getResponse = await axiosAPIClient.get(
-        `/order/${nonExistingOrderId}`
-      );
-
-      //Assert
-      expect(getResponse.status).toBe(404);
-    });
-  });
-
   describe("POST /orders", () => {
     // ️️️✅ Best Practice: Check the response
     test("When adding a new valid order, Then should get back approval with 200 response", async () => {
