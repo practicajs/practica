@@ -16,8 +16,8 @@ describe('Error Handler', () => {
         const errorToEmit = new Error('mocking an uncaught exception')
         // Act
         process.emit('uncaughtException', errorToEmit)
-        const relevantArguments = loggerStub.firstCall.args[0]
         // Assert
+        const relevantArguments = loggerStub.firstCall.args[0]
         expect(loggerStub.callCount).toBe(1)
         expect(relevantArguments instanceof AppError).toBe(true)
         expect(relevantArguments.name).toBe(errorToEmit.name)
@@ -30,8 +30,8 @@ describe('Error Handler', () => {
         const errorToHandle = new Error('mocking pre-known error')
         // Act
         errorHandler.handleError(errorToHandle)
-        const relevantArguments = loggerStub.firstCall.args[0]
         // Assert
+        const relevantArguments = loggerStub.firstCall.args[0]
         expect(loggerStub.callCount).toBe(1)
         expect(relevantArguments instanceof AppError).toBe(true)
         expect(relevantArguments.name).toBe(errorToHandle.name)
@@ -44,8 +44,8 @@ describe('Error Handler', () => {
         const errorToHandle = 'oops, this error is actually a string!'
         // Act
         errorHandler.handleError(errorToHandle)
-        const relevantArguments = loggerStub.firstCall.args[0]
         // Assert
+        const relevantArguments = loggerStub.firstCall.args[0]
         expect(loggerStub.callCount).toBe(1)
         expect(relevantArguments instanceof AppError).toBe(true)
         expect(relevantArguments.name).toBe('general-error')

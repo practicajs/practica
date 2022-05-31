@@ -20,14 +20,14 @@ const errorHandler = {
       logger.error(
         "App received SIGTERM event, try to gracefully close the server"
       );
-      await terminateHttpServer();
+      await terminateHttpServerAndExit();
     });
 
     process.on("SIGINT", async () => {
       logger.error(
         "App received SIGINT event, try to gracefully close the server"
       );
-      await terminateHttpServer();
+      await terminateHttpServerAndExit();
     });
   },
 
@@ -35,20 +35,20 @@ const errorHandler = {
     try {
       const appError: AppError = normalizeError(errorToHandle);
       logger.error(appError);
-      metricsExporter.fireMetric("error", { errorName: appError.name });
+      metricsExporter.fireMetric("", ""); // fire any custom metric when handling error
       // A common best practice is to crash when an unknown error (non-trusted) is being thrown
       if (!appError.isTrusted) {
-        terminateHttpServer();
+        terminateHttpServerAndExit();
       }
     } catch (e) {
-      logger.error("Error Handler failed to handleError properly");
-      logger.error(e);
+      process.stdout.write('The error handler failed, here is the error handler specific error', e);
       // Should we crash here?
     }
   },
 };
 
-const terminateHttpServer = async () => {
+// better naming option - 'gracefullyExit' or something like that ?
+const terminateHttpServerAndExit = async () => {
   // maybe implement more complex logic here (like using 'http-terminator' library)
   if (httpServerRef) {
     await httpServerRef.close();
@@ -57,7 +57,7 @@ const terminateHttpServer = async () => {
 };
 
 // The input might won't be 'AppError' or even 'Error' instance, the output of this function will be - AppError.
-const normalizeError = (errorToHandle: any): AppError => {
+const normalizeError = (errorToHandle: AppError | Error | any): AppError => {
   if (errorToHandle instanceof AppError) {
     return errorToHandle;
   }
@@ -74,17 +74,17 @@ const normalizeError = (errorToHandle: any): AppError => {
 
 class AppError extends Error {
   constructor(
-    name,
-    message,
-    public cause?: Error | any,
+    public name,
+    public message,
     public HTTPStatus?,
-    public isTrusted = true
+    public isTrusted = true,
+    public cause?: Error | any,
   ) {
     super(message);
-    this.name = name;
-    this.cause = cause;
     this.HTTPStatus = HTTPStatus;
     this.isTrusted = isTrusted;
+    this.cause = cause;
+    Error.captureStackTrace(this, this.constructor);
   }
 }
 
