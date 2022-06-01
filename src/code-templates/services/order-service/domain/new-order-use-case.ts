@@ -2,10 +2,11 @@ import axios from "axios";
 import * as orderRepository from "../data-access/repositories/order-repository";
 import { AppError } from "@practica/error-handling";
 import * as paymentTermsService from "./payment-terms-service";
+import { addOrderDTO, getNewOrderValidator } from "./order-schema";
 
 // ️️️✅ Best Practice: Start a flow with a 'use case' function that summarizes the flow in high-level
 // This function should orchestrate multiple services and repositories
-export const addOrder = async function (newOrder) {
+export const addOrder = async function (newOrder: addOrderDTO) {
   assertNewOrderRequest(newOrder);
   const userWhoOrdered = await getUserOrThrowIfNotExist(newOrder.userId);
   paymentTermsService.determinePaymentTerms(
@@ -29,6 +30,7 @@ async function getUserOrThrowIfNotExist(userId: number) {
     throw new AppError(
       "user-doesnt-exist",
       `The user ${userId} doesnt exist`,
+      null,
       userVerificationRequest.status
     );
   }
@@ -36,10 +38,11 @@ async function getUserOrThrowIfNotExist(userId: number) {
   return userVerificationRequest.data;
 }
 
-function assertNewOrderRequest(newOrderRequest) {
-  // TODO: Use validation framework
-  if (!newOrderRequest.productId) {
-    throw new AppError("invalid-order", `No product-id specified`, 400);
+function assertNewOrderRequest(newOrderRequest: addOrderDTO) {
+  const AjvSchemaValidator = getNewOrderValidator();
+  const isValid = AjvSchemaValidator(newOrderRequest);
+  if (!isValid) {
+    throw new AppError("invalid-order", `Validation failed`, null, 400);
   }
 }
 
