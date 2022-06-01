@@ -1,5 +1,4 @@
 import { ajv } from "@practica/validation";
-//import Ajv from "ajv";
 import { Static, Type } from "@sinclair/typebox";
 
 export const addOrderSchema = Type.Object({
