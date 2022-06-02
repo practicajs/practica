@@ -4,14 +4,19 @@ export interface JWTOptions {
   secret: string;
 }
 
+export enum HTTP_STATUS_CODES {
+  OK = 200,
+  UNAUTHORIZED = 401,
+}
+
 export const jwtAuthenticate = (opts: JWTOptions) => {
+  // @todo change JWT flow to async using JWKS
   const middleware = (req, res, next) => {
     const authHeader = req.headers['authorization'] || req.headers['Authorization'];
-    console.log('aa:', authHeader);
     const token = authHeader && authHeader.split(' ')[1];
   
     if (token == null) {
-      return res.sendStatus(401);
+      return res.sendStatus(HTTP_STATUS_CODES.UNAUTHORIZED);
     }
   
     jwt.verify(token, opts.secret, (err: any, user: any) => {
@@ -19,7 +24,7 @@ export const jwtAuthenticate = (opts: JWTOptions) => {
       console.log(err);
   
       if (err) {
-        return res.sendStatus(403);
+        return res.sendStatus(HTTP_STATUS_CODES.UNAUTHORIZED);
       }
   
       req.user = user;
