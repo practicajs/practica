@@ -218,6 +218,8 @@ A million thanks to these great people who have contributed code to our project:
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/idobetesh"><img src="https://avatars.githubusercontent.com/u/58806763?v=4?s=200" width="200px;" alt=""/><br /><sub><b>idobetesh</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=idobetesh" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/alejaacosta17"><img src="https://avatars.githubusercontent.com/u/89855093?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Alejandra Acosta</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=alejaacosta17" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/adandanielteamint"><img src="https://avatars.githubusercontent.com/u/104020188?v=4?s=200" width="200px;" alt=""/><br /><sub><b>adandanielteamint</b></sub></a><br /><a href="#content-adandanielteamint" title="Content">🖋</a></td>
   </tr>
 </table>
 

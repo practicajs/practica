@@ -123,6 +123,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "alejaacosta17",
+      "name": "Alejandra Acosta",
+      "avatar_url": "https://avatars.githubusercontent.com/u/89855093?v=4",
+      "profile": "https://github.com/alejaacosta17",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "adandanielteamint",
+      "name": "adandanielteamint",
+      "avatar_url": "https://avatars.githubusercontent.com/u/104020188?v=4",
+      "profile": "https://github.com/adandanielteamint",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 4,
