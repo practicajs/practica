@@ -141,6 +141,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "rashad612",
+      "name": "Rashad Majali",
+      "avatar_url": "https://avatars.githubusercontent.com/u/251991?v=4",
+      "profile": "https://github.com/rashad612",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
