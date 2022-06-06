@@ -4,12 +4,9 @@
 
 If you reached down to this page, you probably belong with us 💜. We are in an ever-going quest for better software practices. This journey can bring two things to your benefit: A lot of learning and global impact on many people's craft. Does this sounds attractive? 
 
-## The shortened guide: A 3 min summary of this doc
+## Consider the shortened guide first
 
-Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, linting rules, look&feel fixes, fixing TYPOs, comments or anything that is small and obvious - Just fork to your machine, code, ensure all tests pass (e.g., `npm test`), PR with a meaninful title, get **1** approver before merging. That's it.
-
-
-https://user-images.githubusercontent.com/8571500/158583069-b8dceec0-81dc-4d90-9257-4eb89baeeeba.mp4
+Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, small code enhanncement or anything that is small and obvious - start by reading the [shortened guide here](/docs/contribution/contribution-short-guide). As you'll expand your engagement with this repo, it might be a good idea to visit this long guide again
 
 
 ## Philosophy
