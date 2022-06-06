@@ -1,5 +1,6 @@
 ---
-sidebar_position: 2
+id: my-home-doc
+slug: /
 ---
 
 # 5 min starter guide
