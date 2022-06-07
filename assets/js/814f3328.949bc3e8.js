@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpractica_docs=self.webpackChunkpractica_docs||[]).push([[535],{5641:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Which Monorepo is right for a Node.js BACKEND\xa0now?","permalink":"/blog/monorepo-backend"}]}')}}]);

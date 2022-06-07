@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpractica_docs=self.webpackChunkpractica_docs||[]).push([[187],{6037:function(a){a.exports=JSON.parse('{"allTagsPath":"/blog/tags","name":"monorepo","count":1,"permalink":"/blog/tags/monorepo"}')}}]);
