@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-sidebar_label: Q&A
+sidebar_label: Questions and answers
 ---
 
 # Questions and answers for contributors

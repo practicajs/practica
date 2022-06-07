@@ -1,11 +1,11 @@
 ---
 id: features
-sidebar_position: 3
+sidebar_position: 5
 ---
 
 # Features and practices
 
-*WIP*
+***WIP - This doc is being written these days***
 
 This list will outline all the capabilities and roadmap of Practica.js
 

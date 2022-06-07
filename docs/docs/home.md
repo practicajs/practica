@@ -1,5 +1,6 @@
 ---
 slug: /
+sidebar_position: 1
 ---
 
 ![Best practices starter](/img/practica-logo.png)
@@ -11,7 +12,7 @@ slug: /
 <br />
 
 
-❣️ **Alpha stage:** Practica.js is a work-in-progress. We've only recently kicked off. Please revisit by June 2022 🗓
+❣️ **Alpha stage:** Practica.js is a work-in-progress. We've only recently kicked off. Please revisit by July 2022 🗓
 
 ![Discord](/img/discord-logo.png) [Discord discussions](https://discord.gg/9Nrarr7p) | ![Twitter](/img/twitter-icon.png) [Twitter](https://twitter.com/nodepractices)
 

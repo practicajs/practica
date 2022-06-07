@@ -47,7 +47,12 @@ const config = {
           src: "img/practica.png",
         },
         items: [
-          { to: "/blog", label: "Blog", position: "left" },
+          {
+            to: "https://www.youtube.com/channel/UCKrSJ0-jm7YVTM_hO7Me9eA",
+            label: "YouTube",
+            position: "left",
+          },
+          { to: "/blog", label: "Blog (soon)", position: "left" },
           {
             href: "https://github.com/practicajs/practica",
             label: "GitHub",
