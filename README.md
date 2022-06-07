@@ -66,6 +66,8 @@ To run Practica in Interactive Mode (with UI):
 npx @practica/create-node-app interactive
 ```
 
+Note that for now, it can generate app that is based on Express and PostgreSQL only. Others options will get added soon
+
 Or if you'd prefer a typical terminal experience (without UI):
 
 ```bash
@@ -96,8 +98,7 @@ Pretty straight forward, right?
 
 - ✅ Start coding. The code we generate is minimal by design, and should help you get up to speed quick.
 - ✅ (Optional) Read through the code. Best Practices are tagged throughout.
-- ✅ Understand the project's structure by watching this short, 5 minute [video](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md) on YouTube. (coming soon)
-- ✅ Master it by reading our [docs](https://practica.org). (coming soon)
+- ✅ Master it by reading our [docs](https://practica.dev).
 
 
 
