@@ -33,7 +33,7 @@ https://user-images.githubusercontent.com/8571500/170464232-43355e43-98cf-4069-b
 - [`Our Philosophies and Unique Values`](#our-philosophies-and-unique-values)
 - [`Practices and Features`](#practices-and-features)
 - [`The People Behind Practica.js`](#the-people-behind-practicajs)
-- [`Our best practices guide, 77,000 stars ✨`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+- [`Our best practices guide, 78,000 stars ✨`](https://github.com/goldbergyoni/nodebestpractices)
 - [`Contribution guide`](https://github.com/practicajs/practica/blob/main/CONTRIBUTING.md)
 - [`Documentation site`](https://practica.dev/)
 - [`YouTube`](https://www.youtube.com/channel/UCKrSJ0-jm7YVTM_hO7Me9eA)
