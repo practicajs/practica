@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-sidebar_label: Contribution - Short guide
+sidebar_label: Short guide
 ---
 
 # Contributing to Practica.js - The short guide

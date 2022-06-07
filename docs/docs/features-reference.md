@@ -5,7 +5,9 @@ sidebar_position: 3
 
 # Features and practices
 
-This list outlines all the capabilities and roadmap of Practica.js
+*WIP*
+
+This list will outline all the capabilities and roadmap of Practica.js
 
 Here will come a filter panel to search by categories, what's strategic, and more
 
@@ -15,7 +17,7 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **Tags:** #strategic #logger
 
-**👷🏾 Status:** <img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/full.png"/>  Production-ready, more hardening is welcome
+**👷🏾 Status:** <img src="/img/full.png"/>  Production-ready, more hardening is welcome
 
 **🏆 Chosen libraries:** [Pino.js](https://github.com/pinojs/pino) [(Decision log here)](https://github.com)
 
@@ -29,7 +31,7 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **Tags:** #logger
 
-**👷🏾 Status:** <img src="https://raw.githubusercontent.com/practicajs/practica/main/docs/static/img/docs/decisions/partial.png"/>  Idea, not implemented
+**👷🏾 Status:** <img src="/img/partial.png"/>  Idea, not implemented
 
 **🏆 Chosen libraries:** [Pino.js](https://github.com/pinojs/pino) [(Decision log here)](https://github.com)
 
@@ -37,3 +39,18 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **🏁 CLI flags:** None, always true
 
+## 2.0.0 Configuration
+
+**What:** A configuration retriever module that packs good practices
+
+**Tags:** #strategic #configuration
+
+**👷🏾 Status:** <img src="/img/full.png"/>  Production-ready, more hardening is welcome
+
+**🏆 Chosen libraries:** [Convict](0https://github.com/mozilla/node-convict) [(Decision log here)](./decisions/configuration-library.md)
+
+**🎁 Bundles:** example-flow, full-flow
+
+**🏁 CLI flags:** -
+
+**Additional 100 features will come here**

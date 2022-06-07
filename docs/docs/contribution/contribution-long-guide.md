@@ -1,4 +1,9 @@
-# How do we work together?
+---
+sidebar_position: 2
+sidebar_label: Long guide
+---
+
+# The comprehensive contribution guide
 
 ## You belong with us
 
