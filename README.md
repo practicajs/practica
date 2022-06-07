@@ -2,29 +2,27 @@
 
 <br/>
 
-### Generate a Node.js app that is packed with best practices AND simplicity in mind. Based off our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (77,000 stars)
+### Generate a Node.js app that is packed with best practices AND simplicity in mind. Based off our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (78,000 stars)
 
 <br />
 
 
-❣️ **Alpha stage:** Practica.js is a work-in-progress. We've only recently kicked off. Please revisit by June 2022 🗓
+❣️ **Alpha stage:** Practica.js is a work-in-progress. We've only recently kicked off. Please revisit by July 2022 🗓
 
-![Discord](/static/images/discord-logo.png) [Discord discussions](https://discord.gg/9Nrarr7p) | ![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices)
+![Discord](/static/images/discord-logo.png) [Discord discussions](https://discord.gg/9Nrarr7p) | ![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices) | ![Site](/docs/static/img/site-icon.png) [Documentation site](https://practica.dev/)
 
 
 <br/>
 
 # A One Paragraph Overview
 
-Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate some example code that demonstrates a full workflow, from API to DB, that is packed with good practices. For example, we include a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](/docs/decisions). We strive to keep things as simple and standard as possible and base our work off the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate example code that demonstrates a full Microservice flow, from API to DB, that is packed with good practices. For example, we include a battle-tested error handler, sanitize API response, hardened dockerfile, thoughful 3-tier folder structure, great testing templates with DB, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](https://practica.dev/decisions). We strive to keep things as simple and standard as possible and base our work off the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
 
 **1 min video 👇, ensure audio is activated**
 
 
 
 https://user-images.githubusercontent.com/8571500/170464232-43355e43-98cf-4069-b9fc-6bc303a39efc.mp4
-
-
 
 
 <br/>
@@ -37,16 +35,15 @@ https://user-images.githubusercontent.com/8571500/170464232-43355e43-98cf-4069-b
 - [`The People Behind Practica.js`](#the-people-behind-practicajs)
 - [`Our best practices guide, 77,000 stars ✨`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 - [`Contribution guide`](https://github.com/practicajs/practica/blob/main/CONTRIBUTING.md)
+- [`Documentation site`](https://practica.dev/)
+- [`YouTube`](https://www.youtube.com/channel/UCKrSJ0-jm7YVTM_hO7Me9eA)
 - Coming Soon:
-	- [`Documentation`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
-	- [`YouTube`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 	- Example Applications
 		- [Express, PostgreSQL, with common best practices](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 		- [Express, mongo-db, with common best practices](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 		- [Express, PostgreSQL, with all best practices (advanced)](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 		- [Minimal with project setup configuration only](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 		<details><summary>More Flavours</summary>
-		
 		- Fastify, PostgreSQL
 		- Fastify, mongo-db
 		- Generate Your Own Interactively
