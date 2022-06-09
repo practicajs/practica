@@ -49,19 +49,13 @@ describe("/api", () => {
       const orderToAdd = {
         userId: 1,
         productId: 2,
-        deliveryAddress: "123 Main St, New York, NY 10001",
-        paymentTermsInDays: 30,
       };
 
       //Act
-      const receivedAPIResponse = await axiosAPIClient.post(
-        "/order",
-        orderToAdd
-      );
+      const receivedAPIResponse = await axiosAPIClient.post("/order",orderToAdd);
 
       //Assert
       expect(receivedAPIResponse).toMatchObject({
-        status: 200,
         data: {
           id: expect.any(Number),
         },
