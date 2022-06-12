@@ -20,7 +20,6 @@ jobs:
 
     env:
       OS: ${{ matrix.os }}
-      PYTHON: '3.7'
 
     steps:
     - uses: actions/checkout@v3
@@ -32,24 +31,14 @@ jobs:
 
     - run: npm ci
 
-    - run: npm test -- --coverage
-
-    - name: Setup Python
-      uses: actions/setup-python@master
-      with:
-        python-version: 3.7
-
     - name: Generate coverage report
-      run: |
-        pip install pytest
-        pip install pytest-cov
-        pytest --cov=./ --cov-report=xml
+    - run: npm test -- --coverage
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
         directory: ./coverage/
-        env_vars: OS,PYTHON
+        env_vars: OS
         fail_ci_if_error: true
         files: ./clover.xml
         flags: unittests
