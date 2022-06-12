@@ -32,7 +32,7 @@ jobs:
 
     - run: npm ci
 
-    - run: npm test --coverage
+    - run: npm test -- --coverage
 
     - name: Setup Python
       uses: actions/setup-python@master
@@ -46,12 +46,12 @@ jobs:
         pytest --cov=./ --cov-report=xml
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v3
       with:
-        directory: ./coverage/reports/
+        directory: ./coverage/
         env_vars: OS,PYTHON
         fail_ci_if_error: true
-        files: ./coverage1.xml,./coverage2.xml
+        files: ./clover.xml
         flags: unittests
         name: codecov-umbrella
         path_to_write_report: ./coverage/codecov_report.txt
