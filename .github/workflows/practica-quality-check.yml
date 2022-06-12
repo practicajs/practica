@@ -40,7 +40,7 @@ jobs:
         directory: ./coverage/
         env_vars: OS
         fail_ci_if_error: true
-        files: ./clover.xml
+        files: ./coverage/clover.xml
         flags: unittests
         name: codecov-umbrella
         path_to_write_report: ./coverage/codecov_report.txt
