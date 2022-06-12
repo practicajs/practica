@@ -32,7 +32,7 @@ jobs:
     - run: npm ci
 
     - name: Generate coverage report
-    - run: npm test -- --coverage
+      run: npm test -- --coverage
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
