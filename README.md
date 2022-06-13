@@ -220,6 +220,9 @@ A million thanks to these great people who have contributed code to our project:
     <td align="center"><a href="https://github.com/adandanielteamint"><img src="https://avatars.githubusercontent.com/u/104020188?v=4?s=200" width="200px;" alt=""/><br /><sub><b>adandanielteamint</b></sub></a><br /><a href="#content-adandanielteamint" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/rashad612"><img src="https://avatars.githubusercontent.com/u/251991?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Rashad Majali</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=rashad612" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/yohai-zv"><img src="https://avatars.githubusercontent.com/u/57675671?v=4?s=200" width="200px;" alt=""/><br /><sub><b>yohai zvuloon</b></sub></a><br /><a href="#content-yohai-zv" title="Content">🖋</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
