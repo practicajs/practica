@@ -113,8 +113,10 @@ dist
 .idea
 
 # Test artifacts
-
 output-folders-for-testing
 
 # macOS
 .DS_Store
+
+# Jest performance reports directory
+performance-reports
