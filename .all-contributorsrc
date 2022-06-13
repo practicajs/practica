@@ -150,6 +150,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "yohai-zv",
+      "name": "yohai zvuloon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57675671?v=4",
+      "profile": "https://github.com/yohai-zv",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 4,
