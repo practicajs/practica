@@ -20,7 +20,7 @@ sidebar_label: Configuration Library
 | **Executive Summary** |
 | Performance (load time for 100 keys) | ![Full](/img/docs/decisions/full.png) <br/> 1ms | ![Almost full](/img/docs/decisions/almost-full.png) <br/> 5ms |  ![Almost full](/img/docs/decisions/almost-full.png) <br/> 4ms | ![Almost full](/img/docs/decisions/almost-full.png) <br/> 5ms |
 | Popularity | ![Full](/img/docs/decisions/full.png) <br/> Superior | ![Partial](/img/docs/decisions/partial.png) <br/> Less popular than competitors | ![Almost full](/img/docs/decisions/almost-full.png) <br/> Highly popular | ![Almost full](/img/docs/decisions/almost-full.png) <br/> Highly popular |
-| ❗ Fail fast & strich schema | ![Almost full](/img/docs/decisions/almost-full.png) <br/> No | ![Full](/img/docs/decisions/full.png) <br/> Yes | ![Partial](/img/docs/decisions/partial.png) <br/> No |  ![Partial](/img/docs/decisions/partial.png) <br/> No |
+| ❗ Fail fast & strict schema | ![Almost full](/img/docs/decisions/almost-full.png) <br/> No | ![Full](/img/docs/decisions/full.png) <br/> Yes | ![Partial](/img/docs/decisions/partial.png) <br/> No |  ![Partial](/img/docs/decisions/partial.png) <br/> No |
 | Items documentation | ![Partial](/img/docs/decisions/partial.png) <br/> No | ![Full](/img/docs/decisions/full.png) <br/> Yes | ![Partial](/img/docs/decisions/partial.png) <br/> No |  ![Partial](/img/docs/decisions/partial.png) <br/> No |
 | Hierarchical configuration schema | ![Partial](/img/docs/decisions/partial.png) <br/> No | ![Full](/img/docs/decisions/full.png) <br/> Yes | ![Full](/img/docs/decisions/full.png) <br/> Yes |  ![Partial](/img/docs/decisions/partial.png) <br/> No |
 | **More details: Community & Popularity - March 2022** |
