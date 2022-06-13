@@ -159,6 +159,24 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "YonatanKra",
+      "name": "Yonatan Kra",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6459899?v=4",
+      "profile": "https://yonatankra.com",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "yoni-rapoport",
+      "name": "Yoni Rapoport",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16318253?v=4",
+      "profile": "https://github.com/yoni-rapoport",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 4,

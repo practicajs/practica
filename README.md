@@ -16,7 +16,7 @@
 
 # A One Paragraph Overview
 
-Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate example code that demonstrates a full Microservice flow, from API to DB, that is packed with good practices. For example, we include a battle-tested error handler, sanitize API response, hardened dockerfile, thoughful 3-tier folder structure, great testing templates with DB, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](https://practica.dev/decisions). We strive to keep things as simple and standard as possible and base our work off the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate example code that demonstrates a full Microservice flow, from API to DB, that is packed with good practices. For example, we include a battle-tested error handler, sanitize API response, hardened dockerfile, thoughtful 3-tier folder structure, great testing templates with DB, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](https://practica.dev/decisions). We strive to keep things as simple and standard as possible and base our work on the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
 
 **1 min video 👇, ensure audio is activated**
 
@@ -66,7 +66,7 @@ To run Practica in Interactive Mode (with UI):
 npx @practica/create-node-app interactive
 ```
 
-Note that for now, it can generate app that is based on Express and PostgreSQL only. Others options will get added soon
+Note that for now, it can generate an app that is based on Express and PostgreSQL only. Other options will get added soon
 
 Or if you'd prefer a typical terminal experience (without UI):
 
@@ -96,7 +96,7 @@ Pretty straight forward, right?
 
 ### Next Steps
 
-- ✅ Start coding. The code we generate is minimal by design, and should help you get up to speed quick.
+- ✅ Start coding. The code we generate is minimal by design, and should help you get up to speed quickly.
 - ✅ (Optional) Read through the code. Best Practices are tagged throughout.
 - ✅ Master it by reading our [docs](https://practica.dev).
 
@@ -114,9 +114,9 @@ We don't re-invent the wheel. Rather, we use your favorite framework and empower
 
 ### 2. Simplicity, how Node.js was intended
 
-Keeping it simple, flat and based on native Node/JS capabilities is part of this project DNA. We believe that too many abstractions, high-complexity or fancy language features can quickly become a stumbling block for the team. 
+Keeping it simple, flat, and based on native Node/JS capabilities is part of this project's DNA. We believe that too many abstractions, high-complexity or fancy language features can quickly become a stumbling block for the team. 
 
-To name a few examples, our code flow is flat with almost no level of indirection, although using TypeScript - almost no features are being used besides types, for modularization we simply use Node.js modules
+To name a few examples, our code flow is flat with almost no level of indirection, although using TypeScript - almost no features are being used besides types, for modularization we simply use Node.js modules.
 
 ![Built on top of known frameworks](/static/images/abstractions-vs-simplicity.png)
 
@@ -130,7 +130,7 @@ Good Practices and Simplicity is the name of the game with Practica. There is no
 
 # Practices and Features
 
-We apply more than 100 practices and optimizations. You can opt in or out for most of these features using option flags on our CLI. The follow table is just a few examples of features we provide. To see the full list of features, please visit our website [here](https://practicajs.org/features).
+We apply more than 100 practices and optimizations. You can opt in or out for most of these features using option flags on our CLI. The following table lists just a few examples out of the [full list of features we provide](https://practicajs.org/features).
 
 | **Feature** | **Explanation** | **Flag** | **Docs** |
 | ----------- | --------------- | -------- | -------- |
@@ -138,7 +138,7 @@ We apply more than 100 practices and optimizations. You can opt in or out for mo
 | Output escaping and sanitizing | Clean-out outgoing responses from potential HTML security risks like XSS | --oe, --output-escape | [Docs here]() |
 | Integration (component) testing | Generates full-blown component/integration tests setup including DB | --t, --tests | [Docs here]() |
 | Unique request ID (Correlation ID) | Generates module that creates a unique correlation/request ID for every incoming request. This is available for any other object during the request life-span. Internally it uses Node's built-in [AsyncLocalStorage](https://nodejs.org/api/async_hooks.html#class-asynclocalstorage) | --coi, --correlation-id | [Docs here]() |
-| Dockerfile | Generates dockerfile that embodies 20> best practices | --df, --docker-file | [Docs here]() |
+| Dockerfile | Generates dockerfile that embodies >20 best practices | --df, --docker-file | [Docs here]() |
 | Strong-schema configuration | A configuration module that dynamically load run-time configuration keys and includes a strong schema so it can fail fast | Built-in with basic app | [Docs here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD) |
 
 📗 **See our full list of features [here](https://practica.dev/features)**
@@ -222,6 +222,8 @@ A million thanks to these great people who have contributed code to our project:
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/yohai-zv"><img src="https://avatars.githubusercontent.com/u/57675671?v=4?s=200" width="200px;" alt=""/><br /><sub><b>yohai zvuloon</b></sub></a><br /><a href="#content-yohai-zv" title="Content">🖋</a></td>
+    <td align="center"><a href="https://yonatankra.com"><img src="https://avatars.githubusercontent.com/u/6459899?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Yonatan Kra</b></sub></a><br /><a href="#content-YonatanKra" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/yoni-rapoport"><img src="https://avatars.githubusercontent.com/u/16318253?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Yoni Rapoport</b></sub></a><br /><a href="#content-yoni-rapoport" title="Content">🖋</a></td>
   </tr>
 </table>
 
