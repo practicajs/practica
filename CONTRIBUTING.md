@@ -6,7 +6,7 @@ If you reached down to this page, you probably belong with us 💜. We are in an
 
 ## Consider the shortened guide first
 
-Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, small code enhanncement or anything that is small and obvious - start by reading the [shortened guide here](/docs/contribution/contribution-short-guide). As you'll expand your engagement with this repo, it might be a good idea to visit this long guide again
+Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, small code enhanncement or anything that is small and obvious - start by reading the [shortened guide here](/docs/docs/contribution/contribution-short-guide). As you'll expand your engagement with this repo, it might be a good idea to visit this long guide again
 
 
 ## Philosophy
