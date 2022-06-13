@@ -222,6 +222,7 @@ A million thanks to these great people who have contributed code to our project:
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/yohai-zv"><img src="https://avatars.githubusercontent.com/u/57675671?v=4?s=200" width="200px;" alt=""/><br /><sub><b>yohai zvuloon</b></sub></a><br /><a href="#content-yohai-zv" title="Content">🖋</a></td>
+    <td align="center"><a href="https://yonatankra.com"><img src="https://avatars.githubusercontent.com/u/6459899?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Yonatan Kra</b></sub></a><br /><a href="#content-YonatanKra" title="Content">🖋</a></td>
   </tr>
 </table>
 
