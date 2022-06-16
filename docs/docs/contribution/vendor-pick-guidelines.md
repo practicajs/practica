@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
-sidebar_label: Vendor picking guidelines
+sidebar_position: 6
+sidebar_label: Library picking guidelines
 ---
 
 # Choosing npm package dependency thoughtfully

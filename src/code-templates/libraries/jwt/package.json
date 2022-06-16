@@ -1,0 +1,33 @@
+{
+  "name": "jwt",
+  "version": "0.0.1",
+  "description": "JWT for Practica",
+  "main": "jwt.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "jest --forceExit"
+  },
+  "dependencies": {
+    "@types/jsonwebtoken": "^8.5.8",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "keywords": [
+    "jwt",
+    "authentication",
+    "practica",
+    "expressjs"
+  ],
+  "author": "Rashad Majali <majali@protonmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.5.0",
+    "jest": "^28.0.3",
+    "nock": "^13.2.4",
+    "node-mocks-http": "^1.11.0",
+    "node-notifier": "^10.0.1",
+    "sinon": "^13.0.2",
+    "ts-jest": "^28.0.1",
+    "typescript": "^4.6.4"
+  }
+}

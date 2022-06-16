@@ -3,9 +3,9 @@ import * as logger from "@practica/logger";
 import { AddressInfo } from "net";
 import express from "express";
 import bodyParser from "body-parser";
-import * as configurationProvider from "@practica/configuration-provider";
 import { defineRoutes } from "./routes";
 import { errorHandler } from "@practica/error-handling";
+import * as configurationProvider from "@practica/configuration-provider";
 import configurationSchema from "../../config";
 
 let connection: Server;

@@ -134,8 +134,9 @@ describe("/api", () => {
       nock("http://localhost/user/").get(`/7`).reply(404);
       const orderToAdd = {
         userId: 7,
-        productId: 2,
-        mode: "draft",
+        productId: 1,
+        deliveryAddress: "123 Main St, New York, NY 10001",
+        paymentTermsInDays: 30,
       };
 
       //Act

@@ -175,18 +175,18 @@ sidebar_label: Monorepo
     <td>Yes<br/>Via single node_modules folder</td>
   </tr>
   <tr>
-    <td><b>Retain origin file path (some module refers to relative paths)</b></td>
+    <td><b>Retain origin file path (some module refers to relative paths)</b></td>****
     <td>Partially<br/>NODE_MODULES is on the root, not per package</td>
     <td>Yes</td>
     <td>Not relevant</td>
-    <td>Partially<br>Pnpm uses hard link instead of symlinks</td>
+    <td>Partially<br/>Pnpm uses hard link instead of symlinks</td>
   </tr>
   <tr>
     <td><b>Keep single NODE_MODULES per machine (faster, less disc space)</b></td>
     <td>No<br/></td>
     <td>No</td>
     <td>No</td>
-    <td>Partially<br>Pnpm supports this</td>
+    <td>Partially<br/>Pnpm supports this</td>
   </tr>
   <tr>
     <td class="tg-ho3n" colspan="5" align="center"><h2>Other features and considerations</h2></td>
