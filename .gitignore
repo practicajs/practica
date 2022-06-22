@@ -1,8 +1,9 @@
 # Code build folder
 .dist
+dist
 
 # Logs
-.DS_Store
+**/.DS_Store
 logs
 *.log
 npm-debug.log*
@@ -107,6 +108,13 @@ dist
 # TernJS port file
 .tern-port
 
+
+# Editor files
+.idea
+
 # Test artifacts
 
 output-folders-for-testing
+
+# macOS
+.DS_Store

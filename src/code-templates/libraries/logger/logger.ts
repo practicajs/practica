@@ -1,6 +1,6 @@
-// This is not a real logger as its just writes to the console
-// but it has the structure of a real logger
+import * as configurationProvider from "@practica/configuration-provider";
 
+// example on how to read the level: configurationProvider.get("logger.level")
 export const info = (message) => {
   console.log(message);
 };

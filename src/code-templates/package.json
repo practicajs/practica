@@ -1,0 +1,19 @@
+{
+  "name": "practica-example-app",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "lerna run --parallel --scope order-service test",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "lerna": "lerna",
+    "maintenance:delete-node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "dependencies": {}
+}
