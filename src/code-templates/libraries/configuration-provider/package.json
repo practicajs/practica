@@ -1,0 +1,30 @@
+{
+  "name": "@practica/configuration-provider",
+  "version": "0.0.1-alpha.3",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "test:dev": "jest --watch --silent",
+    "test:dev:verbose": "jest --watch",
+    "prepare": "npm run build",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/practicajs/practica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/practicajs/practica/issues"
+  },
+  "homepage": "https://github.com/practicajs/practica#readme",
+  "dependencies": {
+    "convict": "^6.2.2"
+  },
+  "devDependencies": {
+    "@types/convict": "^6.1.1",
+    "typescript": "^4.6.4"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@practica/validation",
+  "version": "0.0.1-alpha.1",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "test:dev": "jest --watch --silent",
+    "test:dev:verbose": "jest --watch",
+    "prepare": "npm run build",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/practicajs/practica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/practicajs/practica/issues"
+  },
+  "homepage": "https://github.com/practicajs/practica#readme",
+  "dependencies": {
+    "ajv": "^8.11.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  }
+}

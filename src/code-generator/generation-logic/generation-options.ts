@@ -6,9 +6,12 @@ export type generationOptions = {
   emitBestPracticesHints: boolean;
   targetDirectory: string;
   installDependencies: boolean;
+  overrideIfExists: boolean;
 };
 
-export const factorDefaultOptions = (overrides: Partial<generationOptions>): generationOptions => {
+export const factorDefaultOptions = (
+  overrides: Partial<generationOptions>
+): generationOptions => {
   const defaults: generationOptions = {
     appName: "default-app-name",
     baseFramework: "express",
@@ -17,6 +20,7 @@ export const factorDefaultOptions = (overrides: Partial<generationOptions>): gen
     emitBestPracticesHints: true,
     targetDirectory: process.cwd(),
     installDependencies: false,
+    overrideIfExists: true,
   };
 
   const result = Object.assign(defaults, overrides);

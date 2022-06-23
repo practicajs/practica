@@ -1,4 +1,3 @@
-import { createUniqueFolder } from "../../../test/test-helpers";
 import path from "path";
 import fsExtra from "fs-extra";
 import { generateApp } from "./generate-service";
@@ -8,11 +7,11 @@ import * as testHelpers from "../../../test/test-helpers";
 let uniqueEmptyFolderForASingleTest: string;
 
 beforeEach(async () => {
-  uniqueEmptyFolderForASingleTest = await testHelpers.createUniqueFolder(__dirname);
+  uniqueEmptyFolderForASingleTest = await testHelpers.createUniqueFolder();
 });
 
 afterEach(async () => {
-  //  await fsExtra.remove(uniqueEmptyFolderForASingleTest);
+  await fsExtra.remove(uniqueEmptyFolderForASingleTest);
 });
 
 describe("generateApp", () => {
@@ -27,7 +26,28 @@ describe("generateApp", () => {
     await generateApp(options);
 
     // Assert
-    const destinationFolderContent = await fsExtra.readdir(options.targetDirectory);
+    const destinationFolderContent = await fsExtra.readdir(
+      options.targetDirectory
+    );
     expect(destinationFolderContent.length).toBeGreaterThan(0);
+  });
+
+  test("When destination exists, has content inside, and flag --override-if-exists is passed as false, then should throw error", async () => {
+    // Arrange
+    const options = generationOptions.factorDefaultOptions({
+      targetDirectory: uniqueEmptyFolderForASingleTest,
+      overrideIfExists: false,
+    });
+    await generateApp(options);
+
+    // Act
+    const generateAppWrapper = async () => {
+      await generateApp(options);
+    };
+
+    // Assert
+    expect(generateAppWrapper()).rejects.toMatchObject({
+      name: "directory-is-not-empty",
+    });
   });
 });
