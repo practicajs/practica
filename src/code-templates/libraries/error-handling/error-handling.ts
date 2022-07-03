@@ -1,4 +1,4 @@
-const logger = require("../../libraries/logger/logger");
+const logger = require("../logger/pino.logger");
 
 // This file simulates real-world error handler that makes this component observable
 const errorHandler = {

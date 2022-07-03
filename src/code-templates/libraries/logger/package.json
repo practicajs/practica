@@ -9,10 +9,10 @@
     "test:dev:verbose": "jest --watch"
   },
   "dependencies": {
-    "pino": "^7.11.0",
-    "pino-pretty": "^7.6.1"
+    "pino": "^7.11.0"
   },
   "devDependencies": {
+    "pino-pretty": "^7.6.1",
     "@types/is-ci": "^3.0.0",
     "@types/jest": "^27.4.1",
     "jest": "^27.5.1",

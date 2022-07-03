@@ -1,16 +1,9 @@
 import {configurationProvider} from "../configuration-provider";
-import {pino} from "pino";
+import {PinoLogger} from './pino.logger';
+import {LOG_LEVELS} from "./definition";
 
-
-const logFile = configurationProvider.get("logger.destination");
-export default pino(
-    {
-        level: configurationProvider.get("logger.level"),
-        prettyPrint: {
-            colorize: true, // colorizes the log
-            levelFirst: true,
-            translateTime: 'yyyy-dd-mm, h:MM:ss TT',
-        },
-    },
-    pino.destination(logFile == 'stdout' ? undefined: `${__dirname}/${logFile}`)
+export default new PinoLogger(
+    configurationProvider.get("logger.level") as LOG_LEVELS,
+    configurationProvider.get("logger.prettyPrint"),
+    configurationProvider.get('logger.destination') || undefined
 )
