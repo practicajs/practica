@@ -57,13 +57,17 @@ To generate a working folder with real code, do the following:
 nvm use && npm i
 ```
 
-2. Bind the CLI command to our code
+2. Build the code
+
+```npm run build```
+
+3. Bind the CLI command to our code
 
 ```
 cd .dist && npm link
 ```
 
-3. Generate the code to your preferred working folder
+4. Generate the code to your preferred working folder
 
 ```
 cd {some folder like $HOME}
@@ -71,6 +75,14 @@ create-node-app immediate --install-dependencies
 ```
 
 4. Now you can work on the generated code. Later on, once your tests pass and you're happy - copy the changes back to ~/practica/src/code-templates
+
+5. Run the tests while you code
+
+```
+#From the folder where you generated the code to. You might need to 'git init'
+cd default-app-name/services/order-service
+npm run test:dev
+```
 
 
 ## Workflow
