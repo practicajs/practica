@@ -59,7 +59,9 @@ nvm use && npm i
 
 2. Build the code
 
-```npm run build```
+```
+npm run build
+```
 
 3. Bind the CLI command to our code
 
