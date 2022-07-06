@@ -118,5 +118,5 @@ output-folders-for-testing
 # macOS
 .DS_Store
 
-# Jest performance reports directory
-performance-reports
+# Jest joint reports directory
+test-reports

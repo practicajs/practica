@@ -23,7 +23,7 @@ module.exports = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: "test-reports/coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -108,8 +108,7 @@ module.exports = {
         "warnAfterMs": 500,
         "logLevel": "warn",
         "maxItems": 5,
-        "jsonReportPath": "performance-reports/performance-report.json",
-        "csvReportPath": "performance-reports/performance-report.csv"
+        "jsonReportPath": "test-reports/performance-report.json",
       }
     ]
   ],
