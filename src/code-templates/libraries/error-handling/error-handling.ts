@@ -1,5 +1,6 @@
 import * as logger from "@practica/logger";
 import * as Http from "http";
+import * as util from "util";
 
 let httpServerRef: Http.Server;
 
@@ -31,17 +32,18 @@ const errorHandler = {
     });
   },
 
-  handleError: (errorToHandle: any) => {
+  handleError: (errorToHandle: AppError | Error | any) => {
     try {
       const appError: AppError = normalizeError(errorToHandle);
       logger.error(appError);
-      metricsExporter.fireMetric("", ""); // fire any custom metric when handling error
+      metricsExporter.fireMetric("error", { errorName: appError.name }); // fire any custom metric when handling error
       // A common best practice is to crash when an unknown error (non-trusted) is being thrown
       if (!appError.isTrusted) {
         terminateHttpServerAndExit();
       }
     } catch (e) {
       process.stdout.write('The error handler failed, here is the error handler specific error', e);
+      process.stdout.write('The error handler failed, here is the origin that it tried to handle', errorToHandle);
       // Should we crash here?
     }
   },
@@ -62,13 +64,15 @@ const normalizeError = (errorToHandle: AppError | Error | any): AppError => {
     return errorToHandle;
   }
   if (errorToHandle instanceof Error) {
-    return new AppError(errorToHandle.name, errorToHandle.message);
+    const appError = new AppError(errorToHandle.name, errorToHandle.message)
+    appError.stack = errorToHandle.stack // TODO - most primitive solution to keep stackTrace, any other options? maybe add property to AppError like ~'prevStackTrace'
+    return appError;
   }
   // meaning it could e any type,
   const inputType = typeof errorToHandle;
   return new AppError(
     "general-error",
-    `Error Handler received a none error instance with type - ${inputType}, value - ${errorToHandle}`
+    `Error Handler received a none error instance with type - ${inputType}, value - ${util.inspect(errorToHandle)}`
   );
 };
 
@@ -76,15 +80,14 @@ class AppError extends Error {
   constructor(
     public name,
     public message,
-    public HTTPStatus?,
+    public HTTPStatus?, // TODO - do we want to provide any default value?
     public isTrusted = true,
-    public cause?: Error | any,
+    public cause?: Error | any
   ) {
     super(message);
     this.HTTPStatus = HTTPStatus;
     this.isTrusted = isTrusted;
     this.cause = cause;
-    Error.captureStackTrace(this, this.constructor);
   }
 }
 
