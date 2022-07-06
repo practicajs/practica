@@ -13,7 +13,6 @@ export async function addOrder(orderDetails) {
 
 export async function deleteOrder(orderIdToDelete: number) {
   await getOrderModel().destroy({ where: { id: orderIdToDelete } });
-  return;
 }
 
 export async function cleanupData() {

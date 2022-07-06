@@ -3,32 +3,13 @@ import * as logger from "@practica/logger";
 import { AddressInfo } from "net";
 import express from "express";
 import bodyParser from "body-parser";
-import { defineRoutes } from "./routes";
 import { errorHandler } from "@practica/error-handling";
 import * as configurationProvider from "@practica/configuration-provider";
+
+import { defineRoutes } from "./routes";
 import configurationSchema from "../../config";
 
 let connection: Server;
-
-// ️️️✅ Best Practice: API exposes a start/stop function to allow testing control WHEN this should happen
-async function startWebServer(): Promise<AddressInfo> {
-  // ️️️✅ Best Practice: Declare a strict configuration schema and fail fast if the configuration is invalid
-  configurationProvider.initialize(configurationSchema);
-  const expressApp = express();
-  expressApp.use(bodyParser.json());
-  defineRoutes(expressApp);
-  defineErrorHandler(expressApp);
-  const APIAddress = await openConnection(expressApp);
-  return APIAddress;
-}
-
-async function stopWebServer() {
-  return new Promise<void>((resolve, reject) => {
-    connection.close(() => {
-      resolve();
-    });
-  });
-}
 
 async function openConnection(
   expressApp: express.Application
@@ -49,12 +30,32 @@ function defineErrorHandler(expressApp: express.Application) {
   expressApp.use(async (error, req, res, next) => {
     if (typeof error === "object") {
       if (error.isTrusted === undefined || error.isTrusted === null) {
-        error.isTrusted = true; //Error during a specific request is usually not catastrophic and should not lead to process exit
+        error.isTrusted = true; // Error during a specific request is usually not catastrophic and should not lead to process exit
       }
     }
     await errorHandler.handleError(error);
 
     res.status(error?.HTTPStatus || 500).end();
+  });
+}
+
+// ️️️✅ Best Practice: API exposes a start/stop function to allow testing control WHEN this should happen
+async function startWebServer(): Promise<AddressInfo> {
+  // ️️️✅ Best Practice: Declare a strict configuration schema and fail fast if the configuration is invalid
+  configurationProvider.initialize(configurationSchema);
+  const expressApp = express();
+  expressApp.use(bodyParser.json());
+  defineRoutes(expressApp);
+  defineErrorHandler(expressApp);
+  const APIAddress = await openConnection(expressApp);
+  return APIAddress;
+}
+
+async function stopWebServer() {
+  return new Promise<void>((resolve, reject) => {
+    connection.close(() => {
+      resolve();
+    });
   });
 }
 

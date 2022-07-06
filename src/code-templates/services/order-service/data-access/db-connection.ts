@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
-import sequelizeConfig from "./config/config";
 import * as configurationProvider from "@practica/configuration-provider";
+import sequelizeConfig from "./config/config";
 
 // ️️️✅ Best Practice: Keep a singleton DB connection pool in a process
 let dbConnection: Sequelize;

@@ -12,7 +12,7 @@ beforeAll(async () => {
   const apiConnection = await startWebServer();
   const axiosConfig = {
     baseURL: `http://127.0.0.1:${apiConnection.port}`,
-    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+    validateStatus: () => true, // Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
 
@@ -32,8 +32,6 @@ beforeEach(() => {
     terms: 45,
   });
 });
-
-afterEach(() => {});
 
 afterAll(async () => {
   nock.enableNetConnect();

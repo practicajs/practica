@@ -1,6 +1,7 @@
 import axios from "axios";
 import sinon from "sinon";
 import nock from "nock";
+
 import { startWebServer, stopWebServer } from "../entry-points/api/server";
 
 // Configuring file-level HTTP client with base URL will allow
@@ -12,7 +13,7 @@ beforeAll(async () => {
   const apiConnection = await startWebServer();
   const axiosConfig = {
     baseURL: `http://127.0.0.1:${apiConnection.port}`,
-    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+    validateStatus: () => true, // Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
 
@@ -33,8 +34,6 @@ beforeEach(() => {
   });
 });
 
-afterEach(() => {});
-
 afterAll(async () => {
   nock.enableNetConnect();
   stopWebServer();
@@ -44,7 +43,7 @@ afterAll(async () => {
 describe("/api", () => {
   describe("GET /order", () => {
     test("When asked for an existing order, Then should retrieve it and receive 200 response", async () => {
-      //Arrange
+      // Arrange
       const orderToAdd = {
         userId: 1,
         productId: 2,
@@ -55,12 +54,12 @@ describe("/api", () => {
         data: { id: addedOrderId },
       } = await axiosAPIClient.post(`/order`, orderToAdd);
 
-      //Act
+      // Act
       // ️️️✅ Best Practice: Use generic and reputable HTTP client like Axios or Fetch. Avoid libraries that are coupled to
       // the web framework or include custom assertion syntax (e.g. Supertest)
       const getResponse = await axiosAPIClient.get(`/order/${addedOrderId}`);
 
-      //Assert
+      // Assert
       expect(getResponse).toMatchObject({
         status: 200,
         data: {
@@ -70,15 +69,15 @@ describe("/api", () => {
     });
 
     test("When asked for an non-existing order, Then should receive 404 response", async () => {
-      //Arrange
+      // Arrange
       const nonExistingOrderId = -1;
 
-      //Act
+      // Act
       const getResponse = await axiosAPIClient.get(
         `/order/${nonExistingOrderId}`
       );
 
-      //Assert
+      // Assert
       expect(getResponse.status).toBe(404);
     });
   });

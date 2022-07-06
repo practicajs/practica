@@ -1,6 +1,6 @@
 import axios from "axios";
-import * as orderRepository from "../data-access/repositories/order-repository";
 import { AppError } from "@practica/error-handling";
+import * as orderRepository from "../data-access/repositories/order-repository";
 import * as paymentTermsService from "./payment-terms-service";
 import { addOrderDTO, getNewOrderValidator } from "./order-schema";
 
@@ -26,7 +26,7 @@ async function getUserOrThrowIfNotExist(userId: number) {
       validateStatus: (status) => true,
     }
   );
-  if (userVerificationRequest.status != 200) {
+  if (userVerificationRequest.status !== 200) {
     throw new AppError(
       "user-doesnt-exist",
       `The user ${userId} doesnt exist`,

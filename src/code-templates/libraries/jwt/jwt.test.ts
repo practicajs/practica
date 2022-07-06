@@ -1,16 +1,16 @@
-import * as httpMocks from 'node-mocks-http';
-import * as sinon from 'sinon';
-import jwt from 'jsonwebtoken';
+import * as httpMocks from "node-mocks-http";
+import * as sinon from "sinon";
+import jwt from "jsonwebtoken";
 
-import { jwtAuthenticate } from './jwt';
+import { jwtAuthenticate } from "./jwt";
 
-const ttl = '5m';
-const payload = { username: 'test-user' };
-const secret = 'secret';
+const ttl = "5m";
+const payload = { username: "test-user" };
+const secret = "secret";
 
-let token,
-  jwtMiddleware,
-  nextFn;
+let token;
+let jwtMiddleware;
+let nextFn;
 
 beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
@@ -31,10 +31,10 @@ afterAll(async () => {
   sinon.restore();
 });
 
-describe('JWT middlewarwe', () => {
-  describe('Calling with request/response objects', () => {
-    test('When using a valid token, then should retrieve a user and receive 200 response', async () => {
-      const headers = {'Authorization' : `Bearer ${token}`};
+describe("JWT middlewarwe", () => {
+  describe("Calling with request/response objects", () => {
+    test("When using a valid token, then should retrieve a user and receive 200 response", async () => {
+      const headers = { Authorization: `Bearer ${token}` };
       const request = httpMocks.createRequest({
         headers,
       });
@@ -45,7 +45,7 @@ describe('JWT middlewarwe', () => {
       expect(response.statusCode).toEqual(200);
     });
 
-    test('When using an empty token, then should receive unauthorized response', async () => {
+    test("When using an empty token, then should receive unauthorized response", async () => {
       const headers = {};
       const request = httpMocks.createRequest({
         headers,
@@ -55,12 +55,12 @@ describe('JWT middlewarwe', () => {
       const data = response._getData();
 
       expect(response.statusCode).toEqual(401);
-      expect(data.toLowerCase()).toEqual('unauthorized');
+      expect(data.toLowerCase()).toEqual("unauthorized");
     });
 
-    test('When using an invalid token, then should receive unauthorized response', async () => {
-      const invalidToken = 'some-token';
-      const headers = {"Authorization" : `Bearer ${invalidToken}`};
+    test("When using an invalid token, then should receive unauthorized response", async () => {
+      const invalidToken = "some-token";
+      const headers = { Authorization: `Bearer ${invalidToken}` };
       const request = httpMocks.createRequest({
         headers,
       });
@@ -69,7 +69,7 @@ describe('JWT middlewarwe', () => {
       const data = response._getData();
 
       expect(response.statusCode).toEqual(401);
-      expect(data.toLowerCase()).toEqual('unauthorized');
+      expect(data.toLowerCase()).toEqual("unauthorized");
     });
   });
 });

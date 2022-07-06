@@ -1,7 +1,7 @@
 import util from "util";
 import express from "express";
-import * as newOrderUseCase from "../../domain/new-order-use-case";
 import { errorHandler } from "@practica/error-handling";
+import * as newOrderUseCase from "../../domain/new-order-use-case";
 
 export const defineRoutes = (expressApp: express.Application) => {
   const router = express.Router();
@@ -38,5 +38,5 @@ export const defineRoutes = (expressApp: express.Application) => {
     res.status(204).end();
   });
 
-  expressApp.use("/order", router)
+  expressApp.use("/order", router);
 };

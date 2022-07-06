@@ -1,7 +1,7 @@
 // @ts-nocheck
 import convict from "convict";
 
-let convictConfigurationProvider: convict.Config<any> = undefined;
+let convictConfigurationProvider: convict.Config<any>;
 
 export function initialize(schema) {
   convictConfigurationProvider = convict(schema);
