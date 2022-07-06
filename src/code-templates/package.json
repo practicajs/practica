@@ -21,5 +21,9 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "lerna": "^4.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "redis": "^4.2.0"
   }
 }
