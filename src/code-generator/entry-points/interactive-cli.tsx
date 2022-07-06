@@ -20,6 +20,7 @@ const QuestionsWizard = () => {
     showNameQuestion: false,
     showFrameworkQuestion: false,
     showDBTypeQuestion: false,
+    showMonorepoToolQuestion: false,
     showFeatures: false,
     advice: "",
     title: figlet.textSync("Practica", {
@@ -87,6 +88,19 @@ const QuestionsWizard = () => {
     },
   ];
 
+  const monorepoTools = [
+    {
+      label: "Turborepo",
+      value: "turborepo",
+      advice:
+          "A fast monorepo task-runner that can work with all popular package managers (npm, pnpm, yarn)",
+    },
+    {
+      label: "None",
+      value: 'none',
+    },
+  ]
+
   const frameworks = [
     {
       label: "Express",
@@ -149,6 +163,7 @@ const QuestionsWizard = () => {
       installDependencies: true,
       targetDirectory: process.cwd(),
       baseFramework: questionsWizard.chosenFramework,
+      monorepoTool: questionsWizard.chosenMonorepoTool,
     });
     await generateService.generateApp(generationOptions);
     setQuestionsWizard({
@@ -164,12 +179,21 @@ const QuestionsWizard = () => {
       ...questionsWizard,
       chosenDB: chosenOption.value,
       showDBTypeQuestion: false,
+      showMonorepoToolQuestion: true,
+    });
+  };
+
+  const handleMonorepoToolChoose = async (chosenOption) => {
+    setQuestionsWizard({
+      ...questionsWizard,
+      chosenMonorepoTool: chosenOption.value === 'none' ? undefined : chosenOption.value,
+      showMonorepoToolQuestion: false,
       showFlavourQuestion: true,
     });
   };
 
   const onSelectItemChange = (selectedItem) => {
-    const allOptions = [...databases, ...frameworks, ...flavours];
+    const allOptions = [...databases, ...frameworks, ...flavours, ...monorepoTools];
     const chosenItem = allOptions.find(
       (option) => option.value === selectedItem.value
     )?.advice;
@@ -286,6 +310,26 @@ const QuestionsWizard = () => {
                   </Box>
                 ) : (
                   <React.Fragment />
+                )}
+
+                {questionsWizard.showMonorepoToolQuestion ? (
+                    <Box
+                        display={
+                          questionsWizard.showMonorepoToolQuestion ? "flex" : "none"
+                        }
+                    >
+                      <Text color="green">Which monorepo tooling do you want?</Text>
+                      <Spacer />
+                      <SelectInput
+                          items={monorepoTools}
+                          onSelect={handleMonorepoToolChoose}
+                          onChange={onSelectItemChange}
+                          onSelectItemChange={onSelectItemChange}
+                          onHighlight={onSelectItemChange}
+                      />
+                    </Box>
+                ) : (
+                    <React.Fragment />
                 )}
 
                 {questionsWizard.showFrameworkQuestion ? (

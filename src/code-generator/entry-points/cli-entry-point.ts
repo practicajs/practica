@@ -23,6 +23,7 @@ export function startAppGenerator() {
     .option("-d, --db <string>", "DB to use")
     .option("-id, --install-dependencies", "Whether to install dependencies")
     .option("-ov, --override-if-exists", "If set to true, the existing generated app will be overriden")
+    .option("-mt --monorepo-tool <string>", 'If set to "turborepo" generates configuration to run tasks in a monorepo')
     .action((options) => {
       handleNonInteractiveCommand(options);
     });

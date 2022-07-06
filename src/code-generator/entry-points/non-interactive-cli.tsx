@@ -4,10 +4,12 @@ import { generateApp } from "../generation-logic/generate-service";
 
 export async function handleNonInteractiveCommand(options: any) {
   try {
+
     const generationOptions = factorDefaultOptions({
       installDependencies: options.installDependencies,
       overrideIfExists: options.overrideIfExists,
       targetDirectory: process.cwd(),
+      monorepoTool: options.monorepoTool,
     });
     await generateApp(generationOptions);
   } catch (error: AppError | any) {
