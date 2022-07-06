@@ -157,6 +157,12 @@ module.exports = {
     "/output-folders-for-testing/",
   ],
 
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
+    'jest-watch-suspend',
+  ],
+
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
 
