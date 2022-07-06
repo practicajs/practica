@@ -1,27 +1,38 @@
 {
-  "name": "logger",
-  "version": "0.0.1",
+  "name": "@practica/logger",
+  "version": "0.0.1-alpha.1",
   "description": "",
-  "main": "logger",
+  "main": "dist/logger.js",
   "scripts": {
     "test": "jest --forceExit",
     "test:dev": "jest --watch --silent --runInBand",
-    "test:dev:verbose": "jest --watch"
+    "test:dev:verbose": "jest --watch",
+    "build": "tsc",
+    "prepare": "npm run build"
   },
-  "dependencies": {
-    "pino": "^7.11.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/practicajs/practica.git"
   },
-  "devDependencies": {
-    "pino-pretty": "^7.6.1",
-    "@types/is-ci": "^3.0.0",
-    "@types/jest": "^27.4.1",
-    "jest": "^27.5.1",
-    "nock": "^13.2.4",
-    "ts-jest": "^27.1.3",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.2"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
-}
+    "dependencies": {
+      "pino": "^7.11.0",
+      "@practica/configuration-provider": "^0.0.1-alpha.1"
+    },
+    "devDependencies": {
+      "pino-pretty": "^7.6.1",
+      "@types/is-ci": "^3.0.0",
+      "@types/jest": "^27.4.1",
+      "jest": "^27.5.1",
+      "nock": "^13.2.4",
+      "ts-jest": "^27.1.3",
+      "ts-node": "^10.7.0",
+      "typescript": "^4.6.4"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/practicajs/practica/issues"
+    },
+    "homepage": "https://github.com/practicajs/practica#readme"
+  }
+

@@ -1,36 +1,37 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Practica.js',
-  tagline: 'Best Practices Starter',
-  url: 'https://practicajs.github.io',
-  baseUrl: '/practica/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'practicajs',
-  projectName: 'practica',
+  title: "Practica.js",
+  tagline: "Best Practices Starter",
+  url: "https://practica.dev",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.ico",
+  organizationName: "practicajs",
+  projectName: "practica",
 
   presets: [
     [
-      'classic',
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/practicajs/practica/tree/main/docs/',
+          routeBasePath: "/",
+          sidebarPath: require.resolve("./sidebars.js"),
+          editUrl: "https://github.com/practicajs/practica/tree/main/docs/",
         },
         blog: {
           showReadingTime: true,
-          editUrl: 'https://github.com/practicajs/practica/tree/main/docs/',
+          editUrl: "https://github.com/practicajs/practica/tree/main/docs/",
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       }),
     ],
@@ -40,66 +41,56 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Practica.js',
+        title: "Practica.js",
         logo: {
-          alt: 'Practica.js Logo',
-          src: 'img/practica.png',
+          alt: "Practica.js Logo",
+          src: "img/practica.png",
         },
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Tutorial',
+            to: "https://www.youtube.com/channel/UCKrSJ0-jm7YVTM_hO7Me9eA",
+            label: "YouTube",
+            position: "left",
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: "/blog", label: "Blog (soon)", position: "left" },
           {
-            href: 'https://github.com/practicajs/practica',
-            label: 'GitHub',
-            position: 'right',
+            href: "https://github.com/practicajs/practica",
+            label: "GitHub",
+            position: "right",
           },
         ],
       },
       footer: {
-        style: 'dark',
+        style: "dark",
         links: [
           {
-            title: 'Docs',
+            title: "Community",
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: "Stack Overflow",
+                href: "https://stackoverflow.com/questions/tagged/practicajs",
+              },
+              {
+                label: "Discord",
+                href: "https://discord.gg/QxuPmV5w",
               },
             ],
           },
           {
-            title: 'Community',
+            title: "More",
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/practicajs',
+                label: "Blog",
+                to: "/blog",
               },
               {
-                label: 'Discord',
-                href: 'https://discord.gg/QxuPmV5w',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/practicajs/practica',
+                label: "GitHub",
+                href: "https://github.com/practicajs/practica",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Practica.js, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Practica.js`,
       },
       prism: {
         theme: lightCodeTheme,

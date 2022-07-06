@@ -38,6 +38,7 @@ describe("Non-interactive", () => {
         "order-service"
       ),
     });
+
     expect(testResult.exitCode).toBe(0);
   }, 100000);
 });
