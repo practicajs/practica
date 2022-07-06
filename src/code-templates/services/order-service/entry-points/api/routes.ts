@@ -1,16 +1,11 @@
 import util from "util";
 import express from "express";
 import * as newOrderUseCase from "../../domain/new-order-use-case";
-import {AsyncLocalStorage} from 'async_hooks';
+import { AsyncLocalStorage } from 'async_hooks';
 import { errorHandler } from "@practica/error-handling";
-
-function getIdFromRequest(asyncLocalStorage: AsyncLocalStorage<Map<string, string>>) {
-  return asyncLocalStorage.getStore()?.get("practicaRequestId");
-}
 
 export const defineRoutes = (expressApp: express.Application, asyncLocalStorage: AsyncLocalStorage<Map<string, string>>) => {
   const router = express.Router();
-
 
   function getIdFromRequest() {
     return asyncLocalStorage.getStore()?.get("practicaRequestId");
