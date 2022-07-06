@@ -3,30 +3,6 @@ import * as Http from "http";
 
 let httpServerRef: Http.Server;
 
-class AppError extends Error {
-  constructor(
-    name,
-    message,
-    public cause?: Error | any,
-    public HTTPStatus?,
-    public isTrusted = true
-  ) {
-    super(message);
-    this.name = name;
-    this.cause = cause;
-    this.HTTPStatus = HTTPStatus;
-    this.isTrusted = isTrusted;
-  }
-}
-
-const terminateHttpServer = async () => {
-  // maybe implement more complex logic here (like using 'http-terminator' library)
-  if (httpServerRef) {
-    await httpServerRef.close();
-  }
-  process.exit();
-};
-
 // This file simulates real-world error handler that makes this component observable
 const errorHandler = {
   // Listen to the error events which won't be handled by programmer
@@ -72,6 +48,14 @@ const errorHandler = {
   },
 };
 
+const terminateHttpServer = async () => {
+  // maybe implement more complex logic here (like using 'http-terminator' library)
+  if (httpServerRef) {
+    await httpServerRef.close();
+  }
+  process.exit();
+};
+
 // The input might won't be 'AppError' or even 'Error' instance, the output of this function will be - AppError.
 const normalizeError = (errorToHandle: any): AppError => {
   if (errorToHandle instanceof AppError) {
@@ -87,6 +71,22 @@ const normalizeError = (errorToHandle: any): AppError => {
     `Error Handler received a none error instance with type - ${inputType}, value - ${errorToHandle}`
   );
 };
+
+class AppError extends Error {
+  constructor(
+    name,
+    message,
+    public cause?: Error | any,
+    public HTTPStatus?,
+    public isTrusted = true
+  ) {
+    super(message);
+    this.name = name;
+    this.cause = cause;
+    this.HTTPStatus = HTTPStatus;
+    this.isTrusted = isTrusted;
+  }
+}
 
 // This simulates a typical monitoring solution that allow firing custom metrics when
 // like Prometheus, DataDog, CloudWatch, etc
