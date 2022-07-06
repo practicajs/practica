@@ -19,6 +19,16 @@ module.exports = {
     'prettier'
   ],
   rules: {
-    'prettier/prettier': 2
+    'prettier/prettier': 2,
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        'js': 'never',
+        'jsx': 'never',
+        'ts': 'never',
+        'tsx': 'never'
+      }
+   ]
   },
 };
