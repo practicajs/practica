@@ -12,7 +12,7 @@ This list will outline all the capabilities and roadmap of Practica.js
 Here will come a filter panel to search by categories, what's strategic, and more
 
 ## 1. Logger
-### Logger Library
+### 1.1 Logger Library
 
 **What:** A reputable and hardened logger
 
@@ -26,7 +26,7 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **🏁 CLI flags:** --logger=true|false
 
-### Prevent infinite logger serialization loop
+### 1.2 Prevent infinite logger serialization loop
 
 **What:** Limit logged JSON depth when cyclic reference is introduced
 
@@ -41,7 +41,7 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 **🏁 CLI flags:** None, always true
 
 ## 2. Configuration
-### Configuration retriever module
+### 2.1 Configuration retriever module
 
 **What:** A configuration retriever module that packs good practices
 
@@ -56,7 +56,7 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 **🏁 CLI flags:** -
 
 ## 3. Testing experience
-### Slow tests detection
+### 3.1 Slow tests detection
 
 **What:** Slow tests automatically shown clearly in the console and exported to csv + json reports
 
@@ -68,7 +68,7 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **🎁 Bundles:** example-flow, full-flow
 
-### Autocomplete
+### 3.2 Autocomplete
 
 **What:** When running tests in watch mode and choosing filename or test name patterns autocomplete will assist you
 
