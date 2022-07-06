@@ -183,7 +183,7 @@ Leader IoT provider, part of 'Cox Communication', the 3rd largest cable company 
 
 # Partners
 
-These companies are keen for continous improvement and their engineers to have been known to contribute during work hours.
+These companies are keen for continuous improvement and their engineers to have been known to contribute during work hours.
 
 ![Minta](/static/images/minta.png)
 
