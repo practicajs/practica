@@ -7,8 +7,18 @@ import { defineRoutes } from "./routes";
 import { errorHandler } from "@practica/error-handling";
 import * as configurationProvider from "@practica/configuration-provider";
 import configurationSchema from "../../config";
+import { AsyncLocalStorage } from 'async_hooks';
+import { v4 } from 'uuid';
 
 let connection: Server;
+const asyncLocalStorage = new AsyncLocalStorage<Map<string, string>>();
+
+function requestId(req, res, next) {
+    asyncLocalStorage.run(new Map(), () => {
+      asyncLocalStorage.getStore()?.set("practicaRequestId", v4());
+      next();
+    });
+}
 
 // ️️️✅ Best Practice: API exposes a start/stop function to allow testing control WHEN this should happen
 async function startWebServer(): Promise<AddressInfo> {
@@ -16,7 +26,9 @@ async function startWebServer(): Promise<AddressInfo> {
   configurationProvider.initialize(configurationSchema);
   const expressApp = express();
   expressApp.use(bodyParser.json());
-  defineRoutes(expressApp);
+  expressApp.use(requestId);
+  defineRoutes(expressApp, asyncLocalStorage);
+  defineStatusCheckerHandler(expressApp);
   defineErrorHandler(expressApp);
   const APIAddress = await openConnection(expressApp);
   return APIAddress;
@@ -55,6 +67,12 @@ function defineErrorHandler(expressApp: express.Application) {
     await errorHandler.handleError(error);
 
     res.status(error?.HTTPStatus || 500).end();
+  });
+}
+
+function defineStatusCheckerHandler(expressApp: express.Application) {
+  expressApp.get('/status', async (req, res, next) => {
+    res.status(200).end();
   });
 }
 

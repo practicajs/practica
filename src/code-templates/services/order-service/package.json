@@ -29,13 +29,15 @@
     "@types/sequelize": "^4.28.11",
     "ajv": "^8.11.0",
     "amqplib": "^0.8.0",
+    "async_hooks": "1.0.0",
     "axios": "^0.26.1",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "node-notifier": "^10.0.1",
     "pg": "^8.7.3",
     "sequelize": "^6.17.0",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1",
+    "uuid": "8.3.2"
   },
   "devDependencies": {
     "@sinclair/typebox": "^0.23.5",
