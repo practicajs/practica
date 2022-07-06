@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node start.js",
     "start:dev": "nodemon start.ts",
-    "test": "jest --forceExit",
-    "test:dev": "jest --watch --silent --runInBand",
-    "test:dev:verbose": "jest --watch",
+    "test": "jest --forceExit --verbose=true --runInBand",
+    "test:dev": "jest --watch --silent --runInBand --coverage=false --reporters='default'",
+    "test:dev:verbose": "jest --watch --verbose=true",
     "db:migrate": "cd data-access && sequelize-cli db:migrate",
     "db:seed": "cd data-access && sequelize-cli db:seed:all",
     "build": "tsc",
@@ -38,6 +38,7 @@
     "sequelize-cli": "^6.4.1"
   },
   "devDependencies": {
+    "@jest-performance-reporter/core": "^2.1.2",
     "@sinclair/typebox": "^0.23.5",
     "@types/is-ci": "^3.0.0",
     "@types/jest": "^27.4.1",
@@ -47,6 +48,7 @@
     "is-ci": "^3.0.1",
     "is-port-reachable": "^3.0.0",
     "jest": "^27.5.1",
+    "jest-watch-typeahead": "^1.1.0",
     "nock": "^13.2.4",
     "nodemon": "^2.0.15",
     "sinon": "^13.0.1",
