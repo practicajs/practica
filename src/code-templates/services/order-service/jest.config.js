@@ -105,7 +105,7 @@ module.exports = {
       "@jest-performance-reporter/core",
       {
         "errorAfterMs": 1000,
-        "warnAfterMs": 500,
+        "warnAfterMs": 300,
         "logLevel": "warn",
         "maxItems": 5,
         "jsonReportPath": "test-reports/performance-report.json",
@@ -143,7 +143,7 @@ module.exports = {
   // setupFilesAfterEnv: [],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
-  // slowTestThreshold: 5,
+  slowTestThreshold: 0.3,
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
   // snapshotSerializers: [],
