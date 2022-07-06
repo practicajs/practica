@@ -96,7 +96,7 @@ const QuestionsWizard = () => {
     },
     {
       label: "Fastify",
-      value: "my-fastify",
+      value: "fastify",
       advice:
         "A minimalist web library that is easy to learn. A great choice when in a need to have full-control. \n \n ⭐️ 91,000 stars \n \n ⬇️ 1,200,000 downloads/week",
     },
@@ -150,6 +150,7 @@ const QuestionsWizard = () => {
       targetDirectory: process.cwd(),
       baseFramework: questionsWizard.chosenFramework,
     });
+    console.log(`dan  ${JSON.stringify(generationOptions)}`);
     await generateService.generateApp(generationOptions);
     setQuestionsWizard({
       ...questionsWizard,
