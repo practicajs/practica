@@ -1,14 +1,14 @@
-// @ts-nocheck
-import React from "react";
-import { render, Text, Box, Newline, Spacer } from "ink";
-import MultiSelect from "ink-multi-select"
-import SelectInput from "ink-select-input"
-import { UncontrolledTextInput as TextInput } from "ink-text-input";
-import figlet from "figlet";
-import { generateApp } from "../generation-logic/generate-service";
-import {
+"use strict";
+const React = require("react");
+const { render, Text, Box, Newline, Spacer, useStdout } = require("ink");
+const MultiSelect = require("ink-multi-select").default;
+const SelectInput = require("ink-select-input").default;
+const TextInput = require("ink-text-input").UncontrolledTextInput;
+var figlet = require("figlet");
+const generateService = require("../generation-logic/generate-service");
+const {
   factorDefaultOptions,
-} from "../generation-logic/generation-options";
+} = require("../generation-logic/generation-options");
 
 const QuestionsWizard = () => {
   const initialQuestionsWizard = {
@@ -21,11 +21,9 @@ const QuestionsWizard = () => {
     showFrameworkQuestion: false,
     showDBTypeQuestion: false,
     showFeatures: false,
-    showFlavourQuestion: false,
-    showFeaturesQuestion: 'none',
     advice: "",
     title: figlet.textSync("Practica", {
-      font: 'Big', //Good options: big, contessa, doom, straight
+      font: "big", //Good options: big, contessa, doom, straight
       horizontalLayout: "full",
       verticalLayout: "default",
       width: 60,
@@ -152,7 +150,7 @@ const QuestionsWizard = () => {
       targetDirectory: process.cwd(),
       baseFramework: questionsWizard.chosenFramework,
     });
-    await generateApp(generationOptions);
+    await generateService.generateApp(generationOptions);
     setQuestionsWizard({
       ...questionsWizard,
       isOver: true,
@@ -179,7 +177,7 @@ const QuestionsWizard = () => {
     setQuestionsWizard({ ...questionsWizard, advice: activeAdvice });
   };
 
-  React.useEffect(() => {}, []);
+  React.useEffect(async () => {}, []);
 
   return (
     <Box width={"100%"} alignSelf="center" flexDirection="column">
@@ -218,7 +216,7 @@ const QuestionsWizard = () => {
                   <Spacer />
                   <MultiSelect
                     items={features}
-                    onSelect={handleFeaturesChoose}
+                    onSelectItem={handleFeaturesChoose}
                   />
                 </Box>
                 {questionsWizard.showWarningMessage ? (
@@ -234,7 +232,7 @@ const QuestionsWizard = () => {
                       Postgres. Enter to continue or CTRL + C to exit
                     </Text>
                     <Spacer />
-                    <TextInput initialValue="" onSubmit={warningWasConfirmed} />
+                    <TextInput value="" onSubmit={warningWasConfirmed} />
                   </Box>
                 ) : (
                   <React.Fragment />
@@ -264,7 +262,7 @@ const QuestionsWizard = () => {
                   >
                     <Text color="green">Name of your app or organization:</Text>
                     <Spacer />
-                    <TextInput initialValue="" onSubmit={handleNameChoose} />
+                    <TextInput value="" onSubmit={handleNameChoose} />
                   </Box>
                 ) : (
                   <React.Fragment />
