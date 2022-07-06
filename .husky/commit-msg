@@ -1,4 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx --no -- commitlint --edit "${1}"
+npx --no -- commitlint --edit "${1}" ||
+(echo '[Practica.js]: we are using commitlint, for more information go to docs/docs/contribution-long-guide.md'; false)
