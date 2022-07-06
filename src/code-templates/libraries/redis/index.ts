@@ -8,13 +8,16 @@ let state: ConnectionState = ConnectionState.DISCONNECTED
 
 export const init = async (options: RedisOptions) => {
   if (client == null) {
-    client = create(options)
+    client = create(options) as RedisClientType
+
     await client.connect()
     state = ConnectionState.CONNECTED
-    client.on('error', () => {
+    client.on('error', (err) => {
+      console.log('err', err)
       state = ConnectionState.ERROR
     })
     client.on('ready', () => {
+      console.log('ready')
       state = ConnectionState.CONNECTED
     })
   }
@@ -29,20 +32,56 @@ export const set = async (
     return { error: new Error('Connection Error') }
   }
 
-  if (ttlSeconds) {
-    await client.setEx(key, ttlSeconds, value)
-    return {}
+  if (value == null) {
+    return { error: new TypeError('Value cannot be null or undefined') }
   }
 
-  await client.set(key, value)
-  return {}
+  try {
+    ttlSeconds
+      ? await client.setEx(key, ttlSeconds, value)
+      : await client.set(key, value)
+
+    return {}
+  } catch (error) {
+    return { error: error as Error }
+  }
+}
+
+export const setJson = async (
+  key: string,
+  value: object,
+  ttlSeconds?: number
+): Promise<RedisResult> => {
+  try {
+    return set(key, JSON.stringify(value), ttlSeconds)
+  } catch (error) {
+    return { error: error as Error }
+  }
 }
 
 export const get = async (key: string): Promise<RedisResult> => {
   if (state !== ConnectionState.CONNECTED) {
     return { error: new Error('Connection Error') }
   }
-  const result = await client.get(key)
+  try {
+    const result = await client.get(key)
 
-  return { value: result }
+    return { value: result }
+  } catch (error) {
+    return { error: error as Error }
+  }
+}
+
+export const getJSON = async (key: string): Promise<RedisResult> => {
+  const data = await get(key)
+  if (data.error || data.value === null) {
+    return data
+  }
+
+  try {
+    const value = JSON.parse(data.value as string)
+    return { value }
+  } catch (error) {
+    return { error: error as Error }
+  }
 }
