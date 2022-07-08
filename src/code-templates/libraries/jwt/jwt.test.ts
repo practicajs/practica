@@ -8,9 +8,9 @@ const ttl = '5m';
 const payload = { username: 'test-user' };
 const secret = 'secret';
 
-let token,
-  jwtMiddleware,
-  nextFn;
+let token;
+let jwtMiddleware;
+let nextFn;
 
 beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
@@ -34,7 +34,7 @@ afterAll(async () => {
 describe('JWT middlewarwe', () => {
   describe('Calling with request/response objects', () => {
     test('When using a valid token, then should retrieve a user and receive 200 response', async () => {
-      const headers = {'Authorization' : `Bearer ${token}`};
+      const headers = { Authorization: `Bearer ${token}` };
       const request = httpMocks.createRequest({
         headers,
       });
@@ -60,7 +60,7 @@ describe('JWT middlewarwe', () => {
 
     test('When using an invalid token, then should receive unauthorized response', async () => {
       const invalidToken = 'some-token';
-      const headers = {"Authorization" : `Bearer ${invalidToken}`};
+      const headers = { Authorization: `Bearer ${invalidToken}` };
       const request = httpMocks.createRequest({
         headers,
       });

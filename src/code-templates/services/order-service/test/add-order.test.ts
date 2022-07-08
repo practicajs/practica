@@ -1,7 +1,7 @@
-import axios from "axios";
-import sinon from "sinon";
-import nock from "nock";
-import { startWebServer, stopWebServer } from "../entry-points/api/server";
+import axios from 'axios';
+import sinon from 'sinon';
+import nock from 'nock';
+import { startWebServer, stopWebServer } from '../entry-points/api/server';
 
 // Configuring file-level HTTP client with base URL will allow
 // all the tests to approach with a shortened syntax
@@ -12,13 +12,13 @@ beforeAll(async () => {
   const apiConnection = await startWebServer();
   const axiosConfig = {
     baseURL: `http://127.0.0.1:${apiConnection.port}`,
-    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+    validateStatus: () => true, // Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
 
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
-  nock.enableNetConnect("127.0.0.1");
+  nock.enableNetConnect('127.0.0.1');
 });
 
 beforeEach(() => {
@@ -26,9 +26,9 @@ beforeEach(() => {
   nock.cleanAll();
   sinon.restore();
 
-  nock("http://localhost/user/").get(`/1`).reply(200, {
+  nock('http://localhost/user/').get(`/1`).reply(200, {
     id: 1,
-    name: "John",
+    name: 'John',
     terms: 45,
   });
 });
@@ -41,25 +41,25 @@ afterAll(async () => {
 });
 
 // ️️️✅ Best Practice: Structure tests by routes and stories
-describe("/api", () => {
-  describe("POST /orders", () => {
+describe('/api', () => {
+  describe('POST /orders', () => {
     // ️️️✅ Best Practice: Check the response
-    test("When adding a new valid order, Then should get back approval with 200 response", async () => {
-      //Arrange
+    test('When adding a new valid order, Then should get back approval with 200 response', async () => {
+      // Arrange
       const orderToAdd = {
         userId: 1,
         productId: 2,
-        deliveryAddress: "123 Main St, New York, NY 10001",
+        deliveryAddress: '123 Main St, New York, NY 10001',
         paymentTermsInDays: 30,
       };
 
-      //Act
+      // Act
       const receivedAPIResponse = await axiosAPIClient.post(
-        "/order",
+        '/order',
         orderToAdd
       );
 
-      //Assert
+      // Assert
       expect(receivedAPIResponse).toMatchObject({
         status: 200,
         data: {
@@ -70,21 +70,21 @@ describe("/api", () => {
 
     // ️️️✅ Best Practice: Check the new state
     // In a real-world project, this test can be combined with the previous test
-    test("When adding a new valid order, Then should be able to retrieve it", async () => {
-      //Arrange
+    test('When adding a new valid order, Then should be able to retrieve it', async () => {
+      // Arrange
       const orderToAdd = {
         userId: 1,
         productId: 2,
-        deliveryAddress: "123 Main St, New York, NY 10001",
+        deliveryAddress: '123 Main St, New York, NY 10001',
         paymentTermsInDays: 30,
       };
 
-      //Act
+      // Act
       const {
         data: { id: addedOrderId },
-      } = await axiosAPIClient.post("/order", orderToAdd);
+      } = await axiosAPIClient.post('/order', orderToAdd);
 
-      //Assert
+      // Assert
       const { data, status } = await axiosAPIClient.get(
         `/order/${addedOrderId}`
       );
@@ -101,48 +101,48 @@ describe("/api", () => {
     });
 
     // ️️️✅ Best Practice: Check invalid input
-    test("When adding an order without specifying product, stop and return 400", async () => {
-      //Arrange
+    test('When adding an order without specifying product, stop and return 400', async () => {
+      // Arrange
       const orderToAdd = {
         userId: 1,
-        deliveryAddress: "123 Main St, New York, NY 10001",
+        deliveryAddress: '123 Main St, New York, NY 10001',
         paymentTermsInDays: 30,
       };
 
-      //Act
-      const orderAddResult = await axiosAPIClient.post("/order", orderToAdd);
+      // Act
+      const orderAddResult = await axiosAPIClient.post('/order', orderToAdd);
 
-      //Assert
+      // Assert
       expect(orderAddResult.status).toBe(400);
     });
 
     // ️️️✅ Best Practice: Check error handling
-    test.todo("When a new order failed, an invalid-order error was handled");
+    test.todo('When a new order failed, an invalid-order error was handled');
 
     // ️️️✅ Best Practice: Check monitoring metrics
     test.todo(
-      "When a new valid order was added, then order-added metric was fired"
+      'When a new valid order was added, then order-added metric was fired'
     );
 
     // ️️️✅ Best Practice: Simulate external failures
     test.todo(
-      "When the user service is down, then order is still added successfully"
+      'When the user service is down, then order is still added successfully'
     );
 
-    test("When the user does not exist, return 404 response", async () => {
-      //Arrange
-      nock("http://localhost/user/").get(`/7`).reply(404);
+    test('When the user does not exist, return 404 response', async () => {
+      // Arrange
+      nock('http://localhost/user/').get(`/7`).reply(404);
       const orderToAdd = {
         userId: 7,
         productId: 1,
-        deliveryAddress: "123 Main St, New York, NY 10001",
+        deliveryAddress: '123 Main St, New York, NY 10001',
         paymentTermsInDays: 30,
       };
 
-      //Act
-      const orderAddResult = await axiosAPIClient.post("/order", orderToAdd);
+      // Act
+      const orderAddResult = await axiosAPIClient.post('/order', orderToAdd);
 
-      //Assert
+      // Assert
       expect(orderAddResult.status).toBe(404);
     });
   });

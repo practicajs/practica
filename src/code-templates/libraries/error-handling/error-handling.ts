@@ -1,5 +1,5 @@
-import * as logger from "@practica/logger";
-import * as Http from "http";
+import * as logger from '@practica/logger';
+import * as Http from 'http';
 
 let httpServerRef: Http.Server;
 
@@ -8,24 +8,24 @@ const errorHandler = {
   // Listen to the error events which won't be handled by programmer
   listenToErrorEvents: (httpServer: Http.Server, options?) => {
     httpServerRef = httpServer;
-    process.on("uncaughtException", async (error) => {
+    process.on('uncaughtException', async (error) => {
       await errorHandler.handleError(error);
     });
 
-    process.on("unhandledRejection", async (reason) => {
+    process.on('unhandledRejection', async (reason) => {
       await errorHandler.handleError(reason);
     });
 
-    process.on("SIGTERM", async () => {
+    process.on('SIGTERM', async () => {
       logger.error(
-        "App received SIGTERM event, try to gracefully close the server"
+        'App received SIGTERM event, try to gracefully close the server'
       );
       await terminateHttpServer();
     });
 
-    process.on("SIGINT", async () => {
+    process.on('SIGINT', async () => {
       logger.error(
-        "App received SIGINT event, try to gracefully close the server"
+        'App received SIGINT event, try to gracefully close the server'
       );
       await terminateHttpServer();
     });
@@ -35,13 +35,13 @@ const errorHandler = {
     try {
       const appError: AppError = normalizeError(errorToHandle);
       logger.error(appError);
-      metricsExporter.fireMetric("error", { errorName: appError.name });
+      metricsExporter.fireMetric('error', { errorName: appError.name });
       // A common best practice is to crash when an unknown error (non-trusted) is being thrown
       if (!appError.isTrusted) {
         terminateHttpServer();
       }
     } catch (e) {
-      logger.error("Error Handler failed to handleError properly");
+      logger.error('Error Handler failed to handleError properly');
       logger.error(e);
       // Should we crash here?
     }
@@ -67,7 +67,7 @@ const normalizeError = (errorToHandle: any): AppError => {
   // meaning it could e any type,
   const inputType = typeof errorToHandle;
   return new AppError(
-    "general-error",
+    'general-error',
     `Error Handler received a none error instance with type - ${inputType}, value - ${errorToHandle}`
   );
 };
@@ -92,7 +92,7 @@ class AppError extends Error {
 // like Prometheus, DataDog, CloudWatch, etc
 const metricsExporter = {
   fireMetric: async (name, labels) => {
-    console.log("In real production code I will really fire metrics");
+    console.log('In real production code I will really fire metrics');
   },
 };
 
