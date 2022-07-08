@@ -31,9 +31,6 @@ jobs:
 
     - run: npm ci
 
-    - name: Linting code-templates
-      run: ls
-
     - name: Generate coverage report
       run: npm test -- --coverage
 
