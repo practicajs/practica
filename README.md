@@ -226,6 +226,9 @@ A million thanks to these great people who have contributed code to our project:
     <td align="center"><a href="https://github.com/yoni-rapoport"><img src="https://avatars.githubusercontent.com/u/16318253?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Yoni Rapoport</b></sub></a><br /><a href="#content-yoni-rapoport" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/perilevy"><img src="https://avatars.githubusercontent.com/u/29686391?v=4?s=200" width="200px;" alt=""/><br /><sub><b>perilevy</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=perilevy" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/ToMer-K"><img src="https://avatars.githubusercontent.com/u/18401157?v=4?s=200" width="200px;" alt=""/><br /><sub><b>ToMer-K</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=ToMer-K" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
