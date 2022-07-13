@@ -1,10 +1,16 @@
 import * as configurationProvider from "@practica/configuration-provider";
+import {PinoLogger} from './pino.logger';
+import {LOG_LEVELS, Logger} from "./definition";
+import {LoggerWrapper} from "./logger.wrapper";
 
-// example on how to read the level: configurationProvider.get("logger.level")
-export const info = (message) => {
-  console.log(message);
-};
+let logger: LoggerWrapper  = new LoggerWrapper();
 
-export const error = (message) => {
-  console.error(message);
-};
+export function configure() {
+    logger.setLogger(new PinoLogger(
+        configurationProvider.getValue("logger.level") as LOG_LEVELS,
+        configurationProvider.getValue("logger.prettyPrint"),
+        configurationProvider.getValue('logger.destination') || undefined
+    ))
+}
+
+export default logger;
