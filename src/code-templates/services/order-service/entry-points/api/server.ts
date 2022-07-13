@@ -1,5 +1,6 @@
 import { Server } from "http";
-import * as logger from "@practica/logger";
+import * as logger  from "@practica/logger";
+import { configure }  from "@practica/logger";
 import { AddressInfo } from "net";
 import express from "express";
 import bodyParser from "body-parser";
@@ -14,6 +15,7 @@ let connection: Server;
 async function startWebServer(): Promise<AddressInfo> {
   // ️️️✅ Best Practice: Declare a strict configuration schema and fail fast if the configuration is invalid
   configurationProvider.initialize(configurationSchema);
+  configure();
   const expressApp = express();
   expressApp.use(bodyParser.json());
   defineRoutes(expressApp);
