@@ -1,6 +1,5 @@
 import sinon from 'sinon'
 import { logger } from '../logger.wrapper'
-import { LOG_LEVELS, LoggerConfiguration } from '../definition'
 
 beforeAll(() => {})
 
@@ -68,5 +67,19 @@ describe('logger', () => {
 
     // Assert
     expect(stdoutStub.callCount).toBe(0)
+  })
+
+  test('When configuring for pretty-print, then its written to stdout', async () => {
+    // Arrange
+    logger.configureLogger({ level: 'info', prettyPrint: true }, true)
+    const stdoutStub = sinon.stub(process.stdout, 'write')
+
+    // Act
+    logger.info('This is an info message')
+
+    // Assert
+    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
+      stdCallCount: 1,
+    })
   })
 })

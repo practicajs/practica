@@ -16,8 +16,7 @@ export class PinoLogger implements Logger {
             target: 'pino-pretty',
             options: {
               colorize: true,
-              levelFirst: true,
-              translateTime: 'yyyy-dd-mm, h:MM:ss TT',
+              sync: true,
             },
           }
         : undefined,
