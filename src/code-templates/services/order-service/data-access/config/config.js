@@ -1,6 +1,4 @@
-import { Dialect, Options } from 'sequelize'
-
-const sequelizeOptions: Options = {
+module.exports = {
   username: 'myuser',
   password: 'myuserpassword',
   database: 'shop',
@@ -15,5 +13,3 @@ const sequelizeOptions: Options = {
     idle: 10000,
   },
 }
-
-export default sequelizeOptions

@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize'
+import { Sequelize, Options } from 'sequelize'
 import sequelizeConfig from './config/config'
 import * as configurationProvider from '@practica/configuration-provider'
 
@@ -11,7 +11,7 @@ export function getDbConnection() {
       configurationProvider.getValue('DB.dbName'),
       configurationProvider.getValue('DB.userName'),
       configurationProvider.getValue('DB.password'),
-      sequelizeConfig
+      sequelizeConfig as Options
     )
   }
 
