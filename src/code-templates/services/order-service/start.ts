@@ -11,7 +11,7 @@ async function start() {
 
 start()
   .then((startResponses) => {
-    logger.info(`The app has started successfully ${startResponses}}`);
+    logger.info(`The app has started successfully ${JSON.stringify(startResponses)}}`);
   })
   .catch((error) => {
     // ️️️✅ Best Practice: A failure during startup is catastrophic and should lead to process exit (you may retry before)
