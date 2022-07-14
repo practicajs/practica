@@ -9,3 +9,8 @@ export interface Logger {
 
     warning(message: string, ...args: any[]): void;
 }
+
+export interface LoggerConfiguration{
+    level: LOG_LEVELS;
+    prettyPrint: boolean;
+}
