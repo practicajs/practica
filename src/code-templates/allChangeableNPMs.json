@@ -1,0 +1,24 @@
+{
+    "baseFramework": {
+        "express": {
+            "express": "^4.17.3"
+        },
+        "fastify": {
+            "fastify": "4.2.1"
+        },
+        "nestJS": {
+            "nestJS": "4.2.1"
+        }
+    },
+    "db": {
+        "mongo": {
+            "mongo": "^4.17.3"
+        },
+        "pg": {
+            "postgres": "4.2.1"
+        },
+        "mySQL": {
+            "mySQL": "4.2.1"
+        }
+    }
+}

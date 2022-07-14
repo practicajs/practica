@@ -14,16 +14,8 @@
     "build": "tsc",
     "build:watch": "tsc --watch"
   },
-  "author": "Practica team",
+  "author": "Practica teams",
   "license": "ISC",
-  "baseFramework": {
-    "express": {
-      "express": "^4.17.3"
-    },
-    "fastify":{
-      "fastify": "4.2.0"
-    }
-  },
   "dependencies": {
     "@practica/configuration-provider": "^0.0.1-alpha.3",
     "@practica/error-handling": "^0.0.1-alpha.3",

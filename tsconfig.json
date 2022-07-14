@@ -98,5 +98,5 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "includes": ["./package.json"],
-  "exclude": ["node_modules", "**/code-templates", "**/output-folders-for-testing", "**/docs"]
+  "exclude": ["node_modules", "**/code-templates", "**/output-folders-for-testing", "**/docs", "**/default-app-name"]
 }

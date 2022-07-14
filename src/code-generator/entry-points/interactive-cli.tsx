@@ -70,13 +70,13 @@ const QuestionsWizard = () => {
   const databases = [
     {
       label: "Postgres",
-      value: "pg",
+      value: "postgres",
       advice:
         "Strikes great balance between popularity and flexibility. Can handle both relational workload and light noSQL/JSON workload",
     },
     {
       label: "mySQL",
-      value: "my-sql",
+      value: "mySQL",
       advice:
         "Classic DB that mostly leans toward relational and structured data",
     },
@@ -102,7 +102,7 @@ const QuestionsWizard = () => {
     },
     {
       label: "Nest.JS",
-      value: "nestjs",
+      value: "nestJS",
       advice:
         "A minimalist web library that is easy to learn. A great choice when in a need to have full-control. \n \n ⭐️ 91,000 stars \n \n ⬇️ 1,200,000 downloads/week",
     },
@@ -149,6 +149,7 @@ const QuestionsWizard = () => {
       installDependencies: true,
       targetDirectory: process.cwd(),
       baseFramework: questionsWizard.chosenFramework,
+      DBType: questionsWizard.chosenDB
     });
     console.log(`dan  ${JSON.stringify(generationOptions)}`);
     await generateService.generateApp(generationOptions);

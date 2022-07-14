@@ -3,13 +3,14 @@ import path from "path";
 import execa from "execa";
 import { generationOptions } from "./generation-options";
 import { AppError } from "../error-handling";
-const packageJsonPath = "../../code-templates/services/order-service/package.json";
+import allChangeableNPMs from "../../code-templates/allChangeableNPMs.json";
+// import packageJsonToCopy from "../../code-templates/package.json";
+
 // This is where the code generation logic lives. In high-level, based on the provided option, it creates
 // a folder, decides which code to generate, run the code through a templating engine and emit it to the target folder
 export const generateApp = async (options: generationOptions) => {
   const targetDirectory = path.join(options.targetDirectory, options.appName);
   const sourceDirectory = path.join(__dirname, "../../code-templates");
-  const packageJson = JSON.parse(fsExtra.readFileSync(`${sourceDirectory}/services/order-service/package.json`, 'utf8'));
 
   const targetDirectoryExists = await fsExtra.pathExists(targetDirectory);
 
@@ -26,14 +27,6 @@ export const generateApp = async (options: generationOptions) => {
       await fsExtra.mkdir(targetDirectory, {});
     }
   }
-  const webPLatform = packageJson['baseFramework'];
-  const chosenWebPLatform = webPLatform[options.baseFramework];
-  console.log(`dan chosen web plat ${JSON.stringify(chosenWebPLatform)}`);
-  const dependencies = { ...packageJson.dependencies, ...chosenWebPLatform }
-  console.log(`dan ${JSON.stringify(dependencies)}`);
-  packageJson.dependencies = dependencies;
-  
-  fsExtra.writeFileSync(path.join(__dirname, packageJsonPath), JSON.stringify(packageJson, null, 4));
 
   await fsExtra.copy(sourceDirectory, targetDirectory, {
     // We don't want to copy the node_modules folder since it's slow and error-prone
@@ -46,6 +39,25 @@ export const generateApp = async (options: generationOptions) => {
     },
     overwrite: true,
   });
+
+  // customize package.json base on chosen properties such as db, etc
+  const baseFramework = allChangeableNPMs['baseFramework'];
+  const DBType = allChangeableNPMs['db'];
+  const chosenWebPLatform = baseFramework[options.baseFramework];
+  const chosenDB = DBType[options.DBType];
+  //console.log(`chosenDB ${JSON.stringify(chosenDB)}`);
+  const targetDirectoryPackageJson = `${targetDirectory}/services/order-service/package.json`;
+  const packageJsonToOverwrite = JSON.parse(fsExtra.readFileSync(targetDirectoryPackageJson, 'utf8'));
+  const dependencies = { ...packageJsonToOverwrite.dependencies, ...chosenWebPLatform, ...chosenDB }
+  // console.log(`dependencies: ${JSON.stringify(dependencies)}`);
+  packageJsonToOverwrite.dependencies = dependencies;
+  fsExtra.writeFileSync(targetDirectoryPackageJson, JSON.stringify(packageJsonToOverwrite, null, 4));
+
+  // TODO: remove unescassery types 
+  // TODO: remove the copy of allChangeableNPMs from target
+  // TODO: handle errors
+
+  // write 
   if (options.installDependencies) {
     await execa("npm", ["install"], {
       cwd: targetDirectory,
