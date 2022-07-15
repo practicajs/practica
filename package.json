@@ -20,7 +20,7 @@
     "build:watch": "tsc --watch",
     "start:cli": "node ./.dist/bin/cli.js interactive",
     "publish:build": "npm run build && npm publish ./.dist --access public",
-    "prepare": "pwd && ls -la ../ && ls -la ../../ && cd ../ && husky install ./.husky"
+    "prepare": "ls -la && cd ../practica && ls -la && husky install ./.husky"
   },
   "repository": {
     "type": "git",
