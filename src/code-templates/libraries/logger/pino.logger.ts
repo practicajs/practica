@@ -1,8 +1,8 @@
-import { pino, Logger as PinoLoggerImpl, DestinationStream } from 'pino'
-import { LOG_LEVELS, Logger } from './definition'
+import { pino, Logger as PinoLoggerImpl, DestinationStream } from 'pino';
+import { LOG_LEVELS, Logger } from './definition';
 
 export class PinoLogger implements Logger {
-  private readonly logger: PinoLoggerImpl
+  private readonly logger: PinoLoggerImpl;
 
   constructor(
     private level: LOG_LEVELS,
@@ -20,23 +20,23 @@ export class PinoLogger implements Logger {
             },
           }
         : undefined,
-    }
-    this.logger = pino(opts)
+    };
+    this.logger = pino(opts);
   }
 
   debug(message: string, ...args: any[]): void {
-    this.logger.debug(message, ...args)
+    this.logger.debug(message, ...args);
   }
 
   error(message: string, ...args: any[]): void {
-    this.logger.error(message, ...args)
+    this.logger.error(message, ...args);
   }
 
   info(message: string, ...args: any[]): void {
-    this.logger.info(message, ...args)
+    this.logger.info(message, ...args);
   }
 
   warning(message: string, ...args: any[]): void {
-    this.logger.warn(message, ...args)
+    this.logger.warn(message, ...args);
   }
 }

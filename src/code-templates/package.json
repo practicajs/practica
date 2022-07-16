@@ -8,6 +8,7 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "lerna": "lerna",
+    "lint": "eslint '**/*.{js,jsx,ts}'",
     "maintenance:delete-node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
   },
   "author": "",
