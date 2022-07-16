@@ -4,11 +4,11 @@
   "description": "An example Node.js app that is packed with best practices",
   "main": "start.js",
   "scripts": {
-    "start": "node start.js",
-    "start:dev": "nodemon start.ts",
-    "test": "jest --forceExit",
-    "test:dev": "jest --watch --silent --runInBand",
-    "test:dev:verbose": "jest --watch",
+    "start": "PORT=3000 node .dist/start.js",
+    "start:dev": "PORT=0 PRETTY_PRINT=true nodemon start.ts",
+    "test": "jest --forceExit --verbose=true --runInBand",
+    "test:dev": "jest --watch --silent --runInBand --coverage=false --reporters='default'",
+    "test:dev:verbose": "jest --watch --verbose=true",
     "db:migrate": "cd data-access && sequelize-cli db:migrate",
     "db:seed": "cd data-access && sequelize-cli db:seed:all",
     "build": "tsc",
@@ -18,8 +18,8 @@
   "license": "ISC",
   "dependencies": {
     "@practica/configuration-provider": "^0.0.1-alpha.3",
-    "@practica/error-handling": "^0.0.1-alpha.3",
-    "@practica/logger": "^0.0.1-alpha.1",
+    "@practica/error-handling": "^0.0.1-alpha.4",
+    "@practica/logger": "^0.0.1-alpha.4",
     "@practica/validation": "^0.0.1-alpha.1",
     "@types/amqplib": "^0.8.2",
     "@types/axios": "^0.14.0",
@@ -38,6 +38,7 @@
     "sequelize-cli": "^6.4.1"
   },
   "devDependencies": {
+    "@jest-performance-reporter/core": "^2.1.2",
     "@sinclair/typebox": "^0.23.5",
     "@types/is-ci": "^3.0.0",
     "@types/jest": "^27.4.1",
@@ -47,6 +48,7 @@
     "is-ci": "^3.0.1",
     "is-port-reachable": "^3.0.0",
     "jest": "^27.5.1",
+    "jest-watch-typeahead": "^1.1.0",
     "nock": "^13.2.4",
     "nodemon": "^2.0.15",
     "sinon": "^13.0.1",

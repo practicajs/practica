@@ -16,6 +16,20 @@ export default {
       nullable: false,
       env: 'LOGGER_LEVEL',
     },
+    prettyPrint: {
+      doc: "Weather the logger should be configured to pretty print the output",
+      format: 'Boolean',
+      default: true,
+      nullable: false,
+      env: "PRETTY_PRINT_LOG",
+    },
+    destination: {
+      doc: "destination in which the logger should be written, empty value will be considered as stdout",
+      format: '*',
+      default: null,
+      nullable: true,
+      env: "LOGGER_DEST",
+    }
   },
   DB: {
     userName: {
