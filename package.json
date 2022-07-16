@@ -19,7 +19,7 @@
     "build:watch": "tsc --watch",
     "start:cli": "node ./.dist/bin/cli.js interactive",
     "publish:build": "npm run build && npm publish ./.dist --access public",
-    "prepare": "if [ -d \".git\" ]; then husky install; else echo \"Skipping husky install on CI...\"; fi"
+    "prepare": "is-ci || husky install"
   },
   "repository": {
     "type": "git",
@@ -69,6 +69,7 @@
     "@types/sinon": "^10.0.11",
     "execa": "^5.1.1",
     "husky": "8.0.1",
+    "is-ci": "3.0.1",
     "jest": "^27.5.1",
     "jest-watch-suspend": "^1.1.2",
     "jest-watch-typeahead": "^1.1.0",
