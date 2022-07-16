@@ -17,13 +17,13 @@ module.exports = {
   // clearMocks: false,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
+  collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: 'test-reports/coverage',
+  coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -31,7 +31,7 @@ module.exports = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: 'v8',
+  coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -54,10 +54,10 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  globalSetup: './test/global-setup.ts',
+  // globalSetup: "./test/global-setup.js",
 
   // A path to a module which exports an async function that is triggered once after all test suites
-  globalTeardown: './test/global-teardown.ts',
+  // globalTeardown: "./test/global-teardown.js",
 
   // A set of global variables that need to be available in all test environments
   // globals: {},
@@ -90,7 +90,7 @@ module.exports = {
   notify: true,
 
   // An enum that specifies notification mode. Requires { notify: true }
-  notifyMode: 'change',
+  notifyMode: "change",
 
   // A preset that is used as a base for Jest's configuration
   //preset: "ts-jest",
@@ -99,19 +99,7 @@ module.exports = {
   // projects: undefined,
 
   // Use this configuration option to add custom reporters to Jest
-  reporters: [
-    'default',
-    [
-      '@jest-performance-reporter/core',
-      {
-        errorAfterMs: 1000,
-        warnAfterMs: 300,
-        logLevel: 'warn',
-        maxItems: 5,
-        jsonReportPath: 'test-reports/performance-report.json',
-      },
-    ],
-  ],
+  // reporters: undefined,
 
   // Automatically reset mock state before every test
   // resetMocks: false,
@@ -143,13 +131,13 @@ module.exports = {
   // setupFilesAfterEnv: [],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
-  slowTestThreshold: 0.3,
+  // slowTestThreshold: 5,
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: 'node',
+  testEnvironment: "node",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -158,10 +146,10 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  testMatch: ['**/*.test.ts'],
+  testMatch: ["**/*.test.ts"],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: ['/node_modules/'],
+  testPathIgnorePatterns: ["/node_modules/"],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -179,7 +167,7 @@ module.exports = {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  transform: { '^.+\\.(t|j)s$': 'ts-jest' },
+  transform: { "^.+\\.(t|j)s$": "ts-jest" },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
@@ -191,16 +179,11 @@ module.exports = {
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run
-  verbose: false,
+  // verbose: undefined,
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
   // watchPathIgnorePatterns: [],
 
   // Whether to use watchman for file crawling
   // watchman: true,
-
-  watchPlugins: [
-    'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname',
-  ],
-}
+};
