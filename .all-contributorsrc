@@ -204,6 +204,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "mojcaostir",
+      "name": "Mojca Ostir",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34694446?v=4",
+      "profile": "https://github.com/mojcaostir",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
