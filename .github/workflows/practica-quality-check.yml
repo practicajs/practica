@@ -22,26 +22,26 @@ jobs:
       OS: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - run: npm ci
+      - run: npm ci
 
-    - name: Generate coverage report
-      run: npm test -- --coverage
+      - name: Test
+        run: npm test -- --coverage
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        directory: ./coverage/
-        env_vars: OS
-        fail_ci_if_error: true
-        files: ./coverage/clover.xml
-        flags: unittests
-        name: codecov-umbrella
-        path_to_write_report: ./coverage/codecov_report.txt
-        verbose: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./coverage/
+          env_vars: OS
+          fail_ci_if_error: true
+          files: ./coverage/clover.xml
+          flags: unittests
+          name: codecov-umbrella
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
