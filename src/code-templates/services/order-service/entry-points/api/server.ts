@@ -50,7 +50,6 @@ async function openConnection(
 
 function defineErrorHandler(expressApp: express.Application) {
   expressApp.use(async (error, req, res, next) => {
-    console.log('b', error.HTTPStatus)
     if (typeof error === 'object') {
       if (error.isTrusted === undefined || error.isTrusted === null) {
         error.isTrusted = true //Error during a specific request is usually not catastrophic and should not lead to process exit
