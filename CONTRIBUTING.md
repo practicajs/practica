@@ -144,7 +144,7 @@ This solution is built around independent domains that share _almost_ nothing wi
 
 ✅ Configure GitHub and npm 2FA!
 
-✅ Close the repo if you are a maintainer, or fork it if have no collaborators permissions
+✅ Clone the repo if you are a maintainer, or fork it if have no collaborators permissions
 
 ✅ With your terminal, ensure the right Node version is installed:
 
@@ -156,7 +156,7 @@ nvm use
 
 
 ```
-nvm i
+npm i
 ```
 
 ✅ Ensure all tests pass:
