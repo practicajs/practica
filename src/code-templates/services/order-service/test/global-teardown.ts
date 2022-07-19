@@ -1,5 +1,5 @@
-import isCI from "is-ci";
-import dockerCompose from "docker-compose";
+import isCI from 'is-ci';
+import dockerCompose from 'docker-compose';
 
 module.exports = async () => {
   if (isCI) {

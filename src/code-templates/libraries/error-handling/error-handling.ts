@@ -1,5 +1,6 @@
-import * as logger from "@practica/logger";
-import * as Http from "http";
+import { logger } from '@practica/logger';
+import * as Http from 'http';
+import * as util from 'util';
 
 let httpServerRef: Http.Server;
 
@@ -8,47 +9,54 @@ const errorHandler = {
   // Listen to the error events which won't be handled by programmer
   listenToErrorEvents: (httpServer: Http.Server, options?) => {
     httpServerRef = httpServer;
-    process.on("uncaughtException", async (error) => {
+    process.on('uncaughtException', async (error) => {
       await errorHandler.handleError(error);
     });
 
-    process.on("unhandledRejection", async (reason) => {
+    process.on('unhandledRejection', async (reason) => {
       await errorHandler.handleError(reason);
     });
 
-    process.on("SIGTERM", async () => {
+    process.on('SIGTERM', async () => {
       logger.error(
-        "App received SIGTERM event, try to gracefully close the server"
+        'App received SIGTERM event, try to gracefully close the server'
       );
-      await terminateHttpServer();
+      await terminateHttpServerAndExit();
     });
 
-    process.on("SIGINT", async () => {
+    process.on('SIGINT', async () => {
       logger.error(
-        "App received SIGINT event, try to gracefully close the server"
+        'App received SIGINT event, try to gracefully close the server'
       );
-      await terminateHttpServer();
+      await terminateHttpServerAndExit();
     });
   },
 
-  handleError: (errorToHandle: any) => {
+  handleError: (errorToHandle: AppError | Error | any) => {
     try {
       const appError: AppError = normalizeError(errorToHandle);
       logger.error(appError);
-      metricsExporter.fireMetric("error", { errorName: appError.name });
+      metricsExporter.fireMetric('error', { errorName: appError.name }); // fire any custom metric when handling error
       // A common best practice is to crash when an unknown error (non-trusted) is being thrown
       if (!appError.isTrusted) {
-        terminateHttpServer();
+        terminateHttpServerAndExit();
       }
     } catch (e) {
-      logger.error("Error Handler failed to handleError properly");
-      logger.error(e);
+      process.stdout.write(
+        'The error handler failed, here is the error handler specific error',
+        e
+      );
+      process.stdout.write(
+        'The error handler failed, here is the origin that it tried to handle',
+        errorToHandle
+      );
       // Should we crash here?
     }
   },
 };
 
-const terminateHttpServer = async () => {
+// better naming option - 'gracefullyExit' or something like that ?
+const terminateHttpServerAndExit = async () => {
   // maybe implement more complex logic here (like using 'http-terminator' library)
   if (httpServerRef) {
     await httpServerRef.close();
@@ -57,34 +65,34 @@ const terminateHttpServer = async () => {
 };
 
 // The input might won't be 'AppError' or even 'Error' instance, the output of this function will be - AppError.
-const normalizeError = (errorToHandle: any): AppError => {
+const normalizeError = (errorToHandle: AppError | Error | any): AppError => {
   if (errorToHandle instanceof AppError) {
     return errorToHandle;
   }
   if (errorToHandle instanceof Error) {
-    return new AppError(errorToHandle.name, errorToHandle.message);
+    const appError = new AppError(errorToHandle.name, errorToHandle.message);
+    appError.stack = errorToHandle.stack; // TODO - most primitive solution to keep stackTrace, any other options? maybe add property to AppError like ~'prevStackTrace'
+    return appError;
   }
   // meaning it could e any type,
   const inputType = typeof errorToHandle;
   return new AppError(
-    "general-error",
-    `Error Handler received a none error instance with type - ${inputType}, value - ${errorToHandle}`
+    'general-error',
+    `Error Handler received a none error instance with type - ${inputType}, value - ${util.inspect(
+      errorToHandle
+    )}`
   );
 };
 
 class AppError extends Error {
   constructor(
-    name,
-    message,
-    public cause?: Error | any,
-    public HTTPStatus?,
-    public isTrusted = true
+    public name: string,
+    public message: string,
+    public HTTPStatus: number = 500, // TODO - do we want to provide any default value?
+    public isTrusted = true,
+    public cause?: Error | any
   ) {
     super(message);
-    this.name = name;
-    this.cause = cause;
-    this.HTTPStatus = HTTPStatus;
-    this.isTrusted = isTrusted;
   }
 }
 
@@ -92,7 +100,7 @@ class AppError extends Error {
 // like Prometheus, DataDog, CloudWatch, etc
 const metricsExporter = {
   fireMetric: async (name, labels) => {
-    console.log("In real production code I will really fire metrics");
+    console.log('In real production code I will really fire metrics');
   },
 };
 

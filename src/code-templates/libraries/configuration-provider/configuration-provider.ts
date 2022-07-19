@@ -1,7 +1,7 @@
 // @ts-nocheck
-import convict from "convict";
+import convict from 'convict';
 
-let convictConfigurationProvider: convict.Config<any> = undefined;
+let convictConfigurationProvider: convict.Config<any>;
 
 export function initialize(schema) {
   convictConfigurationProvider = convict(schema);
@@ -15,7 +15,7 @@ export function reset() {
 
 export function getValue(keyName) {
   if (convictConfigurationProvider === undefined) {
-    throw new Error("Configuration has not been initialized yet");
+    throw new Error('Configuration has not been initialized yet');
   }
   return convictConfigurationProvider.get(keyName);
 }
