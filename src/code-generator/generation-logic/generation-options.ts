@@ -7,6 +7,7 @@ export type generationOptions = {
   targetDirectory: string;
   installDependencies: boolean;
   overrideIfExists: boolean;
+  monorepoTool: undefined | '' | 'turborepo';
 };
 
 export const factorDefaultOptions = (
@@ -21,6 +22,7 @@ export const factorDefaultOptions = (
     targetDirectory: process.cwd(),
     installDependencies: false,
     overrideIfExists: true,
+    monorepoTool: 'turborepo',
   };
 
   const result = Object.assign(defaults, overrides);

@@ -3,6 +3,7 @@ import path from "path";
 import execa from "execa";
 import { generationOptions } from "./generation-options";
 import { AppError } from "../error-handling";
+import {generateMonorepoTool} from "./generate-monorepo-tool";
 // This is where the code generation logic lives. In high-level, based on the provided option, it creates
 // a folder, decides which code to generate, run the code through a templating engine and emit it to the target folder
 export const generateApp = async (options: generationOptions) => {
@@ -28,7 +29,7 @@ export const generateApp = async (options: generationOptions) => {
   await fsExtra.copy(sourceDirectory, targetDirectory, {
     // We don't want to copy the node_modules folder since it's slow and error-prone
     filter: (copyFromPath, copyToPath) => {
-      if (path.basename(copyFromPath) === "node_modules") {
+      if (path.basename(copyFromPath) === "node_modules" || copyFromPath.includes('optionalAdditions')) {
         return false;
       } else {
         return true;
@@ -40,14 +41,9 @@ export const generateApp = async (options: generationOptions) => {
     await execa("npm", ["install"], {
       cwd: targetDirectory,
     });
-
-    await execa(
-      "npm",
-      ["run", "lerna", "--", "exec", "--scope", "order-service", "npm install"],
-      {
-        cwd: targetDirectory,
-      }
-    );
+  }
+  if (options.monorepoTool) {
+    await generateMonorepoTool({ monorepoTool: options.monorepoTool, dest: targetDirectory, source: sourceDirectory });
   }
 
   console.log(`App was generated successfully`);
