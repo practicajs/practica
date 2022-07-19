@@ -230,6 +230,7 @@ A million thanks to these great people who have contributed code to our project:
     <td align="center"><a href="https://github.com/ToMer-K"><img src="https://avatars.githubusercontent.com/u/18401157?v=4?s=200" width="200px;" alt=""/><br /><sub><b>ToMer-K</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=ToMer-K" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/henarbel"><img src="https://avatars.githubusercontent.com/u/87380400?v=4?s=200" width="200px;" alt=""/><br /><sub><b>hen arbel</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=henarbel" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/mojcaostir"><img src="https://avatars.githubusercontent.com/u/34694446?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Mojca Ostir</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=mojcaostir" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/evbambly"><img src="https://avatars.githubusercontent.com/u/45696895?v=4?s=200" width="200px;" alt=""/><br /><sub><b>evbambly</b></sub></a><br /><a href="#content-evbambly" title="Content">🖋</a></td>
   </tr>
 </table>
 
