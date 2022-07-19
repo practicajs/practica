@@ -1,3 +1,8 @@
+---
+sidebar_position: 4
+sidebar_label: Questions and answers
+---
+
 # Questions and answers for contributors
 
 ## Code generator

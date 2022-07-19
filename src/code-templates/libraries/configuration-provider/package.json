@@ -1,10 +1,12 @@
 {
   "name": "@practica/configuration-provider",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.3",
   "description": "",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
+    "test:dev": "jest --watch --silent",
+    "test:dev:verbose": "jest --watch",
     "prepare": "npm run build",
     "build": "tsc"
   },

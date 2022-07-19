@@ -4,29 +4,26 @@
 
 If you reached down to this page, you probably belong with us 💜. We are in an ever-going quest for better software practices. This journey can bring two things to your benefit: A lot of learning and global impact on many people's craft. Does this sounds attractive? 
 
-## The shortened guide: A 3 min summary of this doc
+## Consider the shortened guide first
 
-Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, linting rules, look&feel fixes, fixing TYPOs, comments or anything that is small and obvious - Just fork to your machine, code, ensure all tests pass (e.g., `npm test`), PR with a meaninful title, get **1** approver before merging. That's it.
-
-
-https://user-images.githubusercontent.com/8571500/158583069-b8dceec0-81dc-4d90-9257-4eb89baeeeba.mp4
+Every small change can make this repo much better. If you intend to contribute a relatively small change like documentation change, small code enhancement or anything that is small and obvious - start by reading the [shortened guide here](/docs/docs/contribution/contribution-short-guide). As you'll expand your engagement with this repo, it might be a good idea to visit this long guide again
 
 
 ## Philosophy
 
-Our main selling point is our philosophy, our philosophy is 'make it SIMPLE'. There is one really important holy grail in software - Speed. The faster you move, the more features and value is created for the users. The faster you move, more improvements cycles are deployed and the software/ops become better. [Researches show](https://puppet.com/resources/report/2020-state-of-devops-report) that faster team produces software that is more reliable. Complexity is the enemy of speed - Commonly apps are big, sophisiticated, has a lot of internal abstractions and demand long training before being productive. Our mission is to minimize complexity, get onboarded developers up to speed quickly, or in simple words - Let the reader of the code understand it in a breeze. If you make simplicity a 1st principle - Great things will come your way.
+Our main selling point is our philosophy, our philosophy is 'make it SIMPLE'. There is one really important holy grail in software - Speed. The faster you move, the more features and value is created for the users. The faster you move, more improvements cycles are deployed and the software/ops become better. [Researches show](https://puppet.com/resources/report/2020-state-of-devops-report) that faster team produces software that is more reliable. Complexity is the enemy of speed - Commonly apps are big, sophisticated, has a lot of internal abstractions and demand long training before being productive. Our mission is to minimize complexity, get onboarded developers up to speed quickly, or in simple words - Let the reader of the code understand it in a breeze. If you make simplicity a 1st principle - Great things will come your way.
 
 ![The sweet spot](/static/images/balance.png)
 
 Big words, how exactly? Here are few examples:
 
-**- Simple language -** We use TypeScipt becuase we believe in types, but we minimize advanced features. This boils down to using functions only, sometimes also classes. No abstracts, generic, complex types or anything that demand more CPU cycles from the reader. 
+**- Simple language -** We use TypeScript because we believe in types, but we minimize advanced features. This boils down to using functions only, sometimes also classes. No abstracts, generic, complex types or anything that demand more CPU cycles from the reader. 
 
 **- Less generic -** Yes, you read it right. If you can code a function that covers less scenarios but is shorter and simpler to understand - Consider this option first. Sometimes one if forced to make things generic - That's fine, at least we minimized the amount of complex code locations
 
 **- Simple tools -** Need to use some 3rd party for some task? Choose the library that is doing the minimal amount of work. For example, when seeking a library that parses JWT tokens - avoid picking a super-fancy framework that can solve any authorization path (e.g., Passport). Instead, Opt for a library that is doing exactly this. This will result in code that is simpler to understand and reduced bug surface
 
-**- Prefer Node/JavaScript built-in tooling -** Some new frameworks have abstractions over some standard tooling. They have their way of defining modules, libraries and others which demand learning one more concept and being exposed to unneccessary layer of bugs. Our preferred way is the vanila way, if it's part of JavaScript/Node - We use it. For example, should we need to group a bunch of files as a logical modules - We use ESM to export the relevant files and functions
+**- Prefer Node/JavaScript built-in tooling -** Some new frameworks have abstractions over some standard tooling. They have their way of defining modules, libraries and others which demand learning one more concept and being exposed to unnecessary layer of bugs. Our preferred way is the vanilla way, if it's part of JavaScript/Node - We use it. For example, should we need to group a bunch of files as a logical modules - We use ESM to export the relevant files and functions
 
 [Our full coding guide will come here soon](./docs/coding-guide.md)
 
@@ -36,7 +33,7 @@ Big words, how exactly? Here are few examples:
 
 ### Got a small change? Choose the fast lane
 
-Every small change can make this repo much better. If you intend to contribute a relativelly small change like documentation change, linting rules, look&feel fixes, fixing TYPOs, comments or anything that is small and obvious - Just fork to your machine, code, ensure all tests pass (e.g., `npm test`), PR with a meaninful title, get **1** approver before merging. That's it.
+Every small change can make this repo much better. If you intend to contribute a relatively small change like documentation change, linting rules, look&feel fixes, fixing TYPOs, comments or anything that is small and obvious - Just fork to your machine, code, ensure all tests pass (e.g., `npm test`), PR with a meaningful title, get **1** approver before merging. That's it.
 
 
 
@@ -124,7 +121,7 @@ graph
 
 ## Packages (domains)
 
-This solution is built around independent domains that share _almost_ nothing with others. It is recommended to start with understanding a single and small domain (package), then expanding and getting acquainted with more. This is also an opprtunity to master a specific topic that you're passionate about. Following is our packages list, choose where you wish to contribute first
+This solution is built around independent domains that share _almost_ nothing with others. It is recommended to start with understanding a single and small domain (package), then expanding and getting acquainted with more. This is also an opportunity to master a specific topic that you're passionate about. Following is our packages list, choose where you wish to contribute first
 
 
     
@@ -147,7 +144,7 @@ This solution is built around independent domains that share _almost_ nothing wi
 
 ✅ Configure GitHub and npm 2FA!
 
-✅ Close the repo if you are a maintainer, or fork it if have no collaborators permissions
+✅ Clone the repo if you are a maintainer, or fork it if have no collaborators permissions
 
 ✅ With your terminal, ensure the right Node version is installed:
 
@@ -159,7 +156,7 @@ nvm use
 
 
 ```
-nvm i
+npm i
 ```
 
 ✅ Ensure all tests pass:

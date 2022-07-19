@@ -2,21 +2,28 @@
 
 <br/>
 
-### Generate a Node.js app that is packed with best practices AND simplicity in mind. Based off our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (77,000 stars)
+### Generate a Node.js app that is packed with best practices AND simplicity in mind. Based off our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (78,000 stars)
 
 <br />
 
 
-❣️ **Alpha stage:** Practica.js is a work-in-progress. We've only recently kicked off. Please revisit by June 2022 🗓
+❣️ **Alpha stage:** Practica.js is a work-in-progress. We've only recently kicked off. Please revisit by July 2022 🗓
 
-![Discord](/static/images/discord-logo.png) [Discord discussions](https://discord.gg/9Nrarr7p) | ![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices)
+![Discord](/static/images/discord-logo.png) [Discord discussions](https://discord.gg/SrM68BJPqR) | ![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices) | ![Site](/docs/static/img/site-icon.png) [Documentation site](https://practica.dev/)
 
 
 <br/>
 
 # A One Paragraph Overview
 
-Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate some example code that demonstrates a full workflow, from API to DB, that is packed with good practices. For example, we include a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](/docs/decisions). We strive to keep things as simple and standard as possible and base our work off the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate example code that demonstrates a full Microservice flow, from API to DB, that is packed with good practices. For example, we include a battle-tested error handler, sanitize API response, hardened dockerfile, thoughtful 3-tier folder structure, great testing templates with DB, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](https://practica.dev/decisions). We strive to keep things as simple and standard as possible and base our work on the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+
+**1 min video 👇, ensure audio is activated**
+
+
+
+https://user-images.githubusercontent.com/8571500/170464232-43355e43-98cf-4069-b9fc-6bc303a39efc.mp4
+
 
 
 <br/>
@@ -27,18 +34,17 @@ Although Node.js has great frameworks 💚, they were never meant to be producti
 - [`Our Philosophies and Unique Values`](#our-philosophies-and-unique-values)
 - [`Practices and Features`](#practices-and-features)
 - [`The People Behind Practica.js`](#the-people-behind-practicajs)
-- [`Our best practices guide, 77,000 stars ✨`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
+- [`Our best practices guide, 78,000 stars ✨`](https://github.com/goldbergyoni/nodebestpractices)
 - [`Contribution guide`](https://github.com/practicajs/practica/blob/main/CONTRIBUTING.md)
+- [`Documentation site`](https://practica.dev/)
+- [`YouTube`](https://www.youtube.com/channel/UCKrSJ0-jm7YVTM_hO7Me9eA)
 - Coming Soon:
-	- [`Documentation`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
-	- [`YouTube`](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 	- Example Applications
 		- [Express, PostgreSQL, with common best practices](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 		- [Express, mongo-db, with common best practices](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 		- [Express, PostgreSQL, with all best practices (advanced)](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 		- [Minimal with project setup configuration only](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md)
 		<details><summary>More Flavours</summary>
-		
 		- Fastify, PostgreSQL
 		- Fastify, mongo-db
 		- Generate Your Own Interactively
@@ -60,6 +66,8 @@ To run Practica in Interactive Mode (with UI):
 ```bash
 npx @practica/create-node-app interactive
 ```
+
+Note that for now, it can generate an app that is based on Express and PostgreSQL only. Other options will get added soon
 
 Or if you'd prefer a typical terminal experience (without UI):
 
@@ -89,12 +97,11 @@ Pretty straight forward, right?
 
 ### Next Steps
 
-- ✅ Start coding. The code we generate is minimal by design, and should help you get up to speed quick.
+- ✅ Start coding. The code we generate is minimal by design, and should help you get up to speed quickly.
 - ✅ (Optional) Read through the code. Best Practices are tagged throughout.
-- ✅ Understand the project's structure by watching this short, 5 minute [video](https://github.com/practicajs/practica/blob/main/docs/not-ready-yet.md) on YouTube. (coming soon)
-- ✅ Master it by reading our [docs](https://practica.org). (coming soon)
+- ✅ Master it by reading our [docs](https://practica.dev).
 
-https://user-images.githubusercontent.com/8571500/156916532-c73fd814-8815-486b-8117-04add11a5907.mp4
+
 
 <br />
 
@@ -108,9 +115,9 @@ We don't re-invent the wheel. Rather, we use your favorite framework and empower
 
 ### 2. Simplicity, how Node.js was intended
 
-Keeping it simple, flat and based on native Node/JS capabilities is part of this project DNA. We believe that too many abstractions, high-complexity or fancy language features can quickly become a stumbling block for the team. 
+Keeping it simple, flat, and based on native Node/JS capabilities is part of this project's DNA. We believe that too many abstractions, high-complexity or fancy language features can quickly become a stumbling block for the team. 
 
-To name a few examples, our code flow is flat with almost no level of indirection, although using TypeScript - almost no features are being used besides types, for modularization we simply use Node.js modules
+To name a few examples, our code flow is flat with almost no level of indirection, although using TypeScript - almost no features are being used besides types, for modularization we simply use Node.js modules.
 
 ![Built on top of known frameworks](/static/images/abstractions-vs-simplicity.png)
 
@@ -124,7 +131,7 @@ Good Practices and Simplicity is the name of the game with Practica. There is no
 
 # Practices and Features
 
-We apply more than 100 practices and optimizations. You can opt in or out for most of these features using option flags on our CLI. The follow table is just a few examples of features we provide. To see the full list of features, please visit our website [here](https://practicajs.org/features).
+We apply more than 100 practices and optimizations. You can opt in or out for most of these features using option flags on our CLI. The following table lists just a few examples out of the [full list of features we provide](https://practicajs.org/features).
 
 | **Feature** | **Explanation** | **Flag** | **Docs** |
 | ----------- | --------------- | -------- | -------- |
@@ -132,10 +139,10 @@ We apply more than 100 practices and optimizations. You can opt in or out for mo
 | Output escaping and sanitizing | Clean-out outgoing responses from potential HTML security risks like XSS | --oe, --output-escape | [Docs here]() |
 | Integration (component) testing | Generates full-blown component/integration tests setup including DB | --t, --tests | [Docs here]() |
 | Unique request ID (Correlation ID) | Generates module that creates a unique correlation/request ID for every incoming request. This is available for any other object during the request life-span. Internally it uses Node's built-in [AsyncLocalStorage](https://nodejs.org/api/async_hooks.html#class-asynclocalstorage) | --coi, --correlation-id | [Docs here]() |
-| Dockerfile | Generates dockerfile that embodies 20> best practices | --df, --docker-file | [Docs here]() |
+| Dockerfile | Generates dockerfile that embodies >20 best practices | --df, --docker-file | [Docs here]() |
 | Strong-schema configuration | A configuration module that dynamically load run-time configuration keys and includes a strong schema so it can fail fast | Built-in with basic app | [Docs here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD) |
 
-📗 **See our full list of features [here](https://practica.io/features)**
+📗 **See our full list of features [here](https://practica.dev/features)**
 
 <br />
 
@@ -177,7 +184,7 @@ Leader IoT provider, part of 'Cox Communication', the 3rd largest cable company 
 
 # Partners
 
-These companies are keen for continous improvement and their engineers to have been known to contribute during work hours.
+These companies are keen for continuous improvement and their engineers to have been known to contribute during work hours.
 
 ![Minta](/static/images/minta.png)
 
@@ -210,6 +217,24 @@ A million thanks to these great people who have contributed code to our project:
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/idobetesh"><img src="https://avatars.githubusercontent.com/u/58806763?v=4?s=200" width="200px;" alt=""/><br /><sub><b>idobetesh</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=idobetesh" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/alejaacosta17"><img src="https://avatars.githubusercontent.com/u/89855093?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Alejandra Acosta</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=alejaacosta17" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/adandanielteamint"><img src="https://avatars.githubusercontent.com/u/104020188?v=4?s=200" width="200px;" alt=""/><br /><sub><b>adandanielteamint</b></sub></a><br /><a href="#content-adandanielteamint" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/rashad612"><img src="https://avatars.githubusercontent.com/u/251991?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Rashad Majali</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=rashad612" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/yohai-zv"><img src="https://avatars.githubusercontent.com/u/57675671?v=4?s=200" width="200px;" alt=""/><br /><sub><b>yohai zvuloon</b></sub></a><br /><a href="#content-yohai-zv" title="Content">🖋</a></td>
+    <td align="center"><a href="https://yonatankra.com"><img src="https://avatars.githubusercontent.com/u/6459899?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Yonatan Kra</b></sub></a><br /><a href="#content-YonatanKra" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/yoni-rapoport"><img src="https://avatars.githubusercontent.com/u/16318253?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Yoni Rapoport</b></sub></a><br /><a href="#content-yoni-rapoport" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/perilevy"><img src="https://avatars.githubusercontent.com/u/29686391?v=4?s=200" width="200px;" alt=""/><br /><sub><b>perilevy</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=perilevy" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/ToMer-K"><img src="https://avatars.githubusercontent.com/u/18401157?v=4?s=200" width="200px;" alt=""/><br /><sub><b>ToMer-K</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=ToMer-K" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/henarbel"><img src="https://avatars.githubusercontent.com/u/87380400?v=4?s=200" width="200px;" alt=""/><br /><sub><b>hen arbel</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=henarbel" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mojcaostir"><img src="https://avatars.githubusercontent.com/u/34694446?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Mojca Ostir</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=mojcaostir" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/evbambly"><img src="https://avatars.githubusercontent.com/u/45696895?v=4?s=200" width="200px;" alt=""/><br /><sub><b>evbambly</b></sub></a><br /><a href="#content-evbambly" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/AmirAdarGit"><img src="https://avatars.githubusercontent.com/u/44618095?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Amir Adar</b></sub></a><br /><a href="#content-AmirAdarGit" title="Content">🖋</a></td>
   </tr>
 </table>
 

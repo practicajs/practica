@@ -1,11 +1,11 @@
 module.exports = {
-  username: "myuser",
-  password: "myuserpassword",
-  database: "shop",
-  host: "localhost",
-  port: 54310,
+  username: 'myuser',
+  password: 'myuserpassword',
+  database: 'shop',
+  host: 'localhost',
+  port: 54320,
   logging: false,
-  dialect: "postgres",
+  dialect: 'postgres',
   pool: {
     max: 10,
     min: 0,
