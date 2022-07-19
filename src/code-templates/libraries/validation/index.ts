@@ -1,1 +1,1 @@
-export * from "./ajv-cache";
+export * from './ajv-cache';
