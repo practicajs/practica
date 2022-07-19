@@ -9,7 +9,7 @@
 
 ❣️ **Alpha stage:** Practica.js is a work-in-progress. We've only recently kicked off. Please revisit by July 2022 🗓
 
-![Discord](/static/images/discord-logo.png) [Discord discussions](https://discord.gg/9EnfwfHk) | ![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices) | ![Site](/docs/static/img/site-icon.png) [Documentation site](https://practica.dev/)
+![Discord](/static/images/discord-logo.png) [Discord discussions](https://discord.gg/SrM68BJPqR) | ![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices) | ![Site](/docs/static/img/site-icon.png) [Documentation site](https://practica.dev/)
 
 
 <br/>
@@ -183,7 +183,7 @@ Leader IoT provider, part of 'Cox Communication', the 3rd largest cable company 
 
 # Partners
 
-These companies are keen for continous improvement and their engineers to have been known to contribute during work hours.
+These companies are keen for continuous improvement and their engineers to have been known to contribute during work hours.
 
 ![Minta](/static/images/minta.png)
 
@@ -225,6 +225,15 @@ A million thanks to these great people who have contributed code to our project:
     <td align="center"><a href="https://yonatankra.com"><img src="https://avatars.githubusercontent.com/u/6459899?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Yonatan Kra</b></sub></a><br /><a href="#content-YonatanKra" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/yoni-rapoport"><img src="https://avatars.githubusercontent.com/u/16318253?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Yoni Rapoport</b></sub></a><br /><a href="#content-yoni-rapoport" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/perilevy"><img src="https://avatars.githubusercontent.com/u/29686391?v=4?s=200" width="200px;" alt=""/><br /><sub><b>perilevy</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=perilevy" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/ToMer-K"><img src="https://avatars.githubusercontent.com/u/18401157?v=4?s=200" width="200px;" alt=""/><br /><sub><b>ToMer-K</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=ToMer-K" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/henarbel"><img src="https://avatars.githubusercontent.com/u/87380400?v=4?s=200" width="200px;" alt=""/><br /><sub><b>hen arbel</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=henarbel" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mojcaostir"><img src="https://avatars.githubusercontent.com/u/34694446?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Mojca Ostir</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=mojcaostir" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/evbambly"><img src="https://avatars.githubusercontent.com/u/45696895?v=4?s=200" width="200px;" alt=""/><br /><sub><b>evbambly</b></sub></a><br /><a href="#content-evbambly" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/AmirAdarGit"><img src="https://avatars.githubusercontent.com/u/44618095?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Amir Adar</b></sub></a><br /><a href="#content-AmirAdarGit" title="Content">🖋</a></td>
   </tr>
 </table>
 

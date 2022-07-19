@@ -1,4 +1,4 @@
-import { getOrderModel } from "./order-model";
+import { getOrderModel } from './order-model';
 
 // ️️️✅ Best Practice: The repository pattern - Wrap the entire DB layer with a simple interface that returns plain JS objects
 export async function getOrderById(id: number) {
@@ -13,7 +13,6 @@ export async function addOrder(orderDetails) {
 
 export async function deleteOrder(orderIdToDelete: number) {
   await getOrderModel().destroy({ where: { id: orderIdToDelete } });
-  return;
 }
 
 export async function cleanupData() {

@@ -1,7 +1,7 @@
-import axios from "axios";
-import sinon from "sinon";
-import nock from "nock";
-import { startWebServer, stopWebServer } from "../entry-points/api/server";
+import axios from 'axios';
+import sinon from 'sinon';
+import nock from 'nock';
+import { startWebServer, stopWebServer } from '../entry-points/api/server';
 
 // Configuring file-level HTTP client with base URL will allow
 // all the tests to approach with a shortened syntax
@@ -12,13 +12,13 @@ beforeAll(async () => {
   const apiConnection = await startWebServer();
   const axiosConfig = {
     baseURL: `http://127.0.0.1:${apiConnection.port}`,
-    validateStatus: () => true, //Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
+    validateStatus: () => true, // Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
   };
   axiosAPIClient = axios.create(axiosConfig);
 
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
   nock.disableNetConnect();
-  nock.enableNetConnect("127.0.0.1");
+  nock.enableNetConnect('127.0.0.1');
 });
 
 beforeEach(() => {
@@ -26,9 +26,9 @@ beforeEach(() => {
   nock.cleanAll();
   sinon.restore();
 
-  nock("http://localhost/user/").get(`/1`).reply(200, {
+  nock('http://localhost/user/').get(`/1`).reply(200, {
     id: 1,
-    name: "John",
+    name: 'John',
     terms: 45,
   });
 });
@@ -40,18 +40,18 @@ afterAll(async () => {
   stopWebServer();
 });
 
-describe("/api", () => {
-  describe("DELETE /order", () => {
-    test("When deleting an existing order, Then it should NOT be retrievable", async () => {
+describe('/api', () => {
+  describe('DELETE /order', () => {
+    test('When deleting an existing order, Then it should NOT be retrievable', async () => {
       // Arrange
       const orderToDelete = {
         userId: 1,
         productId: 2,
-        deliveryAddress: "123 Main St, New York, NY 10001",
+        deliveryAddress: '123 Main St, New York, NY 10001',
         paymentTermsInDays: 30,
       };
       const deletedOrderId = (
-        await axiosAPIClient.post("/order", orderToDelete)
+        await axiosAPIClient.post('/order', orderToDelete)
       ).data.id;
 
       // Act

@@ -73,6 +73,9 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+#yarn lock
+.yarn-lock
+
 # dotenv environment variables file
 .env
 .env.test
@@ -113,8 +116,10 @@ dist
 .idea
 
 # Test artifacts
-
 output-folders-for-testing
 
 # macOS
 .DS_Store
+
+# Jest joint reports directory
+test-reports

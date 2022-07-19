@@ -1,12 +1,12 @@
-import util from "util";
-import express from "express";
-import * as newOrderUseCase from "../../domain/new-order-use-case";
-import { errorHandler } from "@practica/error-handling";
+import util from 'util';
+import express from 'express';
+import { errorHandler } from '@practica/error-handling';
+import * as newOrderUseCase from '../../domain/new-order-use-case';
 
 export const defineRoutes = (expressApp: express.Application) => {
   const router = express.Router();
 
-  router.post("/", async (req, res, next) => {
+  router.post('/', async (req, res, next) => {
     try {
       console.log(
         `Order API was called to add new Order ${util.inspect(req.body)}`
@@ -19,7 +19,7 @@ export const defineRoutes = (expressApp: express.Application) => {
   });
 
   // get existing order by id
-  router.get("/:id", async (req, res, next) => {
+  router.get('/:id', async (req, res, next) => {
     console.log(`Order API was called to get user by id ${req.params.id}`);
     const response = await newOrderUseCase.getOrder(req.params.id);
 
@@ -32,11 +32,11 @@ export const defineRoutes = (expressApp: express.Application) => {
   });
 
   // delete order by id
-  router.delete("/:id", async (req, res, next) => {
+  router.delete('/:id', async (req, res, next) => {
     console.log(`Order API was called to delete order ${req.params.id}`);
     await newOrderUseCase.deleteOrder(req.params.id);
     res.status(204).end();
   });
 
-  expressApp.use("/order", router)
+  expressApp.use('/order', router);
 };

@@ -1,5 +1,5 @@
-import { ajv } from "@practica/validation";
-import { Static, Type } from "@sinclair/typebox";
+import { ajv } from '@practica/validation';
+import { Static, Type } from '@sinclair/typebox';
 
 export const addOrderSchema = Type.Object({
   deliveryAddress: Type.String(),
@@ -10,13 +10,13 @@ export const addOrderSchema = Type.Object({
 
 export type addOrderDTO = Static<typeof addOrderSchema>;
 
-type editOrderDTO = Pick<addOrderDTO, "deliveryAddress" | "paymentTermsInDays">;
+type editOrderDTO = Pick<addOrderDTO, 'deliveryAddress' | 'paymentTermsInDays'>;
 
 export function getNewOrderValidator() {
-  const validator = ajv.getSchema<addOrderDTO>("new-order");
+  const validator = ajv.getSchema<addOrderDTO>('new-order');
   if (!validator) {
-    ajv.addSchema(addOrderSchema, "new-order");
+    ajv.addSchema(addOrderSchema, 'new-order');
   }
 
-  return ajv.getSchema<addOrderDTO>("new-order")!;
+  return ajv.getSchema<addOrderDTO>('new-order')!;
 }
