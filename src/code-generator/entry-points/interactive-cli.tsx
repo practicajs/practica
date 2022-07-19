@@ -1,17 +1,16 @@
-// @ts-nocheck
 import React from "react";
 import { render, Text, Box, Newline, Spacer } from "ink";
 import MultiSelect from "ink-multi-select"
 import SelectInput from "ink-select-input"
 import { UncontrolledTextInput as TextInput } from "ink-text-input";
 import figlet from "figlet";
-import { generateApp } from "../generation-logic/generate-service";
+import * as generateService from "../generation-logic/generate-service";
 import {
   factorDefaultOptions,
 } from "../generation-logic/generation-options";
 
 const QuestionsWizard = () => {
-  const initialQuestionsWizard = {
+  const initialQuestionsWizard: any = {
     isOver: false,
     finalMessage: "",
     chosenFramework: "",
@@ -21,11 +20,9 @@ const QuestionsWizard = () => {
     showFrameworkQuestion: false,
     showDBTypeQuestion: false,
     showFeatures: false,
-    showFlavourQuestion: false,
-    showFeaturesQuestion: 'none',
     advice: "",
     title: figlet.textSync("Practica", {
-      font: 'Big', //Good options: big, contessa, doom, straight
+      font: "Big", //Good options: big, contessa, doom, straight
       horizontalLayout: "full",
       verticalLayout: "default",
       width: 60,
@@ -152,7 +149,7 @@ const QuestionsWizard = () => {
       targetDirectory: process.cwd(),
       baseFramework: questionsWizard.chosenFramework,
     });
-    await generateApp(generationOptions);
+    await generateService.generateApp(generationOptions);
     setQuestionsWizard({
       ...questionsWizard,
       isOver: true,
@@ -184,7 +181,7 @@ const QuestionsWizard = () => {
   return (
     <Box width={"100%"} alignSelf="center" flexDirection="column">
       <Box flexDirection="row" width="100%" flexBasis="100%">
-        <Text flexBasis="100%" wrap="wrap" alignSelf="center">
+        <Text wrap="wrap">
           {questionsWizard.title}
         </Text>
       </Box>
@@ -196,8 +193,8 @@ const QuestionsWizard = () => {
             borderStyle="classic"
             borderColor="grey"
             height={15}
-            paddingX="3"
-            marginX="3"
+            paddingX={3}
+            marginX={3}
             alignItems="flex-start"
           >
             <Box flexDirection="column">
@@ -250,7 +247,6 @@ const QuestionsWizard = () => {
                     <SelectInput
                       items={flavours}
                       onHighlight={onSelectItemChange}
-                      onSelectItemChange={onSelectItemChange}
                       onSelect={handleFlavourChoose}
                     />
                   </Box>
@@ -281,8 +277,6 @@ const QuestionsWizard = () => {
                     <SelectInput
                       items={databases}
                       onSelect={handleDBChoose}
-                      onChange={onSelectItemChange}
-                      onSelectItemChange={onSelectItemChange}
                       onHighlight={onSelectItemChange}
                     />
                   </Box>
@@ -301,8 +295,6 @@ const QuestionsWizard = () => {
                     <SelectInput
                       items={frameworks}
                       onSelect={handleFrameworkChoose}
-                      onChange={onSelectItemChange}
-                      onSelectItemChange={onSelectItemChange}
                       onHighlight={onSelectItemChange}
                     />
                   </Box>
@@ -317,8 +309,8 @@ const QuestionsWizard = () => {
             borderStyle="classic"
             borderColor="grey"
             height={15}
-            paddingX="5"
-            marginX="3"
+            paddingX={5}
+            marginX={3}
             alignItems="flex-start"
             alignSelf="flex-end"
           >
@@ -340,9 +332,7 @@ const QuestionsWizard = () => {
       {questionsWizard.isOver ? (
         <Box flexDirection="row" width="100%" flexBasis="100%">
           <Text
-            flexBasis="100%"
             wrap="wrap"
-            alignSelf="center"
             color="white"
             bold={true}
           >
