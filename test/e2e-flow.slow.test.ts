@@ -31,12 +31,7 @@ describe("Non-interactive", () => {
 
     // Assert
     const testResult = await execa("npm", ["test"], {
-      cwd: path.join(
-        emptyFolderForATest,
-        "default-app-name",
-        "services",
-        "order-service"
-      ),
+      cwd: path.join(emptyFolderForATest, "default-app-name"),
     });
 
     expect(testResult.exitCode).toBe(0);
