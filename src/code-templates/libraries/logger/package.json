@@ -8,7 +8,7 @@
     "test:dev": "jest --watch --silent --runInBand",
     "test:dev:verbose": "jest --watch",
     "build": "tsc",
-    "installDependencies": "npm install",
+    "installDependencies": "npm install"
   },
   "repository": {
     "type": "git",
