@@ -18,7 +18,7 @@ Note: This is a shortened guide that suits those are willing to quickly contribu
 
 ## The main internals tiers (in a nutshell)
 
-For a quick start, you don't neccesserily need to understand the entire codebase. Typically, your contribution will fall under one of these three categories:
+For a quick start, you don't necessarily need to understand the entire codebase. Typically, your contribution will fall under one of these three categories:
 
 ### Option 1 - External or configuration change
 
@@ -30,7 +30,7 @@ If you simply mean to edit things beyond the code - There is no need to delve in
 
 **Code and CLI to get the user preferences and copy the right code to her computer**
 
-Here you will find CLI, UI, and logic to generate the right code. We run our own custom code to go through the code-template foler and filter out parts/files based on the user preferences. For example, should she ask NOT to get a GitHub Actions file - The generator will remove this file from the output
+Here you will find CLI, UI, and logic to generate the right code. We run our own custom code to go through the code-template folder and filter out parts/files based on the user preferences. For example, should she ask NOT to get a GitHub Actions file - The generator will remove this file from the output
 
 How to work with it?
 

@@ -1,44 +1,44 @@
-import axios from 'axios'
-import sinon from 'sinon'
-import nock from 'nock'
-import { startWebServer, stopWebServer } from '../entry-points/api/server'
+import axios from 'axios';
+import sinon from 'sinon';
+import nock from 'nock';
+import { startWebServer, stopWebServer } from '../entry-points/api/server';
 
 // Configuring file-level HTTP client with base URL will allow
 // all the tests to approach with a shortened syntax
-let axiosAPIClient
+let axiosAPIClient;
 
 beforeAll(async () => {
   // ️️️✅ Best Practice: Place the backend under test within the same process
-  const apiConnection = await startWebServer()
+  const apiConnection = await startWebServer();
   const axiosConfig = {
     baseURL: `http://127.0.0.1:${apiConnection.port}`,
     validateStatus: () => true, // Don't throw HTTP exceptions. Delegate to the tests to decide which error is acceptable
-  }
-  axiosAPIClient = axios.create(axiosConfig)
+  };
+  axiosAPIClient = axios.create(axiosConfig);
 
   // ️️️✅ Best Practice: Ensure that this component is isolated by preventing unknown calls
-  nock.disableNetConnect()
-  nock.enableNetConnect('127.0.0.1')
-})
+  nock.disableNetConnect();
+  nock.enableNetConnect('127.0.0.1');
+});
 
 beforeEach(() => {
   // ️️️✅ Best Practice: Start each test with a clean slate
-  nock.cleanAll()
-  sinon.restore()
+  nock.cleanAll();
+  sinon.restore();
 
   nock('http://localhost/user/').get(`/1`).reply(200, {
     id: 1,
     name: 'John',
     terms: 45,
-  })
-})
+  });
+});
 
-afterEach(() => {})
+afterEach(() => {});
 
 afterAll(async () => {
-  nock.enableNetConnect()
-  stopWebServer()
-})
+  nock.enableNetConnect();
+  stopWebServer();
+});
 
 describe('/api', () => {
   describe('DELETE /order', () => {
@@ -49,21 +49,21 @@ describe('/api', () => {
         productId: 2,
         deliveryAddress: '123 Main St, New York, NY 10001',
         paymentTermsInDays: 30,
-      }
+      };
       const deletedOrderId = (
         await axiosAPIClient.post('/order', orderToDelete)
-      ).data.id
+      ).data.id;
 
       // Act
-      await axiosAPIClient.delete(`/order/${deletedOrderId}`)
+      await axiosAPIClient.delete(`/order/${deletedOrderId}`);
 
       // Assert
       const aQueryForDeletedOrder = await axiosAPIClient.get(
         `/order/${deletedOrderId}`
-      )
-      expect(aQueryForDeletedOrder.status).toBe(404)
-    })
-  })
-})
+      );
+      expect(aQueryForDeletedOrder.status).toBe(404);
+    });
+  });
+});
 
-export {}
+export {};

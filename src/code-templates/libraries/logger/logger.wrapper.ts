@@ -1,8 +1,8 @@
-import { Logger, LoggerConfiguration } from './definition'
-import { PinoLogger } from './pino.logger'
+import { Logger, LoggerConfiguration } from './definition';
+import { PinoLogger } from './pino.logger';
 
 export class LoggerWrapper implements Logger {
-  private underlyingLogger: Logger | null = null
+  private underlyingLogger: Logger | null = null;
 
   configureLogger(
     configuration: Partial<LoggerConfiguration>,
@@ -13,34 +13,34 @@ export class LoggerWrapper implements Logger {
         configuration.level || 'info',
         configuration.prettyPrint || false,
         undefined
-      )
+      );
     }
   }
 
   resetLogger() {
-    this.underlyingLogger = null
+    this.underlyingLogger = null;
   }
 
   debug(message: string, ...args: any[]): void {
-    this.configureLogger({}, false)
-    this.underlyingLogger?.debug(message, ...args)
+    this.configureLogger({}, false);
+    this.underlyingLogger?.debug(message, ...args);
   }
 
   error(message: string, ...args: any[]): void {
-    this.configureLogger({}, false)
-    this.underlyingLogger?.error(message, ...args)
+    this.configureLogger({}, false);
+    this.underlyingLogger?.error(message, ...args);
   }
 
   info(message: string, ...args: any[]): void {
     // If never initialized, the set default configuration
-    this.configureLogger({}, false)
-    this.underlyingLogger?.info(message, ...args)
+    this.configureLogger({}, false);
+    this.underlyingLogger?.info(message, ...args);
   }
 
   warning(message: string, ...args: any[]): void {
-    this.configureLogger({}, false)
-    this.underlyingLogger?.warning(message, ...args)
+    this.configureLogger({}, false);
+    this.underlyingLogger?.warning(message, ...args);
   }
 }
 
-export const logger = new LoggerWrapper()
+export const logger = new LoggerWrapper();
