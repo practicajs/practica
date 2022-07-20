@@ -33,10 +33,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # The following is needed because 'npm ci' hoist packages and some of our features
-      # demand a local node_modules as well
-      - name: Install granular dependencies
-        run: npx turbo run installDependencies
+      - name: Install dependencies
+        run: npm i
 
       - name: Test
         run: npx turbo run test

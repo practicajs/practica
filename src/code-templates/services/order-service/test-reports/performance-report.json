@@ -1,6 +1,6 @@
 [
   {
-    "duration": 297,
+    "duration": 245,
     "fullName": "/api GET /order When asked for an existing order, Then should retrieve it and receive 200 response",
     "status": "passed"
   },
@@ -10,28 +10,28 @@
     "status": "passed"
   },
   {
-    "duration": 187,
-    "fullName": "/api DELETE /order When deleting an existing order, Then it should NOT be retrievable",
-    "status": "passed"
-  },
-  {
-    "duration": 165,
+    "duration": 128,
     "fullName": "/api POST /orders When adding a new valid order, Then should get back approval with 200 response",
     "status": "passed"
   },
   {
-    "duration": 26,
+    "duration": 22,
     "fullName": "/api POST /orders When adding a new valid order, Then should be able to retrieve it",
     "status": "passed"
   },
   {
-    "duration": 19,
+    "duration": 18,
     "fullName": "/api POST /orders When adding an order without specifying product, stop and return 400",
     "status": "passed"
   },
   {
     "duration": 7,
     "fullName": "/api POST /orders When the user does not exist, return 404 response",
+    "status": "passed"
+  },
+  {
+    "duration": 155,
+    "fullName": "/api DELETE /order When deleting an existing order, Then it should NOT be retrievable",
     "status": "passed"
   }
 ]

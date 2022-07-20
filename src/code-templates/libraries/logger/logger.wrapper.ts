@@ -6,7 +6,7 @@ export class LoggerWrapper implements Logger {
 
   configureLogger(
     configuration: Partial<LoggerConfiguration>,
-    overrideIfExists: boolean = true
+    overrideIfExists = true
   ): void {
     if (this.underlyingLogger === null || overrideIfExists === true) {
       this.underlyingLogger = new PinoLogger(

@@ -2,7 +2,7 @@
   "name": "@practica/logger",
   "version": "0.0.1-alpha.4",
   "description": "",
-  "main": "dist/logger.wrapper.js",
+  "main": ".dist/logger.wrapper.js",
   "scripts": {
     "test": "jest --forceExit",
     "test:dev": "jest --watch --silent --runInBand",
@@ -22,6 +22,7 @@
     "@types/is-ci": "^3.0.0",
     "@types/jest": "^27.4.1",
     "jest": "^27.5.1",
+    "jest-environment-node": "^27.5.1",
     "nock": "^13.2.4",
     "pino-pretty": "^7.6.1",
     "sinon": "^14.0.0",

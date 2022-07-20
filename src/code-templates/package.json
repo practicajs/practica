@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "lerna run --parallel --scope order-service test",
+    "test": "turbo run test --parallel --continue",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "lerna": "lerna",

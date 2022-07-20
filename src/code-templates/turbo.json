@@ -8,6 +8,7 @@
     "lint": {},
     "installDependencies": {},
     "test": {
+      "dependsOn": ["^build"],
       "outputs": ["test-reports/**"]
     }
   }
