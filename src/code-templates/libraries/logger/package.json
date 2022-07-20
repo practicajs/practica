@@ -9,7 +9,6 @@
     "test:dev:verbose": "jest --watch",
     "build": "tsc",
     "installDependencies": "npm install",
-    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",

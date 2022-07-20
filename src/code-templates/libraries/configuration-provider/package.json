@@ -7,7 +7,6 @@
     "test": "jest",
     "test:dev": "jest --watch --silent",
     "test:dev:verbose": "jest --watch",
-    "prepare": "npm run build",
     "installDependencies": "npm install",
     "build": "tsc"
   },
