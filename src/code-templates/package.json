@@ -10,6 +10,10 @@
     "lerna": "lerna",
     "maintenance:delete-node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
   },
+  "workspaces": [
+    "libraries/*",
+    "services/*"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -20,6 +24,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "lerna": "^4.0.0"
+    "turbo": "^1.3.1"
   }
 }

@@ -12,7 +12,8 @@
     "db:migrate": "cd data-access && sequelize-cli db:migrate",
     "db:seed": "cd data-access && sequelize-cli db:seed:all",
     "build": "tsc",
-    "build:watch": "tsc --watch"
+    "build:watch": "tsc --watch",
+    "installDependencies": "npm install"
   },
   "author": "Practica team",
   "license": "ISC",

@@ -1,6 +1,7 @@
 # Code build folder
 .dist
 dist
+.turbo
 
 # Logs
 **/.DS_Store

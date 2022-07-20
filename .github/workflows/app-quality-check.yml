@@ -1,4 +1,4 @@
-name: practica-quality-check
+name: app-quality-check
 
 on:
   push:
@@ -7,13 +7,17 @@ on:
   pull_request:
     branches: [main]
 
+defaults:
+  run:
+    working-directory: /src/code-templates
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [16.x, 18.x]
         # Uncomment and replace with current `os` when windows-run bug is fixed
         # os: [ubuntu-latest, windows-latest]
         os: [ubuntu-latest]
@@ -31,17 +35,10 @@ jobs:
 
       - run: npm ci
 
-      - name: Test
-        run: npm test -- --coverage
+      # The following is needed because 'npm ci' hoist packages and some of our features
+      # demand a local node_modules as well
+      - name: Install granular dependencies
+        run: npx turbo run installDependencies
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          directory: ./coverage/
-          env_vars: OS
-          fail_ci_if_error: true
-          files: ./coverage/clover.xml
-          flags: unittests
-          name: codecov-umbrella
-          path_to_write_report: ./coverage/codecov_report.txt
-          verbose: true
+      - name: Test
+        run: npx turbo run test

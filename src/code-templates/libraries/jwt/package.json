@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "jest --forceExit"
+    "test": "jest --forceExit",
+    "installDependencies": "npm install"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^8.5.8",

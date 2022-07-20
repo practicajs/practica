@@ -4,11 +4,9 @@
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "jest",
-    "test:dev": "jest --watch --silent",
-    "test:dev:verbose": "jest --watch",
     "prepare": "npm run build",
-    "build": "tsc"
+    "build": "tsc",
+    "installDependencies": "npm install"
   },
   "repository": {
     "type": "git",

@@ -71,7 +71,7 @@ describe('logger', () => {
 
   test('When configuring for pretty-print, then its written to stdout', async () => {
     // Arrange
-    logger.configureLogger({ level: 'info', prettyPrint: true }, true)
+    logger.configureLogger({ level: 'info', prettyPrint: false }, true)
     const stdoutStub = sinon.stub(process.stdout, 'write')
 
     // Act
