@@ -234,6 +234,7 @@ A million thanks to these great people who have contributed code to our project:
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/AmirAdarGit"><img src="https://avatars.githubusercontent.com/u/44618095?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Amir Adar</b></sub></a><br /><a href="#content-AmirAdarGit" title="Content">🖋</a></td>
+    <td align="center"><a href="https://vaucouleur.com"><img src="https://avatars.githubusercontent.com/u/12293?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Sebastien Vaucouleur</b></sub></a><br /><a href="#content-vaucouleur" title="Content">🖋</a></td>
   </tr>
 </table>
 
