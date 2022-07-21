@@ -177,6 +177,24 @@ Leader IoT provider, part of 'Cox Communication', the 3rd largest cable company 
 <a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
 </td>
 </tr>
+<tr>
+	<td align="center"><img src="./static/images/ariel.jpeg" width="300px" alt=""/><br /><h3>Ariel Steiner</h3><br/>Node.js developer<br/><a href="https://twitter.com/goldbergyoni"><img src="./static/images/twitter-symbol.png" width="16" height="16"></img></a>
+<a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
+</td>
+<td align="center"><img src="./static/images/tomer.png" width="300px" alt=""/><br /><h3>Tomer Kohane</h3><br/>Frontend geek<br/><a href="https://twitter.com/goldbergyoni"><img src="./static/images/twitter-symbol.png" width="16" height="16"></img></a>
+<a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
+</td>
+</tr>
+<tr>
+	<td align="center"><img src="./static/images/dan.png" width="300px" alt=""/><br /><h3>Dan Goldberg</h3><br/>Node.js lead<br/><a href="https://twitter.com/goldbergyoni"><img src="./static/images/twitter-symbol.png" width="16" height="16"></img></a>
+<a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
+</td>
+<td align="center"><img src="./static/images/ron.jpeg" width="300px" alt=""/><br /><h3>Ron Dahan</h3><br/>Node.js expert<br/><a href="https://twitter.com/goldbergyoni"><img src="./static/images/twitter-symbol.png" width="16" height="16"></img></a>
+<a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
+</td>
+</tr>
+
+
 </table>
 
 <br />
