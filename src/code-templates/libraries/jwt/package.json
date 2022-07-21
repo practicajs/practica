@@ -2,7 +2,7 @@
   "name": "jwt",
   "version": "0.0.1",
   "description": "JWT for Practica",
-  "main": "jwt.js",
+  "main": "./.dist/jwt.js",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
