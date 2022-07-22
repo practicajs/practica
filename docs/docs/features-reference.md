@@ -58,7 +58,7 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 ## 3. Testing experience
 ### 3.1 Slow tests detection
 
-**What:** Slow tests automatically shown clearly in the console and exported to csv + json reports
+**What:** Slow tests automatically shown clearly in the console and exported to a json report
 
 **Tags:** #dx #testing
 

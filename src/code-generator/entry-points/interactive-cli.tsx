@@ -1,17 +1,16 @@
-"use strict";
-const React = require("react");
-const { render, Text, Box, Newline, Spacer, useStdout } = require("ink");
-const MultiSelect = require("ink-multi-select").default;
-const SelectInput = require("ink-select-input").default;
-const TextInput = require("ink-text-input").UncontrolledTextInput;
-var figlet = require("figlet");
-const generateService = require("../generation-logic/generate-service");
-const {
+import React from "react";
+import { render, Text, Box, Newline, Spacer } from "ink";
+import MultiSelect from "ink-multi-select"
+import SelectInput from "ink-select-input"
+import { UncontrolledTextInput as TextInput } from "ink-text-input";
+import figlet from "figlet";
+import * as generateService from "../generation-logic/generate-service";
+import {
   factorDefaultOptions,
-} = require("../generation-logic/generation-options");
+} from "../generation-logic/generation-options";
 
 const QuestionsWizard = () => {
-  const initialQuestionsWizard = {
+  const initialQuestionsWizard: any = {
     isOver: false,
     finalMessage: "",
     chosenFramework: "",
@@ -23,7 +22,7 @@ const QuestionsWizard = () => {
     showFeatures: false,
     advice: "",
     title: figlet.textSync("Practica", {
-      font: "big", //Good options: big, contessa, doom, straight
+      font: "Big", //Good options: big, contessa, doom, straight
       horizontalLayout: "full",
       verticalLayout: "default",
       width: 60,
@@ -177,12 +176,12 @@ const QuestionsWizard = () => {
     setQuestionsWizard({ ...questionsWizard, advice: activeAdvice });
   };
 
-  React.useEffect(async () => {}, []);
+  React.useEffect(() => {}, []);
 
   return (
     <Box width={"100%"} alignSelf="center" flexDirection="column">
       <Box flexDirection="row" width="100%" flexBasis="100%">
-        <Text flexBasis="100%" wrap="wrap" alignSelf="center">
+        <Text wrap="wrap">
           {questionsWizard.title}
         </Text>
       </Box>
@@ -194,8 +193,8 @@ const QuestionsWizard = () => {
             borderStyle="classic"
             borderColor="grey"
             height={15}
-            paddingX="3"
-            marginX="3"
+            paddingX={3}
+            marginX={3}
             alignItems="flex-start"
           >
             <Box flexDirection="column">
@@ -216,7 +215,7 @@ const QuestionsWizard = () => {
                   <Spacer />
                   <MultiSelect
                     items={features}
-                    onSelectItem={handleFeaturesChoose}
+                    onSelect={handleFeaturesChoose}
                   />
                 </Box>
                 {questionsWizard.showWarningMessage ? (
@@ -232,7 +231,7 @@ const QuestionsWizard = () => {
                       Postgres. Enter to continue or CTRL + C to exit
                     </Text>
                     <Spacer />
-                    <TextInput value="" onSubmit={warningWasConfirmed} />
+                    <TextInput initialValue="" onSubmit={warningWasConfirmed} />
                   </Box>
                 ) : (
                   <React.Fragment />
@@ -248,7 +247,6 @@ const QuestionsWizard = () => {
                     <SelectInput
                       items={flavours}
                       onHighlight={onSelectItemChange}
-                      onSelectItemChange={onSelectItemChange}
                       onSelect={handleFlavourChoose}
                     />
                   </Box>
@@ -262,7 +260,7 @@ const QuestionsWizard = () => {
                   >
                     <Text color="green">Name of your app or organization:</Text>
                     <Spacer />
-                    <TextInput value="" onSubmit={handleNameChoose} />
+                    <TextInput initialValue="" onSubmit={handleNameChoose} />
                   </Box>
                 ) : (
                   <React.Fragment />
@@ -279,8 +277,6 @@ const QuestionsWizard = () => {
                     <SelectInput
                       items={databases}
                       onSelect={handleDBChoose}
-                      onChange={onSelectItemChange}
-                      onSelectItemChange={onSelectItemChange}
                       onHighlight={onSelectItemChange}
                     />
                   </Box>
@@ -299,8 +295,6 @@ const QuestionsWizard = () => {
                     <SelectInput
                       items={frameworks}
                       onSelect={handleFrameworkChoose}
-                      onChange={onSelectItemChange}
-                      onSelectItemChange={onSelectItemChange}
                       onHighlight={onSelectItemChange}
                     />
                   </Box>
@@ -315,8 +309,8 @@ const QuestionsWizard = () => {
             borderStyle="classic"
             borderColor="grey"
             height={15}
-            paddingX="5"
-            marginX="3"
+            paddingX={5}
+            marginX={3}
             alignItems="flex-start"
             alignSelf="flex-end"
           >
@@ -338,9 +332,7 @@ const QuestionsWizard = () => {
       {questionsWizard.isOver ? (
         <Box flexDirection="row" width="100%" flexBasis="100%">
           <Text
-            flexBasis="100%"
             wrap="wrap"
-            alignSelf="center"
             color="white"
             bold={true}
           >
