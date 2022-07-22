@@ -30,7 +30,8 @@ export const jwtVerifierMiddleware = (options: JWTOptions) => {
     }
 
     jwt.verify(token, options.secret, (err: any, jwtContent: any) => {
-      // TODO use logger to report the error here
+      // @todo: use logger and error handler here
+      console.log(err)
 
       if (err) {
         return res.sendStatus(401)

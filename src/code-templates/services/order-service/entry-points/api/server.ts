@@ -3,10 +3,11 @@ import { logger } from '@practica/logger'
 import { AddressInfo } from 'net'
 import express from 'express'
 import bodyParser from 'body-parser'
-import { defineRoutes } from './routes'
 import { errorHandler } from '@practica/error-handling'
 import * as configurationProvider from '@practica/configuration-provider'
+import { jwtVerifierMiddleware } from '@practica/jwt-token-verifier'
 import configurationSchema from '../../config'
+import { defineRoutes } from './routes'
 
 let connection: Server
 
@@ -17,6 +18,11 @@ async function startWebServer(): Promise<AddressInfo> {
   configurationProvider.initialize(configurationSchema)
   const expressApp = express()
   expressApp.use(bodyParser.json())
+  expressApp.use(
+    jwtVerifierMiddleware({
+      secret: configurationProvider.getValue('jwtTokenSecret'),
+    })
+  )
   defineRoutes(expressApp)
   defineErrorHandler(expressApp)
   const APIAddress = await openConnection(expressApp)
@@ -52,7 +58,7 @@ function defineErrorHandler(expressApp: express.Application) {
   expressApp.use(async (error, req, res, next) => {
     if (typeof error === 'object') {
       if (error.isTrusted === undefined || error.isTrusted === null) {
-        error.isTrusted = true //Error during a specific request is usually not catastrophic and should not lead to process exit
+        error.isTrusted = true // Error during a specific request is usually not catastrophic and should not lead to process exit
       }
     }
     await errorHandler.handleError(error)
