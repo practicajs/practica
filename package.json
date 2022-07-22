@@ -58,7 +58,7 @@
     "prompts": "^2.4.2",
     "react": "^17.0.2",
     "terminal-image": "^1.2.1",
-    "terminal-image-cli": "^1.1.0"
+    "terminal-image-cli": "^2.0.0"
   },
   "devDependencies": {
     "@types/figlet": "^1.5.4",
