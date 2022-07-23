@@ -1,6 +1,6 @@
 {
   "name": "order-service",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An example Node.js app that is packed with best practices",
   "main": "start.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@practica/configuration-provider": "^0.0.1-alpha.3",
-    "@practica/error-handling": "^0.0.1-alpha.4",
+    "@practica/error-handling": "^0.0.1",
     "@practica/logger": "^0.0.1-alpha.4",
     "@practica/validation": "^0.0.1-alpha.1",
     "@types/amqplib": "^0.8.2",

@@ -38,7 +38,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/12605830?v=4",
       "profile": "https://github.com/itainoam",
       "contributions": [
-        "code"
+        "code",
+        "projectManagement"
       ]
     },
     {
@@ -212,6 +213,33 @@
       "profile": "https://github.com/mojcaostir",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "evbambly",
+      "name": "evbambly",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45696895?v=4",
+      "profile": "https://github.com/evbambly",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "AmirAdarGit",
+      "name": "Amir Adar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44618095?v=4",
+      "profile": "https://github.com/AmirAdarGit",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "vaucouleur",
+      "name": "Sebastien Vaucouleur",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12293?v=4",
+      "profile": "https://vaucouleur.com",
+      "contributions": [
+        "content"
       ]
     }
   ],

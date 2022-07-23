@@ -2,16 +2,16 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     // ✅ Best Practice: Seed only metadata and not test record, read "Dealing with data" section for further information
     await queryInterface.bulkInsert(
-      "Countries",
+      'Countries',
       [
         {
-          name: "Italy",
+          name: 'Italy',
         },
         {
-          name: "USA",
+          name: 'USA',
         },
         {
-          name: "India",
+          name: 'India',
         },
       ],
       {}

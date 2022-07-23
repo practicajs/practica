@@ -7,18 +7,29 @@ module.exports = {
     'airbnb-base',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier'
+    'prettier',
   ],
+  ignorePatterns: ['**/dist/*', '**/node_modules/*'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: '2021',
     sourceType: 'module',
   },
-  plugins: [
-    '@typescript-eslint',
-    'prettier'
-  ],
+  plugins: ['@typescript-eslint', 'prettier'],
   rules: {
-    'prettier/prettier': 2
+    'prettier/prettier': 'error',
+    'consistent-return': 'warn',
+    'no-return-await': 'warn',
+    'no-use-before-define': 'warn',
+    'no-underscore-dangle': 'warn',
+    'no-param-reassign': 'warn',
+    'no-shadow': 'warn',
+    'import/extensions': 'warn',
+    'import/prefer-default-export': 'warn',
+    'import/no-extraneous-dependencies': 'warn',
+    'import/no-unresolved': 'warn',
+    'import/no-import-module-exports': 'warn',
+    '@typescript-eslint/no-empty-function': 'warn',
+    '@typescript-eslint/ban-ts-comment': 'warn',
   },
 };
