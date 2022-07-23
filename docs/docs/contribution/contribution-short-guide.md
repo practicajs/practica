@@ -97,6 +97,10 @@ npm run test:dev
 2. Optional: Design - If you're doing something that is not straightforward, share your high-level approach to this within the issue
 3. PR - Once you're done, run the tests locally then PR to main. Ensure all checks pass. If you introduced a new feature - Update the docs
 
+## Commit standards
+
+ Commit messages must follow [conventional commit guidelines](https://www.conventionalcommits.org/en/v1.0.0/#summary), read the full guide for more info.
+
 ## Development machine setup
 
 ✅ Ensure Node, Docker and [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) are installed

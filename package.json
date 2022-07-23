@@ -19,7 +19,8 @@
     "copy-templates": "rsync -av --exclude '*node_modules*' ./src/code-templates/ ./.dist/src/code-templates",
     "build:watch": "tsc --watch",
     "start:cli": "node ./.dist/bin/cli.js interactive",
-    "publish:build": "npm run build && npm publish ./.dist --access public"
+    "publish:build": "npm run build && npm publish ./.dist --access public",
+    "prepare": "is-ci || husky install"
   },
   "repository": {
     "type": "git",
@@ -61,11 +62,15 @@
     "terminal-image-cli": "^1.1.0"
   },
   "devDependencies": {
+    "is-ci": "2.0.0",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@types/figlet": "^1.5.4",
     "@types/jest": "^27.4.1",
     "@types/prettier": "^2.4.4",
     "@types/sinon": "^10.0.11",
     "execa": "^5.1.1",
+    "husky": "8.0.1",
     "jest": "^27.5.1",
     "jest-watch-suspend": "^1.1.2",
     "jest-watch-typeahead": "^1.1.0",

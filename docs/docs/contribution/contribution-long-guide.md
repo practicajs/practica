@@ -187,3 +187,20 @@ npm t
 ## Code structure
 
 Soon
+
+## Commit standards
+
+ Commit messages must follow [conventional commit guidelines](https://www.conventionalcommits.org/en/v1.0.0/#summary) (this is enforced by commitlint so don't worry about making a mistake).
+ You must choose a commit message prefix from [these options](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum).
+ 
+ This feature helps us create automatic release notes, packages versions and change logs.
+
+Commit Message examples:
+
+ ```sh
+ fix: prevent racing of requests
+ ```
+
+ ```sh
+ docs: correct spelling of CHANGELOG
+ ```

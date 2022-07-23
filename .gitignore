@@ -111,7 +111,6 @@ dist
 # TernJS port file
 .tern-port
 
-
 # Editor files
 .idea
 
@@ -123,3 +122,5 @@ output-folders-for-testing
 
 # Jest joint reports directory
 test-reports
+# .vscode
+.vscode/launch.json
