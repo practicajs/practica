@@ -17,15 +17,15 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --severity-threshold=high --sarif-file-output=~/sarif/sca.sarif
           command: test
+          args: --all-projects --severity-threshold=high --sarif-file-output="~/sarif/sca.sarif"
       - name: Run Snyk Static Code Analysis
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --severity-threshold=high --sarif-file-output=~/sarif/sast.sarif
           command: code
+          args: --severity-threshold=high --sarif-file-output="~/sarif/sast.sarif"
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
         with:
