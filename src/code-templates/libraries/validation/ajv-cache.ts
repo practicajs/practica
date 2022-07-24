@@ -5,6 +5,6 @@ import AJV from 'ajv';
 
 const ajv = new AJV();
 ajv.addKeyword('kind');
-ajv.addKeyword('modifier');
+ajv.addKeyword('modifier')
 
 export { ajv };
