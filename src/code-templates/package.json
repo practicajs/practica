@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "turbo run test --parallel --continue",
+    "test": "turbo run test --parallel",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "lerna": "lerna",
