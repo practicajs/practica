@@ -43,7 +43,7 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          directory: ./services/order-service/test-reports/coverage
+          directory: ./src/code-templates/services/order-service/test-reports/coverage
           env_vars: OS
           fail_ci_if_error: true
           flags: app
