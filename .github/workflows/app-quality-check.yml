@@ -1,4 +1,4 @@
-name: practica-quality-check
+name: app-quality-check
 
 on:
   push:
@@ -7,14 +7,18 @@ on:
   pull_request:
     branches: [main]
 
+defaults:
+  run:
+    working-directory: ./src/code-templates
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
-        # Uncomment and replace with current `os` when windows-run bug is fixed
+        node-version: [16.x, 18.x]
+        # Uncomment and replace this with current `os` when windows-run bug is fixed
         # os: [ubuntu-latest, windows-latest]
         os: [ubuntu-latest]
 
@@ -27,26 +31,21 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
+          cache: "npm"
           node-version: ${{ matrix.node-version }}
 
-      - run: npm ci
+      - name: Install root dependencies
+        run: npm i
 
-      - name: Run tests and generate coverage report
-        uses: mattallty/jest-github-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          test-command: 'npm test'
-          coverage-comment: false
+      - name: Test all packages
+        run: npx turbo run test
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          directory: ./coverage/
+          directory: ./src/code-templates/services/order-service/test-reports/coverage
           env_vars: OS
           fail_ci_if_error: true
-          files: ./coverage/clover.xml
-          flags: unittests
+          flags: app
           name: codecov-umbrella
-          path_to_write_report: ./coverage/codecov_report.txt
           verbose: true

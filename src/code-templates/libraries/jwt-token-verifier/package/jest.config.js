@@ -17,16 +17,18 @@ module.exports = {
   // clearMocks: false,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
+  collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: ["**/code-generator/*.{ts,tsx}", "!**/test/**"],
+  // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "test-reports/coverage",
+  coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  //coveragePathIgnorePatterns: ["/node_modules/", "**/test/**"],
+  // coveragePathIgnorePatterns: [
+  //   "/node_modules/"
+  // ],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
@@ -52,10 +54,10 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  // globalSetup: undefined,
+  // globalSetup: "./test/global-setup.js",
 
   // A path to a module which exports an async function that is triggered once after all test suites
-  // globalTeardown: undefined,
+  // globalTeardown: "./test/global-teardown.js",
 
   // A set of global variables that need to be available in all test environments
   // globals: {},
@@ -85,13 +87,13 @@ module.exports = {
   // modulePathIgnorePatterns: [],
 
   // Activates notifications for test results
-  // notify: false,
+  notify: true,
 
   // An enum that specifies notification mode. Requires { notify: true }
-  // notifyMode: "failure-change",
+  notifyMode: "change",
 
   // A preset that is used as a base for Jest's configuration
-  preset: "ts-jest",
+  //preset: "ts-jest",
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -135,7 +137,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-node",
+  testEnvironment: "node",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -144,22 +146,10 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  testMatch: ["**/?(*.)+(spec|test).[tj]s?(x)"],
+  testMatch: ["**/*.test.ts"],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: [
-    "/node_modules/",
-    "/code-templates/",
-    "/basic-app/",
-    "/.dist/",
-    "/output-folders-for-testing/",
-  ],
-
-  watchPlugins: [
-    "jest-watch-typeahead/filename",
-    "jest-watch-typeahead/testname",
-    "jest-watch-suspend",
-  ],
+  testPathIgnorePatterns: ["/node_modules/"],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -177,7 +167,7 @@ module.exports = {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  transform: { "^.+\\.(t|j)s$": "ts-jest" },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [

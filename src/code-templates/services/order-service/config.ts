@@ -1,6 +1,13 @@
 // ️️️✅ Best Practice: Store configuration in a self-explanatory, strongly typed and hierarchical store
 
 export default {
+  jwtTokenSecret: {
+    doc: 'The JWT token signing algorithm secret',
+    format: 'String',
+    default: 'just-a-default-secret',
+    nullable: false,
+    env: 'JWT_TOKEN_SECRET',
+  },
   port: {
     doc: 'The API listening port. By default is 0 (ephemeral) which serves as a dynamic port for testing purposes. For production use, a specific port must be assigned',
     format: 'Number',
@@ -54,4 +61,4 @@ export default {
       env: 'DB_NAME',
     },
   },
-};
+}

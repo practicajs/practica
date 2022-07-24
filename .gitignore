@@ -1,6 +1,6 @@
 # Code build folder
 .dist
-dist
+.turbo
 
 # Logs
 **/.DS_Store
@@ -122,4 +122,4 @@ output-folders-for-testing
 .DS_Store
 
 # Jest joint reports directory
-test-reports
+**/test-reports
