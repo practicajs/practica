@@ -20,15 +20,13 @@ module.exports = {
   collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  // collectCoverageFrom: undefined,
+  collectCoverageFrom: ["**/code-generator/*.{ts,tsx}", "!**/test/**"],
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: "test-reports/coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  // coveragePathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  //coveragePathIgnorePatterns: ["/node_modules/", "**/test/**"],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
@@ -158,9 +156,9 @@ module.exports = {
   ],
 
   watchPlugins: [
-    'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname',
-    'jest-watch-suspend'
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname",
+    "jest-watch-suspend",
   ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files

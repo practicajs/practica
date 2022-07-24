@@ -37,8 +37,15 @@ jobs:
       - name: Install root dependencies
         run: npm i
 
-      - name: Install granular dependencies
-        run: npx turbo run installDependencies
-
-      - name: Test
+      - name: Test all packages
         run: npx turbo run test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./src/code-templates/services/order-service/test-reports/coverage
+          env_vars: OS
+          fail_ci_if_error: true
+          flags: app
+          name: codecov-umbrella
+          verbose: true
