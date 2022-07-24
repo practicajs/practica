@@ -40,7 +40,11 @@ jobs:
       - name: Install granular dependencies
         run: npx turbo run installDependencies
 
-      - run: npm test
+      - name: Install granular dependencies
+        run: npx turbo run build
+
+      - name: Test all packages
+        run: npx turbo run test
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
