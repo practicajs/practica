@@ -37,12 +37,6 @@ jobs:
       - name: Install root dependencies
         run: npm i
 
-      - name: Install granular dependencies
-        run: npx turbo run installDependencies
-
-      - name: Install granular dependencies
-        run: npx turbo run build
-
       - name: Test all packages
         run: npx turbo run test
 
