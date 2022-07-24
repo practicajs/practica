@@ -35,5 +35,5 @@ describe("Non-interactive", () => {
     });
 
     expect(testResult.exitCode).toBe(0);
-  }, 100000);
+  }, 150000);
 });
