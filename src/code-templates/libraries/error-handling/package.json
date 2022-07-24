@@ -2,11 +2,11 @@
   "name": "@practica/error-handling",
   "version": "0.0.2",
   "description": "",
-  "main": "dist/error-handling.js",
+  "main": ".dist/error-handling.js",
   "scripts": {
     "test": "jest --runInBand",
     "test:dev": "jest --watch --silent --runInBand",
-    "prepare": "npm run build",
+    "installDependencies": "npm install",
     "build": "tsc"
   },
   "repository": {
