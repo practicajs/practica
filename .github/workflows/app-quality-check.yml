@@ -40,5 +40,20 @@ jobs:
       - name: Install granular dependencies
         run: npx turbo run installDependencies
 
-      - name: Test
-        run: npx turbo run test
+      - name: Run tests and generate coverage report
+        uses: mattallty/jest-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          test-command: "npm test"
+          coverage-comment: false
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./services/order-service/test-reports/coverage
+          env_vars: OS
+          fail_ci_if_error: true
+          flags: app
+          name: codecov-umbrella
+          verbose: true
