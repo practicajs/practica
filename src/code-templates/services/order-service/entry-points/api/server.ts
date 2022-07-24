@@ -5,8 +5,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { errorHandler } from '@practica/error-handling';
 import * as configurationProvider from '@practica/configuration-provider';
-import { defineRoutes } from './routes';
+import { jwtVerifierMiddleware } from '@practica/jwt-token-verifier';
 import configurationSchema from '../../config';
+import { defineRoutes } from './routes';
 
 let connection: Server;
 
@@ -17,6 +18,11 @@ async function startWebServer(): Promise<AddressInfo> {
   configurationProvider.initialize(configurationSchema);
   const expressApp = express();
   expressApp.use(bodyParser.json());
+  expressApp.use(
+    jwtVerifierMiddleware({
+      secret: configurationProvider.getValue('jwtTokenSecret'),
+    })
+  );
   defineRoutes(expressApp);
   defineErrorHandler(expressApp);
   const APIAddress = await openConnection(expressApp);
