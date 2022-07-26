@@ -10,8 +10,6 @@ export const addOrderSchema = Type.Object({
 
 export type addOrderDTO = Static<typeof addOrderSchema>;
 
-type editOrderDTO = Pick<addOrderDTO, 'deliveryAddress' | 'paymentTermsInDays'>;
-
 export function getNewOrderValidator() {
   const validator = ajv.getSchema<addOrderDTO>('new-order');
   if (!validator) {

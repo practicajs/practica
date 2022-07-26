@@ -20,7 +20,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'consistent-return': 'warn',
     'no-return-await': 'warn',
-    'no-use-before-define': 'warn',
+    'no-use-before-define': 'off',
     'no-underscore-dangle': 'warn',
     'no-param-reassign': 'warn',
     'no-shadow': 'warn',
