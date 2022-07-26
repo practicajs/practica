@@ -4,10 +4,9 @@ import * as util from 'util';
 
 let httpServerRef: Http.Server;
 
-// This file simulates real-world error handler that makes this component observable
 const errorHandler = {
-  // Listen to the error events which won't be handled by programmer
-  listenToErrorEvents: (httpServer: Http.Server, options?) => {
+  // Listen to the global process-level error events
+  listenToErrorEvents: (httpServer: Http.Server) => {
     httpServerRef = httpServer;
     process.on('uncaughtException', async (error) => {
       await errorHandler.handleError(error);
@@ -41,21 +40,17 @@ const errorHandler = {
       if (!appError.isTrusted) {
         terminateHttpServerAndExit();
       }
-    } catch (e) {
+    } catch (handlingError: unknown) {
+      // Not using the logger here because it might have failed
       process.stdout.write(
-        'The error handler failed, here is the error handler specific error',
-        e
+        'The error handler failed, here are the handler failure and then the origin error that it tried to handle'
       );
-      process.stdout.write(
-        'The error handler failed, here is the origin that it tried to handle',
-        errorToHandle
-      );
-      // Should we crash here?
+      process.stdout.write(JSON.stringify(handlingError));
+      process.stdout.write(JSON.stringify(errorToHandle));
     }
   },
 };
 
-// better naming option - 'gracefullyExit' or something like that ?
 const terminateHttpServerAndExit = async () => {
   // maybe implement more complex logic here (like using 'http-terminator' library)
   if (httpServerRef) {
@@ -71,10 +66,10 @@ const normalizeError = (errorToHandle: AppError | Error | any): AppError => {
   }
   if (errorToHandle instanceof Error) {
     const appError = new AppError(errorToHandle.name, errorToHandle.message);
-    appError.stack = errorToHandle.stack; // TODO - most primitive solution to keep stackTrace, any other options? maybe add property to AppError like ~'prevStackTrace'
+    appError.stack = errorToHandle.stack;
     return appError;
   }
-  // meaning it could e any type,
+  // meaning it could be any type,
   const inputType = typeof errorToHandle;
   return new AppError(
     'general-error',
@@ -88,7 +83,7 @@ class AppError extends Error {
   constructor(
     public name: string,
     public message: string,
-    public HTTPStatus: number = 500, // TODO - do we want to provide any default value?
+    public HTTPStatus: number = 500,
     public isTrusted = true,
     public cause?: Error | any
   ) {
