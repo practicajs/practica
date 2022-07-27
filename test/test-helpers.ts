@@ -2,7 +2,6 @@ import fsExtra from "fs-extra";
 import path from "path";
 import os from "os";
 
-
 function getRandomFolderPath (basePath: string) {
   const randomFolderName = new Date().getTime().toString();
 
