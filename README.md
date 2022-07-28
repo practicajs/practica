@@ -7,7 +7,7 @@
 <br />
 
 
-❣️ **Alpha stage:** Practica.js is a work-in-progress. We've only recently kicked off. Please revisit by July 2022 🗓
+❣️ **Alpha stage:** Practica.js is a work-in-progress. We've only recently kicked off. Please revisit by August 2022 🗓
 
 ![Discord](/static/images/discord-logo.png) [Discord discussions](https://discord.gg/SrM68BJPqR) | ![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices) | ![Site](/docs/static/img/site-icon.png) [Documentation site](https://practica.dev/)
 
