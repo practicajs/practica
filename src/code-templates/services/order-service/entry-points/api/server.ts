@@ -12,9 +12,12 @@ let connection: Server;
 
 // ️️️✅ Best Practice: API exposes a start/stop function to allow testing control WHEN this should happen
 async function startWebServer(): Promise<AddressInfo> {
-  logger.configureLogger({ prettyPrint: false }, true);
   // ️️️✅ Best Practice: Declare a strict configuration schema and fail fast if the configuration is invalid
   configurationProvider.initialize(configurationSchema);
+  logger.configureLogger(
+    { prettyPrint: configurationProvider.getValue('logger.prettyPrint') },
+    true
+  );
   const expressApp = express();
   expressApp.use(express.urlencoded({ extended: true }));
   expressApp.use(express.json());

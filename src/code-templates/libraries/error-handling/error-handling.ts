@@ -60,7 +60,9 @@ const terminateHttpServerAndExit = async () => {
 };
 
 // The input might won't be 'AppError' or even 'Error' instance, the output of this function will be - AppError.
-const normalizeError = (errorToHandle: AppError | Error | any): AppError => {
+const normalizeError = (
+  errorToHandle: AppError | Error | unknown
+): AppError => {
   if (errorToHandle instanceof AppError) {
     return errorToHandle;
   }
