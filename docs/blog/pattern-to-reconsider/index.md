@@ -76,19 +76,54 @@ await axios.put(`${convict.get(userService.url)}/api/user/${post.userId}/increme
 
 ## 2. Calling a 'fat' service from the API controller
 
-**💁‍♂️ What is it about:** Very often, controllers are thin (great), they delegate the logic to a service. Service is hundred if not thousands line of code
+**💁‍♂️ What is it about:** Consider a reader of our code who wishes to understand the entire *high-level* flow or delve into a very *specific* part. She first lands on the API controller, where requests start. This controller layer, unlike what its name implies, is just an adapter and kept really thin and simple. Great thus far. Then the controller calls a big 'service' with thousands lines of code that represent the entire logic
 
 ```javascript
-// dirty user service
+// user-controller
+router.post('/', async (req, res, next) => {
+    await userService.add(req.body);
+    // Might have here try-catch or error response logic
+}
+
+// user-service
+exports function add(newUser){
+    // Want to understand quickly? Need to understand the entire user service, 1500 loc
+    // It uses technical language and reuse narratives of other flows
+    this.copyMoreFieldsToUser(newUser)
+    const doesExist = this.updateIfAlreadyExists(newUser)
+    if(!doesExist){
+        addToCache(newUser);
+    }
+    // 20 more lines that demand navigating to other functions in order to get the intent
+}
+
+    
 ```
 
-**📊 How popular:** No numbers here but I could confidently say that in *most* of the app that I see, this is the case
+**📊 How popular:** It's hard to pull solid numbers here, I could confidently say that in *most* of the app that I see, this is the case
 
-**🤔 Why it might be wrong:** The reader who tries to understand the high-level logic flow, or focus on specific functionality, must mess with huge file/module first
+**🤔 Why it might be wrong:** We're here to tame complexities. One of the useful techniques, is deferring a complexity to the later stage possible. In this case, the reader's of the code (hopefully) easily skim through the tests and the controller, and then as she lands on the service - she gets all the complexity of the domain and the code although she is not interested in all the details. This is unnecessary complexity
 
-**☀️ Better alternative:** Use 'Use case', a unique type of object that is responsible to summarize in high-level the flow of each feature/interaction. This way, the reader can understand the major pieces *easily*, and can delve into the relevant part without skimming through hundred of lines. Each functionality that the use case invoke, like some calculation, utility, approach to external collaborator is a service. This way, the services are also kept small. code example
+**☀️ Better alternative:** Controller should call a special type of service, a **use-case**, which is responsible to *summarize* the flow in a business and simple language. Each flow/feature is described using a use-case, each contains 4-10 lines of code, that tell the story without technical details. It mostly orchestrates other small services, clients, and repositories who hold all the implementation details. With use cases, the reader can grasp the high-level flow easily, she can now **choose** where she would like to focus. She is now exposed only to necessary complexity. This technique also encourages partitioning the code to the smaller object that the use-case orchestrate. Bonus: By looking at coverage reports, one can tell which features are covered, not just files/functions
 
-Ideas: Encourage breaking down to small services, transactions,     
+```javascript
+// add-order-use-case.js
+export async function addOrder(newOrder: addOrderDTO) {
+  orderValidation.assertOrderIsValid(newOrder);
+  const userWhoOrdered = await userServiceClient.getUserWhoOrdered(newOrder.userId);
+  paymentTermsService.assertPaymentTerms(
+    newOrder.paymentTermsInDays,
+    userWhoOrdered.terms
+  );
+
+  const response = await orderRepository.addOrder(newOrder);
+
+  return response;
+}
+
+```
+
+Ideas: Encourage breaking down to small services, transactions, controller is a bad name, clean architecture, code coverage
 
 ## 3. Nest.js: Wire *everything* with dependency injection
 

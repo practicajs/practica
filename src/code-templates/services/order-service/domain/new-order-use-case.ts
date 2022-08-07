@@ -7,8 +7,8 @@ import { addOrderDTO, getNewOrderValidator } from './order-schema';
 // ️️️✅ Best Practice: Start a flow with a 'use case' function that summarizes the flow in high-level
 // This function should orchestrate multiple services and repositories
 export async function addOrder(newOrder: addOrderDTO) {
-  validateNewOrderRequest(newOrder);
-  const userWhoOrdered = await getUserOrThrowIfNotExist(newOrder.userId);
+  assertOrderIsValid(newOrder);
+  const userWhoOrdered = await assertUserIsEligibleToOrder(newOrder.userId);
   paymentTermsService.determinePaymentTerms(
     newOrder.paymentTermsInDays,
     userWhoOrdered.terms
@@ -19,7 +19,7 @@ export async function addOrder(newOrder: addOrderDTO) {
   return response;
 }
 
-async function getUserOrThrowIfNotExist(userId: number) {
+async function assertUserIsEligibleToOrder(userId: number) {
   const userVerificationRequest = await axios.get(
     `http://localhost/user/${userId}`,
     {
@@ -38,7 +38,7 @@ async function getUserOrThrowIfNotExist(userId: number) {
   return userVerificationRequest.data;
 }
 
-function validateNewOrderRequest(newOrderRequest: addOrderDTO) {
+function assertOrderIsValid(newOrderRequest: addOrderDTO) {
   const AjvSchemaValidator = getNewOrderValidator();
   const isValid = AjvSchemaValidator(newOrderRequest);
   if (!isValid) {
