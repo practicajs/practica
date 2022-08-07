@@ -46,10 +46,10 @@ function validateNewOrderRequest(newOrderRequest: addOrderDTO) {
   }
 }
 
-export const deleteOrder = async function (userId) {
+export async function deleteOrder(userId) {
   return await orderRepository.deleteOrder(userId);
-};
+}
 
-export const getOrder = async function (userId) {
+export async function getOrder(userId) {
   return await orderRepository.getOrderById(userId);
-};
+}

@@ -33,7 +33,7 @@ async function startWebServer(): Promise<AddressInfo> {
 }
 
 async function stopWebServer() {
-  return new Promise<void>((resolve, reject) => {
+  return new Promise<void>((resolve) => {
     if (connection !== undefined) {
       connection.close(() => {
         resolve();
@@ -45,7 +45,7 @@ async function stopWebServer() {
 async function openConnection(
   expressApp: express.Application
 ): Promise<AddressInfo> {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     // ️️️✅ Best Practice: Allow a dynamic port (port 0 = ephemeral) so multiple webservers can be used in multi-process testing
     const portToListenTo = configurationProvider.getValue('port');
     const webServerPort = portToListenTo || 0;
@@ -59,14 +59,9 @@ async function openConnection(
 
 function handleRouteErrors(expressApp: express.Application) {
   expressApp.use(
-    async (
-      error: any,
-      req: express.Request,
-      res: express.Response,
-      next: express.NextFunction
-    ) => {
-      if (typeof error === 'object') {
-        if (error.isTrusted === undefined || error.isTrusted === null) {
+    async (error: unknown, req: express.Request, res: express.Response) => {
+      if (error instanceof AppError) {
+        if (error?.isTrusted === undefined || error.isTrusted === null) {
           error.isTrusted = true; // Error during a specific request is usually not fatal and should not lead to process exit
         }
       }

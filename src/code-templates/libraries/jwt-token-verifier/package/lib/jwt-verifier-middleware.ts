@@ -1,46 +1,50 @@
-import jwt from 'jsonwebtoken'
+import jwt, { VerifyErrors } from 'jsonwebtoken';
 
 export type JWTOptions = {
-  secret: string
-}
+  secret: string;
+};
 
 export const jwtVerifierMiddleware = (options: JWTOptions) => {
   // 🔒 TODO - Once your project is off a POC stage, change your JWT flow to async using JWKS
   // Read more here: https://www.npmjs.com/package/jwks-rsa
   const middleware = (req, res, next) => {
     const authenticationHeader =
-      req.headers.authorization || req.headers.Authorization
+      req.headers.authorization || req.headers.Authorization;
 
     if (!authenticationHeader) {
-      return res.sendStatus(401)
+      return res.sendStatus(401);
     }
 
-    let token: string
+    let token: string;
 
     // A token comes in one of two forms: 'token' or 'Bearer token'
-    const authHeaderParts = authenticationHeader.split(' ')
+    const authHeaderParts = authenticationHeader.split(' ');
     if (authHeaderParts.length > 2) {
       // It should have 1 or 2 parts (separated by space), the incoming string is not supported
-      return res.sendStatus(401)
+      return res.sendStatus(401);
     }
     if (authHeaderParts.length === 2) {
-      token = authHeaderParts[1]
+      token = authHeaderParts[1];
     } else {
-      token = authenticationHeader
+      token = authenticationHeader;
     }
 
-    jwt.verify(token, options.secret, (err: any, jwtContent: any) => {
-      // @todo: use logger and error handler here
-      console.log(err)
+    jwt.verify(
+      token,
+      options.secret,
+      (err: VerifyErrors | null, jwtContent: any) => {
+        // @todo: use logger and error handler here
+        console.log(err);
 
-      if (err) {
-        return res.sendStatus(401)
+        if (err) {
+          return res.sendStatus(401);
+        }
+
+        req.user = jwtContent.data;
+
+        next();
       }
-
-      req.user = jwtContent.data
-
-      next()
-    })
-  }
-  return middleware
-}
+    );
+  };
+  return middleware;
+};

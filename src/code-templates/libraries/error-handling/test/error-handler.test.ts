@@ -10,7 +10,9 @@ beforeEach(() => {
 describe('handleError', () => {
   test('When uncaughtException emitted, error handled should catch and handle the error properly', () => {
     // Arrange
-    const httpServerMock = { close: () => {} } as Server;
+    const httpServerMock = {
+      close: () => undefined,
+    } as Server;
     const loggerStub = sinon.stub(logger, 'error');
     errorHandler.listenToErrorEvents(httpServerMock);
     const errorName = 'mocking an uncaught exception';
@@ -77,7 +79,7 @@ describe('handleError', () => {
     undefined,
     NaN,
     '🐥',
-    () => {},
+    () => undefined,
   ])(
     'When handling an Error instance, should log an AppError instance after receiving unknown error of multiple types',
     (unknownErrorValue) => {

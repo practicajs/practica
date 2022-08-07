@@ -1,7 +1,7 @@
 import { pino, Logger as PinoLoggerImpl, DestinationStream } from 'pino';
 import { LOG_LEVELS, Logger } from './definition';
 
-export class PinoLogger implements Logger {
+export default class PinoLogger implements Logger {
   private readonly logger: PinoLoggerImpl;
 
   constructor(

@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt, { VerifyErrors } from 'jsonwebtoken';
 
 export type JWTOptions = {
   secret: string;
@@ -29,17 +29,21 @@ export const jwtVerifierMiddleware = (options: JWTOptions) => {
       token = authenticationHeader;
     }
 
-    jwt.verify(token, options.secret, (err: any, jwtContent: any) => {
-      // TODO use logger to report the error here
+    jwt.verify(
+      token,
+      options.secret,
+      (err: VerifyErrors | null, jwtContent: any) => {
+        // TODO use logger to report the error here
 
-      if (err) {
-        return res.sendStatus(401);
+        if (err) {
+          return res.sendStatus(401);
+        }
+
+        req.user = jwtContent.data;
+
+        next();
       }
-
-      req.user = jwtContent.data;
-
-      next();
-    });
+    );
   };
   return middleware;
 };
