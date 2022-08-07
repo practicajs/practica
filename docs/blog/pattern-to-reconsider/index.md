@@ -21,28 +21,65 @@ Am I sure that these patterns are wrong? No, I'm not. The important drill here i
 
 ## 1. Dotenv as your configuration source
 
-**💁‍♂️ What is it about:** A crazily popular technique is to store environment variables in .env file and than later using the library dotenv read them from within the code
+**💁‍♂️ What is it about:** A super popular technique in which the app configurable values (e.g., DB user name) are stored in a simple text file. Then, when the app loads, the dotenv library sets all the text file values as environment variables so the code can read those
+
 
 ```javascript
+// .env file
+USER_SERVICE_URL=https://users.myorg.com
+
+//start.js
 require('dotenv').config();
-console.log(process.env.DB_USER_NAME);
+
+//blog-post-service.js
+repository.savePost(post);
+//update the user number of posts, read the users service URL from an environment variable
+await axios.put(`${process.env.USER_SERVICE_URL}/api/user/${post.userId}/incrementPosts`)
+
 ```
 
 **📊 How popular:** 21,806,137 downloads/week!
 
-**🤔 Why it might be wrong:** It's very intuitive and easy to start with, it just lacks fundamental features and metadata that will result in developers doing flick-flacks later. fail-fast/doc/default/hierarchical/, see Node.js best practices number 8 - Fail fast
+**🤔 Why it might be wrong:** Dotenv is so easy and intuitive to start with so one easily overlook fundamental features: It's hard to infer the configuration schema and realize the reason and typing of each key. Consequently, there is no built-in way to fail fast when a mandatory key is missing (a flow might fail after already started and doing side-effects). In the example above, the blog post will be saved to DB and only then too late the code will realize that a mandatory key is missing leaving the app hanging in an invalid state. On top of this, in the precense of many keys, it's not possible to organize them hierarchically. If not enough, it encourages developers to commit this .env file which might contain production values - this happens because there is no clear way to define development defaults (teams usually work around this by committing .env.example file and then asking whomever pulls code to rename this file manually. If they remember of course)
 
-**☀️ Better alternative:** practica.js comparison, convict code example
 
-Ideas: -
+**☀️ Better alternative:** Some configuration libraries provide out of the box solution to all of these needs, mostly a clear schema and the possibility to validate early and fail if needed. See comparison of options here. One of the better alternatives is 'convict', here is the same example, hopefully better:
+
+```javascript
+// config.js
+export default {
+  userService: {
+    url: {
+        // Hierarchical, documented and strongly typed 👇
+        doc: 'The URL of the user management service including a trailing slash',
+        format: 'url',
+        default: 'http://localhost:4001',
+        nullable: false,
+        env: 'USER_SERVICE_URL',
+        }
+  },
+  //more keys here
+}
+
+//start.js
+import convict from 'convict';
+import configSchema from 'config';
+convict(configSchema);
+// Fail fast!
+convictConfigurationProvider.validate();
+
+//blog-post.js
+repository.savePost(post);
+// Will never arrive here if the URL is not set
+await axios.put(`${convict.get(userService.url)}/api/user/${post.userId}/incrementPosts`)
+```
 
 ## 2. Calling a 'fat' service from the API controller
 
 **💁‍♂️ What is it about:** Very often, controllers are thin (great), they delegate the logic to a service. Service is hundred if not thousands line of code
 
 ```javascript
-require('dotenv').config();
-console.log(process.env.DB_USER_NAME);
+// dirty user service
 ```
 
 **📊 How popular:** No numbers here but I could confidently say that in *most* of the app that I see, this is the case
@@ -51,7 +88,7 @@ console.log(process.env.DB_USER_NAME);
 
 **☀️ Better alternative:** Use 'Use case', a unique type of object that is responsible to summarize in high-level the flow of each feature/interaction. This way, the reader can understand the major pieces *easily*, and can delve into the relevant part without skimming through hundred of lines. Each functionality that the use case invoke, like some calculation, utility, approach to external collaborator is a service. This way, the services are also kept small. code example
 
-Ideas: The complexity tree
+Ideas: Encourage breaking down to small services, transactions,     
 
 ## 3. Nest.js: Wire *everything* with dependency injection
 
@@ -146,7 +183,7 @@ catch(error){
 
 Code example of catch and handler
 
-## 8. Reading environment variables in all the code layers
+## 8. Package.lock OR Reading environment variables in all the code layers
 
 The Monorepo market is hot like fire. Weirdly, now when the demand for Monoreps is exploding, one of the leading libraries - Lerna- has just retired. When looking closely, it might not be just a coincidence - With so many disruptive and shiny features brought on by new vendors, Lerna 
 
