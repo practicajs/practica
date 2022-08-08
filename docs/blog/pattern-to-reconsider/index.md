@@ -257,7 +257,7 @@ Code example of logger
 
 ## 7. Logging from a catch clause
 
-**💁‍♂️ What is it about:** You catch an error somewhere deep in the code (not on the route level), then call logger.error to make this error observable
+**💁‍♂️ What is it about:** You catch an error somewhere deep in the code (not on the route level), then call logger.error to make this error observable. Feels simple and necessary
 
 ```javascript
 try{
@@ -270,11 +270,19 @@ catch(error){
 
 **📊 How popular:** Hard to put my hands on numbers but it's quite popular, right?
 
-**🤔 Why it might be wrong:** Error should get handled/logged in a central location. Often do I see various catch clauses that handle the error in a different way with different tags for example. This behaviour is also likely to change, consider incrementing a metric on every error, and keeping this DRY is valuable here. Other than that, there should be a motivation to put a catch clause instead of letting the error bubble down to the route/entry-point. It's useful if we wish to change the flow based on the error or enrich the error with more information - this is not the case here
+**🤔 Why it might be wrong:** First, errors should get handled/logged in a central location. Error handling is a critical path, without a centralized and unified behaviour, it's easy for different catch clauses along the code to behave differently. For example, a request might arise to tag all errors with certain metadata, or on top of logging to also fire a monitoring metric - applying this in ~100 different locations is not a walk in the park. Second, catch clauses should be minimized to very specific scenarios. By default, the natural flow of an error is bubbling down to the route/entry-point - from there is will get forwarded to the error handler. Catch clauses should serve two very specific needs: When one wishes to change the flow based on the error or enrich the error with more information (which is not the case in this example)
 
-**☀️ Better alternative:** Avoid catch, let the error bubble down the layer, unless the error changes the flow or there is value in enriching the error with more context. When deciding to use catch, delegate the handling/logging to your centralized handler
+**☀️ Better alternative:** Let the error bubble down the layer, unless the error changes the flow or there is value in enriching the error with more context. When deciding to use catch, delegate the handling/logging to your centralized handler:
 
-Code example of catch and handler
+```javascript
+try{
+    axios.post('https://thatService.io/api/users);
+}
+catch(error){
+    // ✅ A central location that handles error
+    errorHandler.handle(error, this, {operation: addNewOrder});
+}
+```
 
 ## 8. Package.lock OR Reading environment variables in all the code layers
 
@@ -282,24 +290,35 @@ The Monorepo market is hot like fire. Weirdly, now when the demand for Monoreps 
 
 ## 9. Use Morgan logger for express web requests
 
-**💁‍♂️ What is it about:** In many express, found the following line merely logs the request info
+**💁‍♂️ What is it about:** In many express apps, you are likely to find a pattern that is being copy-pasted for ages - Using Morgan logger to log requests information:
 
 ```javascript
-try{
-    axios.post('https://thatService.io/api/users);
-}
-catch(error){
-    logger.error(error, this, {operation: addNewOrder});
-}
+const express = require('express')
+const morgan = require('morgan')
+
+const app = express()
+
+app.use(morgan('combined'))
 ```
 
 **📊 How popular:** 2,901,574 downloads/week
 
-**🤔 Why it might be wrong:** You already have your main logger, right? Is it Pino? Winston? something else? great. Why deal with and configure yet another logger? 
+**🤔 Why it might be wrong:** Wait a second, you already have your main logger, right? Is it Pino? Winston? something else? great. Why deal with and configure yet another logger?
 
-**☀️ Better alternative:** Use you main logger in a middleware and log the desired request/response properties
+**☀️ Better alternative:** Put your chosen logger in a middleware and log the desired request/response properties:
 
-Code example of logging with Pino
+```javascript
+// ✅ Use your preferred logger for all the tasks
+const logger = require("pino")();
+app.use((req, res, next) => {
+  logger.info(req.url); // choose here more request properties
+  res.on("finish", () => {
+    logger.info(res.statusCode); // choose here more response properties
+  });
+  next();
+});
+
+```
 
 ## 10. having conditional code based on NODE_ENV value
 
