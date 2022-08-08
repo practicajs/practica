@@ -239,21 +239,54 @@ code example
 
 ## 6. Fastify decorate for non request/web utilities
 
-**💁‍♂️ What is it about:** Fastify introduces great patterns, preserves the simplicity of express while bringing more batteries. One thing that got me wondering is the 'decorate' feature which allows placing common utilities/services inside a widely accessible container object:
+**💁‍♂️ What is it about:** Fastify introduces great patterns, I mostly like how it preserves the simplicity of express while bringing more batteries. One thing that got me wondering is the 'decorate' feature which allows placing common utilities/services inside a widely accessible container object. I'm referring here specifically to the case where a cross cutting concern utility/service is being used:
 
 ```javascript
-logger example
+// An example of a utility that is cross-cutting-concern. Could be logger or anything else
+fastify.decorate('metricsService', function (name) {
+  fireMetric: () => {
+    // My code that sends metrics to the monitoring system
+  }
+})
+
+fastify.get('/api/orders', async function (request, reply) {
+  this.metricsService.fireMetric({name: 'new-request'})
+  // Handle the request
+})
+
+// my-business-logic.js
+exports function calculateSomething(){
+  // How to fire a metric?
+}
 ```
 
-It should be noted that 'decorate' allows scoping the access per plugin/area of the system
+It should be noted that 'decoration' is also used to place values (e.g., user) inside a request - this is a slightly different case and sensible
 
 **📊 How popular:** Fastify has 696,122 weekly download and growing rapidly. The decorator concept is part of the framework's core
 
-**🤔 Why it might be wrong:** Some services and utilities serve cross-cutting-concern needs like logger and should be accessible from other layers like domain and DAL. The fastify object is not accessible to this layer, you probably don't want to, req can come from MQ
+**🤔 Why it might be wrong:** Some services and utilities serve cross-cutting-concern needs and should be accessible from other layers like domain and DAL. The fastify object might not accessible to these layers, and you also probably don't want to couple your web framework with you business logic. Consider that some of your business logic and repositories might get invoked from non-REST clients like CRON, MQ and similar - In these cases Fastify won't get involved at all
 
-**☀️ Better alternative:** A good old Node.js module is a standard way to expose functionality. It should be noted that Node.js module won't provide scoped access/configuration per specific routes
+**☀️ Better alternative:** A good old Node.js module is a standard way to expose and consume functionality. Need a singleton? Use the module system caching. Need to instantiate a service with in correlation with some Fastify life-cycle hook (e.g., DB connection on start)? Call it from that Fastify hook
 
-Code example of logger
+```javascript
+// ✅ A simple usage of good old Node.js modules
+// metrics-service.js
+
+exports async function fireMetric(name){
+  // My code that sends metrics to the monitoring system
+}
+
+import {fireMetric} from './metrics-service.js'
+
+fastify.get('/api/orders', async function (request, reply) {
+  metricsService.fireMetric({name: 'new-request'})
+})
+
+// my-business-logic.js
+exports function calculateSomething(){
+  metricsService.fireMetric({name: 'new-request'})
+}
+```
 
 ## 7. Logging from a catch clause
 
