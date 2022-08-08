@@ -1,4 +1,4 @@
----
+  ---
 slug: pattern-to-reconsider
 date: 2022-08-02T10:00
 hide_table_of_contents: true
@@ -188,7 +188,7 @@ import { getHumidity } from './humidity-service.ts';
   }
 ```
 
-Ideas: The complexity tree, good articles, not really di, nest example app
+Ideas: The complexity tree, good articles, not really di, nest example app, YAGNI
 
 ## 4. Passport.js for token authentication
 
@@ -303,7 +303,7 @@ app.use(morgan('combined'))
 
 **📊 How popular:** 2,901,574 downloads/week
 
-**🤔 Why it might be wrong:** Wait a second, you already have your main logger, right? Is it Pino? Winston? something else? great. Why deal with and configure yet another logger?
+**🤔 Why it might be wrong:** Wait a second, you already have your main logger, right? Is it Pino? Winston? something else? great. Why deal with and configure yet another logger? I do appreciate the request domain-specific language (DSL) of Morgan, sweet syntax, does it justify having two loggers?
 
 **☀️ Better alternative:** Put your chosen logger in a middleware and log the desired request/response properties:
 
@@ -311,24 +311,23 @@ app.use(morgan('combined'))
 // ✅ Use your preferred logger for all the tasks
 const logger = require("pino")();
 app.use((req, res, next) => {
-  logger.info(req.url); // choose here more request properties
   res.on("finish", () => {
-    logger.info(res.statusCode); // choose here more response properties
+    logger.info(`${req.url} ${res.statusCode}`);// Add other properties here
   });
   next();
 });
 
 ```
 
-## 10. having conditional code based on NODE_ENV value
+## 10. Having conditional code based on NODE_ENV value
 
-**💁‍♂️ What is it about:** To differentiate between the dev and prod env, it's common to set a environment variable NODE_ENV with "production|test" so various tooling and code can act differently. For example, some templating engines will cache compiled templates only in prod. Other example, different configuration and services something troublesome
+**💁‍♂️ What is it about:** To differentiate between a configuration of development vs production, it's common to set the environment variable NODE_ENV with "production|test". Doing so allows the various tooling to act differently. For example, some templating engines will cache compiled templates only in production. Beyond tooling, custom applications use this to specify behaviours that are unique to the development or production environment:
 
 ```javascript
 if(process.env.NODE_ENV === "production"){
     // This is unlikely to be tested since test runner usually set NODE_ENV=test
     setLogger({stdout: true, prettyPrint: false});
-    // If this branch exists, why not add more different configurations:
+    // If this code branch above exists, why not add more production-only configurations:
     collectMetrics();
 }
 else{
@@ -338,9 +337,10 @@ else{
 
 **📊 How popular:** 5,034,323 code results in GitHub when searching for "NODE_ENV". It doesn't seem like a rare pattern
 
-**🤔 Why it might be wrong:** Anytime your code checks whether it's production, this branch can't be tested and might fail in production. In this example... Additionally, it opens the door to add more logic and configuration to these branches. Theoretically one can set NODE_ENV = "production" in testing but then what's the point in separating?
+**🤔 Why it might be wrong:** Anytime your code checks whether it's production or not, this branch won't get hit by default in some test runner (e.g., Jest set NODE_ENV=test). In *any* test runner, the developer must remember to test for each possible value of this environment  variable. In the example above, 'collectMetrics()' will be tested for the first time in production. Additionally, putting this conditions opens the door to add more differences between production and the developer machine. Theoretically, one can set NODE_ENV = "production" in testing and cover all the branches, but then if you can test the production version, what's the point in separating?
 
-**☀️ Better alternative:** Conceptually, there is one environment - "production", developers should strive for *code* that is identical while the surrounding services like log aggregator, collaborator REST API (things that we anyway don't test) can differ. In the rare cases where the code behaviour must be different, set a flag per functionality and not per environment - this at least discourages setting more functionality in production or testing if/else branch. See example below:
+**☀️ Better alternative:** To avoid having untested code **that you wrote**, the same code must get executed in all environments - no if(production)/else(development) conditions. Inevitably, developers machine are likely to have different surrounding infrastructure like different logging system. We feel comfortable with it because these infrastructural libraries are battle tested and anyway not ours. Practically, we may put different values in the configuration but not in the code. For example, a typical logger emits JSON in production but in development machine it emits 'pretty-print' colorful lines. To meet this, we set ENV VAR that tells whether what logging style we aim for:
+
 
 ```javascript
 //package.json
@@ -350,5 +350,7 @@ else{
 }
 
 //index.js
+//✅ No condition, same code for all the environments. The variations are defined externally in config or deployment files 
 setLogger({prettyPrint: process.env.LOG_PRETTY_PRINT})
 ```
+
