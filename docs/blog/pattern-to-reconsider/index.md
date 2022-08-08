@@ -128,39 +128,97 @@ Ideas: Encourage breaking down to small services, transactions, controller is a 
 ## 3. Nest.js: Wire *everything* with dependency injection
 
 
-**💁‍♂️ What is it about:** You're decorating *every* class *by default* as injectable. Say A, B, C, although internal details - no unit tests, it's still decorated. DI becomes your coding style, just like you're using classes
+**💁‍♂️ What is it about:** If you're doing Nest.js, besides having a powerful framework in your hands, you probably use DI for *everything* and make every class injectable. Say you have a weather-service that depends upon humidity-service, and **there is no requirement to swap** the humidity-service and replace it with some alternative services. You still inject humidity-service into the weather-service. It becomes part of your development style, "why not" you think - I may need to stub it during testing or replace it in the future
 
-```javascript
-require('dotenv').config();
-console.log(process.env.DB_USER_NAME);
+ 
+```typescript
+// humidity-service.ts - not customer facing
+@Injectable()
+export class GoogleHumidityService {
+
+  async getHumidity(when: Datetime): Promise<number> {
+    // Fetches from some specific cloud service
+  }
+}
+
+// weather-service.ts - customer facing
+import { GoogleHumidityService } from './humidity-service.ts';
+
+export type weatherInfo{
+    temperature: number, 
+    humidity: number
+}
+
+export class WeatherService {
+  constructor(private humidityService: GoogleHumidityService) {}
+
+  async GetWeather(when: Datetime): Promise<weatherInfo> {
+    // Fetch temperature from somewhere and then humidity from GoogleHumidityService
+  }
+}
+
+// app.module.ts
+@Module({
+  providers: [GoogleHumidityService, WeatherService],
+})
+export class AppModule {}
 ```
 
-**📊 How popular:** No numbers here but I could confidently say that in *all* of the Nest.js app that I see, this is the case
+**📊 How popular:** No numbers here but I could confidently say that in *all* of the Nest.js app that I've seen, this is the case
 
-**🤔 Why it might be wrong:** DI is not a coding style rather engieering measure that should be used contextually to solve problems. It also has a price that you should consider if worth paying - encapsulation, confusion, slower (Nest.js serverless issue). If you don't need it for a specific class/case, why pay this price? DI is sometimes useful and the right weapon to pull - But it's not always
+**🤔 Why it might be wrong:** Dependency injection is not a priceless coding style rather a pattern that you should pull in the right moment, like an other pattern. Why? because any pattern has its price. What price you ask? First, encapsulation is violated, clients of weather-service are now aware that other providers it uses *internally*, some may get tempted to override it also its not under their responsibility. Second, it's another layer of complexity to learn, maintain and another way to shoot yourself in the legs. StackOverflow ows some of its revenues to Nest.js DI, plenty of discussions try to solve this puzzle (e.g. did you know that in case of circular dependency the order of imports matter?). Third, there is the performance thing - Nest.js for example struggled to provide decent start time for serverless environments and had to introduce [lazy loaded modules](https://docs.nestjs.com/fundamentals/lazy-loading-modules). Don't get me wrong, **in some cases**, there is a clear need to decouple a dependency from its caller, or to allow clients to inject custom implementations (e.g., the strategy pattern) - **In such case**, when there is a value, you may consider whether the *value of DI worth its price*. If you don't have this case, why pay for nothing?
 
-**☀️ Better alternative:** Leanify your engineering approach - avoid using any tool unless serves real-world need immediately. Need to dynamically factor some provider? Use if/else with plain simple JS code, need to mock something? monkey patching is also an option (better clutter test code tha production code, right?). Really have a reason to decouple the factoring of a dependency from the dependant? Use DI!
+**☀️ Better alternative:** 'Leanify' your engineering approach - avoid using any tool unless serves real-world need immediately. Start simple, a dependant class just import its dependency and use it. Facing a situation when there is a need to factor dynamic objects? There are handful of simple patterns, simpler than DI, that you should consider like 'if/else', factory function and more. Singleton are requested? consider techniques with lower costs like the module system with factory function. Need to stub/mock for testing? Monkey patching might be better than DI: better clutter your test code a bit than clutter your production code. Have a strong need to hide from an object where its dependencies are coming from? You sure? Use DI!
 
-Ideas: The complexity tree, good articles, 
+```typescript
+// humidity-service.ts - not customer facing
+  export async function getHumidity(when: Datetime): Promise<number> {
+    // Fetches from some specific cloud service
+  }
 
-## 4. Passport.js for token authorization
+// weather-service.ts - customer facing
+import { getHumidity } from './humidity-service.ts';
 
-
-**💁‍♂️ What is it about:** Typical need to validate JWT token, whether you're the issuer or an external issue like Google/Facebook
-
-```javascript
-require('dotenv').config();
-console.log(process.env.DB_USER_NAME);
+    // ✅ No wiring is happening externally, all is flat and explicit. Simple
+  export async function getWeather(when: Datetime): Promise<number> {
+    // Fetch temperature from somewhere and then humidity from GoogleHumidityService
+    // Nobody needs to know about it, its an implementation details
+    await getHumidity(when);
+     
+  }
 ```
+
+Ideas: The complexity tree, good articles, not really di, nest example app
+
+## 4. Passport.js for token authentication
+
+
+**💁‍♂️ What is it about:** Commonly, you're in a need to issue or/and authenticate JWT tokens. You might also need to allow log-in from *one* single social network like Google/Facebook. When faced with these kind of needs, Node.js developers rush to the glorious library Passport.js like butterflies attracted to light
 
 **📊 How popular:** 1,389,720 weekly downloads
 
-**🤔 Why it might be wrong:** It brings high abstractions that demand learning new concepts, when basic token authentication demands no more than few lines of code. Passport shines when there is a need to support many providers - int this case the abstraction worth its price
+**🤔 Why it might be wrong:** If you're simply tasked with guarding your routes with JWT token - you're just few lines of code shy from ticking the goal. Instead of messing up with a new framework, instead of introducing levels of indirections (you call passport, then it calls you), instead of spending time learning new abstractions - just use one of the simple and reputable JWT parsing libraries like [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) or [fast-jwt](https://github.com/nearform/fast-jwt). Have concerns with the security hardening? Good point, will you get better hardening with direct understanding of your configuration and flow or by hiding things behind a framework? I'm not sure. Also, Passport might take care for hardening the flow, but what about secrets/token managements and DB protection - various cloud services or OSS projects, can tick all of those boxes. Consider also that Passport doesn't aim to handle authorization or user management. It seems to me like many who opt for Passport.js are not fully aware which needs are satisfied and which are left open. All of that said, Passport definitely shines when looking for a quick way to support *many* social login providers
 
-**☀️ Better alternative:** Code it yourself or with the provider library
 
-Ideas: 
+**☀️ Better alternative:** If all you need is a token authentication? These few lines of code below might be all you need, you might also see [practica.js JWT lib example](https://github.com/practicajs/practica/tree/main/src/code-templates/libraries/jwt-token-verifier). You probably need more than this - support async JWT flow with JWKS, securely manage and rotate the secrets and more. In this case, OSS solution like [keycloak](https://github.com/keycloak/keycloak) or commercial options like Auth0[https://github.com/auth0] are alternatives to consider 
 
+```javascript
+// jwt-middleware.js, a simplified version - Refer to Practica.js to see some more corner cases
+const middleware = (req, res, next) => {
+    if(!req.headers.authorization){
+        res.sendStatus(401)
+    }
+
+    jwt.verify(req.headers.authorization, options.secret, (err: any, jwtContent: any) => {
+      if (err) {
+        return res.sendStatus(401);
+      }
+
+      req.user = jwtContent.data;
+
+      next();
+    });
+```
 ## 5. Supertest for integration/API testing
 
 **💁‍♂️ What is it about:** When testing against an API, supertest provides a sweat syntax that can both detect the webserver address, make HTTP call and also assert on the response. A three in one package. 
