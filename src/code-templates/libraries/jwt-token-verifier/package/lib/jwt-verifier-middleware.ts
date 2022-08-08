@@ -24,7 +24,7 @@ export const jwtVerifierMiddleware = (options: JWTOptions) => {
       return res.sendStatus(401);
     }
     if (authHeaderParts.length === 2) {
-      token = authHeaderParts[1];
+      [, token] = authHeaderParts;
     } else {
       token = authenticationHeader;
     }
@@ -32,8 +32,11 @@ export const jwtVerifierMiddleware = (options: JWTOptions) => {
     jwt.verify(
       token,
       options.secret,
+      // TODO: we should remove this any according to the library, jwtContent can not contain data property
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (err: VerifyErrors | null, jwtContent: any) => {
         // @todo: use logger and error handler here
+        // eslint-disable-next-line no-console
         console.log(err);
 
         if (err) {

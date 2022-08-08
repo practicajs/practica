@@ -18,25 +18,22 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
-    'consistent-return': 'warn',
-    'no-use-before-define': 'off',
-    'no-underscore-dangle': 'warn',
-    'no-param-reassign': 'warn',
-    'no-shadow': 'warn',
-    'import/prefer-default-export': 'warn',
-    'import/no-import-module-exports': 'warn',
-    '@typescript-eslint/no-empty-function': 'warn',
     'import/no-extraneous-dependencies': [
       'error',
       { devDependencies: ['**/tests/**', '**/test/**'] },
     ],
     'no-console': ['error', { allow: ['time', 'timeEnd'] }],
-
-    // not sure why we need this if Typescript already enforce it.
+    // not sure why we need this if Typescript already enforces it.
     // If we want to enable these rules, we need use: eslint-import-resolver-typescript
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     // https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/errorhandling/returningpromises.md
     'no-return-await': 'off',
+    // Turn it back on after this being fixed: https://github.com/eslint/eslint/issues/15617
+    'no-restricted-exports': 'off',
+    // TODO: re-validate these decisions
+    'no-param-reassign': 'off',
+    'consistent-return': 'off',
+    'no-use-before-define': 'off',
   },
 };

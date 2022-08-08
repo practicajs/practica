@@ -1,4 +1,4 @@
-import { ajv } from '@practica/validation';
+import ajv from '@practica/validation';
 import { Static, Type } from '@sinclair/typebox';
 
 export const addOrderSchema = Type.Object({
@@ -16,5 +16,5 @@ export function getNewOrderValidator() {
     ajv.addSchema(addOrderSchema, 'new-order');
   }
 
-  return ajv.getSchema<addOrderDTO>('new-order')!;
+  return ajv.getSchema<addOrderDTO>('new-order');
 }

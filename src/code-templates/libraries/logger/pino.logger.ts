@@ -24,19 +24,19 @@ export default class PinoLogger implements Logger {
     this.logger = pino(opts);
   }
 
-  debug(message: string, ...args: any[]): void {
+  debug(message: string, ...args: unknown[]): void {
     this.logger.debug(message, ...args);
   }
 
-  error(message: string, ...args: any[]): void {
+  error(message: string, ...args: unknown[]): void {
     this.logger.error(message, ...args);
   }
 
-  info(message: string, ...args: any[]): void {
+  info(message: string, ...args: unknown[]): void {
     this.logger.info(message, ...args);
   }
 
-  warning(message: string, ...args: any[]): void {
+  warning(message: string, ...args: unknown[]): void {
     this.logger.warn(message, ...args);
   }
 }
