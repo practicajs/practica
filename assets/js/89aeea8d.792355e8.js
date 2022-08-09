@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpractica_docs=self.webpackChunkpractica_docs||[]).push([[779],{5644:function(a){a.exports=JSON.parse('{"allTagsPath":"/blog/tags","name":"fastify","count":1,"permalink":"/blog/tags/fastify"}')}}]);
