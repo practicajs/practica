@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import { Server } from 'http';
 import { logger } from '@practica/logger';
-import { AppError, errorHandler } from '../error-handling';
+import { AppError, errorHandler } from '..';
 
 beforeEach(() => {
   sinon.restore();
@@ -20,10 +20,12 @@ describe('handleError', () => {
     // Act
     process.emit('uncaughtException', errorToEmit);
     // Assert
-    const relevantArguments = loggerStub.firstCall.args[0];
+    const message = loggerStub.firstCall.args[0];
+    const appError = loggerStub.firstCall.args[1];
     expect(loggerStub.callCount).toBe(1);
-    expect(relevantArguments instanceof AppError).toBe(true);
-    expect(relevantArguments).toMatchObject({
+    expect(message).toBe(errorToEmit.message);
+    expect(appError instanceof AppError).toBe(true);
+    expect(appError).toMatchObject({
       name: errorToEmit.name,
       message: errorToEmit.message,
       stack: expect.any(String),
@@ -59,13 +61,16 @@ describe('handleError', () => {
     expect({ loggerCalls: 1 }).toMatchObject({
       loggerCalls: loggerListener.callCount,
     });
-    expect(loggerListener.lastCall.firstArg).toMatchObject({
-      name: 'invalid-input',
-      HTTPStatus: 400,
-      message: 'missing important field',
-      isTrusted: true,
-      stack: expect.any(String),
-    });
+    expect(loggerListener.lastCall.args).toMatchObject([
+      'missing important field',
+      {
+        name: 'invalid-input',
+        HTTPStatus: 400,
+        message: 'missing important field',
+        isTrusted: true,
+        stack: expect.any(String),
+      },
+    ]);
   });
 
   test.each([
@@ -88,13 +93,14 @@ describe('handleError', () => {
       // Act
       errorHandler.handleError(unknownErrorValue);
       // Assert
-      const relevantArguments = loggerStub.firstCall.args[0];
+      const message = loggerStub.firstCall.args[0];
+      const appError = loggerStub.firstCall.args[1];
       expect(loggerStub.callCount).toBe(1);
-      expect(relevantArguments instanceof AppError).toBe(true);
-      expect(relevantArguments.name).toBe('general-error');
-      expect(relevantArguments.message.includes(typeof unknownErrorValue)).toBe(
+      expect(message.includes(typeof unknownErrorValue)).toBe(
         true
       );
+      expect(appError instanceof AppError).toBe(true);
+      expect((appError as AppError).name).toBe('general-error');
     }
   );
 });

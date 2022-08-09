@@ -1,5 +1,5 @@
-import { Logger, LoggerConfiguration } from './definition';
-import PinoLogger from './pino.logger';
+import { Logger, LoggerConfiguration } from '@practica/logger/definition';
+import PinoLogger from '@practica/logger/pino.logger';
 
 export class LoggerWrapper implements Logger {
   private underlyingLogger: Logger | null = null;

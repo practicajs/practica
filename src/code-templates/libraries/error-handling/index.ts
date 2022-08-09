@@ -34,7 +34,7 @@ const errorHandler = {
   handleError: (errorToHandle: unknown) => {
     try {
       const appError: AppError = normalizeError(errorToHandle);
-      logger.error(appError);
+      logger.error(appError.message, appError);
       metricsExporter.fireMetric('error', { errorName: appError.name }); // fire any custom metric when handling error
       // A common best practice is to crash when an unknown error (non-trusted) is being thrown
       if (!appError.isTrusted) {

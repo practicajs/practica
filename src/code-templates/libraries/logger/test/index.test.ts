@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import { logger } from '../logger.wrapper';
+import { logger } from '@practica/logger';
 
 beforeEach(() => {
   sinon.restore();
