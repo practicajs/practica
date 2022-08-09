@@ -1,8 +1,5 @@
 // ️️️✅ Best Practice: Use services for scoped and specific pieces of business logic
-function determinePaymentTerms(
-  requestedTerms: number,
-  userId: number
-) {
+function determinePaymentTerms(requestedTerms: number, userId: number) {
   // In real-world app, more logic and even integrations will come here
   if (userId > 10) {
     return 60;
@@ -10,6 +7,4 @@ function determinePaymentTerms(
   return requestedTerms;
 }
 
-export {
-  determinePaymentTerms,
-}
+export default { determinePaymentTerms };

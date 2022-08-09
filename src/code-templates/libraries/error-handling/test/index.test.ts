@@ -96,9 +96,7 @@ describe('handleError', () => {
       const message = loggerStub.firstCall.args[0];
       const appError = loggerStub.firstCall.args[1];
       expect(loggerStub.callCount).toBe(1);
-      expect(message.includes(typeof unknownErrorValue)).toBe(
-        true
-      );
+      expect(message.includes(typeof unknownErrorValue)).toBe(true);
       expect(appError instanceof AppError).toBe(true);
       expect((appError as AppError).name).toBe('general-error');
     }

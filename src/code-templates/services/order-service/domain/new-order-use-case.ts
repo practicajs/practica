@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { AppError } from '@practica/error-handling';
 import * as orderRepository from '../data-access/repositories/order-repository';
-import * as paymentTermsService from './payment-terms-service';
+import paymentTermsService from './payment-terms-service';
 import { addOrderDTO, getNewOrderValidator } from './order-schema';
 
 // ️️️✅ Best Practice: Start a flow with a 'use case' function that summarizes the flow in high-level
