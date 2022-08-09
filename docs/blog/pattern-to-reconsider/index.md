@@ -1,24 +1,39 @@
-  ---
+---
 slug: pattern-to-reconsider
 date: 2022-08-02T10:00
 hide_table_of_contents: true
-title: Popular Node.js tools and patterns that you should re-consider
+title: Popular Node.js patterns and tools to re-consider
 authors: [goldbergyoni]
 tags: [node.js, express, nestjs, fastify, passport, dotenv]
 ---
 
 # Popular Node.js tools and patterns that you should re-consider
 
-Node.js is getting aged, good but also bad (quote from habit). To live longer, Node.js should change its skin, like the phoenix bird and re-consider its patterns
+Node.js is maturing. Many patterns and frameworks were embraced - it's my believe that developer's productivity dramatically increased in the past years. One downside of maturity is habits - we now reuse existing techniques more often. How is this a problem?
 
-"Mastery is created by habits. However, sometimes when we’re on auto-pilot performing habits, we tend to slip up... Just being we are gaining experience through performing the habits does not mean that we are improving. We actually go backwards on the improvement scale with most habits that turn into auto-pilot". James suggested that we should alway gauge our habits and occasionally ask - What went well this year?
+In his novel book, 'Atomic Habits', the author James Clear states that "Mastery is created by habits. However, sometimes when we’re on auto-pilot performing habits, we tend to slip up... Just being we are gaining experience through performing the habits does not mean that we are improving. We actually go backwards on the improvement scale with most habits that turn into auto-pilot". In other words, practice makes perfect, bad practices makes things worst
 
-The difference between a platform that is perceived as obsolete (Ruby?) vs a platform that lives for a long time, is the amount of changes and paradigm changes that the community is willing to consider. Our loyalty is to innovation, an everlast concept unlike Ruby
+We copy-paste mentally and physically things that we are used to, but these things are not necessarily right anymore. Like animals who shed their shells or skin to adapt to a new reality,  so Node.js community should constantly gauge its existing patterns, discuss and change
 
-Am I sure that these patterns are wrong? No, I'm not. The important drill here is keep discussing things and not pasting them because we're used to
+Luckily, unlike other languages who are more committed to specific design paradigms (Java, Ruby) - Node is a house of many ideas. In this community I feel safe to question some of our good-old tooling and patterns. The list below contains just my personal believe which is brought with reasoning and examples. I'm not sure that I'm right, I don't need to. If we want to make Node.js live longer - we just need to encourage critics, focus our loyalty on innovation and keep the discussion going
 
-![Monorepos](/img/monorepo-theme-1.png)
+![Animals and frameworks shed their skin](./crab.webp)
 
+*The True Crab's exoskeleton is hard and inflexible, he must shed his restrictive exoskeleton to grow and reveal the new roomier shell*
+
+## TOC - Patterns to reconsider
+
+1. Dotenv
+2. Calling a service from a controller
+3. Nest.js dependency injection for all classes
+4. Passport.js
+5. Supertest
+6. Fastify utility decoration
+7. Logging from a catch clause
+8. package.lock.json on developer's machine
+9. Morgan logger
+10. NODE_ENV
+    
 ## 1. Dotenv as your configuration source
 
 **💁‍♂️ What is it about:** A super popular technique in which the app configurable values (e.g., DB user name) are stored in a simple text file. Then, when the app loads, the dotenv library sets all the text file values as environment variables so the code can read those
