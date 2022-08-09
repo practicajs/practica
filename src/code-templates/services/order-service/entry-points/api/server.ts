@@ -15,6 +15,7 @@ async function startWebServer(): Promise<AddressInfo> {
   // ️️️✅ Best Practice: Declare a strict configuration schema and fail fast if the configuration is invalid
   configurationProvider.initialize(configurationSchema);
   logger.configureLogger(
+    // @ts-expect-error TODO: fix this
     { prettyPrint: configurationProvider.getValue('logger.prettyPrint') },
     true
   );
@@ -60,15 +61,19 @@ async function openConnection(
 function handleRouteErrors(expressApp: express.Application) {
   expressApp.use(
     async (error: unknown, req: express.Request, res: express.Response) => {
+      res.status(500);
+
       if (error instanceof AppError) {
         if (error?.isTrusted === undefined || error.isTrusted === null) {
           error.isTrusted = true; // Error during a specific request is usually not fatal and should not lead to process exit
         }
+
+        res.status(error.HTTPStatus);
       }
       // ✅ Best Practice: Pass all error to a centralized error handler so they get treated equally
-      await errorHandler.handleError(error);
+      errorHandler.handleError(error);
 
-      res.status(error?.HTTPStatus || 500).end();
+      res.end();
     }
   );
 }
