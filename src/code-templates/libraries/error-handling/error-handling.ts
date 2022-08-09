@@ -94,7 +94,7 @@ class AppError extends Error {
 // This simulates a typical monitoring solution that allow firing custom metrics when
 // like Prometheus, DataDog, CloudWatch, etc
 const metricsExporter = {
-  fireMetric: async (name: string, labels: string[]) => {
+  fireMetric: async (name: string, labels: object) => {
     // eslint-disable-next-line no-console
     console.log('In real production code I will really fire metrics', {
       name,
