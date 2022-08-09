@@ -221,21 +221,57 @@ const middleware = (req, res, next) => {
 ```
 ## 5. Supertest for integration/API testing
 
-**💁‍♂️ What is it about:** When testing against an API, supertest provides a sweat syntax that can both detect the webserver address, make HTTP call and also assert on the response. A three in one package. 
+**💁‍♂️ What is it about:** When testing against an API (i.e., component or integration tests), the library [supertest](https://www.npmjs.com/package/supertest) provides a sweet syntax that can both detect the web server address, make HTTP call and also assert on the response. Three in one. 
 
 ```javascript
-require('dotenv').config();
-console.log(process.env.DB_USER_NAME);
+test('When adding invalid user, then the response is 400', (done)=> {
+    const request = require('supertest')
+    const app = express();
+    // Arrange
+    const userToAdd = {
+      name: undefined
+    }
+
+    // Act
+    request(app)
+      .post('/user')
+      .send(userToAdd)
+      .expect('Content-Type', /json/)
+      .expect(400, done);
+
+    // Assert
+    // We already asserted above ☝🏻 as part of the request
+  });
 ```
 
 **📊 How popular:** 2,717,744 weekly downloads
 
-**🤔 Why it might be wrong:** You already have your assertion library, why code some tests using another... which actually was suppoed to be HTTP client. On top of this, supertest encourage coupling to express, not API (won't work on remote env, couples to implementation). Last but not least, there are more popular HTTP clients, better maintained and features that might be relevant for testing
+**🤔 Why it might be wrong:** You already have your assertion library (Jest? Chai?), it has great error highlighting and comparison - you trust it. Why code some tests using another assertion syntax? Not to mention, supertest's assertion errors are not descriptive as Jest and Chai. It's also cumbersome to mix HTTP client + assertion library instead of choosing the best for each mission. Speaking of the best, there are more standard, popular, and better maintained HTTP clients (fetch, axios and other friends). Need another reason? supertest might encourage coupling the tests to express as it offers a constructor that gets express object and infer the address by itself. This couples the test to the implementation and won't work in case where you wish to run the same tests against a remote process (the API doesn't live with the tests)
+
 
 **☀️ Better alternative:** A popular and standard HTTP client library like Node.js Fetch or Axios
 
-code example
+```javascript
+test('When adding invalid user, then the response is 400 and includes a reason', (done)=> {
+    const app = express();
+    // Arrange
+    const userToAdd = {
+      name: undefined
+    }
 
+    // Act
+    const receivedResponse = axios.post(`http://localhost:${apiPort}/user`, userToAdd)
+
+    // Assert
+    // ✅ Assertion happens in a dedicated stage and a dedicated library
+    expect(receivedResponse).toMatchObject({
+      status: 400,
+      data:{
+        reason: 'no-name'
+      }
+    })
+  });
+```
 
 ## 6. Fastify decorate for non request/web utilities
 
