@@ -40,6 +40,7 @@ async function getUserOrThrowIfNotExist(userId: number) {
 
 function validateNewOrderRequest(newOrderRequest: addOrderDTO) {
   const AjvSchemaValidator = getNewOrderValidator();
+  // @ts-expect-error TODO: fix this type error
   const isValid = AjvSchemaValidator(newOrderRequest);
   if (!isValid) {
     throw new AppError('invalid-order', `Validation failed`, 400, true);

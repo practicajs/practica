@@ -1,5 +1,5 @@
 // ️️️✅ Best Practice: Use services for scoped and specific pieces of business logic
-export default function determinePaymentTerms(
+function determinePaymentTerms(
   requestedTerms: number,
   userId: number
 ) {
@@ -8,4 +8,8 @@ export default function determinePaymentTerms(
     return 60;
   }
   return requestedTerms;
+}
+
+export {
+  determinePaymentTerms,
 }
