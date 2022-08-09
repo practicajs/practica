@@ -31,9 +31,7 @@ module.exports = {
     'no-return-await': 'off',
     // Turn it back on after this being fixed: https://github.com/eslint/eslint/issues/15617
     'no-restricted-exports': 'off',
-    // TODO: re-validate these decisions
     'no-param-reassign': 'off',
-    'consistent-return': 'off',
     'no-use-before-define': 'off',
   },
 };

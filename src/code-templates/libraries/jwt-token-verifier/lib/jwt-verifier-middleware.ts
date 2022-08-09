@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import jwt, { VerifyErrors } from 'jsonwebtoken';
 
 export type JWTOptions = {

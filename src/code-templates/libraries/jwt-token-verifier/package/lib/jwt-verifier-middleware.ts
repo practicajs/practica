@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import jwt, { VerifyErrors } from 'jsonwebtoken';
 
 export type JWTOptions = {
@@ -23,6 +24,7 @@ export const jwtVerifierMiddleware = (options: JWTOptions) => {
       // It should have 1 or 2 parts (separated by space), the incoming string is not supported
       return res.sendStatus(401);
     }
+
     if (authHeaderParts.length === 2) {
       [, token] = authHeaderParts;
     } else {
