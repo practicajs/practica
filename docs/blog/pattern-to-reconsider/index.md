@@ -1,24 +1,39 @@
-  ---
+---
 slug: pattern-to-reconsider
 date: 2022-08-02T10:00
 hide_table_of_contents: true
-title: Popular Node.js tools and patterns that you should re-consider
+title: Popular Node.js patterns and tools to re-consider
 authors: [goldbergyoni]
 tags: [node.js, express, nestjs, fastify, passport, dotenv]
 ---
 
 # Popular Node.js tools and patterns that you should re-consider
 
-Node.js is getting aged, good but also bad (quote from habit). To live longer, Node.js should change its skin, like the phoenix bird and re-consider its patterns
+Node.js is maturing. Many patterns and frameworks were embraced - it's my believe that developer's productivity dramatically increased in the past years. One downside of maturity is habits - we now reuse existing techniques more often. How is this a problem?
 
-"Mastery is created by habits. However, sometimes when we’re on auto-pilot performing habits, we tend to slip up... Just being we are gaining experience through performing the habits does not mean that we are improving. We actually go backwards on the improvement scale with most habits that turn into auto-pilot". James suggested that we should alway gauge our habits and occasionally ask - What went well this year?
+In his novel book, 'Atomic Habits', the author James Clear states that "Mastery is created by habits. However, sometimes when we’re on auto-pilot performing habits, we tend to slip up... Just being we are gaining experience through performing the habits does not mean that we are improving. We actually go backwards on the improvement scale with most habits that turn into auto-pilot". In other words, practice makes perfect, bad practices makes things worst
 
-The difference between a platform that is perceived as obsolete (Ruby?) vs a platform that lives for a long time, is the amount of changes and paradigm changes that the community is willing to consider. Our loyalty is to innovation, an everlast concept unlike Ruby
+We copy-paste mentally and physically things that we are used to, but these things are not necessarily right anymore. Like animals who shed their shells or skin to adapt to a new reality,  so Node.js community should constantly gauge its existing patterns, discuss and change
 
-Am I sure that these patterns are wrong? No, I'm not. The important drill here is keep discussing things and not pasting them because we're used to
+Luckily, unlike other languages who are more committed to specific design paradigms (Java, Ruby) - Node is a house of many ideas. In this community I feel safe to question some of our good-old tooling and patterns. The list below contains just my personal believe which is brought with reasoning and examples. I'm not sure that I'm right, I don't need to. If we want to make Node.js live longer - we just need to encourage critics, focus our loyalty on innovation and keep the discussion going
 
-![Monorepos](/img/monorepo-theme-1.png)
+![Animals and frameworks shed their skin](./crab.webp)
 
+*The True Crab's exoskeleton is hard and inflexible, he must shed his restrictive exoskeleton to grow and reveal the new roomier shell*
+
+## TOC - Patterns to reconsider
+
+1. Dotenv
+2. Calling a service from a controller
+3. Nest.js dependency injection for all classes
+4. Passport.js
+5. Supertest
+6. Fastify utility decoration
+7. Logging from a catch clause
+8. package.lock.json on developer's machine
+9. Morgan logger
+10. NODE_ENV
+    
 ## 1. Dotenv as your configuration source
 
 **💁‍♂️ What is it about:** A super popular technique in which the app configurable values (e.g., DB user name) are stored in a simple text file. Then, when the app loads, the dotenv library sets all the text file values as environment variables so the code can read those
@@ -221,21 +236,57 @@ const middleware = (req, res, next) => {
 ```
 ## 5. Supertest for integration/API testing
 
-**💁‍♂️ What is it about:** When testing against an API, supertest provides a sweat syntax that can both detect the webserver address, make HTTP call and also assert on the response. A three in one package. 
+**💁‍♂️ What is it about:** When testing against an API (i.e., component or integration tests), the library [supertest](https://www.npmjs.com/package/supertest) provides a sweet syntax that can both detect the web server address, make HTTP call and also assert on the response. Three in one. 
 
 ```javascript
-require('dotenv').config();
-console.log(process.env.DB_USER_NAME);
+test('When adding invalid user, then the response is 400', (done)=> {
+    const request = require('supertest')
+    const app = express();
+    // Arrange
+    const userToAdd = {
+      name: undefined
+    }
+
+    // Act
+    request(app)
+      .post('/user')
+      .send(userToAdd)
+      .expect('Content-Type', /json/)
+      .expect(400, done);
+
+    // Assert
+    // We already asserted above ☝🏻 as part of the request
+  });
 ```
 
 **📊 How popular:** 2,717,744 weekly downloads
 
-**🤔 Why it might be wrong:** You already have your assertion library, why code some tests using another... which actually was suppoed to be HTTP client. On top of this, supertest encourage coupling to express, not API (won't work on remote env, couples to implementation). Last but not least, there are more popular HTTP clients, better maintained and features that might be relevant for testing
+**🤔 Why it might be wrong:** You already have your assertion library (Jest? Chai?), it has great error highlighting and comparison - you trust it. Why code some tests using another assertion syntax? Not to mention, supertest's assertion errors are not descriptive as Jest and Chai. It's also cumbersome to mix HTTP client + assertion library instead of choosing the best for each mission. Speaking of the best, there are more standard, popular, and better maintained HTTP clients (fetch, axios and other friends). Need another reason? supertest might encourage coupling the tests to express as it offers a constructor that gets express object and infer the address by itself. This couples the test to the implementation and won't work in case where you wish to run the same tests against a remote process (the API doesn't live with the tests)
+
 
 **☀️ Better alternative:** A popular and standard HTTP client library like Node.js Fetch or Axios
 
-code example
+```javascript
+test('When adding invalid user, then the response is 400 and includes a reason', (done)=> {
+    const app = express();
+    // Arrange
+    const userToAdd = {
+      name: undefined
+    }
 
+    // Act
+    const receivedResponse = axios.post(`http://localhost:${apiPort}/user`, userToAdd)
+
+    // Assert
+    // ✅ Assertion happens in a dedicated stage and a dedicated library
+    expect(receivedResponse).toMatchObject({
+      status: 400,
+      data:{
+        reason: 'no-name'
+      }
+    })
+  });
+```
 
 ## 6. Fastify decorate for non request/web utilities
 
