@@ -60,9 +60,14 @@ async function openConnection(
 
 function handleRouteErrors(expressApp: express.Application) {
   expressApp.use(
-    async (error: unknown, req: express.Request, res: express.Response) => {
-      res.status(500);
-
+    async (
+      error: unknown,
+      req: express.Request,
+      res: express.Response,
+      // Express requires next function in default error handlers
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      next: express.NextFunction
+    ) => {
       if (error instanceof AppError) {
         if (error?.isTrusted === undefined || error.isTrusted === null) {
           error.isTrusted = true; // Error during a specific request is usually not fatal and should not lead to process exit

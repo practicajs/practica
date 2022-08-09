@@ -6,13 +6,18 @@ import * as newOrderUseCase from '../../domain/new-order-use-case';
 export default function defineRoutes(expressApp: express.Application) {
   const router = express.Router();
 
-  router.post('/', async (req, res) => {
-    logger.info(
-      `Order API was called to add new Order ${util.inspect(req.body)}`
-    );
-    // ✅ Best Practice: Using the 3-tier architecture, routes/controller are kept thin, logic is encapsulated in a dedicated domain folder
-    const addOrderResponse = await newOrderUseCase.addOrder(req.body);
-    return res.json(addOrderResponse);
+  router.post('/', async (req, res, next) => {
+    try {
+      logger.info(
+        `Order API was called to add new Order ${util.inspect(req.body)}`
+      );
+      // ✅ Best Practice: Using the 3-tier architecture, routes/controller are kept thin, logic is encapsulated in a dedicated domain folder
+      const addOrderResponse = await newOrderUseCase.addOrder(req.body);
+      return res.json(addOrderResponse);
+    } catch (error) {
+      next(error);
+      return undefined;
+    }
   });
 
   // get existing order by id
