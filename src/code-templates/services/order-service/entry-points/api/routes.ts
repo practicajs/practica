@@ -39,5 +39,11 @@ export default function defineRoutes(expressApp: express.Application) {
     res.status(204).end();
   });
 
+  router.put('/:id', async (req, res, next) => {
+    logger.info(`Order API was called to edit order ${req.params.id}`);
+    await newOrderUseCase.deleteOrder(req.params.id);
+    res.status(204).end();
+  });
+
   expressApp.use('/order', router);
 }
