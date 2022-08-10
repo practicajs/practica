@@ -2,7 +2,7 @@ import { Server } from 'http';
 import { logger } from '@practica/logger';
 import { AddressInfo } from 'net';
 import express from 'express';
-import { errorHandler, AppError } from '@practica/error-handling';
+import { errorHandler } from '@practica/error-handling';
 import * as configurationProvider from '@practica/configuration-provider';
 import { jwtVerifierMiddleware } from '@practica/jwt-token-verifier';
 import configurationSchema from '../../config';
@@ -68,12 +68,16 @@ function handleRouteErrors(expressApp: express.Application) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       next: express.NextFunction
     ) => {
-      if (error instanceof AppError) {
-        if (error?.isTrusted === undefined || error.isTrusted === null) {
+      res.status(500);
+      if (error && typeof error === 'object') {
+        if (error.isTrusted === undefined || error.isTrusted === null) {
           error.isTrusted = true; // Error during a specific request is usually not fatal and should not lead to process exit
         }
 
-        res.status(error.HTTPStatus);
+        if (Number.isInteger(error.HTTPStatus)) {
+          // We need the `as` because of https://github.com/microsoft/TypeScript/issues/15048
+          res.status(error.HTTPStatus as number);
+        }
       }
       // ✅ Best Practice: Pass all error to a centralized error handler so they get treated equally
       errorHandler.handleError(error);

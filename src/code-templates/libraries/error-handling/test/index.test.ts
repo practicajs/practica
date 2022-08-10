@@ -11,7 +11,7 @@ describe('handleError', () => {
   test('When uncaughtException emitted, error handled should catch and handle the error properly', () => {
     // Arrange
     const httpServerMock = {
-      close: () => undefined,
+      close: () => {},
     } as Server;
     const loggerStub = sinon.stub(logger, 'error');
     errorHandler.listenToErrorEvents(httpServerMock);
@@ -24,7 +24,6 @@ describe('handleError', () => {
     const appError = loggerStub.firstCall.args[1];
     expect(loggerStub.callCount).toBe(1);
     expect(message).toBe(errorToEmit.message);
-    expect(appError instanceof AppError).toBe(true);
     expect(appError).toMatchObject({
       name: errorToEmit.name,
       message: errorToEmit.message,
@@ -97,7 +96,6 @@ describe('handleError', () => {
       const appError = loggerStub.firstCall.args[1];
       expect(loggerStub.callCount).toBe(1);
       expect(message.includes(typeof unknownErrorValue)).toBe(true);
-      expect(appError instanceof AppError).toBe(true);
       expect((appError as AppError).name).toBe('general-error');
     }
   );

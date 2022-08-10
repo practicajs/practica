@@ -85,7 +85,7 @@ class AppError extends Error {
     public message: string,
     public HTTPStatus: number = 500,
     public isTrusted = true,
-    public cause?: Error
+    public cause?: unknown
   ) {
     super(message);
   }
@@ -95,6 +95,7 @@ class AppError extends Error {
 // like Prometheus, DataDog, CloudWatch, etc
 const metricsExporter = {
   fireMetric: async (name: string, labels: object) => {
+    // TODO: use logger instead of conso.log
     // eslint-disable-next-line no-console
     console.log('In real production code I will really fire metrics', {
       name,
