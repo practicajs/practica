@@ -2,6 +2,7 @@ import util from 'util';
 import express from 'express';
 import { logger } from '@practica/logger';
 import * as newOrderUseCase from '../../domain/new-order-use-case';
+import editOrderUseCase from '../../domain/edit-order-use-case';
 
 export default function defineRoutes(expressApp: express.Application) {
   const router = express.Router();
@@ -40,9 +41,16 @@ export default function defineRoutes(expressApp: express.Application) {
   });
 
   router.put('/:id', async (req, res, next) => {
-    logger.info(`Order API was called to edit order ${req.params.id}`);
-    await newOrderUseCase.deleteOrder(req.params.id);
-    res.status(204).end();
+    try {
+      logger.info(`Order API was called to edit order ${req.params.id}`);
+      const editOrderResponse = await editOrderUseCase(
+        parseInt(req.params.id, 10),
+        req.body
+      );
+      res.json(editOrderResponse).status(200).end();
+    } catch (err) {
+      next(err);
+    }
   });
 
   expressApp.use('/order', router);

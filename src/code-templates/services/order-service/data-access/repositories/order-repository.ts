@@ -11,6 +11,14 @@ export async function addOrder(orderDetails) {
   return addingResponse;
 }
 
+export async function editOrder(orderId: number, orderDetails) {
+  const orderEditingResponse = await getOrderModel().update(orderDetails, {
+    where: { id: orderId },
+  });
+
+  return orderEditingResponse;
+}
+
 export async function deleteOrder(orderIdToDelete: number) {
   await getOrderModel().destroy({ where: { id: orderIdToDelete } });
 }

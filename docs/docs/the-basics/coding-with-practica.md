@@ -84,15 +84,65 @@ We're about to implement a simple feature to make you familiar with the major co
 
 **Requirements -** - Our missions is to code the following: Allow updating an order through the API. Orders should have now a new mandatory field: Status. If the existing order field 'paymentTermsInDays' is 0 (payment due date is in the past)) or the status is 'Delivered' - no changes are allowed
 
-1. Change the example component/service name
+**1. Change the example component/service name**
+
+Obviously your solution, has a different context and name. You probably want to rename the example service name from 'order-service' to {your-component-name}, both the folder name and the package.json name field:
+
+*./services/order-service/package.json*
+```javascript
+{
+  "name": "your-name-here",
+  "version": "0.0.2",
+  "description": "An example Node.js app that is packed with best practices",
+}
+
+```
+
+If you're just experimenting with Practica, you may leave the name as-is for now
    
-2. Add a new 'Edit' route
+**2. Add a new 'Edit' route**
 
-3. Write a test?
+The express API routes are located in the entry-points layer in a file 'routes.ts': *[root]/services/order-service/entry-points/api/routes.ts*
 
-4. Put the data access code
+This is a very typical express code, if you're familiar with express you'll be productive right away. This is a core principle of Practica - use battle tested technologies as-is. Let's just add a new route in this file:
 
-5. Code the logic part
+```javascript
+// A new route to edit order
+router.put('/:id', async (req, res, next) => {
+    try {
+      logger.info(`Order API was called to edit order ${req.params.id}`);
+      // Call the main code in the domain layer
+      res.json(editOrderResponse).status(200).end();
+    } catch (err) {
+      next(err);
+    }
+  });
+```
+
+Looks highly familiar, right?
+
+**3. Create a 'use case'**
+
+Following good software practices, the entry-point (i.e., controller), should be thin and do nothing but adapt from HTTP requests to our internals - the domain layer. In the domain folder we need to create a function to handle this feature. We may just create a service code and put it there but preferably let's create a 'use case'. This is a special type of code object that is created for each feature/flow and describes it in simple steps and actions. It merely calls other services to do the 'real' work and handle the smaller details. This way, the reader who visits the use case can get understand the HIGH-LEVEL flow quickly and easily. We will implement it soon, for now let's just create a file under:
+
+*[root]/services/order-service/domain/edit-order-use-case.ts*
+```javascript
+export default async function editOrder(orderId: number,
+  updatedOrder: editOrderDTO
+) : Promise<void>{
+    Promise.resolve();
+}
+```
+
+And call this from the edit route that we've added previously
+
+
+
+**3. Write a test or POSTMAN**
+
+**4. Put the data access code**
+
+1. Code the logic part
    
 
 
