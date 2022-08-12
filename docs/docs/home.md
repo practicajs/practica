@@ -54,7 +54,7 @@ Good Practices and Simplicity is the name of the game with Practica. There is no
 
 # Practices and Features
 
-We apply more than 100 practices and optimizations. You can opt in or out for most of these features using option flags on our CLI. The follow table is just a few examples of features we provide. To see the full list of features, please visit our website [here](https://practicajs.dev/features).
+We apply more than 100 practices and optimizations. You can opt in or out for most of these features using option flags on our CLI. The follow table is just a few examples of features we provide. To see the full list of features, please visit our website [here](https://practica.dev/dev/features/).
 
 | **Feature** | **Explanation** | **Flag** | **Docs** |
 | ----------- | --------------- | -------- | -------- |
