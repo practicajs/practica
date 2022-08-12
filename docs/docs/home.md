@@ -58,11 +58,11 @@ We apply more than 100 practices and optimizations. You can opt in or out for mo
 
 | **Feature** | **Explanation** | **Flag** | **Docs** |
 | ----------- | --------------- | -------- | -------- |
-| Monorepo setup | Generates two components (e.g., Microservices) in a single repository with interactions between the two | --mr, --monorepo | Docs coming soon |
-| Output escaping and sanitizing | Clean-out outgoing responses from potential HTML security risks like XSS | --oe, --output-escape | Docs coming soon |
-| Integration (component) testing | Generates full-blown component/integration tests setup including DB | --t, --tests | Docs coming soon |
-| Unique request ID (Correlation ID) | Generates module that creates a unique correlation/request ID for every incoming request. This is available for any other object during the request life-span. Internally it uses Node's built-in [AsyncLocalStorage](https://nodejs.org/api/async_hooks.html#class-asynclocalstorage) | --coi, --correlation-id | Docs coming soon |
-| Dockerfile | Generates dockerfile that embodies 20> best practices | --df, --docker-file | Docs coming soon |
-| Strong-schema configuration | A configuration module that dynamically load run-time configuration keys and includes a strong schema so it can fail fast | Built-in with basic app | [Docs here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD) |
+| Monorepo setup | Generates two components (e.g., Microservices) in a single repository with interactions between the two | `--mr`, `--monorepo` | [Docs here](./decisions/monorepo.md) |
+| Output escaping and sanitizing | Clean-out outgoing responses from potential HTML security risks like XSS | `--oe`, `--output-escape` | Docs coming soon |
+| Integration (component) testing | Generates full-blown component/integration tests setup including DB | `--t`, `--tests` | Docs coming soon |
+| Unique request ID (Correlation ID) | Generates module that creates a unique correlation/request ID for every incoming request. This is available for any other object during the request life-span. Internally it uses Node's built-in [`AsyncLocalStorage`](https://nodejs.org/api/async_hooks.html#class-asynclocalstorage) | `--coi`, `--correlation-id` | Docs coming soon |
+| Dockerfile | Generates dockerfile that embodies 20> best practices | `--df`, `--docker-file` | Docs coming soon |
+| Strong-schema configuration | A configuration module that dynamically load run-time configuration keys and includes a strong schema so it can fail fast | Built-in with basic app | [Docs here](./decisions/configuration-library.md) |
 
-📗 **See our full list of features [here](https:/dev/features/index)**
+📗 **See our full list of features [here](./features-reference.md)**
