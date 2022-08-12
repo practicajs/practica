@@ -10,9 +10,7 @@ beforeEach(() => {
 describe('handleError', () => {
   test('When uncaughtException emitted, error handled should catch and handle the error properly', () => {
     // Arrange
-    const httpServerMock = {
-      close: () => {},
-    } as Server;
+    const httpServerMock = sinon.createStubInstance(Server);
     const loggerStub = sinon.stub(logger, 'error');
     errorHandler.listenToErrorEvents(httpServerMock);
     const errorName = 'mocking an uncaught exception';
