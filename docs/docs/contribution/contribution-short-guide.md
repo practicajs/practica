@@ -7,7 +7,7 @@ sidebar_label: Short guide
 
 ## You belong with us
 
-We are in an ever-going quest for better software practices. If you reached down to this page, you probably belong with us 💜. 
+We are in an ever-going quest for better software practices. If you reached down to this page, you probably belong with us 💜.
 
 Note: This is a shortened guide that suits those are willing to quickly contribute. Once you deepen your relations with Practica.js - It's a good idea to read the [full guide](https://github.com/practicajs/practica/blob/main/CONTRIBUTING.md)
 
@@ -35,17 +35,17 @@ Here you will find CLI, UI, and logic to generate the right code. We run our own
 How to work with it?
 
 1. If all you need is to alter the logic, you may just code in the ~/code-generator/generation-logic folder and run the tests (located in the same folder)
-2. If you wish to modify the CLI UI, then you'll need to build the code before running (because there is no way to run TypeScript in CLI). Open two terminals: 
+2. If you wish to modify the CLI UI, then you'll need to build the code before running (because there is no way to run TypeScript in CLI). Open two terminals:
 
 - Open one terminal to compile the code:
 
-```
+```bash
 npm run build:watch
 ```
 
 - Open second terminal to run the CLI UI:
 
-```
+```bash
 npm run start:cli
 ```
 
@@ -57,34 +57,34 @@ Here you will the generated code that we will selectively copy to the user's com
 
 1. Install dependencies
 
-```
+```bash
 nvm use && npm i
 ```
 
 2. Build the code
 
-```
+```bash
 npm run build
 ```
 
 3. Bind the CLI command to our code
 
-```
+```bash
 cd .dist && npm link
 ```
 
 4. Generate the code to your preferred working folder
 
-```
+```bash
 cd {some folder like $HOME}
 create-node-app immediate --install-dependencies
 ```
 
-4. Now you can work on the generated code. Later on, once your tests pass and you're happy - copy the changes back to ~/practica/src/code-templates
+4. Now you can work on the generated code. Later on, once your tests pass and you're happy - copy the changes back to `~/practica/src/code-templates`
 
 5. Run the tests while you code
 
-```
+```bash
 #From the folder where you generated the code to. You might need to 'git init'
 cd default-app-name/services/order-service
 npm run test:dev
@@ -107,20 +107,20 @@ npm run test:dev
 
 ✅ With your terminal, ensure the right Node version is installed:
 
-```
+```bash
 nvm use
 ```
 
 ✅ Install dependencies:
 
 
-```
+```bash
 npm i
 ```
 
 ✅ Ensure all tests pass:
 
-```
+```bash
 npm t
 ```
 
