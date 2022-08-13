@@ -39,8 +39,6 @@ beforeEach(() => {
   });
 });
 
-afterEach(() => {});
-
 afterAll(async () => {
   nock.enableNetConnect();
   stopWebServer();
