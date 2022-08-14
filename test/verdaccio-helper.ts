@@ -3,6 +3,7 @@ import { runServer } from "verdaccio";
 import { ConfigYaml } from "@verdaccio/types";
 import * as testHelpers from "./test-helpers";
 import fsExtra from "fs-extra";
+import { name as packageName } from "../package.json";
 
 let portNumber: number | undefined;
 let verdaccioInstance: any;
@@ -40,7 +41,7 @@ export async function setupVerdaccio(): Promise<{
     packages: {
       // Making our application only go to verdaccio registry and not to the default one,
       // which also prevent it from being published to npm
-      "@practica/create-node-app": {
+      [packageName]: {
         access: ["$anonymous"],
 
         // Allowing the package to be published without user
