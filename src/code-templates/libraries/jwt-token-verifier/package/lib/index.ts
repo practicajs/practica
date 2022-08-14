@@ -1,1 +1,1 @@
-export * from './jwt-verifier-middleware'
+export * from './jwt-verifier-middleware';

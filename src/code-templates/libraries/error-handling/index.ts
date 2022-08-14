@@ -31,10 +31,10 @@ const errorHandler = {
     });
   },
 
-  handleError: (errorToHandle: AppError | Error | any) => {
+  handleError: (errorToHandle: unknown) => {
     try {
       const appError: AppError = normalizeError(errorToHandle);
-      logger.error(appError);
+      logger.error(appError.message, appError);
       metricsExporter.fireMetric('error', { errorName: appError.name }); // fire any custom metric when handling error
       // A common best practice is to crash when an unknown error (non-trusted) is being thrown
       if (!appError.isTrusted) {
@@ -60,7 +60,7 @@ const terminateHttpServerAndExit = async () => {
 };
 
 // The input might won't be 'AppError' or even 'Error' instance, the output of this function will be - AppError.
-const normalizeError = (errorToHandle: AppError | Error | any): AppError => {
+const normalizeError = (errorToHandle: unknown): AppError => {
   if (errorToHandle instanceof AppError) {
     return errorToHandle;
   }
@@ -85,7 +85,7 @@ class AppError extends Error {
     public message: string,
     public HTTPStatus: number = 500,
     public isTrusted = true,
-    public cause?: Error | any
+    public cause?: unknown
   ) {
     super(message);
   }
@@ -94,8 +94,13 @@ class AppError extends Error {
 // This simulates a typical monitoring solution that allow firing custom metrics when
 // like Prometheus, DataDog, CloudWatch, etc
 const metricsExporter = {
-  fireMetric: async (name, labels) => {
-    console.log('In real production code I will really fire metrics');
+  fireMetric: async (name: string, labels: object) => {
+    // TODO: use logger instead of conso.log
+    // eslint-disable-next-line no-console
+    console.log('In real production code I will really fire metrics', {
+      name,
+      labels,
+    });
   },
 };
 
