@@ -17,7 +17,7 @@ describe("Non-interactive", () => {
     ({ npmEnvironmentVars } = await setupVerdaccio());
 
     await execa("npm", ["run", "publish:build"], {
-      env: npmEnvironmentVars
+      env: npmEnvironmentVars,
     });
 
     // Shouldn't take 10s but just in case
@@ -34,14 +34,18 @@ describe("Non-interactive", () => {
     );
 
     // Act
-    await execa("npx", ["@practica/create-node-app", "immediate", "--install-dependencies"], {
-      cwd: emptyFolderForATest,
-      env: npmEnvironmentVars,
-    });
+    await execa(
+      "npx",
+      ["@practica/create-node-app", "immediate", "--install-dependencies"],
+      {
+        cwd: emptyFolderForATest,
+        env: npmEnvironmentVars,
+      }
+    );
 
     // Assert
     const testResult = await execa("npm", ["test"], {
-      cwd: path.join(emptyFolderForATest, "default-app-name")
+      cwd: path.join(emptyFolderForATest, "default-app-name"),
     });
 
     expect(testResult.exitCode).toBe(0);

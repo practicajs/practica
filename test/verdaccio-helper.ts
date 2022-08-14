@@ -14,12 +14,12 @@ function getNpmEnvironmentVariables(port: number): NodeJS.ProcessEnv {
     VERDACCIO_RANDOM_PORT: port.toString(),
 
     // This is to require the npm operations to use our local registry
-    npm_config_registry: `http://localhost:${port}`
+    npm_config_registry: `http://localhost:${port}`,
   };
 }
 
 export async function setupVerdaccio(): Promise<{
-  npmEnvironmentVars: NodeJS.ProcessEnv
+  npmEnvironmentVars: NodeJS.ProcessEnv;
 }> {
   if (verdaccioInstance) {
     if (portNumber === undefined || verdaccioDataFolder === undefined) {
@@ -27,7 +27,7 @@ export async function setupVerdaccio(): Promise<{
     }
 
     return {
-      npmEnvironmentVars: getNpmEnvironmentVariables(portNumber)
+      npmEnvironmentVars: getNpmEnvironmentVariables(portNumber),
     };
   }
 
@@ -44,25 +44,25 @@ export async function setupVerdaccio(): Promise<{
         access: ["$anonymous"],
 
         // Allowing the package to be published without user
-        publish: ["$anonymous"]
+        publish: ["$anonymous"],
       },
 
       // Have access to external packages
       "@*/*": {
         access: ["$all"],
-        proxy: ["npmjs"]
+        proxy: ["npmjs"],
       },
       "**": {
         access: ["$all"],
-        proxy: ["npmjs"]
-      }
+        proxy: ["npmjs"],
+      },
     },
 
     // External Registries
     uplinks: {
       npmjs: {
-        url: "https://registry.npmjs.org/"
-      }
+        url: "https://registry.npmjs.org/",
+      },
     },
 
     logs: {
@@ -70,27 +70,28 @@ export async function setupVerdaccio(): Promise<{
       format: "pretty",
 
       // For debugging, you may want to change this to `http`
-      level: "fatal"
+      level: "fatal",
     },
 
     // @ts-expect-error (TS2322: [...] 'self_path' does not exist in type 'ConfigYaml'.)
     // Required otherwise we would get
     // Error: self_path is required, please provide a valid root path for storage
     self_path: verdaccioDataFolder,
-    security: undefined as any
+    security: undefined as any,
   };
 
   verdaccioInstance = await runServer(config);
   await new Promise<void>((resolve, reject) => {
-
     // Port 0 means any available local port
-    const result = verdaccioInstance.listen(0, (err) => err ? reject(err) : resolve());
+    const result = verdaccioInstance.listen(0, (err) =>
+      err ? reject(err) : resolve()
+    );
 
     portNumber = result.address().port;
   });
 
   return {
-    npmEnvironmentVars: getNpmEnvironmentVariables(portNumber!)
+    npmEnvironmentVars: getNpmEnvironmentVariables(portNumber!),
   };
 }
 
