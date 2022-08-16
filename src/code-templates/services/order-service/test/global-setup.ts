@@ -3,7 +3,7 @@ import path from 'path';
 import dockerCompose from 'docker-compose';
 import { execSync } from 'child_process';
 
-module.exports = async () => {
+export default async () => {
   console.time('global-setup');
 
   // ️️️✅ Best Practice: Speed up during development, if already live then do nothing

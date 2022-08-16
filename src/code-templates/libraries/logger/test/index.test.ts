@@ -1,7 +1,5 @@
 import sinon from 'sinon';
-import { logger } from '../logger.wrapper';
-
-beforeAll(() => {});
+import { logger } from '@practica/logger';
 
 beforeEach(() => {
   sinon.restore();
@@ -71,8 +69,8 @@ describe('logger', () => {
 
   test('When configuring for pretty-print, then its written to stdout', async () => {
     // Arrange
-    logger.configureLogger({ level: 'info', prettyPrint: false }, true)
-    const stdoutStub = sinon.stub(process.stdout, 'write')
+    logger.configureLogger({ level: 'info', prettyPrint: false }, true);
+    const stdoutStub = sinon.stub(process.stdout, 'write');
 
     // Act
     logger.info('This is an info message');

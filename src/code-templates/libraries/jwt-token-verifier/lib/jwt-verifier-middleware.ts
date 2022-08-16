@@ -1,4 +1,5 @@
-import jwt from 'jsonwebtoken';
+/* eslint-disable consistent-return */
+import jwt, { VerifyErrors } from 'jsonwebtoken';
 
 export type JWTOptions = {
   secret: string;
@@ -24,22 +25,28 @@ export const jwtVerifierMiddleware = (options: JWTOptions) => {
       return res.sendStatus(401);
     }
     if (authHeaderParts.length === 2) {
-      token = authHeaderParts[1];
+      [, token] = authHeaderParts;
     } else {
       token = authenticationHeader;
     }
 
-    jwt.verify(token, options.secret, (err: any, jwtContent: any) => {
-      // TODO use logger to report the error here
+    jwt.verify(
+      token,
+      options.secret,
+      // TODO: we should remove this any according to the library, jwtContent can not contain data property
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (err: VerifyErrors | null, jwtContent: any) => {
+        // TODO use logger to report the error here
 
-      if (err) {
-        return res.sendStatus(401);
+        if (err) {
+          return res.sendStatus(401);
+        }
+
+        req.user = jwtContent.data;
+
+        next();
       }
-
-      req.user = jwtContent.data;
-
-      next();
-    });
+    );
   };
   return middleware;
 };
