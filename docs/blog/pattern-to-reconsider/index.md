@@ -11,7 +11,9 @@ tags: [node.js, express, nestjs, fastify, passport, dotenv, supertest, practica,
 
 Node.js is maturing. Many patterns and frameworks were embraced - it's my belief that developers' productivity dramatically increased in the past years. One downside of maturity is habits - we now reuse existing techniques more often. How is this a problem?
 
-In his novel book 'Atomic Habits' the author James Clear states that "Mastery is created by habits. However, sometimes when we're on auto-pilot performing habits, we tend to slip up... Just being we are gaining experience through performing the habits does not mean that we are improving. We actually go backwards on the improvement scale with most habits that turn into auto-pilot". In other words, practice makes perfect, and bad practices make things worst
+In his novel book 'Atomic Habits' the author James Clear states that:
+
+> "Mastery is created by habits. However, sometimes when we're on auto-pilot performing habits, we tend to slip up... Just being we are gaining experience through performing the habits does not mean that we are improving. We actually go backwards on the improvement scale with most habits that turn into auto-pilot". In other words, practice makes perfect, and bad practices make things worst
 
 We copy-paste mentally and physically things that we are used to, but these things are not necessarily right anymore. Like animals who shed their shells or skin to adapt to a new reality,  so the Node.js community should constantly gauge its existing patterns, discuss and change
 
