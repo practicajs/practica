@@ -7,15 +7,15 @@ authors: [goldbergyoni]
 tags: [node.js, express, nestjs, fastify, passport, dotenv]
 ---
 
-# Popular Node.js tools and patterns that you should re-consider
+# Popular Node.js tools and patterns to re-consider
 
-Node.js is maturing. Many patterns and frameworks were embraced - it's my believe that developer's productivity dramatically increased in the past years. One downside of maturity is habits - we now reuse existing techniques more often. How is this a problem?
+Node.js is maturing. Many patterns and frameworks were embraced - it's my belief that developers' productivity dramatically increased in the past years. One downside of maturity is habits - we now reuse existing techniques more often. How is this a problem?
 
-In his novel book, 'Atomic Habits', the author James Clear states that "Mastery is created by habits. However, sometimes when we’re on auto-pilot performing habits, we tend to slip up... Just being we are gaining experience through performing the habits does not mean that we are improving. We actually go backwards on the improvement scale with most habits that turn into auto-pilot". In other words, practice makes perfect, bad practices makes things worst
+In his novel book 'Atomic Habits' the author James Clear states that "Mastery is created by habits. However, sometimes when we're on auto-pilot performing habits, we tend to slip up... Just being we are gaining experience through performing the habits does not mean that we are improving. We actually go backwards on the improvement scale with most habits that turn into auto-pilot". In other words, practice makes perfect, and bad practices make things worst
 
-We copy-paste mentally and physically things that we are used to, but these things are not necessarily right anymore. Like animals who shed their shells or skin to adapt to a new reality,  so Node.js community should constantly gauge its existing patterns, discuss and change
+We copy-paste mentally and physically things that we are used to, but these things are not necessarily right anymore. Like animals who shed their shells or skin to adapt to a new reality,  so the Node.js community should constantly gauge its existing patterns, discuss and change
 
-Luckily, unlike other languages who are more committed to specific design paradigms (Java, Ruby) - Node is a house of many ideas. In this community I feel safe to question some of our good-old tooling and patterns. The list below contains just my personal believe which is brought with reasoning and examples. I'm not sure that I'm right, I don't need to. If we want to make Node.js live longer - we just need to encourage critics, focus our loyalty on innovation and keep the discussion going
+Luckily, unlike other languages that are more committed to specific design paradigms (Java, Ruby) - Node is a house of many ideas. In this community, I feel safe to question some of our good-old tooling and patterns. The list below contains my personal beliefs, which are brought with reasoning and examples. Are those disruptive thoughts surely correct? I'm not sure or need to be sure. If we want to make Node.js live longer - we simply need to encourage critics, focus our loyalty on innovation, and keep the discussion going. The outcome of this discussion is not "don't use this tool!" but rather becoming familiar with other techniques that, *under some circumstances* might be a better fit
 
 ![Animals and frameworks shed their skin](./crab.webp)
 
@@ -36,7 +36,7 @@ Luckily, unlike other languages who are more committed to specific design paradi
     
 ## 1. Dotenv as your configuration source
 
-**💁‍♂️ What is it about:** A super popular technique in which the app configurable values (e.g., DB user name) are stored in a simple text file. Then, when the app loads, the dotenv library sets all the text file values as environment variables so the code can read those
+**💁‍♂️ What is it about:** A super popular technique in which the app configurable values (e.g., DB user name) are stored in a simple text file. Then, when the app loads, the dotenv library sets all the text file values as environment variables so the code can read this
 
 
 ```javascript
@@ -55,10 +55,10 @@ await axios.put(`${process.env.USER_SERVICE_URL}/api/user/${post.userId}/increme
 
 **📊 How popular:** 21,806,137 downloads/week!
 
-**🤔 Why it might be wrong:** Dotenv is so easy and intuitive to start with so one easily overlook fundamental features: It's hard to infer the configuration schema and realize the reason and typing of each key. Consequently, there is no built-in way to fail fast when a mandatory key is missing (a flow might fail after already started and doing side-effects). In the example above, the blog post will be saved to DB and only then too late the code will realize that a mandatory key is missing leaving the app hanging in an invalid state. On top of this, in the precense of many keys, it's not possible to organize them hierarchically. If not enough, it encourages developers to commit this .env file which might contain production values - this happens because there is no clear way to define development defaults (teams usually work around this by committing .env.example file and then asking whomever pulls code to rename this file manually. If they remember of course)
+**🤔 Why it might be wrong:** Dotenv is so easy and intuitive to start with, so one might easily overlook fundamental features: For example, it's hard to infer the configuration schema and realize the meaning of each key and its typing. Consequently, there is no built-in way to fail fast when a mandatory key is missing - a flow might fail after starting and presenting some side effects (e.g., DB records were already mutated before the failure). In the example above, the blog post will be saved to DB, and only then will the code realize that a mandatory key is missing - This leaves the app hanging in an invalid state. On top of this, in the presence of many keys, it's impossible to organize them hierarchically. If not enough, it encourages developers to commit this .env file which might contain production values - this happens because there is no clear way to define development defaults. Teams usually work around this by committing .env.example file and then asking whoever pulls code to rename this file manually. If they remember to of course
 
 
-**☀️ Better alternative:** Some configuration libraries provide out of the box solution to all of these needs, mostly a clear schema and the possibility to validate early and fail if needed. See comparison of options here. One of the better alternatives is 'convict', here is the same example, hopefully better:
+**☀️ Better alternative:** Some configuration libraries provide out of the box solution to all of these needs. They encourage a clear schema and the possibility to validate early and fail if needed. See [comparison of options here](https://practica.dev/decisions/configuration-library). One of the better alternatives is ['convict'](https://github.com/mozilla/node-convict), down below is the same example, this time with Convict, hopefully it's better now:
 
 ```javascript
 // config.js
@@ -91,7 +91,7 @@ await axios.put(`${convict.get(userService.url)}/api/user/${post.userId}/increme
 
 ## 2. Calling a 'fat' service from the API controller
 
-**💁‍♂️ What is it about:** Consider a reader of our code who wishes to understand the entire *high-level* flow or delve into a very *specific* part. She first lands on the API controller, where requests start. This controller layer, unlike what its name implies, is just an adapter and kept really thin and simple. Great thus far. Then the controller calls a big 'service' with thousands lines of code that represent the entire logic
+**💁‍♂️ What is it about:** Consider a reader of our code who wishes to understand the entire *high-level* flow or delve into a very *specific* part. She first lands on the API controller, where requests start. Unlike what its name implies, this controller layer is just an adapter and kept really thin and straightforward. Great thus far. Then the controller calls a big 'service' with thousands of lines of code that represent the entire logic
 
 ```javascript
 // user-controller
@@ -117,9 +117,11 @@ exports function add(newUser){
 
 **📊 How popular:** It's hard to pull solid numbers here, I could confidently say that in *most* of the app that I see, this is the case
 
-**🤔 Why it might be wrong:** We're here to tame complexities. One of the useful techniques, is deferring a complexity to the later stage possible. In this case, the reader's of the code (hopefully) easily skim through the tests and the controller, and then as she lands on the service - she gets all the complexity of the domain and the code although she is not interested in all the details. This is unnecessary complexity
+**🤔 Why it might be wrong:** We're here to tame complexities. One of the useful techniques is deferring a complexity to the later stage possible. In this case though, the reader of the code (hopefully) starts her journey through the tests and the controller - things are simple in these areas. Then, as she lands on the big service - she gets tons of complexity and small details, although she is focused on understanding the overall flow or some specific logic. This is **unnecessary** complexity
 
-**☀️ Better alternative:** Controller should call a special type of service, a **use-case**, which is responsible to *summarize* the flow in a business and simple language. Each flow/feature is described using a use-case, each contains 4-10 lines of code, that tell the story without technical details. It mostly orchestrates other small services, clients, and repositories who hold all the implementation details. With use cases, the reader can grasp the high-level flow easily, she can now **choose** where she would like to focus. She is now exposed only to necessary complexity. This technique also encourages partitioning the code to the smaller object that the use-case orchestrate. Bonus: By looking at coverage reports, one can tell which features are covered, not just files/functions
+**☀️ Better alternative:** The controller should call a particular type of service, a **use-case** , which is responsible for *summarizing* the flow in a business and simple language. Each flow/feature is described using a use-case, each contains 4-10 lines of code, that tell the story without technical details. It mostly orchestrates other small services, clients, and repositories that hold all the implementation details. With use cases, the reader can grasp the high-level flow easily. She can now **choose** where she would like to focus. She is now exposed only to **necessary** complexity. This technique also encourages partitioning the code to the smaller object that the use-case orchestrates. Bonus: By looking at coverage reports, one can tell which features are covered, not just files/functions
+
+This idea by the way is formalized in the ['clean architecture' book](https://www.bookdepository.com/Clean-Architecture-Robert-Martin/9780134494166?redirected=true&utm_medium=Google&utm_campaign=Base1&utm_source=IL&utm_content=Clean-Architecture&selectCurrency=ILS&w=AFF9AU99ZB4MTDA8VTRQ&gclid=Cj0KCQjw3eeXBhD7ARIsAHjssr92kqLn60dnfQCLjbkaqttdgvhRV5dqKtnY680GCNDvKp-16HtZp24aAg6GEALw_wcB) - I'm not a big fan of 'fancy' architectures, but see - it's worth cherry-picking techniques from every source
 
 ```javascript
 // add-order-use-case.js
@@ -137,13 +139,10 @@ export async function addOrder(newOrder: addOrderDTO) {
 }
 
 ```
-
-Ideas: Encourage breaking down to small services, transactions, controller is a bad name, clean architecture, code coverage
-
 ## 3. Nest.js: Wire *everything* with dependency injection
 
 
-**💁‍♂️ What is it about:** If you're doing Nest.js, besides having a powerful framework in your hands, you probably use DI for *everything* and make every class injectable. Say you have a weather-service that depends upon humidity-service, and **there is no requirement to swap** the humidity-service and replace it with some alternative services. You still inject humidity-service into the weather-service. It becomes part of your development style, "why not" you think - I may need to stub it during testing or replace it in the future
+**💁‍♂️ What is it about:** If you're doing Nest.js, besides having a powerful framework in your hands, you probably use DI for *everything* and make every class injectable. Say you have a weather-service that depends upon humidity-service, and **there is no requirement to swap** the humidity-service with alternative providers. Nevertheless, you inject humidity-service into the weather-service. It becomes part of your development style, "why not" you think - I may need to stub it during testing or replace it in the future
 
  
 ```typescript
@@ -179,11 +178,13 @@ export class WeatherService {
 export class AppModule {}
 ```
 
-**📊 How popular:** No numbers here but I could confidently say that in *all* of the Nest.js app that I've seen, this is the case
+**📊 How popular:** No numbers here but I could confidently say that in *all* of the Nest.js app that I've seen, this is the case. In the popular ['nestjs-realworld-example-ap[p'](](https://github.com/lujakob/nestjs-realworld-example-app)) all the services are 'injectable'
 
-**🤔 Why it might be wrong:** Dependency injection is not a priceless coding style rather a pattern that you should pull in the right moment, like an other pattern. Why? because any pattern has its price. What price you ask? First, encapsulation is violated, clients of weather-service are now aware that other providers it uses *internally*, some may get tempted to override it also its not under their responsibility. Second, it's another layer of complexity to learn, maintain and another way to shoot yourself in the legs. StackOverflow ows some of its revenues to Nest.js DI, plenty of discussions try to solve this puzzle (e.g. did you know that in case of circular dependency the order of imports matter?). Third, there is the performance thing - Nest.js for example struggled to provide decent start time for serverless environments and had to introduce [lazy loaded modules](https://docs.nestjs.com/fundamentals/lazy-loading-modules). Don't get me wrong, **in some cases**, there is a clear need to decouple a dependency from its caller, or to allow clients to inject custom implementations (e.g., the strategy pattern) - **In such case**, when there is a value, you may consider whether the *value of DI worth its price*. If you don't have this case, why pay for nothing?
+**🤔 Why it might be wrong:** Dependency injection is not a priceless coding style but a pattern you should pull in the right moment, like any other pattern. Why? Because any pattern has a price. What price, you ask? First, encapsulation is violated. Clients of the weather-service are now aware that other providers are being used *internally*. Some clients may get tempted to override providers also it's not under their responsibility. Second, it's another layer of complexity to learn, maintain, and one more way to shoot yourself in the legs. StackOverflow owes some of its revenues to Nest.js DI - plenty of discussions try to solve this puzzle (e.g. did you know that in case of circular dependencies the order of imports matters?). Third, there is the performance thing - Nest.js, for example struggled to provide a decent start time for serverless environments and had to introduce [lazy loaded modules](https://docs.nestjs.com/fundamentals/lazy-loading-modules). Don't get me wrong, **in some cases**, there is a good case for DI: When a need arises to decouple a dependency from its caller, or to allow clients to inject custom implementations (e.g., the strategy pattern). **In such case**, when there is a value, you may consider whether the *value of DI is worth its price*. If you don't have this case, why pay for nothing?
 
-**☀️ Better alternative:** 'Leanify' your engineering approach - avoid using any tool unless serves real-world need immediately. Start simple, a dependant class just import its dependency and use it. Facing a situation when there is a need to factor dynamic objects? There are handful of simple patterns, simpler than DI, that you should consider like 'if/else', factory function and more. Singleton are requested? consider techniques with lower costs like the module system with factory function. Need to stub/mock for testing? Monkey patching might be better than DI: better clutter your test code a bit than clutter your production code. Have a strong need to hide from an object where its dependencies are coming from? You sure? Use DI!
+I recommend reading the first paragraphs of this blog post ['Dependency Injection is EVIL'](https://www.tonymarston.net/php-mysql/dependency-injection-is-evil.html) (and absolutely don't agree with this bold words)
+
+**☀️ Better alternative:** 'Lean-ify' your engineering approach - avoid using any tool unless it serves a real-world need immediately. Start simple, a dependent class should simply import its dependency and use it - Yeah, using the plain Node.js module system ('require'). Facing a situation when there is a need to factor dynamic objects? There are a handful of simple patterns, simpler than DI, that you should consider, like 'if/else', factory function, and more. Are singletons requested? Consider techniques with lower costs like the module system with factory function. Need to stub/mock for testing? Monkey patching might be better than DI: better clutter your test code a bit than clutter your production code. Have a strong need to hide from an object where its dependencies are coming from? You sure? Use DI!
 
 ```typescript
 // humidity-service.ts - not customer facing
@@ -203,19 +204,18 @@ import { getHumidity } from './humidity-service.ts';
   }
 ```
 
-Ideas: The complexity tree, good articles, not really di, nest example app, YAGNI
 
 ## 4. Passport.js for token authentication
 
 
-**💁‍♂️ What is it about:** Commonly, you're in a need to issue or/and authenticate JWT tokens. You might also need to allow log-in from *one* single social network like Google/Facebook. When faced with these kind of needs, Node.js developers rush to the glorious library Passport.js like butterflies attracted to light
+**💁‍♂️ What is it about:** Commonly, you're in need to issue or/and authenticate JWT tokens. Similarly, you might need to allow login from *one* single social network like Google/Facebook. When faced with these kinds of needs, Node.js developers rush to the glorious library [Passport.js](https://www.passportjs.org/) like butterflies are attracted to light
 
 **📊 How popular:** 1,389,720 weekly downloads
 
-**🤔 Why it might be wrong:** If you're simply tasked with guarding your routes with JWT token - you're just few lines of code shy from ticking the goal. Instead of messing up with a new framework, instead of introducing levels of indirections (you call passport, then it calls you), instead of spending time learning new abstractions - just use one of the simple and reputable JWT parsing libraries like [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) or [fast-jwt](https://github.com/nearform/fast-jwt). Have concerns with the security hardening? Good point, will you get better hardening with direct understanding of your configuration and flow or by hiding things behind a framework? I'm not sure. Also, Passport might take care for hardening the flow, but what about secrets/token managements and DB protection - various cloud services or OSS projects, can tick all of those boxes. Consider also that Passport doesn't aim to handle authorization or user management. It seems to me like many who opt for Passport.js are not fully aware which needs are satisfied and which are left open. All of that said, Passport definitely shines when looking for a quick way to support *many* social login providers
+**🤔 Why it might be wrong:** When tasked with guarding your routes with JWT token - you're just a few lines of code shy from ticking the goal. Instead of messing up with a new framework, instead of introducing levels of indirections (you call passport, then it calls you), instead of spending time learning new abstractions - use a JWT library directly. Libraries like [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) or [fast-jwt](https://github.com/nearform/fast-jwt) are simple and well maintained. Have concerns with the security hardening? Good point, your concerns are valid. But would you not get better hardening with a direct understanding of your configuration and flow? Will hiding things behind a framework help? Even if you prefer the hardening of a battle-tested framework, Passport doesn't handle a handful of security risks like secrets/token, secured user management, DB protection, and more. My point, you probably anyway need fully-featured user and authentication management platforms. Various cloud services and OSS projects, can tick all of those security concerns. Why then start in the first place with a framework that doesn't satisfy your security needs? It seems like many who opt for Passport.js are not fully aware of which needs are satisfied and which are left open. All of that said, Passport definitely shines when looking for a quick way to support *many* social login providers
 
 
-**☀️ Better alternative:** If all you need is a token authentication? These few lines of code below might be all you need, you might also see [practica.js JWT lib example](https://github.com/practicajs/practica/tree/main/src/code-templates/libraries/jwt-token-verifier). You probably need more than this - support async JWT flow with JWKS, securely manage and rotate the secrets and more. In this case, OSS solution like [keycloak](https://github.com/keycloak/keycloak) or commercial options like Auth0[https://github.com/auth0] are alternatives to consider 
+**☀️ Better alternative:** Is token authentication in order? These few lines of code below might be all you need. You may also glimpse into [Practica.js wrapper around these libraries](https://github.com/practicajs/practica/tree/main/src/code-templates/libraries/jwt-token-verifier). A real-world project at scale typically need more: supporting async JWT [(JWKS)](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets), securely manage and rotate the secrets to name a few examples. In this case, OSS solution like [keycloak (https://github.com/keycloak/keycloak) or commercial options like Auth0[https://github.com/auth0] are alternatives to consider 
 
 ```javascript
 // jwt-middleware.js, a simplified version - Refer to Practica.js to see some more corner cases
