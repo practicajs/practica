@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkpractica_docs=self.webpackChunkpractica_docs||[]).push([[4252],{1461:function(a){a.exports=JSON.parse('{"allTagsPath":"/blog/tags","name":"dotenv","count":1,"permalink":"/blog/tags/dotenv"}')}}]);
