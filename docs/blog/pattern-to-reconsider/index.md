@@ -1,10 +1,10 @@
 ---
-slug: pattern-to-reconsider
+slug: popular-nodejs-pattern-and-tools-to-reconsider
 date: 2022-08-02T10:00
 hide_table_of_contents: true
 title: Popular Node.js patterns and tools to re-consider
 authors: [goldbergyoni]
-tags: [node.js, express, nestjs, fastify, passport, dotenv]
+tags: [node.js, express, nestjs, fastify, passport, dotenv, supertest, practica, testing]
 ---
 
 # Popular Node.js tools and patterns to re-consider
