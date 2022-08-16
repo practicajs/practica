@@ -33,6 +33,10 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+        googleAnalytics: {
+          trackingID: "UA-71456305-2",
+          anonymizeIP: true,
+        },
       }),
     ],
   ],
@@ -52,7 +56,7 @@ const config = {
             label: "YouTube",
             position: "left",
           },
-          { to: "/blog", label: "Blog (soon)", position: "left" },
+          { to: "/blog", label: "Blog", position: "left" },
           {
             href: "https://github.com/practicajs/practica",
             label: "GitHub",
