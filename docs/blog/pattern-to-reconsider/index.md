@@ -236,7 +236,7 @@ const middleware = (req, res, next) => {
 ```
 ## 5. Supertest for integration/API testing
 
-**💁‍♂️ What is it about:** When testing against an API (i.e., component or integration tests), the library [supertest](https://www.npmjs.com/package/supertest) provides a sweet syntax that can both detect the web server address, make HTTP call and also assert on the response. Three in one. 
+**💁‍♂️ What is it about:** When testing against an API (i.e., component, integration, E2E tests), the library [supertest](https://www.npmjs.com/package/supertest) provides a sweet syntax that can both detect the web server address, make HTTP call and also assert on the response. Three in one
 
 ```javascript
 test('When adding invalid user, then the response is 400', (done)=> {
@@ -261,7 +261,7 @@ test('When adding invalid user, then the response is 400', (done)=> {
 
 **📊 How popular:** 2,717,744 weekly downloads
 
-**🤔 Why it might be wrong:** You already have your assertion library (Jest? Chai?), it has great error highlighting and comparison - you trust it. Why code some tests using another assertion syntax? Not to mention, supertest's assertion errors are not descriptive as Jest and Chai. It's also cumbersome to mix HTTP client + assertion library instead of choosing the best for each mission. Speaking of the best, there are more standard, popular, and better maintained HTTP clients (fetch, axios and other friends). Need another reason? supertest might encourage coupling the tests to express as it offers a constructor that gets express object and infer the address by itself. This couples the test to the implementation and won't work in case where you wish to run the same tests against a remote process (the API doesn't live with the tests)
+**🤔 Why it might be wrong:** You already have your assertion library (Jest? Chai?), it has a great error highlighting and comparison - you trust it. Why code some tests using another assertion syntax? Not to mention, Supertest's assertion errors are not as descriptive as Jest and Chai. It's also cumbersome to mix HTTP client + assertion library instead of choosing the best for each mission. Speaking of the best, there are more standard, popular, and better-maintained HTTP clients (like fetch, axios and other friends). Need another reason? Supertest might encourage coupling the tests to Express as it offers a constructor that gets an Express object. This constructor infers the API address automatically (useful when using dynamic test ports). This couples the test to the implementation and won't work in the case where you wish to run the same tests against a remote process (the API doesn't live with the tests). My repository ['Node.js testing best practices'](https://github.com/testjavascript/nodejs-integration-tests-best-practices) holds examples of how tests can infer the API port and address
 
 
 **☀️ Better alternative:** A popular and standard HTTP client library like Node.js Fetch or Axios
@@ -290,7 +290,7 @@ test('When adding invalid user, then the response is 400 and includes a reason',
 
 ## 6. Fastify decorate for non request/web utilities
 
-**💁‍♂️ What is it about:** Fastify introduces great patterns, I mostly like how it preserves the simplicity of express while bringing more batteries. One thing that got me wondering is the 'decorate' feature which allows placing common utilities/services inside a widely accessible container object. I'm referring here specifically to the case where a cross cutting concern utility/service is being used:
+**💁‍♂️ What is it about:** [Fastify](https://github.com/fastify/fastify) introduces great patterns. Personally, I highly appreciate how it preserves the simplicity of Express while bringing more batteries. One thing that got me wondering is the 'decorate' feature which allows placing common utilities/services inside a widely accessible container object. I'm referring here specifically to the case where a cross-cutting concern utility/service is being used. Here is an example:
 
 ```javascript
 // An example of a utility that is cross-cutting-concern. Could be logger or anything else
@@ -311,13 +311,13 @@ exports function calculateSomething(){
 }
 ```
 
-It should be noted that 'decoration' is also used to place values (e.g., user) inside a request - this is a slightly different case and sensible
+It should be noted that 'decoration' is also used to place values (e.g., user) inside a request - this is a slightly different case and a sensible one
 
 **📊 How popular:** Fastify has 696,122 weekly download and growing rapidly. The decorator concept is part of the framework's core
 
-**🤔 Why it might be wrong:** Some services and utilities serve cross-cutting-concern needs and should be accessible from other layers like domain and DAL. The fastify object might not accessible to these layers, and you also probably don't want to couple your web framework with you business logic. Consider that some of your business logic and repositories might get invoked from non-REST clients like CRON, MQ and similar - In these cases Fastify won't get involved at all
+**🤔 Why it might be wrong:** Some services and utilities serve cross-cutting-concern needs and should be accessible from other layers like domain (i.e, business logic, DAL). When placing utilities inside this object, the Fastify object might not be accessible to these layers. You probably don't want to couple your web framework with your business logic: Consider that some of your business logic and repositories might get invoked from non-REST clients like CRON, MQ, and similar - In these cases, Fastify won't get involved at all so better not trust it to be your service locator
 
-**☀️ Better alternative:** A good old Node.js module is a standard way to expose and consume functionality. Need a singleton? Use the module system caching. Need to instantiate a service with in correlation with some Fastify life-cycle hook (e.g., DB connection on start)? Call it from that Fastify hook
+**☀️ Better alternative:** A good old Node.js module is a standard way to expose and consume functionality. Need a singleton? Use the module system caching. Need to instantiate a service in correlation with a Fastify life-cycle hook (e.g., DB connection on start)? Call it from that Fastify hook. In the rare case where  a highly dynamic and complex instantiation of dependencies is needed - DI is also a (complex) option to consider
 
 ```javascript
 // ✅ A simple usage of good old Node.js modules
@@ -341,7 +341,7 @@ exports function calculateSomething(){
 
 ## 7. Logging from a catch clause
 
-**💁‍♂️ What is it about:** You catch an error somewhere deep in the code (not on the route level), then call logger.error to make this error observable. Feels simple and necessary
+**💁‍♂️ What is it about:** You catch an error somewhere deep in the code (not on the route level), then call logger.error to make this error observable. Seems simple and necessary
 
 ```javascript
 try{
@@ -354,27 +354,29 @@ catch(error){
 
 **📊 How popular:** Hard to put my hands on numbers but it's quite popular, right?
 
-**🤔 Why it might be wrong:** First, errors should get handled/logged in a central location. Error handling is a critical path, without a centralized and unified behaviour, it's easy for different catch clauses along the code to behave differently. For example, a request might arise to tag all errors with certain metadata, or on top of logging to also fire a monitoring metric - applying this in ~100 different locations is not a walk in the park. Second, catch clauses should be minimized to very specific scenarios. By default, the natural flow of an error is bubbling down to the route/entry-point - from there is will get forwarded to the error handler. Catch clauses should serve two very specific needs: When one wishes to change the flow based on the error or enrich the error with more information (which is not the case in this example)
+**🤔 Why it might be wrong:** First, errors should get handled/logged in a central location. Error handling is a critical path. Various catch clauses are likely to behave differently without a centralized and unified behavior. For example, a request might arise to tag all errors with certain metadata, or on top of logging, to also fire a monitoring metric. Applying these requirements in ~100 locations is not a walk in the park. Second, catch clauses should be minimized to particular scenarios. By default, the natural flow of an error is bubbling down to the route/entry-point - from there, it will get forwarded to the error handler. Catch clauses are more verbose and error-prone - therefore it should serve two very specific needs: When one wishes to change the flow based on the error or enrich the error with more information (which is not the case in this example)
 
-**☀️ Better alternative:** Let the error bubble down the layer, unless the error changes the flow or there is value in enriching the error with more context. When deciding to use catch, delegate the handling/logging to your centralized handler:
+**☀️ Better alternative:** By default, let the error bubble down the layers and get caught by the entry-point global catch (e.g., Express error middleware). In cases when the error should trigger a different flow (e.g., retry) or there is value in enriching the error with more context - use a catch clause. In this case, ensure the .catch code also reports to the error handler
 
 ```javascript
+// A case where we wish to retry upon failure
 try{
     axios.post('https://thatService.io/api/users);
 }
 catch(error){
     // ✅ A central location that handles error
     errorHandler.handle(error, this, {operation: addNewOrder});
+    callTheUserService(numOfRetries++);
 }
 ```
 
 ## 8. Package.lock OR Reading environment variables in all the code layers
 
-The Monorepo market is hot like fire. Weirdly, now when the demand for Monoreps is exploding, one of the leading libraries - Lerna- has just retired. When looking closely, it might not be just a coincidence - With so many disruptive and shiny features brought on by new vendors, Lerna 
+TBD today
 
 ## 9. Use Morgan logger for express web requests
 
-**💁‍♂️ What is it about:** In many express apps, you are likely to find a pattern that is being copy-pasted for ages - Using Morgan logger to log requests information:
+**💁‍♂️ What is it about:** In many web apps, you are likely to find a pattern that is being copy-pasted for ages - Using Morgan logger to log requests information:
 
 ```javascript
 const express = require('express')
@@ -387,7 +389,7 @@ app.use(morgan('combined'))
 
 **📊 How popular:** 2,901,574 downloads/week
 
-**🤔 Why it might be wrong:** Wait a second, you already have your main logger, right? Is it Pino? Winston? something else? great. Why deal with and configure yet another logger? I do appreciate the request domain-specific language (DSL) of Morgan, sweet syntax, does it justify having two loggers?
+**🤔 Why it might be wrong:** Wait a second, you already have your main logger, right? Is it Pino? Winston? Something else? Great. Why deal with and configure yet another logger? I do appreciate the HTTP domain-specific language (DSL) of Morgan. The syntax is sweet! But does it justify having two loggers?
 
 **☀️ Better alternative:** Put your chosen logger in a middleware and log the desired request/response properties:
 
@@ -405,7 +407,7 @@ app.use((req, res, next) => {
 
 ## 10. Having conditional code based on NODE_ENV value
 
-**💁‍♂️ What is it about:** To differentiate between a configuration of development vs production, it's common to set the environment variable NODE_ENV with "production|test". Doing so allows the various tooling to act differently. For example, some templating engines will cache compiled templates only in production. Beyond tooling, custom applications use this to specify behaviours that are unique to the development or production environment:
+**💁‍♂️ What is it about:** To differentiate between development vs production configuration, it's common to set the environment variable NODE_ENV with "production|test". Doing so allows the various tooling to act differently. For example, some templating engines will cache compiled templates only in production. Beyond tooling, custom applications use this to specify behaviours that are unique to the development or production environment:
 
 ```javascript
 if(process.env.NODE_ENV === "production"){
@@ -421,9 +423,10 @@ else{
 
 **📊 How popular:** 5,034,323 code results in GitHub when searching for "NODE_ENV". It doesn't seem like a rare pattern
 
-**🤔 Why it might be wrong:** Anytime your code checks whether it's production or not, this branch won't get hit by default in some test runner (e.g., Jest set NODE_ENV=test). In *any* test runner, the developer must remember to test for each possible value of this environment  variable. In the example above, 'collectMetrics()' will be tested for the first time in production. Additionally, putting this conditions opens the door to add more differences between production and the developer machine. Theoretically, one can set NODE_ENV = "production" in testing and cover all the branches, but then if you can test the production version, what's the point in separating?
+**🤔 Why it might be wrong:** Anytime your code checks whether it's production or not, this branch won't get hit by default in some test runner (e.g., Jest set NODE_ENV=test). In *any* test runner, the developer must remember to test for each possible value of this environment variable. In the example above, 'collectMetrics()' will be tested for the first time in production. Sad smiley. Additionally, putting these conditions opens the door to add more differences between production and the developer machine - when this variable and conditions exists, a developer gets tempted to put some logic for production only. Theoretically, this can be tested: one can set NODE_ENV = "production" in testing and cover the production branches (if she remembers...). But then, if you can test with NODE_ENV='production', what's the point in separating? Just consider everything to be 'production' and avoid this error-prone mental load
 
-**☀️ Better alternative:** To avoid having untested code **that you wrote**, the same code must get executed in all environments - no if(production)/else(development) conditions. Inevitably, developers machine are likely to have different surrounding infrastructure like different logging system. We feel comfortable with it because these infrastructural libraries are battle tested and anyway not ours. Practically, we may put different values in the configuration but not in the code. For example, a typical logger emits JSON in production but in development machine it emits 'pretty-print' colorful lines. To meet this, we set ENV VAR that tells whether what logging style we aim for:
+**☀️ Better alternative:** Any code that was written by us, must be tested. This implies avoiding any form of if(production)/else(development) conditions. Wouldn't anyway developers machine have different surrounding infrastructure than production (e.g., logging system)? They do, the environments are quite difference, but we feel comfortable with it. These infrastructural things are battle-tested, extraneous, and not part of our code. To keep the same code between dev/prod and still use different infrastructure - we put different values in the configuration (not in the code). For example, a typical logger emits JSON in production but in a development machine it emits 'pretty-print' colorful lines. To meet this, we set ENV VAR that tells whether what logging style we aim for:
+
 
 
 ```javascript
