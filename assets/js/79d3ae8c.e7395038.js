@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkpractica_docs=self.webpackChunkpractica_docs||[]).push([[575],{8065:function(t){t.exports=JSON.parse('{"permalink":"/blog/tags/fastify","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
