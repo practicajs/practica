@@ -275,7 +275,7 @@ test("When adding invalid user, then the response is 400", (done) => {
 
 **🤔 Why it might be wrong:** You already have your assertion library (Jest? Chai?), it has a great error highlighting and comparison - you trust it. Why code some tests using another assertion syntax? Not to mention, Supertest's assertion errors are not as descriptive as Jest and Chai. It's also cumbersome to mix HTTP client + assertion library instead of choosing the best for each mission. Speaking of the best, there are more standard, popular, and better-maintained HTTP clients (like fetch, axios and other friends). Need another reason? Supertest might encourage coupling the tests to Express as it offers a constructor that gets an Express object. This constructor infers the API address automatically (useful when using dynamic test ports). This couples the test to the implementation and won't work in the case where you wish to run the same tests against a remote process (the API doesn't live with the tests). My repository ['Node.js testing best practices'](https://github.com/testjavascript/nodejs-integration-tests-best-practices) holds examples of how tests can infer the API port and address
 
-**☀️ Better alternative:** A popular and standard HTTP client library like Node.js Fetch or Axios
+**☀️ Better alternative:** A popular and standard HTTP client library like Node.js Fetch or Axios. In [Practica.js](https://github.com/practicajs/practica) (a Node.js starter that packs many best practices) we use Axios. It allows us to configure a HTTP client that is shared among all the tests: We bake inside once a JWT token, headers, and a base URL
 
 ```javascript
 test("When adding invalid user, then the response is 400 and includes a reason", (done) => {
@@ -384,11 +384,7 @@ catch(error){
 }
 ```
 
-## 8. Package.lock OR Reading environment variables in all the code layers
-
-TBD today
-
-## 9. Use Morgan logger for express web requests
+## 8. Use Morgan logger for express web requests
 
 **💁‍♂️ What is it about:** In many web apps, you are likely to find a pattern that is being copy-pasted for ages - Using Morgan logger to log requests information:
 
@@ -418,7 +414,7 @@ app.use((req, res, next) => {
 });
 ```
 
-## 10. Having conditional code based on NODE_ENV value
+## 9. Having conditional code based on NODE_ENV value
 
 **💁‍♂️ What is it about:** To differentiate between development vs production configuration, it's common to set the environment variable NODE_ENV with "production|test". Doing so allows the various tooling to act differently. For example, some templating engines will cache compiled templates only in production. Beyond tooling, custom applications use this to specify behaviours that are unique to the development or production environment:
 
