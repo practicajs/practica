@@ -19,3 +19,4 @@ This post is concerned with backend-only and Node.js. It also scoped to typical 
 
 Let's start? When human beings use the term Monorepo, they typically refer to one or more of the following 4 layers below. Each one of them can bring value to your project, each has different consequences, tooling, and features:
 
+<!--truncate-->
