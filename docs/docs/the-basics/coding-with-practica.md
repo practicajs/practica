@@ -239,9 +239,9 @@ This is of course a simplistic flow. We can represent it easily using one class.
 
 We're tasked with saving the edited order in the database. Any DB-related code is located within the folder: [root]/services/order-service/data-access.
 
-The database code is implemented with the popular ORM, [Sequelize](). We have plans to evaluate other ORMs like Prisma. In any case, the current choice, Sequelize, is a battle-tested and reputable option that will surely serve you well as long the DB complexity is overwhelming.
+The database code is implemented with the popular ORM, [Sequelize](https://github.com/sequelize/sequelize). We have plans to evaluate other ORMs like Prisma. In any case, the current choice, Sequelize, is a battle-tested and reputable option that will surely serve you well as long the DB complexity is overwhelming.
 
-Before discussing the ORM-side, we wrap the entire DB layer with a simple class that externalize all the DB functions to the domain layer. This is the [repository pattern]() which advocates decoupling the DB narratives from the one who codes business logic. Inside [root]/services/order-service/data-access/repositories, you'll find a file 'order-repository', open it and add a new function:
+Before discussing the ORM-side, we wrap the entire DB layer with a simple class that externalize all the DB functions to the domain layer. This is the [repository pattern](https://martinfowler.com/eaaCatalog/repository.html) which advocates decoupling the DB narratives from the one who codes business logic. Inside [root]/services/order-service/data-access/repositories, you'll find a file 'order-repository', open it and add a new function:
 
 ```javascript
 [root]/services/order-service/data-access/repositories/order-repository.js
