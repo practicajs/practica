@@ -413,7 +413,7 @@ app.use((req, res, next) => {
 });
 ```
 
-## 9. Having conditional code based on NODE_ENV value
+## 9. Having conditional code based on `NODE_ENV` value
 
 **💁‍♂️ What is it about:** To differentiate between development vs production configuration, it's common to set the environment variable NODE_ENV with "production|test". Doing so allows the various tooling to act differently. For example, some templating engines will cache compiled templates only in production. Beyond tooling, custom applications use this to specify behaviours that are unique to the development or production environment:
 
@@ -430,7 +430,7 @@ if (process.env.NODE_ENV === "production") {
 
 **📊 How popular:** 5,034,323 code results in GitHub when searching for "NODE_ENV". It doesn't seem like a rare pattern
 
-**🤔 Why it might be wrong:** Anytime your code checks whether it's production or not, this branch won't get hit by default in some test runner (e.g., Jest set NODE_ENV=test). In _any_ test runner, the developer must remember to test for each possible value of this environment variable. In the example above, 'collectMetrics()' will be tested for the first time in production. Sad smiley. Additionally, putting these conditions opens the door to add more differences between production and the developer machine - when this variable and conditions exists, a developer gets tempted to put some logic for production only. Theoretically, this can be tested: one can set NODE_ENV = "production" in testing and cover the production branches (if she remembers...). But then, if you can test with NODE_ENV='production', what's the point in separating? Just consider everything to be 'production' and avoid this error-prone mental load
+**🤔 Why it might be wrong:** Anytime your code checks whether it's production or not, this branch won't get hit by default in some test runner (e.g., Jest set `NODE_ENV=test`). In _any_ test runner, the developer must remember to test for each possible value of this environment variable. In the example above, `collectMetrics()` will be tested for the first time in production. Sad smiley. Additionally, putting these conditions opens the door to add more differences between production and the developer machine - when this variable and conditions exists, a developer gets tempted to put some logic for production only. Theoretically, this can be tested: one can set `NODE_ENV = "production"` in testing and cover the production branches (if she remembers...). But then, if you can test with `NODE_ENV='production'`, what's the point in separating? Just consider everything to be 'production' and avoid this error-prone mental load
 
 **☀️ Better alternative:** Any code that was written by us, must be tested. This implies avoiding any form of if(production)/else(development) conditions. Wouldn't anyway developers machine have different surrounding infrastructure than production (e.g., logging system)? They do, the environments are quite difference, but we feel comfortable with it. These infrastructural things are battle-tested, extraneous, and not part of our code. To keep the same code between dev/prod and still use different infrastructure - we put different values in the configuration (not in the code). For example, a typical logger emits JSON in production but in a development machine it emits 'pretty-print' colorful lines. To meet this, we set ENV VAR that tells whether what logging style we aim for:
 
