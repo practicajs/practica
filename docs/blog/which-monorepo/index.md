@@ -9,7 +9,7 @@ tags: [monorepo, decisions]
 
 As a Node.js starter, choosing the right libraries and frameworks for our users is the bread and buter of our work in [Practica.js](https://github.com/practicajs/practica). In this post, we'd like to share our considerations in choosing our monorepo tooling
 
-![Monorepos](./monorepo-high-level)
+![Monorepos](./monorepo-high-level.png)
 
 ## What are we looking at
 
