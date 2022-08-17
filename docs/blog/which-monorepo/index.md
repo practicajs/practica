@@ -7,7 +7,7 @@ tags: [monorepo, decisions]
 
 # Which Monorepo is right for a Node.js BACKEND now?
 
-As a Node.js starter, choosing the right libraries and frameworks for our users is the bread and buter of our work in [Practica.js](https://github.com/practicajs/practica). In this post, we'd like to share our considerations in choosing our monorepo tooling
+As a Node.js starter, choosing the right libraries and frameworks for our users is the bread and butter of our work in [Practica.js](https://github.com/practicajs/practica). In this post, we'd like to share our considerations in choosing our monorepo tooling
 
 ![Monorepos](./monorepo-high-level.png)
 
