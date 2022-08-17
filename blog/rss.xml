@@ -4,7 +4,7 @@
         <title>Practica.js Blog</title>
         <link>https://practica.dev/blog</link>
         <description>Practica.js Blog</description>
-        <lastBuildDate>Tue, 16 Aug 2022 18:58:56 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 17 Aug 2022 07:44:18 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,7 +12,7 @@
             <title><![CDATA[Which Monorepo is right for a Node.js BACKEND now?]]></title>
             <link>https://practica.dev/blog/monorepo-backend</link>
             <guid>monorepo-backend</guid>
-            <pubDate>Tue, 16 Aug 2022 18:58:56 GMT</pubDate>
+            <pubDate>Wed, 17 Aug 2022 07:44:18 GMT</pubDate>
             <description><![CDATA[Making our decisions transparent and collaborative is at the heart of Practica. In this post, we'd like to share our considerations in choosing our monorepo tooling]]></description>
             <content:encoded><![CDATA[<p>Making our decisions transparent and collaborative is at the heart of Practica. In this post, we'd like to share our considerations in choosing our monorepo tooling</p><p><img loading="lazy" alt="Monorepos" src="/assets/images/monorepo-theme-1-3eb3a873dcee4ec971a403a153b75aaa.png" width="1200" height="682" class="img_E7b_"></p><h2 class="anchor anchorWithStickyNavbar_mojV" id="what-are-we-lookingat">What are we looking&nbsp;at<a class="hash-link" href="#what-are-we-lookingat" title="Direct link to heading">​</a></h2><p>The Monorepo market is hot like fire. Weirdly, now when the demand for Monoreps is exploding, one of the leading libraries - Lerna- has just retired. When looking closely, it might not be just a coincidence - With so many disruptive and shiny features brought on by new vendors, Lerna failed to keep up with the pace and stay relevant. This bloom of new tooling gets many confused - What is the right choice for my next project? What should I look at when choosing a Monorepo tool? This post is all about curating this information overload, covering the new tooling, emphasizing what is important, and finally share some recommendations. If you are here for tools and features, you're in the right place, although you might find yourself on a soul-searching journey to what is your desired development workflow.</p><p>This post is concerned with backend-only and Node.js. It also scoped to typical business solutions. If you're Google/FB developer who is faced with 8,000 packages - sorry, you need special gear. Consequently, monster Monorepo tooling like Bazel is left-out. We will cover here some of the most popular Monorepo tools including Turborepo, Nx, PNPM, Yarn/npm workspace, and Lerna (although it's not actually maintained anymore - it's a good baseline for comparison).</p><p>Let's start? When human beings use the term Monorepo, they typically refer to one or more of the following 4 layers below. Each one of them can bring value to your project, each has different consequences, tooling, and features:</p>]]></content:encoded>
             <category>monorepo</category>
