@@ -44,9 +44,8 @@ _The True Crab's exoskeleton is hard and inflexible, he must shed his restrictiv
 5. Supertest
 6. Fastify utility decoration
 7. Logging from a catch clause
-8. package.lock.json on developer's machine
-9. Morgan logger
-10. NODE_ENV
+8. Morgan logger
+9. NODE_ENV
 
 <!--truncate-->
 ## 1. Dotenv as your configuration source
@@ -275,7 +274,7 @@ test("When adding invalid user, then the response is 400", (done) => {
 
 **🤔 Why it might be wrong:** You already have your assertion library (Jest? Chai?), it has a great error highlighting and comparison - you trust it. Why code some tests using another assertion syntax? Not to mention, Supertest's assertion errors are not as descriptive as Jest and Chai. It's also cumbersome to mix HTTP client + assertion library instead of choosing the best for each mission. Speaking of the best, there are more standard, popular, and better-maintained HTTP clients (like fetch, axios and other friends). Need another reason? Supertest might encourage coupling the tests to Express as it offers a constructor that gets an Express object. This constructor infers the API address automatically (useful when using dynamic test ports). This couples the test to the implementation and won't work in the case where you wish to run the same tests against a remote process (the API doesn't live with the tests). My repository ['Node.js testing best practices'](https://github.com/testjavascript/nodejs-integration-tests-best-practices) holds examples of how tests can infer the API port and address
 
-**☀️ Better alternative:** A popular and standard HTTP client library like Node.js Fetch or Axios. In [Practica.js](https://github.com/practicajs/practica) (a Node.js starter that packs many best practices) we use Axios. It allows us to configure a HTTP client that is shared among all the tests: We bake inside once a JWT token, headers, and a base URL
+**☀️ Better alternative:** A popular and standard HTTP client library like Node.js Fetch or Axios. In [Practica.js](https://github.com/practicajs/practica) (a Node.js starter that packs many best practices) we use Axios. It allows us to configure a HTTP client that is shared among all the tests: We bake inside a JWT token, headers, and a base URL. Another good pattern that we look at, is making each Microservice generate HTTP client library for its consumers. This brings strong-type experience to the clients, synchronizes the provider-consumer versions and as a bonus - The provider can test itself with the same library that its consumers are using
 
 ```javascript
 test("When adding invalid user, then the response is 400 and includes a reason", (done) => {
