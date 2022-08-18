@@ -15,7 +15,7 @@ You now have a folder with Practica code inside. What is inside this box? Practi
 
 Besides this component, there are also a bunch of reusable libraries like logger, error-handler and more. All sit together under a single root folder in a single Git repository - this popular structure is called a 'Monorepo'.
 
-![Monorepos](./monorepo-structure.png)
+![Monorepos](/img/monorepo-structure.png)
 *A typical Monorepo structure*
 
 The code inside is coded with Node.js, TypeScript, express and Postgresql. Later version of Practica.js will support more frameworks.
@@ -77,7 +77,7 @@ We have the ground ready 🐥. Let's code now, just remember to run the tests (o
 
 A typical component (e.g., Microservice) contains 3 main layers. This is a known and powerful pattern that is called ["3-Tiers"](https://www.techopedia.com/definition/24649/three-tier-architecture). It's an architectural structure that strikes a great balance between simplicity and robustness. Unlike other fancy architectures (e.g. hexagonal architecture, etc), this style is more likely to keep things simple and organized. The three layers represent the physical flow of a request with no abstractions:
 
-![Monorepos](./3-tiers.png)
+![Monorepos](/img/3-tiers.png)
 *A typical Monorepo structure*
 
 **- Layer 1: Entry points -** This is the door to the application where flows start and requests come-in. Our example component has a REST API (i.e., API controllers), this is one kind of an entry-point. There might be other entry-points like a scheduled job, CLI, message queue and more. Whatever entry-point you're dealing with, the responsibility of this layer is minimal - receive requests, perform authentication, pass the request to be handled by the internal code and handle errors. For example, a controller gets an API request then it does nothing more than authenticating the user, extract the payload and call a domain layer function 👇
