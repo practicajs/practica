@@ -219,10 +219,13 @@ export async function getWeather(when: Datetime): Promise<number> {
 }
 ```
 
-## 1 min pause: A word or two about me the author
+___
+
+## 1 min pause: A word or two about me, the author
 
 My name is Yoni Goldberg, I'm a Node.js developer and consultant. I wrote few code-books like [JavaScript testing best practices](https://github.com/goldbergyoni/javascript-testing-best-practices) and [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (100,000 stars ✨🥹). That said, my best guide is [Node.js testing practices]() which only few read 😞. I shall release [an advanced Node.js testing course soon](https://testjavascript.com/) and also hold workshops for teams. I'm also a core maintainer of [Practica.js](https://github.com/practicajs/practica) which is a Node.js starter that creates a production-ready example Node Monorepo solution that is based on the standards and simplicity. It might be your primary option when starting a new Node.js solution
 
+___
 
 ## 4. Passport.js for token authentication
 
@@ -463,4 +466,4 @@ I hope that these thoughts, at least one of them, made you re-consider adding a 
 - [Book: JavaScript testing best practices](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
 - [How to be a better Node.js developer in 2020](https://yonigoldberg.medium.com/20-ways-to-become-a-better-node-js-developer-in-2020-d6bd73fcf424). The 2023 version is coming soon
 - [Practica.js - A Node.js starter](https://github.com/practicajs/practica)
-- [Node.js best practices]([https://github.com/practicajs/practica](https://github.com/goldbergyoni/nodebestpractices))
+- [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices)
