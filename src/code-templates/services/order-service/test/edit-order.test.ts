@@ -92,6 +92,29 @@ describe('/api', () => {
     // Assert
     expect(receivedResponse.status).toBe(409);
   });
+
+  test('When editing order with no user id, then its rejected with status 400', async () => {
+    // Arrange
+    const orderBeforeEdit = {
+      userId: undefined,
+      productId: 2,
+      deliveryAddress: '123 Main St, New York, NY 10001',
+      paymentTermsInDays: 30,
+      status: 'delivered',
+    };
+    const orderToEditId = (await axiosAPIClient.post('/order', orderBeforeEdit))
+      .data.id;
+    orderBeforeEdit.deliveryAddress = '161 Trumpeter Ave, Alaska';
+
+    // Act
+    const receivedResponse = await axiosAPIClient.put(
+      `/order/${orderToEditId}`,
+      orderBeforeEdit
+    );
+
+    // Assert
+    expect(receivedResponse.status).toBe(400);
+  });
 });
 
 export {};

@@ -9,14 +9,23 @@ export default async function editOrder(
   orderId: number,
   updatedOrder: editOrderDTO
 ) {
+  assertOrderIsValid(updatedOrder);
+  assertEditingIsAllowed(updatedOrder.status, updatedOrder.paymentTermsInDays);
+
+  return await orderRepository.editOrder(orderId, updatedOrder);
+}
+
+function assertOrderIsValid(updatedOrder: editOrderDTO) {
   const isValid = ajv.validate(addOrderSchema, updatedOrder);
   if (isValid === false) {
     throw new AppError('invalid-order', `Validation failed`, 400, true);
   }
-  if (
-    updatedOrder.status === 'delivered' ||
-    updatedOrder.paymentTermsInDays === 0
-  ) {
+}
+function assertEditingIsAllowed(
+  status: string | undefined,
+  paymentTermsInDays: number
+) {
+  if (status === 'delivered' || paymentTermsInDays === 0) {
     throw new AppError(
       'changes-not-allowed',
       `It's not allow to delivered or paid orders`,
@@ -24,6 +33,4 @@ export default async function editOrder(
       true
     );
   }
-
-  return await orderRepository.editOrder(orderId, updatedOrder);
 }

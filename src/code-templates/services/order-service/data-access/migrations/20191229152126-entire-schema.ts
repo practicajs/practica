@@ -22,6 +22,10 @@ module.exports = {
       paymentTermsInDays: {
         type: Sequelize.INTEGER,
       },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       deliveryAddress: {
         type: Sequelize.STRING,
       },

@@ -25,5 +25,9 @@ export default function getOrderModel() {
     productId: {
       type: DataTypes.INTEGER,
     },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   });
 }
