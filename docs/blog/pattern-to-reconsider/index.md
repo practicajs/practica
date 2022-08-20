@@ -28,7 +28,9 @@ In his novel book 'Atomic Habits' the author James Clear states that:
 
 We copy-paste mentally and physically things that we are used to, but these things are not necessarily right anymore. Like animals who shed their shells or skin to adapt to a new reality, so the Node.js community should constantly gauge its existing patterns, discuss and change
 
-Luckily, unlike other languages that are more committed to specific design paradigms (Java, Ruby) - Node is a house of many ideas. In this community, I feel safe to question some of our good-old tooling and patterns. The list below contains my personal beliefs, which are brought with reasoning and examples. Are those disruptive thoughts surely correct? I'm not sure or need to be sure. If we want to make Node.js live longer - we simply need to encourage critics, focus our loyalty on innovation, and keep the discussion going. The outcome of this discussion is not "don't use this tool!" but rather becoming familiar with other techniques that, _under some circumstances_ might be a better fit
+Luckily, unlike other languages that are more committed to specific design paradigms (Java, Ruby) - Node is a house of many ideas. In this community, I feel safe to question some of our good-old tooling and patterns. The list below contains my personal beliefs, which are brought with reasoning and examples. 
+
+Are those disruptive thoughts surely correct? I'm not sure. There is one things I'm sure about though - For Node.js to live longer, we need to encourage critics, focus our loyalty on innovation, and keep the discussion going. The outcome of this discussion is not "don't use this tool!" but rather becoming familiar with other techniques that, _under some circumstances_ might be a better fit
 
 ![Animals and frameworks shed their skin](./crab.webp)
 
@@ -135,7 +137,7 @@ exports function add(newUser){
 
 **☀️ Better alternative:** The controller should call a particular type of service, a **use-case** , which is responsible for _summarizing_ the flow in a business and simple language. Each flow/feature is described using a use-case, each contains 4-10 lines of code, that tell the story without technical details. It mostly orchestrates other small services, clients, and repositories that hold all the implementation details. With use cases, the reader can grasp the high-level flow easily. She can now **choose** where she would like to focus. She is now exposed only to **necessary** complexity. This technique also encourages partitioning the code to the smaller object that the use-case orchestrates. Bonus: By looking at coverage reports, one can tell which features are covered, not just files/functions
 
-This idea by the way is formalized in the ['clean architecture' book](https://www.bookdepository.com/Clean-Architecture-Robert-Martin/9780134494166?redirected=true&utm_medium=Google&utm_campaign=Base1&utm_source=IL&utm_content=Clean-Architecture&selectCurrency=ILS&w=AFF9AU99ZB4MTDA8VTRQ&gclid=Cj0KCQjw3eeXBhD7ARIsAHjssr92kqLn60dnfQCLjbkaqttdgvhRV5dqKtnY680GCNDvKp-16HtZp24aAg6GEALw_wcB) - I'm not a big fan of 'fancy' architectures, but see - it's worth cherry-picking techniques from every source
+This idea by the way is formalized in the ['clean architecture' book](https://www.bookdepository.com/Clean-Architecture-Robert-Martin/9780134494166?redirected=true&utm_medium=Google&utm_campaign=Base1&utm_source=IL&utm_content=Clean-Architecture&selectCurrency=ILS&w=AFF9AU99ZB4MTDA8VTRQ&gclid=Cj0KCQjw3eeXBhD7ARIsAHjssr92kqLn60dnfQCLjbkaqttdgvhRV5dqKtnY680GCNDvKp-16HtZp24aAg6GEALw_wcB) - I'm not a big fan of 'fancy' architectures, but see - it's worth cherry-picking techniques from every source. You may walk-through our [Node.js best practices starter, practica.js](https://github.com/practicajs/practica), and examine the use-cases code
 
 ```javascript
 // add-order-use-case.js
@@ -216,6 +218,14 @@ export async function getWeather(when: Datetime): Promise<number> {
   await getHumidity(when);
 }
 ```
+
+___
+
+## 1 min pause: A word or two about me, the author
+
+My name is Yoni Goldberg, I'm a Node.js developer and consultant. I wrote few code-books like [JavaScript testing best practices](https://github.com/goldbergyoni/javascript-testing-best-practices) and [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (100,000 stars ✨🥹). That said, my best guide is [Node.js testing practices](https://github.com/testjavascript/nodejs-integration-tests-best-practices) which only few read 😞. I shall release [an advanced Node.js testing course soon](https://testjavascript.com/) and also hold workshops for teams. I'm also a core maintainer of [Practica.js](https://github.com/practicajs/practica) which is a Node.js starter that creates a production-ready example Node Monorepo solution that is based on the standards and simplicity. It might be your primary option when starting a new Node.js solution
+
+___
 
 ## 4. Passport.js for token authentication
 
@@ -437,7 +447,7 @@ if (process.env.NODE_ENV === "production") {
 ```javascript
 //package.json
 "scripts": {
-    "start": "LOG_PRETTY_PRINT=false index.js",
+    "start": "LOG_PRETTY_PRINT=false index.js",gh 
     "test": "LOG_PRETTY_PRINT=true jest"
 }
 
@@ -445,3 +455,15 @@ if (process.env.NODE_ENV === "production") {
 //✅ No condition, same code for all the environments. The variations are defined externally in config or deployment files
 setLogger({prettyPrint: process.env.LOG_PRETTY_PRINT})
 ```
+
+## Closing
+
+I hope that these thoughts, at least one of them, made you re-consider adding a new technique to your toolbox. In any case, let's keep our community vibrant, disruptive and kind. Respectful discussions are almost as important as the event loop. Almost.
+
+## Some of my other articles
+
+- [Book: Node.js testing best practices](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
+- [Book: JavaScript testing best practices](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
+- [How to be a better Node.js developer in 2020](https://yonigoldberg.medium.com/20-ways-to-become-a-better-node-js-developer-in-2020-d6bd73fcf424). The 2023 version is coming soon
+- [Practica.js - A Node.js starter](https://github.com/practicajs/practica)
+- [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices)

@@ -63,4 +63,4 @@ We apply more than 100 practices and optimizations. You can opt in or out for mo
 | Dockerfile | Generates dockerfile that embodies 20> best practices | --df, --docker-file | Docs coming soon |
 | Strong-schema configuration | A configuration module that dynamically load run-time configuration keys and includes a strong schema so it can fail fast | Built-in with basic app | [Docs here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD) |
 
-📗 **See our full list of features [here](https:/dev/features/index)**
+📗 **See our full list of features [here](https://practica.dev/features)**

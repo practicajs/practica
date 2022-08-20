@@ -2,7 +2,7 @@
 
 <br/>
 
-### Generate a Node.js app that is packed with best practices AND simplicity in mind. Based off our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (78,000 stars)
+### Generate a Node.js app that is packed with best practices AND simplicity in mind. Based off our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (80,000 stars)
 
 <br />
 
@@ -52,13 +52,20 @@ https://user-images.githubusercontent.com/8571500/170464232-43355e43-98cf-4069-b
 
 # Super-Quick Setup
 
-**Note:** Practica.js is a work-in-progress. To have a more complete experience, please check back after June 2022.
-
 <br />
 
 ### Run Practica.js from the Command Line
 
-To run Practica in Interactive Mode (with UI):
+
+Run practica CLI and generate our default app (you can customize it using different flags):
+
+```bash
+npx @practica/create-node-app immediate --install-dependencies
+```
+
+✨ And you're done! That's it. The code's all been generated.
+
+We also have a CLI interactive mode:
 
 ```bash
 npx @practica/create-node-app interactive
@@ -66,23 +73,23 @@ npx @practica/create-node-app interactive
 
 Note that for now, it can generate an app that is based on Express and PostgreSQL only. Other options will get added soon
 
-Or if you'd prefer a typical terminal experience (without UI):
-
-```bash
-npx @practica/create-node-app immediate
-```
-
-✨ And you're done! That's it. The code's all been generated.
 
 <br />
 
 ### Start the Project
 
 ```bash
-npm start
+cd {your chosen folder name}
+npm install
 ```
 
-or
+Then choose whether to start the app:
+
+```bash
+npm run
+```
+
+or run the tests:
 
 ```bash
 npm test
@@ -90,14 +97,15 @@ npm test
 
 Pretty straight forward, right?
 
+You just got a Node.js Monorepo solution with one example component/Microservice and multiple libraries. Based on this hardened solution you can build a robust application. The example component/Microservice is located under: *{your chosen folder name}/services/order-service*. This is where you'll find the API and a good spot to start your journey from.
+
 <br />
 
 ### Next Steps
 
-- ✅ Start coding. The code we generate is minimal by design, and should help you get up to speed quickly.
-- ✅ (Optional) Read through the code. Best Practices are tagged throughout.
-- ✅ Master it by reading our [docs](https://practica.dev).
-
+- ✅ Start coding. The code we generate is minimal by design and based on known libraries. This should help you get up to speed quickly.
+- ✅ Read our ['coding with practica'](https://practica.dev/the-basics/coding-with-practica/) guide
+- ✅ Master it by reading our [docs at https://practica.dev](https://practica.dev).
 
 
 <br />
