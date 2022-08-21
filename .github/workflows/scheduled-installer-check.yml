@@ -1,0 +1,12 @@
+name: scheduled-installer-check
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  scheduled-installer-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install practica
+        run: npx @practica/create-node-app immediate --install-dependencies
