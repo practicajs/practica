@@ -24,7 +24,7 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **🎁 Bundles:** example-flow, full-flow
 
-**🏁 CLI flags:** --logger=true|false
+**🏁 CLI flags:** `--logger=true|false`
 
 ### 1.2 Prevent infinite logger serialization loop
 

@@ -19,7 +19,7 @@ sidebar_position: 1
 
 # A One Paragraph Overview
 
-Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate some example code that demonstrates a full workflow, from API to DB, that is packed with good practices. For example, we include a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](./decisions/index). We strive to keep things as simple and standard as possible and base our work off the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate some example code that demonstrates a full workflow, from API to DB, that is packed with good practices. For example, we include a hardened dockerfile, N-Tier folder structure, great testing templates, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](./decisions/). We strive to keep things as simple and standard as possible and base our work off the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
 
 **1 min video 👇**
 
@@ -52,15 +52,15 @@ Good Practices and Simplicity is the name of the game with Practica. There is no
 
 # Practices and Features
 
-We apply more than 100 practices and optimizations. You can opt in or out for most of these features using option flags on our CLI. The follow table is just a few examples of features we provide. To see the full list of features, please visit our website [here](https://practicajs.dev/features).
+We apply more than 100 practices and optimizations. You can opt in or out for most of these features using option flags on our CLI. The follow table is just a few examples of features we provide. To see the full list of features, please visit our website [here](https://practica.dev/dev/features/).
 
 | **Feature** | **Explanation** | **Flag** | **Docs** |
 | ----------- | --------------- | -------- | -------- |
-| Monorepo setup | Generates two components (e.g., Microservices) in a single repository with interactions between the two | --mr, --monorepo | Docs coming soon |
-| Output escaping and sanitizing | Clean-out outgoing responses from potential HTML security risks like XSS | --oe, --output-escape | Docs coming soon |
-| Integration (component) testing | Generates full-blown component/integration tests setup including DB | --t, --tests | Docs coming soon |
-| Unique request ID (Correlation ID) | Generates module that creates a unique correlation/request ID for every incoming request. This is available for any other object during the request life-span. Internally it uses Node's built-in [AsyncLocalStorage](https://nodejs.org/api/async_hooks.html#class-asynclocalstorage) | --coi, --correlation-id | Docs coming soon |
-| Dockerfile | Generates dockerfile that embodies 20> best practices | --df, --docker-file | Docs coming soon |
-| Strong-schema configuration | A configuration module that dynamically load run-time configuration keys and includes a strong schema so it can fail fast | Built-in with basic app | [Docs here](https://github.com/bestpractices/practica/blob/main/docs/decisions/configuration-library.MD) |
+| Monorepo setup | Generates two components (e.g., Microservices) in a single repository with interactions between the two | `--mr`, `--monorepo` | [Docs here](./decisions/monorepo.md) |
+| Output escaping and sanitizing | Clean-out outgoing responses from potential HTML security risks like XSS | `--oe`, `--output-escape` | Docs coming soon |
+| Integration (component) testing | Generates full-blown component/integration tests setup including DB | `--t`, `--tests` | Docs coming soon |
+| Unique request ID (Correlation ID) | Generates module that creates a unique correlation/request ID for every incoming request. This is available for any other object during the request life-span. Internally it uses Node's built-in [`AsyncLocalStorage`](https://nodejs.org/api/async_hooks.html#class-asynclocalstorage) | `--coi`, `--correlation-id` | Docs coming soon |
+| Dockerfile | Generates dockerfile that embodies 20> best practices | `--df`, `--docker-file` | Docs coming soon |
+| Strong-schema configuration | A configuration module that dynamically load run-time configuration keys and includes a strong schema so it can fail fast | Built-in with basic app | [Docs here](./decisions/configuration-library.md) |
 
 📗 **See our full list of features [here](https://practica.dev/features)**
