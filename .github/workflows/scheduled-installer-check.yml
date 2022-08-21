@@ -2,7 +2,8 @@ name: scheduled-installer-check
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '5,15,25,35,45,55 * * * *'
+    
 
 jobs:
   scheduled-installer-check:
