@@ -2,7 +2,7 @@
   "name": "@practica/jwt-token-verifier",
   "version": "0.0.1-alpha.5",
   "description": "JWT for Practica",
-  "main": ".dist/lib/index.js",
+  "main": ".dist/index.js",
   "scripts": {
     "installDependencies": "npm install",
     "build": "tsc",

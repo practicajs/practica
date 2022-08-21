@@ -21,9 +21,10 @@ export const jwtVerifierMiddleware = (options: JWTOptions) => {
     // A token comes in one of two forms: 'token' or 'Bearer token'
     const authHeaderParts = authenticationHeader.split(' ');
     if (authHeaderParts.length > 2) {
-      // It should have 1 or 2 parts (separated by space), the incoming string has unknown structure
+      // It should have 1 or 2 parts (separated by space), the incoming string is not supported
       return res.sendStatus(401);
     }
+
     if (authHeaderParts.length === 2) {
       [, token] = authHeaderParts;
     } else {
@@ -36,7 +37,9 @@ export const jwtVerifierMiddleware = (options: JWTOptions) => {
       // TODO: we should remove this any according to the library, jwtContent can not contain data property
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (err: VerifyErrors | null, jwtContent: any) => {
-        // TODO use logger to report the error here
+        // @todo: use logger and error handler here
+        // eslint-disable-next-line no-console
+        console.log(err);
 
         if (err) {
           return res.sendStatus(401);
