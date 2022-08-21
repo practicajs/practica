@@ -12,8 +12,6 @@ sidebar_position: 1
 <br />
 
 
-❣️ **Alpha stage:** Practica.js is a work-in-progress. We've only recently kicked off. Please revisit by July 2022 🗓
-
 ![Discord](/img/discord-logo.png) [Discord discussions](https://discord.gg/9Nrarr7p) | ![Twitter](/img/twitter-icon.png) [Twitter](https://twitter.com/nodepractices)
 
 
@@ -65,4 +63,4 @@ We apply more than 100 practices and optimizations. You can opt in or out for mo
 | Dockerfile | Generates dockerfile that embodies 20> best practices | `--df`, `--docker-file` | Docs coming soon |
 | Strong-schema configuration | A configuration module that dynamically load run-time configuration keys and includes a strong schema so it can fail fast | Built-in with basic app | [Docs here](./decisions/configuration-library.md) |
 
-📗 **See our full list of features [here](./features-reference.md)**
+📗 **See our full list of features [here](https://practica.dev/features)**

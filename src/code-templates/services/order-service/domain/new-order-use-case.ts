@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { AppError } from '@practica/error-handling';
 import * as orderRepository from '../data-access/repositories/order-repository';
-import * as paymentTermsService from './payment-terms-service';
+import paymentTermsService from './payment-terms-service';
 import { addOrderDTO, getNewOrderValidator } from './order-schema';
 
 // ️️️✅ Best Practice: Start a flow with a 'use case' function that summarizes the flow in high-level
@@ -40,16 +40,17 @@ async function getUserOrThrowIfNotExist(userId: number) {
 
 function validateNewOrderRequest(newOrderRequest: addOrderDTO) {
   const AjvSchemaValidator = getNewOrderValidator();
+  // @ts-expect-error TODO: fix this type error
   const isValid = AjvSchemaValidator(newOrderRequest);
   if (!isValid) {
     throw new AppError('invalid-order', `Validation failed`, 400, true);
   }
 }
 
-export const deleteOrder = async function (userId) {
+export async function deleteOrder(userId) {
   return await orderRepository.deleteOrder(userId);
-};
+}
 
-export const getOrder = async function (userId) {
+export async function getOrder(userId) {
   return await orderRepository.getOrderById(userId);
-};
+}
