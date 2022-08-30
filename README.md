@@ -260,6 +260,7 @@ A million thanks to these great people who have contributed code to our project:
     <td align="center"><a href="https://github.com/AmirAdarGit"><img src="https://avatars.githubusercontent.com/u/44618095?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Amir Adar</b></sub></a><br /><a href="#content-AmirAdarGit" title="Content">🖋</a></td>
     <td align="center"><a href="https://vaucouleur.com"><img src="https://avatars.githubusercontent.com/u/12293?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Sebastien Vaucouleur</b></sub></a><br /><a href="#content-vaucouleur" title="Content">🖋</a></td>
     <td align="center"><a href="https://hkdobrev.com"><img src="https://avatars.githubusercontent.com/u/506129?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Harry Dobrev</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=hkdobrev" title="Code">💻</a></td>
+    <td align="center"><a href="https://skippednote.dev"><img src="https://avatars.githubusercontent.com/u/2114712?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Bassam Ismail</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=skippednote" title="Documentation">📖</a></td>
   </tr>
 </table>
 
