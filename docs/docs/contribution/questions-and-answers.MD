@@ -21,6 +21,6 @@ c. `rm create-node-app`
 
 d. Navigate to the code folder and build the code `npm run build`
 
-e. Navigate to .dist and run the command
+e. Navigate to `.dist` and run the command
 
 `npm link`

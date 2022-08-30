@@ -3,7 +3,7 @@ id: features
 sidebar_position: 5
 ---
 
-# Features and practices
+# Coming soon: Features and practices
 
 ***WIP - This doc is being written these days***
 
@@ -24,7 +24,7 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **🎁 Bundles:** example-flow, full-flow
 
-**🏁 CLI flags:** --logger=true|false
+**🏁 CLI flags:** `--logger=true|false`
 
 ### 1.2 Prevent infinite logger serialization loop
 
@@ -80,5 +80,29 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **🎁 Bundles:** example-flow, full-flow
 
+## 4. Docker
+### 4.1 Secured dockerfile
+
+**What:** We build a production-ready .dockerfile that avoids leaking secrets and leaving dev dependencies in
+
+**Tags:** #security #docker
+
+**👷🏾 Status:** <img src="/img/full.png"/>  Production-ready, more hardening is welcome
+
+**🏆 Chosen libraries:** N/A
+
+**🎁 Bundles:** example-flow, full-flow
+
+### 4.2 Testing docker-compose
+
+**What:** Testing optimized database and other infrastrucuture running from docker-compose during the automated tests
+
+**Tags:** #testing #docker #database
+
+**👷🏾 Status:** <img src="/img/full.png"/>  Production-ready, more hardening is welcome
+
+**🏆 Chosen libraries:** N/A
+
+**🎁 Bundles:** example-flow, full-flow
 
 **Additional 100 features will come here**
