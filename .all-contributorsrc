@@ -251,6 +251,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "skippednote",
+      "name": "Bassam Ismail",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2114712?v=4",
+      "profile": "https://skippednote.dev",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 4,
