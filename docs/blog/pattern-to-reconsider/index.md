@@ -447,7 +447,7 @@ if (process.env.NODE_ENV === "production") {
 ```javascript
 //package.json
 "scripts": {
-    "start": "LOG_PRETTY_PRINT=false index.js",gh 
+    "start": "LOG_PRETTY_PRINT=false index.js",
     "test": "LOG_PRETTY_PRINT=true jest"
 }
 
