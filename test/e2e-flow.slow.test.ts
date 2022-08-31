@@ -2,8 +2,6 @@ import fsExtra from "fs-extra";
 import execa from "execa";
 import path from "path";
 import axios from "axios";
-import waitPort from "wait-port";
-
 import * as testHelpers from "./test-helpers";
 
 let emptyFolderForATest: string;
