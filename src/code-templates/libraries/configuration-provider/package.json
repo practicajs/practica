@@ -1,6 +1,6 @@
 {
   "name": "@practica/configuration-provider",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.2",
   "description": "",
   "main": "./.dist/index.js",
   "scripts": {
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@types/convict": "^6.1.1",
-    "typescript": "^4.6.4"
+    "ts-jest": "^28.0.8",
+    "typescript": "4.6.4"
   }
 }

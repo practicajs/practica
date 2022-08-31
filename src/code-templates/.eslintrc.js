@@ -33,5 +33,6 @@ module.exports = {
     'no-restricted-exports': 'off',
     'no-param-reassign': 'off',
     'no-use-before-define': 'off',
+    'import/prefer-default-export': 'off',
   },
 };

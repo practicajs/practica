@@ -1,1 +1,3 @@
-export { default } from './ajv-cache';
+import ajvCache from './ajv-cache';
+
+export default ajvCache;

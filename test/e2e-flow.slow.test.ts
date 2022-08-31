@@ -1,6 +1,9 @@
 import fsExtra from "fs-extra";
 import execa from "execa";
 import path from "path";
+import axios from "axios";
+import waitPort from "wait-port";
+
 import * as testHelpers from "./test-helpers";
 
 let emptyFolderForATest: string;
@@ -13,8 +16,8 @@ afterEach(async () => {
   //await fsExtra.remove(emptyFolderForATest);
 });
 
-describe("Non-interactive", () => {
-  test("When passing no parameters, the generated app sanity tests pass", async () => {
+describe("Non-interactive CLI", () => {
+  test("When installing with the default flags, the generated app sanity tests pass", async () => {
     // Arrange
     console.log(
       `Starting E2E test with the output folder: ${emptyFolderForATest}`

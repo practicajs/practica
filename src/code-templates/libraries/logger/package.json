@@ -1,8 +1,8 @@
 {
   "name": "@practica/logger",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.3",
   "description": "",
-  "main": "./.dist/logger.wrapper.js",
+  "main": "./.dist/index.js",
   "scripts": {
     "test": "jest --forceExit",
     "test:dev": "jest --watch --silent --runInBand",
@@ -28,7 +28,7 @@
     "sinon": "^14.0.0",
     "ts-jest": "^27.1.3",
     "ts-node": "^10.7.0",
-    "typescript": "^4.6.4"
+    "typescript": "4.6.4"
   },
   "author": "",
   "license": "ISC",
