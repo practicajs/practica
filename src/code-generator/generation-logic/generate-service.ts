@@ -40,14 +40,11 @@ export const generateApp = async (options: generationOptions) => {
     await execa("npm", ["install"], {
       cwd: targetDirectory,
     });
-    await execa("npx", ["turbo", "run", "installDependencies"], {
-      cwd: targetDirectory,
-    });
-    await execa("npx", ["turbo", "run", "build"], {
+    await execa("npx", ["turbo", "run", "build", "--continue=false"], {
       cwd: targetDirectory,
     });
   }
 
-  console.log(`App was generated successfully`);
+  console.log(`The app was generated successfully`);
   return;
 };
