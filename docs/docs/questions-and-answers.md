@@ -1,6 +1,7 @@
 ---
-id: features
+id: questions
 sidebar_position: 6
+sidebar_label: Common questions
 ---
 
 # Common questions and answers
