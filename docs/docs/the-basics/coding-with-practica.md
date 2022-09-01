@@ -72,6 +72,10 @@ npm start
 
 Now visit our [online POSTMAN collection](https://documenter.getpostman.com/view/190644/VUqmxKok), explore the routes, invoke and make yourself familiar with the app
 
+**Note:** The API routes authorize requests, a valid token must be provided. You may generate one yourself ([see here how](../questions-and-answers.MD)), or just use the default _development_ token that we generated for you 👇. Put it inside an 'Authorization' header:
+
+```Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NjIwMTY5NjIsImV4cCI6MTY5MzU1Mjk2MiwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.65ACAjHy2ZE5i_uS5hyiEkOQfkqOqdj-WtBm-w23qZQ```
+
 We have the ground ready 🐥. Let's code now, just remember to run the tests (or POSTMAN) once in a while to ensure nothing breaks
 ## The 3 layers of a component
 
