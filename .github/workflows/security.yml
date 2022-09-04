@@ -18,15 +18,15 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test
-          args: --all-projects --severity-threshold=critical --sarif-file-output="${GITHUB_WORKSPACE}/sarif/sca.sarif"
+          args: --all-projects --severity-threshold=critical --sarif-file-output="${{ github.workspace }}/sarif/sca.sarif"
       - name: Run Snyk Static Code Analysis
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: code test
-          args: --severity-threshold=high --sarif-file-output="${GITHUB_WORKSPACE}/sarif/sast.sarif"
+          args: --severity-threshold=high --sarif-file-output="${{ github.workspace }}/sarif/sast.sarif"
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: "${GITHUB_WORKSPACE}/sarif"
+          sarif_file: "${{ github.workspace }}/sarif"
