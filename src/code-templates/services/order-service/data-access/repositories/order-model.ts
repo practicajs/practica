@@ -1,8 +1,8 @@
-import { DataTypes } from "sequelize";
-import { getDbConnection } from "../db-connection";
+import { DataTypes } from 'sequelize';
+import getDbConnection from '../db-connection';
 
-export function getOrderModel() {
-  return getDbConnection().define("Order", {
+export default function getOrderModel() {
+  return getDbConnection().define('Order', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,

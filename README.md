@@ -2,14 +2,12 @@
 
 <br/>
 
-### Generate a Node.js app that is packed with best practices AND simplicity in mind. Based off our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (78,000 stars)
+### Generate a Node.js app that is packed with best practices AND simplicity in mind. Based off our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (80,500 stars)
 
 <br />
 
 
-❣️ **Alpha stage:** Practica.js is a work-in-progress. We've only recently kicked off. Please revisit by July 2022 🗓
-
-![Discord](/static/images/discord-logo.png) [Discord discussions](https://discord.gg/9EnfwfHk) | ![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices) | ![Site](/docs/static/img/site-icon.png) [Documentation site](https://practica.dev/)
+![Discord](/static/images/discord-logo.png) [Discord discussions](https://discord.gg/SrM68BJPqR) | ![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices) | ![Site](/docs/static/img/site-icon.png) [Documentation site](https://practica.dev/)
 
 
 <br/>
@@ -54,13 +52,20 @@ https://user-images.githubusercontent.com/8571500/170464232-43355e43-98cf-4069-b
 
 # Super-Quick Setup
 
-**Note:** Practica.js is a work-in-progress. To have a more complete experience, please check back after June 2022.
-
 <br />
 
 ### Run Practica.js from the Command Line
 
-To run Practica in Interactive Mode (with UI):
+
+Run practica CLI and generate our default app (you can customize it using different flags):
+
+```bash
+npx @practica/create-node-app immediate --install-dependencies
+```
+
+✨ And you're done! That's it. The code's all been generated.
+
+We also have a CLI interactive mode:
 
 ```bash
 npx @practica/create-node-app interactive
@@ -68,23 +73,23 @@ npx @practica/create-node-app interactive
 
 Note that for now, it can generate an app that is based on Express and PostgreSQL only. Other options will get added soon
 
-Or if you'd prefer a typical terminal experience (without UI):
-
-```bash
-npx @practica/create-node-app immediate
-```
-
-✨ And you're done! That's it. The code's all been generated.
 
 <br />
 
 ### Start the Project
 
 ```bash
-npm start
+cd {your chosen folder name}
+npm install
 ```
 
-or
+Then choose whether to start the app:
+
+```bash
+npm run
+```
+
+or run the tests:
 
 ```bash
 npm test
@@ -92,14 +97,15 @@ npm test
 
 Pretty straight forward, right?
 
+You just got a Node.js Monorepo solution with one example component/Microservice and multiple libraries. Based on this hardened solution you can build a robust application. The example component/Microservice is located under: *{your chosen folder name}/services/order-service*. This is where you'll find the API and a good spot to start your journey from.
+
 <br />
 
 ### Next Steps
 
-- ✅ Start coding. The code we generate is minimal by design, and should help you get up to speed quickly.
-- ✅ (Optional) Read through the code. Best Practices are tagged throughout.
-- ✅ Master it by reading our [docs](https://practica.dev).
-
+- ✅ Start coding. The code we generate is minimal by design and based on known libraries. This should help you get up to speed quickly.
+- ✅ Read our ['coding with practica'](https://practica.dev/the-basics/coding-with-practica/) guide
+- ✅ Master it by reading our [docs at https://practica.dev](https://practica.dev).
 
 
 <br />
@@ -177,13 +183,31 @@ Leader IoT provider, part of 'Cox Communication', the 3rd largest cable company 
 <a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
 </td>
 </tr>
+<tr>
+	<td align="center"><img src="./static/images/ariel.jpeg" width="300px" alt=""/><br /><h3>Ariel Steiner</h3><br/>Node.js developer<br/><a href="https://twitter.com/goldbergyoni"><img src="./static/images/twitter-symbol.png" width="16" height="16"></img></a>
+<a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
+</td>
+<td align="center"><img src="./static/images/tomer.jpeg" width="300px" alt=""/><br /><h3>Tomer Kohane</h3><br/>Frontend geek<br/><a href="https://twitter.com/goldbergyoni"><img src="./static/images/twitter-symbol.png" width="16" height="16"></img></a>
+<a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
+</td>
+</tr>
+<tr>
+	<td align="center"><img src="./static/images/dan.png" width="300px" alt=""/><br /><h3>Dan Goldberg</h3><br/>Node.js lead<br/><a href="https://twitter.com/goldbergyoni"><img src="./static/images/twitter-symbol.png" width="16" height="16"></img></a>
+<a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
+</td>
+<td align="center"><img src="./static/images/ron.jpeg" width="300px" alt=""/><br /><h3>Ron Dahan</h3><br/>Node.js expert<br/><a href="https://twitter.com/goldbergyoni"><img src="./static/images/twitter-symbol.png" width="16" height="16"></img></a>
+<a href="https://goldbergyoni.com"><img src="./static/images/site-symbol.png" width="16" height="16"></img></a>
+</td>
+</tr>
+
+
 </table>
 
 <br />
 
 # Partners
 
-These companies are keen for continous improvement and their engineers to have been known to contribute during work hours.
+These companies are keen for continuous improvement and their engineers to have been known to contribute during work hours.
 
 ![Minta](/static/images/minta.png)
 
@@ -198,9 +222,9 @@ A million thanks to these great people who have contributed code to our project:
 <table>
   <tr>
     <td align="center"><a href="https://www.clarkio.com"><img src="https://avatars.githubusercontent.com/u/6265396?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Brian Clark</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=clarkio" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/rluvaton"><img src="https://avatars.githubusercontent.com/u/16746759?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Raz Luvaton</b></sub></a><br /><a href="#content-rluvaton" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/rluvaton"><img src="https://avatars.githubusercontent.com/u/16746759?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Raz Luvaton</b></sub></a><br /><a href="#content-rluvaton" title="Content">🖋</a> <a href="https://github.com/practicajs/practica/commits?author=rluvaton" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/mikicho"><img src="https://avatars.githubusercontent.com/u/11459632?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Michael Solomon</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=mikicho" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/itainoam"><img src="https://avatars.githubusercontent.com/u/12605830?v=4?s=200" width="200px;" alt=""/><br /><sub><b>itainoam</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=itainoam" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/itainoam"><img src="https://avatars.githubusercontent.com/u/12605830?v=4?s=200" width="200px;" alt=""/><br /><sub><b>itainoam</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=itainoam" title="Code">💻</a> <a href="#projectManagement-itainoam" title="Project Management">📆</a></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/shanizlo"><img src="https://avatars.githubusercontent.com/u/39856071?v=4?s=200" width="200px;" alt=""/><br /><sub><b>shanizlo</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=shanizlo" title="Code">💻</a></td>
@@ -225,6 +249,18 @@ A million thanks to these great people who have contributed code to our project:
     <td align="center"><a href="https://yonatankra.com"><img src="https://avatars.githubusercontent.com/u/6459899?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Yonatan Kra</b></sub></a><br /><a href="#content-YonatanKra" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/yoni-rapoport"><img src="https://avatars.githubusercontent.com/u/16318253?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Yoni Rapoport</b></sub></a><br /><a href="#content-yoni-rapoport" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/perilevy"><img src="https://avatars.githubusercontent.com/u/29686391?v=4?s=200" width="200px;" alt=""/><br /><sub><b>perilevy</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=perilevy" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/ToMer-K"><img src="https://avatars.githubusercontent.com/u/18401157?v=4?s=200" width="200px;" alt=""/><br /><sub><b>ToMer-K</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=ToMer-K" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/henarbel"><img src="https://avatars.githubusercontent.com/u/87380400?v=4?s=200" width="200px;" alt=""/><br /><sub><b>hen arbel</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=henarbel" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mojcaostir"><img src="https://avatars.githubusercontent.com/u/34694446?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Mojca Ostir</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=mojcaostir" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/evbambly"><img src="https://avatars.githubusercontent.com/u/45696895?v=4?s=200" width="200px;" alt=""/><br /><sub><b>evbambly</b></sub></a><br /><a href="#content-evbambly" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/AmirAdarGit"><img src="https://avatars.githubusercontent.com/u/44618095?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Amir Adar</b></sub></a><br /><a href="#content-AmirAdarGit" title="Content">🖋</a></td>
+    <td align="center"><a href="https://vaucouleur.com"><img src="https://avatars.githubusercontent.com/u/12293?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Sebastien Vaucouleur</b></sub></a><br /><a href="#content-vaucouleur" title="Content">🖋</a></td>
+    <td align="center"><a href="https://hkdobrev.com"><img src="https://avatars.githubusercontent.com/u/506129?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Harry Dobrev</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=hkdobrev" title="Code">💻</a></td>
+    <td align="center"><a href="https://skippednote.dev"><img src="https://avatars.githubusercontent.com/u/2114712?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Bassam Ismail</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=skippednote" title="Documentation">📖</a></td>
   </tr>
 </table>
 

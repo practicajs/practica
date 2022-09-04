@@ -1,17 +1,17 @@
-import { Sequelize } from "sequelize";
-import sequelizeConfig from "./config/config";
-import * as configurationProvider from "@practica/configuration-provider";
+import { Sequelize, Options } from 'sequelize';
+import * as configurationProvider from '@practica/configuration-provider';
+import sequelizeConfig from './config/config';
 
 // ️️️✅ Best Practice: Keep a singleton DB connection pool in a process
 let dbConnection: Sequelize;
 
-export function getDbConnection() {
+export default function getDbConnection() {
   if (!dbConnection) {
     dbConnection = new Sequelize(
-      configurationProvider.getValue("DB.dbName"),
-      configurationProvider.getValue("DB.userName"),
-      configurationProvider.getValue("DB.password"),
-      sequelizeConfig
+      configurationProvider.getValue('DB.dbName'),
+      configurationProvider.getValue('DB.userName'),
+      configurationProvider.getValue('DB.password'),
+      sequelizeConfig as Options
     );
   }
 

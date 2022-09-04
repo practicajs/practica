@@ -20,7 +20,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/16746759?v=4",
       "profile": "https://github.com/rluvaton",
       "contributions": [
-        "content"
+        "content",
+        "code"
       ]
     },
     {
@@ -38,7 +39,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/12605830?v=4",
       "profile": "https://github.com/itainoam",
       "contributions": [
-        "code"
+        "code",
+        "projectManagement"
       ]
     },
     {
@@ -185,6 +187,78 @@
       "profile": "https://github.com/perilevy",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "ToMer-K",
+      "name": "ToMer-K",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18401157?v=4",
+      "profile": "https://github.com/ToMer-K",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "henarbel",
+      "name": "hen arbel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/87380400?v=4",
+      "profile": "https://github.com/henarbel",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mojcaostir",
+      "name": "Mojca Ostir",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34694446?v=4",
+      "profile": "https://github.com/mojcaostir",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "evbambly",
+      "name": "evbambly",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45696895?v=4",
+      "profile": "https://github.com/evbambly",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "AmirAdarGit",
+      "name": "Amir Adar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44618095?v=4",
+      "profile": "https://github.com/AmirAdarGit",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "vaucouleur",
+      "name": "Sebastien Vaucouleur",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12293?v=4",
+      "profile": "https://vaucouleur.com",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "hkdobrev",
+      "name": "Harry Dobrev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/506129?v=4",
+      "profile": "https://hkdobrev.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "skippednote",
+      "name": "Bassam Ismail",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2114712?v=4",
+      "profile": "https://skippednote.dev",
+      "contributions": [
+        "doc"
       ]
     }
   ],
