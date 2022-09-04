@@ -2,7 +2,7 @@ import { Server } from 'http';
 import { logger } from '@practica/logger';
 import { AddressInfo } from 'net';
 import express from 'express';
-import helmet from "helmet";
+import helmet from 'helmet';
 import { errorHandler } from '@practica/error-handling';
 import * as configurationProvider from '@practica/configuration-provider';
 import { jwtVerifierMiddleware } from '@practica/jwt-token-verifier';
