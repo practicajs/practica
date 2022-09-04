@@ -2,6 +2,7 @@ import { Server } from 'http';
 import { logger } from '@practica/logger';
 import { AddressInfo } from 'net';
 import express from 'express';
+import helmet from "helmet";
 import { errorHandler } from '@practica/error-handling';
 import * as configurationProvider from '@practica/configuration-provider';
 import { jwtVerifierMiddleware } from '@practica/jwt-token-verifier';
@@ -21,6 +22,7 @@ async function startWebServer(): Promise<AddressInfo> {
     true
   );
   const expressApp = express();
+  expressApp.use(helmet());
   expressApp.use(express.urlencoded({ extended: true }));
   expressApp.use(express.json());
   expressApp.use(
