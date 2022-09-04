@@ -24,7 +24,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: code
+          command: code test
           args: --severity-threshold=critical --sarif-file-output="~/sarif/sast.sarif"
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
