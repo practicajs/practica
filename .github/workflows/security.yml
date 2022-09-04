@@ -26,6 +26,8 @@ jobs:
         with:
           command: code test
           args: --severity-threshold=high --sarif-file-output="${{ github.workspace }}/sarif/sast.sarif"
+      - name: list
+        run: "ls ${{ github.workspace }}/sarif" 
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
         with:
