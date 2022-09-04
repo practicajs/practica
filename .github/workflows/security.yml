@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: Create output directory
+        run: "mkdir ${{ github.workspace }}/sarif" 
       - name: Run Snyk to check for vulnerabilities (SCA)
         uses: snyk/actions/node@master
         env:
