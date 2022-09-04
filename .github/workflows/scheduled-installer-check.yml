@@ -1,0 +1,17 @@
+# Meant to monitor that our CLI works and accessible
+
+name: scheduled-installer-check
+
+on:
+  schedule:
+    - cron: '5,15,25,35,45,55 * * * *'
+    
+
+jobs:
+  scheduled-installer-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install practica
+        run: npx @practica/create-node-app immediate --install-dependencies
+# TODO: Create an issue on failure using:
+# https://github.com/marketplace/actions/create-an-issue

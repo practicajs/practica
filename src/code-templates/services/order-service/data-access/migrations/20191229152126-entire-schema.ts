@@ -1,3 +1,4 @@
+// ✅ Best Practice: Manage DB schemas explicitly using migrations
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Orders', {
@@ -47,5 +48,5 @@ module.exports = {
     });
   },
 
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('Orders'),
+  down: (queryInterface) => queryInterface.dropTable('Orders'),
 };

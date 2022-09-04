@@ -4,10 +4,9 @@ import * as util from 'util';
 
 let httpServerRef: Http.Server;
 
-// This file simulates real-world error handler that makes this component observable
 const errorHandler = {
-  // Listen to the error events which won't be handled by programmer
-  listenToErrorEvents: (httpServer: Http.Server, options?) => {
+  // Listen to the global process-level error events
+  listenToErrorEvents: (httpServer: Http.Server) => {
     httpServerRef = httpServer;
     process.on('uncaughtException', async (error) => {
       await errorHandler.handleError(error);
@@ -32,30 +31,26 @@ const errorHandler = {
     });
   },
 
-  handleError: (errorToHandle: AppError | Error | any) => {
+  handleError: (errorToHandle: unknown) => {
     try {
       const appError: AppError = normalizeError(errorToHandle);
-      logger.error(appError);
+      logger.error(appError.message, appError);
       metricsExporter.fireMetric('error', { errorName: appError.name }); // fire any custom metric when handling error
       // A common best practice is to crash when an unknown error (non-trusted) is being thrown
       if (!appError.isTrusted) {
         terminateHttpServerAndExit();
       }
-    } catch (e) {
+    } catch (handlingError: unknown) {
+      // Not using the logger here because it might have failed
       process.stdout.write(
-        'The error handler failed, here is the error handler specific error',
-        e
+        'The error handler failed, here are the handler failure and then the origin error that it tried to handle'
       );
-      process.stdout.write(
-        'The error handler failed, here is the origin that it tried to handle',
-        errorToHandle
-      );
-      // Should we crash here?
+      process.stdout.write(JSON.stringify(handlingError));
+      process.stdout.write(JSON.stringify(errorToHandle));
     }
   },
 };
 
-// better naming option - 'gracefullyExit' or something like that ?
 const terminateHttpServerAndExit = async () => {
   // maybe implement more complex logic here (like using 'http-terminator' library)
   if (httpServerRef) {
@@ -65,16 +60,16 @@ const terminateHttpServerAndExit = async () => {
 };
 
 // The input might won't be 'AppError' or even 'Error' instance, the output of this function will be - AppError.
-const normalizeError = (errorToHandle: AppError | Error | any): AppError => {
+const normalizeError = (errorToHandle: unknown): AppError => {
   if (errorToHandle instanceof AppError) {
     return errorToHandle;
   }
   if (errorToHandle instanceof Error) {
     const appError = new AppError(errorToHandle.name, errorToHandle.message);
-    appError.stack = errorToHandle.stack; // TODO - most primitive solution to keep stackTrace, any other options? maybe add property to AppError like ~'prevStackTrace'
+    appError.stack = errorToHandle.stack;
     return appError;
   }
-  // meaning it could e any type,
+  // meaning it could be any type,
   const inputType = typeof errorToHandle;
   return new AppError(
     'general-error',
@@ -88,9 +83,9 @@ class AppError extends Error {
   constructor(
     public name: string,
     public message: string,
-    public HTTPStatus: number = 500, // TODO - do we want to provide any default value?
+    public HTTPStatus: number = 500,
     public isTrusted = true,
-    public cause?: Error | any
+    public cause?: unknown
   ) {
     super(message);
   }
@@ -99,8 +94,13 @@ class AppError extends Error {
 // This simulates a typical monitoring solution that allow firing custom metrics when
 // like Prometheus, DataDog, CloudWatch, etc
 const metricsExporter = {
-  fireMetric: async (name, labels) => {
-    console.log('In real production code I will really fire metrics');
+  fireMetric: async (name: string, labels: object) => {
+    // TODO: use logger instead of conso.log
+    // eslint-disable-next-line no-console
+    console.log('In real production code I will really fire metrics', {
+      name,
+      labels,
+    });
   },
 };
 

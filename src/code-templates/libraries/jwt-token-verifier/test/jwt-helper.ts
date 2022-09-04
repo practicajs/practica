@@ -1,15 +1,15 @@
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
 export function signValidTokenWithDefaultUser() {
-  return internalSignTokenSynchronously('joe', 'admin', Date.now() + 60 * 60)
+  return internalSignTokenSynchronously('joe', 'admin', Date.now() + 60 * 60);
 }
 
 export function signValidToken(user, role) {
-  return internalSignTokenSynchronously(user, role, Date.now() + 60 * 60)
+  return internalSignTokenSynchronously(user, role, Date.now() + 60 * 60);
 }
 
 export function signExpiredToken(user, role) {
-  return internalSignTokenSynchronously(user, role, 0)
+  return internalSignTokenSynchronously(user, role, 0);
 }
 
 function internalSignTokenSynchronously(user, roles, expirationInUnixTime) {
@@ -22,9 +22,9 @@ function internalSignTokenSynchronously(user, roles, expirationInUnixTime) {
       },
     },
     exampleSecret
-  )
+  );
 
-  return token
+  return token;
 }
 
-export const exampleSecret = 'secret'
+export const exampleSecret = 'secret';

@@ -5,7 +5,7 @@ import sequelizeConfig from './config/config';
 // ️️️✅ Best Practice: Keep a singleton DB connection pool in a process
 let dbConnection: Sequelize;
 
-export function getDbConnection() {
+export default function getDbConnection() {
   if (!dbConnection) {
     dbConnection = new Sequelize(
       configurationProvider.getValue('DB.dbName'),

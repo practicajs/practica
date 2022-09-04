@@ -61,4 +61,4 @@ export default {
       env: 'DB_NAME',
     },
   },
-}
+};
