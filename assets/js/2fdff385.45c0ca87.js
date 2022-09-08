@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkpractica_docs=self.webpackChunkpractica_docs||[]).push([[8033],{4284:s=>{s.exports=JSON.parse('{"allTagsPath":"/blog/tags","name":"decisions","count":1,"permalink":"/blog/tags/decisions"}')}}]);
