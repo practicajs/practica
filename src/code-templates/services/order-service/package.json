@@ -33,6 +33,7 @@
     "amqplib": "^0.8.0",
     "axios": "^0.26.1",
     "express": "^4.17.3",
+    "helmet": "^6.0.0",
     "node-notifier": "^10.0.1",
     "pg": "^8.7.3",
     "sequelize": "^6.17.0",
