@@ -260,6 +260,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "marcosmol204",
+      "name": "Marcos Molina",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53741892?v=4",
+      "profile": "https://github.com/marcosmol204",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
