@@ -1,5 +1,6 @@
 import sinon from 'sinon';
 import { logger } from '../index';
+import process from 'process';
 
 beforeEach(() => {
   sinon.restore();
@@ -7,10 +8,16 @@ beforeEach(() => {
 });
 
 describe('logger', () => {
-  test('When no explicit configuration is set, info logs are written', async () => {
-    // Arrange
-    const stdoutStub = sinon.stub(process.stdout, 'write');
+  let stdoutStub: sinon.SinonStubbedMember<typeof process['stdout']['write']>
 
+  beforeEach(() => {
+    // Must stub the process.stdout before we configure the logger
+    // as it would fail when the underlying logger is pino, and we run in WebStorm
+    // See more here - practicajs/practica#225
+    stdoutStub = sinon.stub(process.stdout, 'write');
+  })
+
+  test('When no explicit configuration is set, info logs are written', async () => {
     // Act
     logger.info('This is an info message');
 
@@ -25,7 +32,6 @@ describe('logger', () => {
   test('When log level is DEBUG and logger emits INFO statement, then stdout contains the entry', async () => {
     // Arrange
     logger.configureLogger({ level: 'debug' }, true);
-    const stdoutStub = sinon.stub(process.stdout, 'write');
 
     // Act
     logger.info('This is an info message');
@@ -42,7 +48,6 @@ describe('logger', () => {
     // Arrange
     logger.configureLogger({ level: 'info' }, true);
     logger.configureLogger({ level: 'debug' }, true);
-    const stdoutStub = sinon.stub(process.stdout, 'write');
 
     // Act
     logger.debug('This is an info message');
@@ -58,7 +63,6 @@ describe('logger', () => {
   test('When log level is ERROR and logger emits INFO statement, then nothing is written', async () => {
     // Arrange
     logger.configureLogger({ level: 'error' }, true);
-    const stdoutStub = sinon.stub(process.stdout, 'write');
 
     // Act
     logger.info('This is an info message');
@@ -70,7 +74,6 @@ describe('logger', () => {
   test('When configuring for pretty-print, then its written to stdout', async () => {
     // Arrange
     logger.configureLogger({ level: 'info', prettyPrint: false }, true);
-    const stdoutStub = sinon.stub(process.stdout, 'write');
 
     // Act
     logger.info('This is an info message');
