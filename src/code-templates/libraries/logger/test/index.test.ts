@@ -61,12 +61,12 @@ describe('logger', () => {
     logger.info('This is an info message');
 
     // Assert
-    expect(stdoutStub.callCount).toEqual(1);
+    expect(stdoutStub.callCount).toEqual(0);
   });
 
   test('When configuring for pretty-print, then its written to stdout', async () => {
     // Arrange
-    logger.configureLogger({ level: 'info', prettyPrint: true }, true);
+    logger.configureLogger({ level: 'info', prettyPrint: false }, true);
 
     // Act
     logger.info('This is an info message');
