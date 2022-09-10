@@ -1,10 +1,10 @@
 export type LOG_LEVELS = 'debug' | 'info' | 'warn' | 'error' | 'critical';
 
 export interface Logger {
-  info(message: string, metadata?: Record<any, unknown>): void;
-  error(message: string, metadata?: Record<any, unknown>): void;
-  debug(message: string, metadata?: Record<any, unknown>): void;
-  warning(message: string, metadata?: Record<any, unknown>): void;
+  info(message: string, metadata?: Record<any, any>): void;
+  error(message: string, metadata?: Record<any, any>): void;
+  debug(message: string, metadata?: Record<any, any>): void;
+  warning(message: string, metadata?: Record<any, any>): void;
 }
 
 export interface LoggerConfiguration {

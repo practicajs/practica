@@ -23,7 +23,7 @@ export default class PinoLogger implements Logger {
     });
   }
 
-  debug(message: string, metadata?: Record<any, unknown>): void {
+  debug(message: string, metadata?: Record<any, any>): void {
     if (metadata) {
       this.#logger.debug(metadata, message);
     } else {
@@ -31,7 +31,7 @@ export default class PinoLogger implements Logger {
     }
   }
 
-  error(message: string, metadata?: Record<any, unknown>): void {
+  error(message: string, metadata?: Record<any, any>): void {
     if (metadata) {
       this.#logger.error(metadata, message);
     } else {
@@ -39,7 +39,7 @@ export default class PinoLogger implements Logger {
     }
   }
 
-  info(message: string, metadata?: Record<any, unknown>): void {
+  info(message: string, metadata?: Record<any, any>): void {
     if (metadata) {
       this.#logger.info(metadata, message);
     } else {
@@ -47,7 +47,7 @@ export default class PinoLogger implements Logger {
     }
   }
 
-  warning(message: string, metadata?: Record<any, unknown>): void {
+  warning(message: string, metadata?: Record<any, any>): void {
     if (metadata) {
       this.#logger.warn(metadata, message);
     } else {
