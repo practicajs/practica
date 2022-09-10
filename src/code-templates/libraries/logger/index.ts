@@ -2,44 +2,43 @@ import { Logger, LoggerConfiguration } from './definition';
 import PinoLogger from './pino.logger';
 
 export class LoggerWrapper implements Logger {
-  private underlyingLogger: Logger | null = null;
+  #underlyingLogger: Logger | null = null;
 
   configureLogger(
     configuration: Partial<LoggerConfiguration>,
     overrideIfExists = true
   ): void {
-    if (this.underlyingLogger === null || overrideIfExists === true) {
-      this.underlyingLogger = new PinoLogger(
+    if (this.#underlyingLogger === null || overrideIfExists === true) {
+      this.#underlyingLogger = new PinoLogger(
         configuration.level || 'info',
         configuration.prettyPrint || false,
-        undefined
       );
     }
   }
 
   resetLogger() {
-    this.underlyingLogger = null;
+    this.#underlyingLogger = null;
   }
 
-  debug(message: string, ...args: unknown[]): void {
+  debug(message: string, metadata?: Record<any, unknown>): void {
     this.configureLogger({}, false);
-    this.underlyingLogger?.debug(message, ...args);
+    this.#underlyingLogger.debug(message, metadata);
   }
 
-  error(message: string, ...args: unknown[]): void {
+  error(message: string, metadata?: Record<any, unknown>): void {
     this.configureLogger({}, false);
-    this.underlyingLogger?.error(message, ...args);
+    this.#underlyingLogger.error(message, metadata);
   }
 
-  info(message: string, ...args: unknown[]): void {
+  info(message: string, metadata?: Record<any, unknown>): void {
     // If never initialized, the set default configuration
     this.configureLogger({}, false);
-    this.underlyingLogger?.info(message, ...args);
+    this.#underlyingLogger.info(message, metadata);
   }
 
-  warning(message: string, ...args: unknown[]): void {
+  warning(message: string, metadata?: Record<any, unknown>): void {
     this.configureLogger({}, false);
-    this.underlyingLogger?.warning(message, ...args);
+    this.#underlyingLogger.warning(message, metadata);
   }
 }
 
