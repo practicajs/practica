@@ -7,24 +7,22 @@ beforeEach(() => {
 });
 
 describe('logger', () => {
-  let stdoutStub: sinon.SinonStubbedMember<typeof process['stdout']['write']>
+  let stdoutStub: sinon.SinonStubbedMember<typeof process['stdout']['write']>;
 
   beforeEach(() => {
     // Must stub the process.stdout before we configure the logger
     // as it would fail when the underlying logger is pino, and we run in WebStorm
     // See more here - practicajs/practica#225
     stdoutStub = sinon.stub(process.stdout, 'write');
-  })
+  });
 
   test('When no explicit configuration is set, info logs are written', async () => {
     // Act
     logger.info('This is an info message');
 
     // Assert
-    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
-      stdCallCount: 1,
-    });
-    const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
+    expect(stdoutStub.callCount).toEqual(1);
+    const lastStdoutCall = JSON.parse(stdoutStub.lastCall.firstArg);
     expect(lastStdoutCall).toMatchObject({ msg: 'This is an info message' });
   });
 
@@ -36,10 +34,8 @@ describe('logger', () => {
     logger.info('This is an info message');
 
     // Assert
-    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
-      stdCallCount: 1,
-    });
-    const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
+    expect(stdoutStub.callCount).toEqual(1);
+    const lastStdoutCall = JSON.parse(stdoutStub.lastCall.firstArg);
     expect(lastStdoutCall).toMatchObject({ msg: 'This is an info message' });
   });
 
@@ -52,10 +48,8 @@ describe('logger', () => {
     logger.debug('This is an info message');
 
     // Assert
-    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
-      stdCallCount: 1,
-    });
-    const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
+    expect(stdoutStub.callCount).toEqual(1);
+    const lastStdoutCall = JSON.parse(stdoutStub.lastCall.firstArg);
     expect(lastStdoutCall).toMatchObject({ msg: 'This is an info message' });
   });
 
@@ -67,19 +61,17 @@ describe('logger', () => {
     logger.info('This is an info message');
 
     // Assert
-    expect(stdoutStub.callCount).toBe(0);
+    expect(stdoutStub.callCount).toEqual(1);
   });
 
   test('When configuring for pretty-print, then its written to stdout', async () => {
     // Arrange
-    logger.configureLogger({ level: 'info', prettyPrint: false }, true);
+    logger.configureLogger({ level: 'info', prettyPrint: true }, true);
 
     // Act
     logger.info('This is an info message');
 
     // Assert
-    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
-      stdCallCount: 1,
-    });
+    expect(stdoutStub.callCount).toEqual(1);
   });
 });
