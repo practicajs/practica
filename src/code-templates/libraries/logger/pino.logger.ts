@@ -13,18 +13,18 @@ export default class PinoLogger implements Logger {
       level,
       transport: prettyPrintEnabled
         ? {
-          target: 'pino-pretty',
-          options: {
-            colorize: true,
-            sync: true,
-          },
-        }
+            target: 'pino-pretty',
+            options: {
+              colorize: true,
+              sync: true,
+            },
+          }
         : undefined,
     });
   }
 
   debug(message: string, metadata?: Record<any, unknown>): void {
-    if(metadata) {
+    if (metadata) {
       this.#logger.debug(metadata, message);
     } else {
       this.#logger.debug(message);
@@ -32,7 +32,7 @@ export default class PinoLogger implements Logger {
   }
 
   error(message: string, metadata?: Record<any, unknown>): void {
-    if(metadata) {
+    if (metadata) {
       this.#logger.error(metadata, message);
     } else {
       this.#logger.error(message);
@@ -40,7 +40,7 @@ export default class PinoLogger implements Logger {
   }
 
   info(message: string, metadata?: Record<any, unknown>): void {
-    if(metadata) {
+    if (metadata) {
       this.#logger.info(metadata, message);
     } else {
       this.#logger.info(message);
@@ -48,7 +48,7 @@ export default class PinoLogger implements Logger {
   }
 
   warning(message: string, metadata?: Record<any, unknown>): void {
-    if(metadata) {
+    if (metadata) {
       this.#logger.warn(metadata, message);
     } else {
       this.#logger.warn(message);

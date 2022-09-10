@@ -93,7 +93,9 @@ describe('logger', () => {
     // Assert
     expect(stdoutStub.callCount).toEqual(1);
     const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
-    expect(lastStdoutCall).toMatchObject({ msg: 'This is an info message', ...objectToPrint });
+    expect(lastStdoutCall).toMatchObject({
+      msg: 'This is an info message',
+      ...objectToPrint,
+    });
   });
-
 });

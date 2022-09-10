@@ -11,7 +11,7 @@ export class LoggerWrapper implements Logger {
     if (this.#underlyingLogger === null || overrideIfExists === true) {
       this.#underlyingLogger = new PinoLogger(
         configuration.level || 'info',
-        configuration.prettyPrint || false,
+        configuration.prettyPrint || false
       );
     }
   }
