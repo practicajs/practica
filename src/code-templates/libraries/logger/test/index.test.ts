@@ -1,6 +1,5 @@
 import sinon from 'sinon';
 import { logger } from '../index';
-import process from 'process';
 
 beforeEach(() => {
   sinon.restore();
