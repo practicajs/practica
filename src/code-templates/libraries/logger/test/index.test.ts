@@ -1,15 +1,15 @@
 import sinon from 'sinon';
 import { logger } from '../index';
 
-beforeEach(() => {
-  sinon.restore();
-  logger.resetLogger();
-});
+
 
 describe('logger', () => {
   let stdoutStub: sinon.SinonStubbedMember<typeof process['stdout']['write']>;
 
   beforeEach(() => {
+    sinon.restore();
+    logger.resetLogger();
+
     // Must stub the process.stdout before we configure the logger
     // as it would fail when the underlying logger is pino, and we run in WebStorm
     // See more here - practicajs/practica#225
@@ -21,7 +21,9 @@ describe('logger', () => {
     logger.info('This is an info message');
 
     // Assert
-    expect(stdoutStub.callCount).toEqual(1);
+    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
+      stdCallCount: 1,
+    });
     const lastStdoutCall = JSON.parse(stdoutStub.lastCall.firstArg);
     expect(lastStdoutCall).toMatchObject({ msg: 'This is an info message' });
   });
@@ -34,7 +36,9 @@ describe('logger', () => {
     logger.info('This is an info message');
 
     // Assert
-    expect(stdoutStub.callCount).toEqual(1);
+    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
+      stdCallCount: 1,
+    });
     const lastStdoutCall = JSON.parse(stdoutStub.lastCall.firstArg);
     expect(lastStdoutCall).toMatchObject({ msg: 'This is an info message' });
   });
@@ -48,7 +52,9 @@ describe('logger', () => {
     logger.debug('This is an info message');
 
     // Assert
-    expect(stdoutStub.callCount).toEqual(1);
+    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
+      stdCallCount: 1,
+    });
     const lastStdoutCall = JSON.parse(stdoutStub.lastCall.firstArg);
     expect(lastStdoutCall).toMatchObject({ msg: 'This is an info message' });
   });
@@ -61,7 +67,9 @@ describe('logger', () => {
     logger.info('This is an info message');
 
     // Assert
-    expect(stdoutStub.callCount).toEqual(0);
+    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
+      stdCallCount: 0,
+    });
   });
 
   test('When configuring for pretty-print, then its written to stdout', async () => {
@@ -72,6 +80,8 @@ describe('logger', () => {
     logger.info('This is an info message');
 
     // Assert
-    expect(stdoutStub.callCount).toEqual(1);
+    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
+      stdCallCount: 1,
+    });
   });
 });
