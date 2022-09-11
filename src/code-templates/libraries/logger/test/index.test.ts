@@ -1,8 +1,6 @@
 import sinon from 'sinon';
 import { logger } from '../index';
 
-
-
 describe('logger', () => {
   let stdoutStub: sinon.SinonStubbedMember<typeof process['stdout']['write']>;
 
