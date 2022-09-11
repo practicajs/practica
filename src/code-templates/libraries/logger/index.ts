@@ -20,23 +20,23 @@ export class LoggerWrapper implements Logger {
     this.#underlyingLogger = null;
   }
 
-  debug(message: string, metadata?: Record<any, any>): void {
+  debug(message: string, metadata?: object): void {
     this.configureLogger({}, false);
     this.#underlyingLogger!.debug(message, metadata);
   }
 
-  error(message: string, metadata?: Record<any, any>): void {
+  error(message: string, metadata?: object): void {
     this.configureLogger({}, false);
     this.#underlyingLogger!.error(message, metadata);
   }
 
-  info(message: string, metadata?: Record<any, any>): void {
+  info(message: string, metadata?: object): void {
     // If never initialized, the set default configuration
     this.configureLogger({}, false);
     this.#underlyingLogger!.info(message, metadata);
   }
 
-  warning(message: string, metadata?: Record<any, any>): void {
+  warning(message: string, metadata?: object): void {
     this.configureLogger({}, false);
     this.#underlyingLogger!.warning(message, metadata);
   }
