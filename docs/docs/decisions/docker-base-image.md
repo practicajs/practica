@@ -18,27 +18,30 @@ sidebar_label: Docker base image
 <table valign="top">
   <tr>
     <td></td>
-    <td><h1>node:{version}</h1></td>
-    <td><h1>node:{version}-bullseye-slim</h1></td>
-    <td><h1>node:{version}-alpine</h1></td>
+    <td><h1>full-blown</h1></td>
+    <td><h1>bullseye-slim</h1></td>
+    <td><h1>alpine</h1></td>
   </tr>
   <tr>
     <td colspan="5" align="center"><h2>Key Dimensions</h2></td>
   </tr>
   <tr valign="top">
     <td><b>Officially supported</b></td>
-    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Huge eco-system and commercial-grade maintenance</td>
-    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Trending, commercial-grade maintenance</td>
+    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Yes</td>
+    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Yes</td>
+<td><img src="/img/docs/decisions/partial.png"/><br/><br/>No? Looking for sources</td>
   </tr>
   <tr valign="top">
-    <td><b>CVEs (vunelerabilities)</b></td>
-    <td><img src="/img/docs/decisions/partial.png"/><br/><br/>Packages are highly coupled</td>
-    <td><img src="/img/docs/decisions/almost-full.png"/><br/><br/>Workflow is coupled</td>
+    <td><b>CVEs (< Medium severity)</b></td>
+    <td><img src="/img/docs/decisions/partial.png"/><br/><br/>❗️Trivy: 521, Snyk: TBD</td>
+    <td><img src="/img/docs/decisions/almost-full.png"/><br/><br/>Trivy: 11 high, Snyk: TBD</td>
+    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Trivy: 0 high, Snyk: TBD</td>
   </tr>
   <tr valign="top">
     <td><b>Size in MB</b></td>
-    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Smart inference and execution plan, shared dependencies, cache</td>
-    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Smart inference and execution plan, shared dependencies, cache</td>
+    <td><img src="/img/docs/decisions/partial.png"/><br/><br/>950 MB</td>
+    <td><img src="/img/docs/decisions/almost-full.png"/><br/><br/>150 MB</td>
+    <td><img src="/img/docs/decisions/full.png"/><br/><br/>90 MB</td>
   </tr>
     <tr valign="top">
       <td><b>Other important dimensions to add?</b></td>
