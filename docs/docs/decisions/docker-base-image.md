@@ -32,7 +32,7 @@ sidebar_label: Docker base image
 <td><img src="/img/docs/decisions/partial.png"/><br/><br/>No? Looking for sources</td>
   </tr>
   <tr valign="top">
-    <td><b>CVEs (< Medium severity)</b></td>
+    <td><b>CVEs (Medium severity and above)</b></td>
     <td><img src="/img/docs/decisions/partial.png"/><br/><br/>❗️Trivy: 521, Snyk: TBD</td>
     <td><img src="/img/docs/decisions/almost-full.png"/><br/><br/>Trivy: 11 high, Snyk: TBD</td>
     <td><img src="/img/docs/decisions/full.png"/><br/><br/>Trivy: 0 high, Snyk: TBD</td>
