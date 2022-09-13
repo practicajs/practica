@@ -23,7 +23,7 @@ sidebar_label: Docker base image
     <td><h1>alpine</h1></td>
   </tr>
   <tr>
-    <td colspan="5" align="center"><h2>Key Dimensions</h2></td>
+    <td colspan="4" align="center"><h2>Key Dimensions</h2></td>
   </tr>
   <tr valign="top">
     <td><b>Officially supported</b></td>
@@ -43,9 +43,4 @@ sidebar_label: Docker base image
     <td><img src="/img/docs/decisions/almost-full.png"/><br/><br/>150 MB</td>
     <td><img src="/img/docs/decisions/full.png"/><br/><br/>90 MB</td>
   </tr>
-    <tr valign="top">
-      <td><b>Other important dimensions to add?</b></td>
-    <td><img src="/img/docs/decisions/partial.png"/><br/><br/>Non standard Node.js stuff: One single root package.json by default, TS-paths for linking</td>
-    <td><img src="/img/docs/decisions/full.png"/><br/><br/>An external build layer</td>
-  </tr>
-</table>
+<td colspan="4" align="center"><h2>Other important dimensions to consider?</h2></td></table>
