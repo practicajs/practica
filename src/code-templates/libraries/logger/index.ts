@@ -7,7 +7,8 @@ export class LoggerWrapper implements Logger {
 
   get #configuredUnderlyingLogger(): Logger {
     this.configureLogger({}, false);
-    return this.#underlyingLogger;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.#underlyingLogger!;
   }
 
   configureLogger(
