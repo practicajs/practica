@@ -5,6 +5,11 @@ import PinoLogger from './pino.logger';
 export class LoggerWrapper implements Logger {
   #underlyingLogger: Logger | null = null;
 
+  get #underlyingLoggerConfigured(): Logger {
+    this.configureLogger({}, false);
+    return this.#underlyingLogger;
+  }
+
   configureLogger(
     configuration: Partial<LoggerConfiguration>,
     overrideIfExists = true
@@ -22,16 +27,14 @@ export class LoggerWrapper implements Logger {
   }
 
   debug(message: string, metadata?: object): void {
-    this.configureLogger({}, false);
-    this.#underlyingLogger!.debug(
+    this.#underlyingLoggerConfigured.debug(
       message,
       LoggerWrapper.#mergeMetadata(metadata)
     );
   }
 
   error(message: string, metadata?: object): void {
-    this.configureLogger({}, false);
-    this.#underlyingLogger!.error(
+    this.#underlyingLoggerConfigured.error(
       message,
       LoggerWrapper.#mergeMetadata(metadata)
     );
@@ -39,16 +42,14 @@ export class LoggerWrapper implements Logger {
 
   info(message: string, metadata?: object): void {
     // If never initialized, the set default configuration
-    this.configureLogger({}, false);
-    this.#underlyingLogger!.info(
+    this.#underlyingLoggerConfigured.info(
       message,
       LoggerWrapper.#mergeMetadata(metadata)
     );
   }
 
   warning(message: string, metadata?: object): void {
-    this.configureLogger({}, false);
-    this.#underlyingLogger!.warning(
+    this.#underlyingLoggerConfigured.warning(
       message,
       LoggerWrapper.#mergeMetadata(metadata)
     );
