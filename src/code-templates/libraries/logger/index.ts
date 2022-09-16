@@ -1,5 +1,6 @@
 import { Logger, LoggerConfiguration } from './definition';
 import PinoLogger from './pino.logger';
+import { context } from '@practica/async-local-storage';
 
 export class LoggerWrapper implements Logger {
   #underlyingLogger: Logger | null = null;
