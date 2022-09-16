@@ -22,23 +22,39 @@ export class LoggerWrapper implements Logger {
 
   debug(message: string, metadata?: object): void {
     this.configureLogger({}, false);
-    this.#underlyingLogger!.debug(message, metadata);
+    this.#underlyingLogger!.debug(message, this.#mergeMetadata(metadata));
   }
 
   error(message: string, metadata?: object): void {
     this.configureLogger({}, false);
-    this.#underlyingLogger!.error(message, metadata);
+    this.#underlyingLogger!.error(message, this.#mergeMetadata(metadata));
   }
 
   info(message: string, metadata?: object): void {
     // If never initialized, the set default configuration
     this.configureLogger({}, false);
-    this.#underlyingLogger!.info(message, metadata);
+    this.#underlyingLogger!.info(message, this.#mergeMetadata(metadata));
   }
 
   warning(message: string, metadata?: object): void {
     this.configureLogger({}, false);
-    this.#underlyingLogger!.warning(message, metadata);
+    this.#underlyingLogger!.warning(message, this.#mergeMetadata(metadata));
+  }
+
+  #mergeMetadata(metadata?: object): object | undefined {
+    const currentContext = context().getStore();
+
+    // Doing this to avoid merging objects...
+    if (currentContext == null) {
+      return metadata;
+    }
+
+    if (metadata == null) {
+      return currentContext;
+    }
+
+    // Metadata would override the current context
+    return Object.assign({}, currentContext, metadata);
   }
 }
 
