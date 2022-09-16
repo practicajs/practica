@@ -1,5 +1,6 @@
 import sinon from 'sinon';
 import { logger } from '../index';
+import { context } from '@practica/async-local-storage';
 
 beforeEach(() => {
   sinon.restore();
@@ -99,19 +100,71 @@ describe('logger', () => {
     });
   });
 
-  test('it should print the passed metadata', async () => {
-    // Arrange
-    const stdoutStub = sinon.stub(process.stdout, 'write');
-    logger.configureLogger({ level: 'info' }, true);
-    const objectToPrint = { custom: 'I love you 3000' };
+  describe('context', () => {
+    test('it should print the current context', () => {
+      // Arrange
+      const stdoutStub = sinon.stub(process.stdout, 'write');
+      const currentContext = {
+        requestId: 'my-request-id',
+      };
 
-    // Act
-    logger.info('This is an info message', objectToPrint);
+      // Act
+      context().run(currentContext, () => {
+        logger.info('This is an info message');
+      });
 
-    // Assert
-    expect(stdoutStub.callCount).toEqual(1);
-    const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
-    expect(lastStdoutCall).toMatchObject({ msg: 'This is an info message', ...objectToPrint });
+      // Assert
+      expect(stdoutStub.callCount).toEqual(1);
+      const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
+      expect(lastStdoutCall).toMatchObject({
+        ...currentContext,
+        msg: 'This is an info message',
+      });
+    });
+
+    test('it should merge with current context', () => {
+      // Arrange
+      const stdoutStub = sinon.stub(process.stdout, 'write');
+      const currentContext = {
+        requestId: 'my-request-id',
+      };
+
+      // Act
+      context().run(currentContext, () => {
+        logger.info('This is an info message', { userId: 1 });
+      });
+
+      // Assert
+      expect(stdoutStub.callCount).toEqual(1);
+      const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
+      expect(lastStdoutCall).toMatchObject({
+        ...currentContext,
+        msg: 'This is an info message',
+        userId: 1,
+      });
+    });
+
+    test('it should override current context', () => {
+      // Arrange
+      const stdoutStub = sinon.stub(process.stdout, 'write');
+      const currentContext = {
+        requestId: 'my-request-id',
+        userId: 1,
+      };
+
+      // Act
+      context().run(currentContext, () => {
+        logger.info('This is an info message', { userId: 2 });
+      });
+
+      // Assert
+      expect(stdoutStub.callCount).toEqual(1);
+      const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
+      expect(lastStdoutCall).toMatchObject({
+        msg: 'This is an info message',
+        requestId: 'my-request-id',
+        userId: 2,
+      });
+    });
   });
-
 });
