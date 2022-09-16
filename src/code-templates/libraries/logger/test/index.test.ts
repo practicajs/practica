@@ -85,7 +85,6 @@ describe('logger', () => {
 
   test('it should print the passed metadata', async () => {
     // Arrange
-    const stdoutStub = sinon.stub(process.stdout, 'write');
     logger.configureLogger({ level: 'info' }, true);
     const objectToPrint = { custom: 'I love you 3000' };
 
