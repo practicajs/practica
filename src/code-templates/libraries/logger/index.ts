@@ -1,6 +1,6 @@
+import { context } from '@practica/async-local-storage';
 import { Logger, LoggerConfiguration } from './definition';
 import PinoLogger from './pino.logger';
-import { context } from '@practica/async-local-storage';
 
 export class LoggerWrapper implements Logger {
   #underlyingLogger: Logger | null = null;
@@ -23,26 +23,38 @@ export class LoggerWrapper implements Logger {
 
   debug(message: string, metadata?: object): void {
     this.configureLogger({}, false);
-    this.#underlyingLogger!.debug(message, this.#mergeMetadata(metadata));
+    this.#underlyingLogger!.debug(
+      message,
+      LoggerWrapper.#mergeMetadata(metadata)
+    );
   }
 
   error(message: string, metadata?: object): void {
     this.configureLogger({}, false);
-    this.#underlyingLogger!.error(message, this.#mergeMetadata(metadata));
+    this.#underlyingLogger!.error(
+      message,
+      LoggerWrapper.#mergeMetadata(metadata)
+    );
   }
 
   info(message: string, metadata?: object): void {
     // If never initialized, the set default configuration
     this.configureLogger({}, false);
-    this.#underlyingLogger!.info(message, this.#mergeMetadata(metadata));
+    this.#underlyingLogger!.info(
+      message,
+      LoggerWrapper.#mergeMetadata(metadata)
+    );
   }
 
   warning(message: string, metadata?: object): void {
     this.configureLogger({}, false);
-    this.#underlyingLogger!.warning(message, this.#mergeMetadata(metadata));
+    this.#underlyingLogger!.warning(
+      message,
+      LoggerWrapper.#mergeMetadata(metadata)
+    );
   }
 
-  #mergeMetadata(metadata?: object): object | undefined {
+  static #mergeMetadata(metadata?: object): object | undefined {
     const currentContext = context().getStore();
 
     // Doing this to avoid merging objects...
@@ -55,7 +67,7 @@ export class LoggerWrapper implements Logger {
     }
 
     // Metadata would override the current context
-    return Object.assign({}, currentContext, metadata);
+    return { ...currentContext, ...metadata };
   }
 }
 

@@ -1,6 +1,6 @@
 import sinon from 'sinon';
-import { logger } from '../index';
 import { context } from '@practica/async-local-storage';
+import { logger } from '../index';
 
 beforeEach(() => {
   sinon.restore();
