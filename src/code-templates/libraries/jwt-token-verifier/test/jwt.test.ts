@@ -27,7 +27,7 @@ describe('JWT middleware', () => {
     // Assert
     expect(response.statusCode).toEqual(200);
     expect(request.user).toEqual({ user: 'test-user', roles: ['admin'] });
-    expect(nextFn.called).toBeTruthy();
+    expect(nextFn).sinonToBeCalled();
   });
 
   test('When using a valid token without bearer, then should allow request and receive 200 response', async () => {
@@ -49,7 +49,7 @@ describe('JWT middleware', () => {
     // Assert
     expect(response.statusCode).toEqual(200);
     expect(request.user).toEqual({ user: 'test-user', roles: ['admin'] });
-    expect(nextFn.called).toBeTruthy();
+    expect(nextFn).sinonToBeCalled();
   });
 
   test('When using an empty token, then should receive unauthorized response', async () => {
@@ -68,9 +68,7 @@ describe('JWT middleware', () => {
 
     // Assert
     expect(response.statusCode).toEqual(401);
-    expect({ nextCallCount: 0 }).toMatchObject({
-      nextCallCount: nextFn.callCount,
-    });
+    expect(nextFn).not.sinonToBeCalled();
   });
 
   test('When using an invalid multiword header, then receive unauthorized response', async () => {
@@ -90,9 +88,7 @@ describe('JWT middleware', () => {
 
     // Assert
     expect(response.statusCode).toEqual(401);
-    expect({ nextCallCount: 0 }).toMatchObject({
-      nextCallCount: nextFn.callCount,
-    });
+    expect(nextFn).not.sinonToBeCalled();
   });
 
   test('When using a fake unsigned token, then should receive unauthorized response', async () => {
@@ -111,9 +107,7 @@ describe('JWT middleware', () => {
 
     // Assert
     expect(response.statusCode).toEqual(401);
-    expect({ nextCallCount: 0 }).toMatchObject({
-      nextCallCount: nextFn.callCount,
-    });
+    expect(nextFn).not.sinonToBeCalled();
   });
 
   test('When using an expired token, then should receive unauthorized response', async () => {
@@ -133,8 +127,6 @@ describe('JWT middleware', () => {
 
     // Assert
     expect(response.statusCode).toEqual(401);
-    expect({ nextCallCount: 0 }).toMatchObject({
-      nextCallCount: nextFn.callCount,
-    });
+    expect(nextFn).not.sinonToBeCalled();
   });
 });

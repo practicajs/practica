@@ -15,70 +15,62 @@ describe('logger', () => {
     logger.info('This is an info message');
 
     // Assert
-    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
-      stdCallCount: 1,
-    });
+    expect(stdoutStub).sinonToBeCalledTimes(1);
     const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
     expect(lastStdoutCall).toMatchObject({ msg: 'This is an info message' });
   });
 
   test('When log level is DEBUG and logger emits INFO statement, then stdout contains the entry', async () => {
     // Arrange
-    logger.configureLogger({ level: 'debug' }, true);
     const stdoutStub = sinon.stub(process.stdout, 'write');
+    logger.configureLogger({ level: 'debug' }, true);
 
     // Act
     logger.info('This is an info message');
 
     // Assert
-    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
-      stdCallCount: 1,
-    });
+    expect(stdoutStub).sinonToBeCalledTimes(1);
     const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
     expect(lastStdoutCall).toMatchObject({ msg: 'This is an info message' });
   });
 
   test('When logger is configured and then re-configured, then the new config applies', async () => {
     // Arrange
+    const stdoutStub = sinon.stub(process.stdout, 'write');
     logger.configureLogger({ level: 'info' }, true);
     logger.configureLogger({ level: 'debug' }, true);
-    const stdoutStub = sinon.stub(process.stdout, 'write');
 
     // Act
     logger.debug('This is an info message');
 
     // Assert
-    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
-      stdCallCount: 1,
-    });
+    expect(stdoutStub).sinonToBeCalledTimes(1);
     const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
     expect(lastStdoutCall).toMatchObject({ msg: 'This is an info message' });
   });
 
   test('When log level is ERROR and logger emits INFO statement, then nothing is written', async () => {
     // Arrange
-    logger.configureLogger({ level: 'error' }, true);
     const stdoutStub = sinon.stub(process.stdout, 'write');
+    logger.configureLogger({ level: 'error' }, true);
 
     // Act
     logger.info('This is an info message');
 
     // Assert
-    expect(stdoutStub.callCount).toBe(0);
+    expect(stdoutStub).not.sinonToBeCalled();
   });
 
   test('When configuring for pretty-print, then its written to stdout', async () => {
     // Arrange
-    logger.configureLogger({ level: 'info', prettyPrint: false }, true);
     const stdoutStub = sinon.stub(process.stdout, 'write');
+    logger.configureLogger({ level: 'info', prettyPrint: false }, true);
 
     // Act
     logger.info('This is an info message');
 
     // Assert
-    expect({ stdCallCount: stdoutStub.callCount }).toMatchObject({
-      stdCallCount: 1,
-    });
+    expect(stdoutStub).sinonToBeCalledTimes(1);
   });
 
   test('it should print the passed metadata', async () => {
@@ -91,7 +83,7 @@ describe('logger', () => {
     logger.info('This is an info message', objectToPrint);
 
     // Assert
-    expect(stdoutStub.callCount).toEqual(1);
+    expect(stdoutStub).sinonToBeCalledTimes(1);
     const lastStdoutCall = JSON.parse(stdoutStub.lastCall?.firstArg);
     expect(lastStdoutCall).toMatchObject({
       msg: 'This is an info message',

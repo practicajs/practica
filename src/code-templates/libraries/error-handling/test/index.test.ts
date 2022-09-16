@@ -15,30 +15,36 @@ describe('handleError', () => {
     errorHandler.listenToErrorEvents(httpServerMock);
     const errorName = 'mocking an uncaught exception';
     const errorToEmit = new Error(errorName);
+
     // Act
     process.emit('uncaughtException', errorToEmit);
+
     // Assert
-    const message = loggerStub.firstCall.args[0];
-    const appError = loggerStub.firstCall.args[1];
-    expect(loggerStub.callCount).toBe(1);
-    expect(message).toBe(errorToEmit.message);
-    expect(appError).toMatchObject({
-      name: errorToEmit.name,
-      message: errorToEmit.message,
-      stack: expect.any(String),
-    });
+    expect(loggerStub).sinonToBeCalledTimes(1);
+    expect(loggerStub).sinonToBeCalledWith(
+      errorToEmit.message,
+      expect.objectContaining({
+        name: errorToEmit.name,
+        message: errorToEmit.message,
+        stack: expect.any(String),
+      })
+    );
   });
 
   test('When handling an Error instance, should log an AppError instance after receiving an Error instance', () => {
     // Arrange
     const errorToHandle = new Error('mocking pre-known error');
-    const stdoutSpy = jest.spyOn(process.stdout, 'write');
+    const loggerStub = sinon.stub(logger, 'error');
 
     // Act
     errorHandler.handleError(errorToHandle);
 
     // Assert
-    expect(stdoutSpy).toHaveBeenCalled();
+    expect(loggerStub).sinonToBeCalled();
+    expect(loggerStub).sinonToBeCalledWith(
+      expect.any(String),
+      expect.any(AppError)
+    );
   });
 
   test('When handling AppError, then all the important properties are passed to the logger', () => {
@@ -55,19 +61,17 @@ describe('handleError', () => {
     errorHandler.handleError(errorToHandle);
 
     // Assert
-    expect({ loggerCalls: 1 }).toMatchObject({
-      loggerCalls: loggerListener.callCount,
-    });
-    expect(loggerListener.lastCall.args).toMatchObject([
+    expect(loggerListener).sinonToBeCalledTimes(1);
+    expect(loggerListener).sinonToBeCalledWith(
       'missing important field',
-      {
+      expect.objectContaining({
         name: 'invalid-input',
         HTTPStatus: 400,
         message: 'missing important field',
         isTrusted: true,
         stack: expect.any(String),
-      },
-    ]);
+      })
+    );
   });
 
   test.each([
@@ -87,13 +91,17 @@ describe('handleError', () => {
     (unknownErrorValue) => {
       // Arrange
       const loggerStub = sinon.stub(logger, 'error');
+
       // Act
       errorHandler.handleError(unknownErrorValue);
+
       // Assert
+      expect(loggerStub).sinonToBeCalledTimes(1);
+
       const message = loggerStub.firstCall.args[0];
-      const appError = loggerStub.firstCall.args[1];
-      expect(loggerStub.callCount).toBe(1);
       expect(message.includes(typeof unknownErrorValue)).toBe(true);
+
+      const appError = loggerStub.firstCall.args[1];
       expect((appError as AppError).name).toBe('general-error');
     }
   );
