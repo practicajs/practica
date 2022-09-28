@@ -43,4 +43,10 @@ sidebar_label: Docker base image
     <td><img src="/img/docs/decisions/almost-full.png"/><br/><br/>150 MB</td>
     <td><img src="/img/docs/decisions/full.png"/><br/><br/>90 MB</td>
   </tr>
+  <tr valign="top">
+    <td><b>Native modules installation</b><br/><sub><sup>Packages that run native code installer (e.g., with node-gyp)</sup></sub></td>
+    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Standard C compiler glibc</td>
+    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Standard C compiler glibc</td>
+    <td><img src="/img/docs/decisions/almost-full.png"/><br/><br/>A less standard compiler, musl - might break under some circumstances</td>
+  </tr>
 <td colspan="4" align="center"><h2>Other important dimensions to consider?</h2></td></table>
