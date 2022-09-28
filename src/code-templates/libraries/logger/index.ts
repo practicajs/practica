@@ -1,4 +1,4 @@
-import { context } from '@practica/async-local-storage';
+import { context } from '@practica/request-context';
 import { Logger, LoggerConfiguration } from './definition';
 import PinoLogger from './pino.logger';
 
@@ -30,14 +30,14 @@ export class LoggerWrapper implements Logger {
   debug(message: string, metadata?: object): void {
     this.#configuredUnderlyingLogger.debug(
       message,
-      LoggerWrapper.#mergeMetadata(metadata)
+      LoggerWrapper.#insertContextIntoMetadata(metadata)
     );
   }
 
   error(message: string, metadata?: object): void {
     this.#configuredUnderlyingLogger.error(
       message,
-      LoggerWrapper.#mergeMetadata(metadata)
+      LoggerWrapper.#insertContextIntoMetadata(metadata)
     );
   }
 
@@ -45,18 +45,18 @@ export class LoggerWrapper implements Logger {
     // If never initialized, the set default configuration
     this.#configuredUnderlyingLogger.info(
       message,
-      LoggerWrapper.#mergeMetadata(metadata)
+      LoggerWrapper.#insertContextIntoMetadata(metadata)
     );
   }
 
   warning(message: string, metadata?: object): void {
     this.#configuredUnderlyingLogger.warning(
       message,
-      LoggerWrapper.#mergeMetadata(metadata)
+      LoggerWrapper.#insertContextIntoMetadata(metadata)
     );
   }
 
-  static #mergeMetadata(metadata?: object): object | undefined {
+  static #insertContextIntoMetadata(metadata?: object): object | undefined {
     const currentContext = context().getStore();
 
     // Doing this to avoid merging objects...
