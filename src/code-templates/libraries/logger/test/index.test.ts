@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import { context } from '@practica/async-local-storage';
+import { context } from '@practica/request-context';
 import { logger } from '../index';
 
 beforeEach(() => {
