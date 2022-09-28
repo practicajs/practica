@@ -265,8 +265,9 @@ A million thanks to these great people who have contributed code to our project:
     </tr>
     <tr>
       <td align="center"><a href="https://github.com/marcosmol204"><img src="https://avatars.githubusercontent.com/u/53741892?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Marcos Molina</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=marcosmol204" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/isenkasa"><img src="https://avatars.githubusercontent.com/u/65561129?v=4?s=200" width="200px;" alt=""/><br /><sub><b>Isen Kasa</b></sub></a><br /><a href="https://github.com/practicajs/practica/commits?author=isenkasa" title="Code">💻</a></td>
     </tr>
-  </tobdy>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->
