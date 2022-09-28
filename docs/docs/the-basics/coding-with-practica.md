@@ -210,7 +210,7 @@ Let's code our logic, but where? Obviously not in the controller/route which mer
 
 A use-case is a plain JavaScript object/class which is created for every flow/feature. It summarizes the flow in a business and simple language without delving into the technical and small details. It mostly orchestrates other small services that hold all the implementation details. With use cases, the reader can grasp the high-level flow easily and avoid exposure to *unnecessary* complexity.
 
-Let's add inside the domain layer a new file: edit-order-use-case.ts and code the requirements:
+Let's add a new file inside the domain layer: edit-order-use-case.ts, and code the requirements:
 
 ```javascript
 // [root]/services/order-service/domain/edit-order-use-case.ts
@@ -225,7 +225,7 @@ export default async function editOrder(orderId: number, updatedOrder: editOrder
 }
 ```
 
-Note how reading this function above easily tells the flow without messing with too much details. This is where uses cases shines - by summarizing long details.
+Note how reading this function above easily tells the flow without messing with too much details. This is where use cases shine - by summarizing long details.
 
 > **✅Best practice:** Describe every feature/flow with a 'use case' object that summarizes the flow for better readability
 > 
@@ -256,15 +256,15 @@ paymentTermsInDays: number) {
 
 ```
 
-> **🗝 Key insight:** Note how everything we did thus far is mostly coding *functions*. No fancy constructs, no abstractions, not even classes - we try to keep things as simple as possible. You may of course use other language features **when the need arise**. We suggest by-default to stick to plain functions and use other constructs when a strong need is identified.
+> **🗝 Key insight:** Note how everything we did thus far is mostly coding *functions*. No fancy constructs, no abstractions, not even classes - we try to keep things as simple as possible. You may of course use other language features **when the need arises**. We suggest by-default to stick to plain functions and use other constructs when a strong need is identified.
 
 **6. Put the data access code**
 
 We're tasked with saving the edited order in the database. Any DB-related code is located within the folder: [root]/services/order-service/data-access.
 
-The database code is implemented with the popular ORM, [Sequelize](https://github.com/sequelize/sequelize). We have plans to evaluate other ORMs like Prisma. In any case, the current choice, Sequelize, is a battle-tested and reputable option that will surely serve you well as long the DB complexity is not overwhelming.
+The database code is implemented with the popular ORM, [Sequelize](https://github.com/sequelize/sequelize). We have plans to evaluate other ORMs like Prisma. In any case, the current choice, Sequelize, is a battle-tested and reputable option that will surely serve you well as long as the DB complexity is not overwhelming.
 
-Before discussing the ORM-side, we wrap the entire DB layer with a simple class that externalize all the DB functions to the domain layer. This is the [repository pattern](https://martinfowler.com/eaaCatalog/repository.html) which advocates decoupling the DB narratives from the one who codes business logic. Inside [root]/services/order-service/data-access/repositories, you'll find a file 'order-repository', open it and add a new function:
+Before discussing the ORM-side, we wrap the entire DB layer with a simple class that externalizes all the DB functions to the domain layer. This is the [repository pattern](https://martinfowler.com/eaaCatalog/repository.html) which advocates decoupling the DB narratives from the one who codes business logic. Inside [root]/services/order-service/data-access/repositories, you'll find a file 'order-repository', open it and add a new function:
 
 ```javascript
 [root]/services/order-service/data-access/repositories/order-repository.js
@@ -318,4 +318,4 @@ You should now be able to run the automated tests or POSTMAN and see the full fl
 
 We will be grateful if you share with us how to make this guide better
 
-- Ideas for future iterations: How to work with the Monorepo commands, Focus on a singel componenent or run commands from the root, DB migration
+- Ideas for future iterations: How to work with the Monorepo commands, Focus on a single componenent or run commands from the root, DB migration
