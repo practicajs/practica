@@ -318,4 +318,4 @@ You should now be able to run the automated tests or POSTMAN and see the full fl
 
 We will be grateful if you share with us how to make this guide better
 
-- Ideas for future iterations: How to work with the Monorepo commands, Focus on a singel componenent or run commands from the root, DB migration
+- Ideas for future iterations: How to work with the Monorepo commands, Focus on a single componenent or run commands from the root, DB migration
