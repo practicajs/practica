@@ -5,7 +5,7 @@ import PinoLogger from './pino.logger';
 export class LoggerWrapper implements Logger {
   #underlyingLogger: Logger | null = null;
 
-  get #configuredUnderlyingLogger(): Logger {
+  #getInitializeLogger(): Logger {
     this.configureLogger({}, false);
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return this.#underlyingLogger!;
@@ -28,14 +28,14 @@ export class LoggerWrapper implements Logger {
   }
 
   debug(message: string, metadata?: object): void {
-    this.#configuredUnderlyingLogger.debug(
+    this.#getInitializeLogger().debug(
       message,
       LoggerWrapper.#insertContextIntoMetadata(metadata)
     );
   }
 
   error(message: string, metadata?: object): void {
-    this.#configuredUnderlyingLogger.error(
+    this.#getInitializeLogger().error(
       message,
       LoggerWrapper.#insertContextIntoMetadata(metadata)
     );
@@ -43,14 +43,14 @@ export class LoggerWrapper implements Logger {
 
   info(message: string, metadata?: object): void {
     // If never initialized, the set default configuration
-    this.#configuredUnderlyingLogger.info(
+    this.#getInitializeLogger().info(
       message,
       LoggerWrapper.#insertContextIntoMetadata(metadata)
     );
   }
 
   warning(message: string, metadata?: object): void {
-    this.#configuredUnderlyingLogger.warning(
+    this.#getInitializeLogger().warning(
       message,
       LoggerWrapper.#insertContextIntoMetadata(metadata)
     );
