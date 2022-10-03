@@ -23,7 +23,9 @@ export default function defineRoutes(expressApp: express.Application) {
   // get existing order by id
   router.get('/:id', async (req, res) => {
     logger.info(`Order API was called to get user by id ${req.params.id}`);
-    const response = await newOrderUseCase.getOrder(req.params.id);
+    const response = await newOrderUseCase.getOrder(
+      parseInt(req.params.id, 10)
+    );
 
     if (!response) {
       res.status(404).end();
@@ -36,7 +38,7 @@ export default function defineRoutes(expressApp: express.Application) {
   // delete order by id
   router.delete('/:id', async (req, res) => {
     logger.info(`Order API was called to delete order ${req.params.id}`);
-    await newOrderUseCase.deleteOrder(req.params.id);
+    await newOrderUseCase.deleteOrder(parseInt(req.params.id, 10));
     res.status(204).end();
   });
 
