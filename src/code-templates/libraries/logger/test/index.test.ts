@@ -3,19 +3,18 @@ import { context } from '@practica/request-context';
 import { logger } from '../index';
 
 describe('logger', () => {
-  let stdoutStub: sinon.SinonStubbedMember<typeof process['stdout']['write']>;
-
   beforeEach(() => {
     sinon.restore();
     logger.resetLogger();
-
-    // Must stub the process.stdout before we configure the logger
-    // as it would fail when the underlying logger is pino, and we run in WebStorm
-    // See more here - practicajs/practica#225
-    stdoutStub = sinon.stub(process.stdout, 'write');
   });
 
   test('When no explicit configuration is set, info logs are written', async () => {
+    // Arrange
+    // Must stub the process.stdout before we configure the logger (this is also true for the rest of the tests)
+    // as it would fail when the underlying logger is pino, and we run in WebStorm
+    // See more here - practicajs/practica#225
+    const stdoutStub = sinon.stub(process.stdout, 'write');
+
     // Act
     logger.info('This is an info message');
 
@@ -29,6 +28,7 @@ describe('logger', () => {
 
   test('When log level is DEBUG and logger emits INFO statement, then stdout contains the entry', async () => {
     // Arrange
+    const stdoutStub = sinon.stub(process.stdout, 'write');
     logger.configureLogger({ level: 'debug' }, true);
 
     // Act
@@ -44,6 +44,7 @@ describe('logger', () => {
 
   test('When logger is configured and then re-configured, then the new config applies', async () => {
     // Arrange
+    const stdoutStub = sinon.stub(process.stdout, 'write');
     logger.configureLogger({ level: 'info' }, true);
     logger.configureLogger({ level: 'debug' }, true);
 
@@ -60,6 +61,7 @@ describe('logger', () => {
 
   test('When log level is ERROR and logger emits INFO statement, then nothing is written', async () => {
     // Arrange
+    const stdoutStub = sinon.stub(process.stdout, 'write');
     logger.configureLogger({ level: 'error' }, true);
 
     // Act
@@ -73,6 +75,7 @@ describe('logger', () => {
 
   test('When configuring for pretty-print, then its written to stdout', async () => {
     // Arrange
+    const stdoutStub = sinon.stub(process.stdout, 'write');
     logger.configureLogger({ level: 'info', prettyPrint: false }, true);
 
     // Act
@@ -86,6 +89,7 @@ describe('logger', () => {
 
   test('it should print the passed metadata', async () => {
     // Arrange
+    const stdoutStub = sinon.stub(process.stdout, 'write');
     logger.configureLogger({ level: 'info' }, true);
     const objectToPrint = { custom: 'I love you 3000' };
 
