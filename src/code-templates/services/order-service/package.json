@@ -22,6 +22,7 @@
     "@practica/error-handling": "^0.0.3",
     "@practica/jwt-token-verifier": "^0.0.2",
     "@practica/logger": "^0.0.3",
+    "@practica/request-context": "^0.1.0",
     "@practica/validation": "^0.0.3",
     "@sinclair/typebox": "^0.23.5",
     "@types/amqplib": "^0.8.2",

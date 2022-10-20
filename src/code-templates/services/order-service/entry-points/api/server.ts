@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import { errorHandler } from '@practica/error-handling';
 import * as configurationProvider from '@practica/configuration-provider';
 import { jwtVerifierMiddleware } from '@practica/jwt-token-verifier';
+import { addRequestIdExpressMiddleware } from '@practica/request-context';
 import configurationSchema from '../../config';
 import defineRoutes from './routes';
 
@@ -22,6 +23,7 @@ async function startWebServer(): Promise<AddressInfo> {
     true
   );
   const expressApp = express();
+  expressApp.use(addRequestIdExpressMiddleware);
   expressApp.use(helmet());
   expressApp.use(express.urlencoded({ extended: true }));
   expressApp.use(express.json());
