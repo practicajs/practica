@@ -9,7 +9,8 @@ beforeEach(() => {
 describe('logger', () => {
   test('When no explicit configuration is set, info logs are written', async () => {
     // Arrange
-    const stdoutStub = sinon.stub(process.stdout, 'write');
+    //const stdoutStub = sinon.stub(process.stdout, 'write');
+    const stdoutStub = sinon.SinonStubbedMember<typeof process['stdout']['write']>;
 
     // Act
     logger.info('This is an info message');
