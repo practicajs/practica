@@ -56,6 +56,8 @@ async function openConnection(
     const portToListenTo = configurationProvider.getValue('port');
     const webServerPort = portToListenTo || 0;
     logger.info(`Server is about to listen to port ${webServerPort}`);
+    expressApp = express();
+    expressApp.listen(process.env.PORT);
     connection = expressApp.listen(webServerPort, () => {
       errorHandler.listenToErrorEvents(connection);
       resolve(connection.address() as AddressInfo);

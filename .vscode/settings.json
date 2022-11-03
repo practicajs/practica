@@ -4,5 +4,7 @@
   },
   "cSpell.words": ["practica"],
   "editor.suggest.showStatusBar": true,
-  "debug.showInStatusBar": "onFirstSessionStart"
+  "debug.showInStatusBar": "onFirstSessionStart",
+  "gitlens.codeLens.enabled": false,
+  "gitlens.codeLens.scopes": ["document"]
 }
