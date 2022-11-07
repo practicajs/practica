@@ -130,6 +130,7 @@ router.put('/:id', async (req, res, next) => {
       // Later on we will call the main code in the domain layer
       // Fow now let's put hard coded values
       res.json({id:1, userId: 1, productId: 2,
+countryId: 1,
       deliveryAddress: '123 Main St, New York',
       paymentTermsInDays: 30}).status(200).end();
     } catch (err) {

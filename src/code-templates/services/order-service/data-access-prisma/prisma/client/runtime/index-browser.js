@@ -98,7 +98,7 @@ function makeStrictEnum(definition) {
 }
 __name(makeStrictEnum, "makeStrictEnum");
 
-// ../../node_modules/.pnpm/decimal.js@10.4.1/node_modules/decimal.js/decimal.mjs
+// ../../node_modules/.pnpm/decimal.js@10.4.2/node_modules/decimal.js/decimal.mjs
 var EXP_LIMIT = 9e15;
 var MAX_DIGITS = 1e9;
 var NUMERALS = "0123456789abcdef";
@@ -2471,7 +2471,7 @@ var decimal_default = Decimal;
   objectEnumValues
 });
 /*!
- *  decimal.js v10.4.1
+ *  decimal.js v10.4.2
  *  An arbitrary-precision Decimal type for JavaScript.
  *  https://github.com/MikeMcl/decimal.js
  *  Copyright (c) 2022 Michael Mclaughlin <M8ch88l@gmail.com>

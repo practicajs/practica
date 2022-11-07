@@ -3347,18 +3347,18 @@ var require_cross_spawn = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/@prisma+engines-version@4.4.0-66.f352a33b70356f46311da8b00d83386dd9f145d6/node_modules/@prisma/engines-version/package.json
+// ../../node_modules/.pnpm/@prisma+engines-version@4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452/node_modules/@prisma/engines-version/package.json
 var require_package = __commonJS({
-  "../../node_modules/.pnpm/@prisma+engines-version@4.4.0-66.f352a33b70356f46311da8b00d83386dd9f145d6/node_modules/@prisma/engines-version/package.json"(exports, module2) {
+  "../../node_modules/.pnpm/@prisma+engines-version@4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452/node_modules/@prisma/engines-version/package.json"(exports, module2) {
     module2.exports = {
       name: "@prisma/engines-version",
-      version: "4.4.0-66.f352a33b70356f46311da8b00d83386dd9f145d6",
+      version: "4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452",
       main: "index.js",
       types: "index.d.ts",
       license: "Apache-2.0",
       author: "Tim Suchanek <suchanek@prisma.io>",
       prisma: {
-        enginesVersion: "f352a33b70356f46311da8b00d83386dd9f145d6"
+        enginesVersion: "0362da9eebca54d94c8ef5edd3b2e90af99ba452"
       },
       repository: {
         type: "git",
@@ -3366,8 +3366,8 @@ var require_package = __commonJS({
         directory: "packages/engines-version"
       },
       devDependencies: {
-        "@types/node": "16.11.60",
-        typescript: "4.8.3"
+        "@types/node": "16.11.64",
+        typescript: "4.8.4"
       },
       files: [
         "index.js",
@@ -3380,9 +3380,9 @@ var require_package = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/@prisma+engines-version@4.4.0-66.f352a33b70356f46311da8b00d83386dd9f145d6/node_modules/@prisma/engines-version/index.js
+// ../../node_modules/.pnpm/@prisma+engines-version@4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452/node_modules/@prisma/engines-version/index.js
 var require_engines_version = __commonJS({
-  "../../node_modules/.pnpm/@prisma+engines-version@4.4.0-66.f352a33b70356f46311da8b00d83386dd9f145d6/node_modules/@prisma/engines-version/index.js"(exports) {
+  "../../node_modules/.pnpm/@prisma+engines-version@4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452/node_modules/@prisma/engines-version/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.enginesVersion = void 0;
@@ -15735,7 +15735,7 @@ var require_package2 = __commonJS({
   "package.json"(exports, module2) {
     module2.exports = {
       name: "@prisma/client",
-      version: "4.4.0",
+      version: "4.5.0",
       description: "Prisma Client is an auto-generated, type-safe and modern JavaScript/TypeScript ORM for Node.js that's tailored to your data. Supports MySQL, PostgreSQL, MariaDB, SQLite databases.",
       keywords: [
         "orm",
@@ -15795,28 +15795,28 @@ var require_package2 = __commonJS({
         "index-browser.js"
       ],
       devDependencies: {
-        "@faker-js/faker": "7.5.0",
+        "@faker-js/faker": "7.6.0",
         "@fast-check/jest": "1.0.1",
         "@jest/test-sequencer": "28.1.3",
-        "@microsoft/api-extractor": "7.31.2",
+        "@microsoft/api-extractor": "7.33.1",
         "@opentelemetry/api": "1.2.0",
         "@opentelemetry/context-async-hooks": "1.7.0",
         "@opentelemetry/instrumentation": "0.33.0",
         "@opentelemetry/resources": "1.7.0",
         "@opentelemetry/sdk-trace-base": "1.7.0",
         "@opentelemetry/semantic-conventions": "1.7.0",
-        "@prisma/debug": "workspace:4.4.0",
-        "@prisma/engine-core": "workspace:4.4.0",
-        "@prisma/engines": "workspace:4.4.0",
-        "@prisma/fetch-engine": "workspace:4.4.0",
-        "@prisma/generator-helper": "workspace:4.4.0",
-        "@prisma/get-platform": "workspace:4.4.0",
-        "@prisma/instrumentation": "workspace:4.4.0",
-        "@prisma/internals": "workspace:4.4.0",
-        "@prisma/migrate": "workspace:4.4.0",
-        "@prisma/mini-proxy": "0.1.2",
-        "@swc-node/register": "1.5.1",
-        "@swc/core": "1.3.2",
+        "@prisma/debug": "workspace:4.5.0",
+        "@prisma/engine-core": "workspace:4.5.0",
+        "@prisma/engines": "workspace:4.5.0",
+        "@prisma/fetch-engine": "workspace:4.5.0",
+        "@prisma/generator-helper": "workspace:4.5.0",
+        "@prisma/get-platform": "workspace:4.5.0",
+        "@prisma/instrumentation": "workspace:4.5.0",
+        "@prisma/internals": "workspace:4.5.0",
+        "@prisma/migrate": "workspace:4.5.0",
+        "@prisma/mini-proxy": "0.2.0",
+        "@swc-node/register": "1.5.4",
+        "@swc/core": "1.3.8",
         "@swc/jest": "0.2.22",
         "@timsuchanek/copy": "1.4.5",
         "@types/debug": "4.1.7",
@@ -15824,15 +15824,15 @@ var require_package2 = __commonJS({
         "@types/jest": "28.1.8",
         "@types/js-levenshtein": "1.1.1",
         "@types/mssql": "8.1.1",
-        "@types/node": "14.18.29",
+        "@types/node": "14.18.32",
         "@types/pg": "8.6.5",
         "@types/yeoman-generator": "5.2.11",
         arg: "5.0.2",
         benchmark: "2.1.4",
         chalk: "4.1.2",
         cuid: "2.1.8",
-        "decimal.js": "10.4.1",
-        esbuild: "0.15.8",
+        "decimal.js": "10.4.2",
+        esbuild: "0.15.10",
         execa: "5.1.1",
         "expect-type": "0.14.2",
         "flat-map-polyfill": "0.3.8",
@@ -15853,6 +15853,7 @@ var require_package2 = __commonJS({
         mariadb: "3.0.1",
         memfs: "3.4.7",
         mssql: "9.0.1",
+        "node-fetch": "2.6.7",
         pg: "8.8.0",
         "pkg-up": "3.1.0",
         pluralize: "8.0.0",
@@ -15868,8 +15869,9 @@ var require_package2 = __commonJS({
         "strip-indent": "3.0.0",
         "ts-jest": "28.0.8",
         "ts-node": "10.9.1",
+        "ts-pattern": "4.0.5",
         tsd: "0.21.0",
-        typescript: "4.8.3",
+        typescript: "4.8.4",
         "yeoman-generator": "5.7.0",
         yo: "4.3.0"
       },
@@ -15882,7 +15884,7 @@ var require_package2 = __commonJS({
         }
       },
       dependencies: {
-        "@prisma/engines-version": "4.4.0-66.f352a33b70356f46311da8b00d83386dd9f145d6"
+        "@prisma/engines-version": "4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452"
       },
       sideEffects: false
     };
@@ -15954,7 +15956,7 @@ __name(applyMixins, "applyMixins");
 // src/runtime/utils/common.ts
 var import_chalk = __toESM(require_source());
 
-// ../../node_modules/.pnpm/decimal.js@10.4.1/node_modules/decimal.js/decimal.mjs
+// ../../node_modules/.pnpm/decimal.js@10.4.2/node_modules/decimal.js/decimal.mjs
 var EXP_LIMIT = 9e15;
 var MAX_DIGITS = 1e9;
 var NUMERALS = "0123456789abcdef";
@@ -20313,7 +20315,7 @@ function fixBinaryTargets(binaryTargets, platform3) {
   return [...binaryTargets, transformPlatformToEnvValue(platform3)];
 }
 __name(fixBinaryTargets, "fixBinaryTargets");
-function getGithubIssueUrl({
+function getGitHubIssueUrl({
   title,
   user = "prisma",
   repo = "prisma",
@@ -20328,7 +20330,7 @@ function getGithubIssueUrl({
     body
   });
 }
-__name(getGithubIssueUrl, "getGithubIssueUrl");
+__name(getGitHubIssueUrl, "getGitHubIssueUrl");
 
 // ../engine-core/src/common/errors/utils/maskQuery.ts
 function maskQuery(query2) {
@@ -20401,7 +20403,7 @@ ${query2 ? maskQuery(query2) : ""}
 \`\`\`
 `
   );
-  const url = getGithubIssueUrl({ title, body });
+  const url = getGitHubIssueUrl({ title, body });
   return `${title}
 
 This is a non-recoverable error which probably happens when the Prisma Query Engine has a panic.
@@ -25224,6 +25226,9 @@ var BinaryEngine = class extends Engine {
       if (this.startPromise) {
         await this.startPromise;
       }
+      if (error2 instanceof PrismaClientKnownRequestError) {
+        throw error2;
+      }
       this.throwAsyncErrorIfExists();
       if ((_a3 = this.currentRequestPromise) == null ? void 0 : _a3.isCanceled) {
         this.throwAsyncErrorIfExists();
@@ -25922,9 +25927,6 @@ You very likely have the wrong "binaryTarget" defined in the schema.prisma file.
       return { data, elapsed };
     } catch (e) {
       logger("req - e", e);
-      if (e instanceof PrismaClientKnownRequestError) {
-        throw e;
-      }
       await this.handleRequestError(e, numTry <= MAX_REQUEST_RETRIES);
       if (numTry <= MAX_REQUEST_RETRIES) {
         logger("trying a retry now");
@@ -26342,17 +26344,17 @@ __name(backOff, "backOff");
 
 // ../engines/package.json
 var devDependencies = {
-  "@prisma/debug": "workspace:4.4.0",
-  "@prisma/engines-version": "4.4.0-66.f352a33b70356f46311da8b00d83386dd9f145d6",
-  "@prisma/fetch-engine": "workspace:4.4.0",
-  "@prisma/get-platform": "workspace:4.4.0",
-  "@swc/core": "1.3.2",
+  "@prisma/debug": "workspace:4.5.0",
+  "@prisma/engines-version": "4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452",
+  "@prisma/fetch-engine": "workspace:4.5.0",
+  "@prisma/get-platform": "workspace:4.5.0",
+  "@swc/core": "1.3.8",
   "@swc/jest": "0.2.22",
   "@types/jest": "28.1.8",
-  "@types/node": "16.11.59",
+  "@types/node": "16.11.65",
   execa: "5.1.1",
   jest: "28.1.3",
-  typescript: "4.8.3"
+  typescript: "4.8.4"
 };
 
 // ../engine-core/src/data-proxy/errors/NetworkError.ts
@@ -27708,6 +27710,15 @@ function getPrismaClientDMMF(dmmf) {
 }
 __name(getPrismaClientDMMF, "getPrismaClientDMMF");
 
+// src/runtime/query.ts
+var import_chalk11 = __toESM(require_source());
+var import_indent_string4 = __toESM(require_indent_string());
+var import_strip_ansi3 = __toESM(require_strip_ansi());
+
+// src/runtime/utils/createErrorMessageWithContext.ts
+var import_chalk9 = __toESM(require_source());
+var import_indent_string3 = __toESM(require_indent_string());
+
 // src/runtime/clientActions.ts
 var clientOnlyActions = {
   findUniqueOrThrow: {
@@ -27731,326 +27742,6 @@ __name(isClientOnlyAction, "isClientOnlyAction");
 var allClientModelActions = Object.keys(DMMF.ModelAction).concat(
   Object.keys(clientOnlyActions)
 );
-
-// ../../node_modules/.pnpm/stacktrace-parser@0.1.10/node_modules/stacktrace-parser/dist/stack-trace-parser.esm.js
-var UNKNOWN_FUNCTION = "<unknown>";
-function parse(stackString) {
-  var lines = stackString.split("\n");
-  return lines.reduce(function(stack, line) {
-    var parseResult = parseChrome(line) || parseWinjs(line) || parseGecko(line) || parseNode(line) || parseJSC(line);
-    if (parseResult) {
-      stack.push(parseResult);
-    }
-    return stack;
-  }, []);
-}
-__name(parse, "parse");
-var chromeRe = /^\s*at (.*?) ?\(((?:file|https?|blob|chrome-extension|native|eval|webpack|<anonymous>|\/|[a-z]:\\|\\\\).*?)(?::(\d+))?(?::(\d+))?\)?\s*$/i;
-var chromeEvalRe = /\((\S*)(?::(\d+))(?::(\d+))\)/;
-function parseChrome(line) {
-  var parts = chromeRe.exec(line);
-  if (!parts) {
-    return null;
-  }
-  var isNative = parts[2] && parts[2].indexOf("native") === 0;
-  var isEval = parts[2] && parts[2].indexOf("eval") === 0;
-  var submatch = chromeEvalRe.exec(parts[2]);
-  if (isEval && submatch != null) {
-    parts[2] = submatch[1];
-    parts[3] = submatch[2];
-    parts[4] = submatch[3];
-  }
-  return {
-    file: !isNative ? parts[2] : null,
-    methodName: parts[1] || UNKNOWN_FUNCTION,
-    arguments: isNative ? [parts[2]] : [],
-    lineNumber: parts[3] ? +parts[3] : null,
-    column: parts[4] ? +parts[4] : null
-  };
-}
-__name(parseChrome, "parseChrome");
-var winjsRe = /^\s*at (?:((?:\[object object\])?.+) )?\(?((?:file|ms-appx|https?|webpack|blob):.*?):(\d+)(?::(\d+))?\)?\s*$/i;
-function parseWinjs(line) {
-  var parts = winjsRe.exec(line);
-  if (!parts) {
-    return null;
-  }
-  return {
-    file: parts[2],
-    methodName: parts[1] || UNKNOWN_FUNCTION,
-    arguments: [],
-    lineNumber: +parts[3],
-    column: parts[4] ? +parts[4] : null
-  };
-}
-__name(parseWinjs, "parseWinjs");
-var geckoRe = /^\s*(.*?)(?:\((.*?)\))?(?:^|@)((?:file|https?|blob|chrome|webpack|resource|\[native).*?|[^@]*bundle)(?::(\d+))?(?::(\d+))?\s*$/i;
-var geckoEvalRe = /(\S+) line (\d+)(?: > eval line \d+)* > eval/i;
-function parseGecko(line) {
-  var parts = geckoRe.exec(line);
-  if (!parts) {
-    return null;
-  }
-  var isEval = parts[3] && parts[3].indexOf(" > eval") > -1;
-  var submatch = geckoEvalRe.exec(parts[3]);
-  if (isEval && submatch != null) {
-    parts[3] = submatch[1];
-    parts[4] = submatch[2];
-    parts[5] = null;
-  }
-  return {
-    file: parts[3],
-    methodName: parts[1] || UNKNOWN_FUNCTION,
-    arguments: parts[2] ? parts[2].split(",") : [],
-    lineNumber: parts[4] ? +parts[4] : null,
-    column: parts[5] ? +parts[5] : null
-  };
-}
-__name(parseGecko, "parseGecko");
-var javaScriptCoreRe = /^\s*(?:([^@]*)(?:\((.*?)\))?@)?(\S.*?):(\d+)(?::(\d+))?\s*$/i;
-function parseJSC(line) {
-  var parts = javaScriptCoreRe.exec(line);
-  if (!parts) {
-    return null;
-  }
-  return {
-    file: parts[3],
-    methodName: parts[1] || UNKNOWN_FUNCTION,
-    arguments: [],
-    lineNumber: +parts[4],
-    column: parts[5] ? +parts[5] : null
-  };
-}
-__name(parseJSC, "parseJSC");
-var nodeRe = /^\s*at (?:((?:\[object object\])?[^\\/]+(?: \[as \S+\])?) )?\(?(.*?):(\d+)(?::(\d+))?\)?\s*$/i;
-function parseNode(line) {
-  var parts = nodeRe.exec(line);
-  if (!parts) {
-    return null;
-  }
-  return {
-    file: parts[2],
-    methodName: parts[1] || UNKNOWN_FUNCTION,
-    arguments: [],
-    lineNumber: +parts[3],
-    column: parts[4] ? +parts[4] : null
-  };
-}
-__name(parseNode, "parseNode");
-
-// src/runtime/utils/CallSite.ts
-var DisabledCallSite = class {
-  getLocation() {
-    return null;
-  }
-};
-__name(DisabledCallSite, "DisabledCallSite");
-var EnabledCallSite = class {
-  constructor() {
-    this._error = new Error();
-  }
-  getLocation() {
-    const stack = this._error.stack;
-    if (!stack) {
-      return null;
-    }
-    const stackFrames = parse(stack);
-    const frame = stackFrames.find((t) => {
-      return t.file && t.file !== "<anonymous>" && !t.file.includes("@prisma") && !t.file.includes("getPrismaClient") && !t.file.startsWith("internal/") && !t.methodName.includes("new ") && !t.methodName.includes("getCallSite") && !t.methodName.includes("Proxy.") && t.methodName.split(".").length < 4;
-    });
-    if (!frame || !frame.file) {
-      return null;
-    }
-    return {
-      fileName: frame.file,
-      lineNumber: frame.lineNumber,
-      columnNumber: frame.column
-    };
-  }
-};
-__name(EnabledCallSite, "EnabledCallSite");
-function getCallSite(errorFormat) {
-  if (errorFormat === "minimal") {
-    return new DisabledCallSite();
-  }
-  return new EnabledCallSite();
-}
-__name(getCallSite, "getCallSite");
-
-// src/runtime/core/request/createPrismaPromise.ts
-function createPrismaPromise(callback) {
-  let promise;
-  const _callback = /* @__PURE__ */ __name((transaction, lock, cached = true) => {
-    try {
-      if (cached === true) {
-        return promise != null ? promise : promise = callback(transaction, lock);
-      }
-      return callback(transaction, lock);
-    } catch (error2) {
-      return Promise.reject(error2);
-    }
-  }, "_callback");
-  return {
-    then(onFulfilled, onRejected, transaction) {
-      return _callback(createItx(transaction), void 0).then(onFulfilled, onRejected, transaction);
-    },
-    catch(onRejected, transaction) {
-      return _callback(createItx(transaction), void 0).catch(onRejected, transaction);
-    },
-    finally(onFinally, transaction) {
-      return _callback(createItx(transaction), void 0).finally(onFinally, transaction);
-    },
-    requestTransaction(transactionOptions, lock) {
-      const transaction = { kind: "batch", ...transactionOptions };
-      const promise2 = _callback(transaction, lock, false);
-      if (promise2.requestTransaction) {
-        return promise2.requestTransaction(transaction, lock);
-      }
-      return promise2;
-    },
-    [Symbol.toStringTag]: "PrismaPromise"
-  };
-}
-__name(createPrismaPromise, "createPrismaPromise");
-function createItx(transaction) {
-  if (transaction) {
-    return { kind: "itx", ...transaction };
-  }
-  return void 0;
-}
-__name(createItx, "createItx");
-
-// src/runtime/core/model/aggregates/utils/aggregateMap.ts
-var aggregateMap = {
-  _avg: true,
-  _count: true,
-  _sum: true,
-  _min: true,
-  _max: true
-};
-
-// src/runtime/core/model/aggregates/aggregate.ts
-function desugarUserArgs(userArgs) {
-  const _userArgs = desugarCountInUserArgs(userArgs);
-  const userArgsEntries = Object.entries(_userArgs);
-  return userArgsEntries.reduce(
-    (aggregateArgs, [key, value]) => {
-      if (aggregateMap[key] !== void 0) {
-        aggregateArgs["select"][key] = { select: value };
-      } else {
-        aggregateArgs[key] = value;
-      }
-      return aggregateArgs;
-    },
-    { select: {} }
-  );
-}
-__name(desugarUserArgs, "desugarUserArgs");
-function desugarCountInUserArgs(userArgs) {
-  if (typeof userArgs["_count"] === "boolean") {
-    return { ...userArgs, _count: { _all: userArgs["_count"] } };
-  }
-  return userArgs;
-}
-__name(desugarCountInUserArgs, "desugarCountInUserArgs");
-function createUnpacker(userArgs) {
-  return (data) => {
-    if (typeof userArgs["_count"] === "boolean") {
-      data["_count"] = data["_count"]["_all"];
-    }
-    return data;
-  };
-}
-__name(createUnpacker, "createUnpacker");
-function aggregate(client, userArgs, modelAction) {
-  const aggregateArgs = desugarUserArgs(userArgs != null ? userArgs : {});
-  const aggregateUnpacker = createUnpacker(userArgs != null ? userArgs : {});
-  return modelAction({
-    action: "aggregate",
-    unpacker: aggregateUnpacker
-  })(aggregateArgs);
-}
-__name(aggregate, "aggregate");
-
-// src/runtime/core/model/aggregates/count.ts
-function count(client, userArgs, modelAction) {
-  const { select, ..._userArgs } = userArgs != null ? userArgs : {};
-  if (typeof select === "object") {
-    return aggregate(
-      client,
-      { ..._userArgs, _count: select },
-      (p) => modelAction({ ...p, action: "count", unpacker: (data) => {
-        var _a3;
-        return (_a3 = p.unpacker) == null ? void 0 : _a3.call(p, data)["_count"];
-      } })
-    );
-  } else {
-    return aggregate(
-      client,
-      { ..._userArgs, _count: { _all: true } },
-      (p) => modelAction({ ...p, action: "count", unpacker: (data) => {
-        var _a3;
-        return (_a3 = p.unpacker) == null ? void 0 : _a3.call(p, data)["_count"]["_all"];
-      } })
-    );
-  }
-}
-__name(count, "count");
-
-// src/runtime/core/model/aggregates/groupBy.ts
-function desugarUserArgs2(userArgs) {
-  const _userArgs = desugarUserArgs(userArgs);
-  if (Array.isArray(userArgs["by"])) {
-    for (const key of userArgs["by"]) {
-      if (typeof key === "string") {
-        _userArgs["select"][key] = true;
-      }
-    }
-  }
-  return _userArgs;
-}
-__name(desugarUserArgs2, "desugarUserArgs");
-function createUnpacker2(userArgs) {
-  return (data) => {
-    if (typeof userArgs["_count"] === "boolean") {
-      data.forEach((row) => {
-        row["_count"] = row["_count"]["_all"];
-      });
-    }
-    return data;
-  };
-}
-__name(createUnpacker2, "createUnpacker");
-function groupBy(client, userArgs, modelAction) {
-  const groupByArgs = desugarUserArgs2(userArgs != null ? userArgs : {});
-  const groupByUnpacker = createUnpacker2(userArgs != null ? userArgs : {});
-  return modelAction({
-    action: "groupBy",
-    unpacker: groupByUnpacker
-  })(groupByArgs);
-}
-__name(groupBy, "groupBy");
-
-// src/runtime/core/model/applyAggregates.ts
-function applyAggregates(client, action, modelAction) {
-  if (action === "aggregate")
-    return (userArgs) => aggregate(client, userArgs, modelAction);
-  if (action === "count")
-    return (userArgs) => count(client, userArgs, modelAction);
-  if (action === "groupBy")
-    return (userArgs) => groupBy(client, userArgs, modelAction);
-  return void 0;
-}
-__name(applyAggregates, "applyAggregates");
-
-// src/runtime/query.ts
-var import_chalk11 = __toESM(require_source());
-var import_indent_string4 = __toESM(require_indent_string());
-var import_strip_ansi3 = __toESM(require_strip_ansi());
-
-// src/runtime/utils/createErrorMessageWithContext.ts
-var import_chalk9 = __toESM(require_source());
-var import_indent_string3 = __toESM(require_indent_string());
 
 // src/runtime/utils/SourceFileSlice.ts
 var import_fs8 = __toESM(require("fs"));
@@ -28598,8 +28289,8 @@ function stringifyErrorMessage({ functionName, location, message, isPanic, conte
   const lines = [""];
   const introSuffix = location ? " in" : ":";
   if (isPanic) {
-    lines.push(colors.red(`Oops, an unknown error occured! This is ${colors.bold("on us")}, you did nothing wrong.`));
-    lines.push(colors.red(`It occured in the ${colors.bold(`\`${functionName}\``)} invocation${introSuffix}`));
+    lines.push(colors.red(`Oops, an unknown error occurred! This is ${colors.bold("on us")}, you did nothing wrong.`));
+    lines.push(colors.red(`It occurred in the ${colors.bold(`\`${functionName}\``)} invocation${introSuffix}`));
   } else {
     lines.push(colors.red(`Invalid ${colors.bold(`\`${functionName}\``)} invocation${introSuffix}`));
   }
@@ -29124,9 +28815,10 @@ ${valueStr}
       }
       if (error2.type === "atLeastOne") {
         const additional = minimal ? "" : ` Available args are listed in ${import_chalk11.default.dim.green("green")}.`;
+        const atLeastFieldsError = error2.atLeastFields ? ` and at least one argument for ${error2.atLeastFields.map((field) => import_chalk11.default.bold(field)).join(", or ")}` : "";
         return `Argument ${import_chalk11.default.bold(path7.join("."))} of type ${import_chalk11.default.bold(
           error2.inputType.name
-        )} needs ${import_chalk11.default.greenBright("at least one")} argument.${additional}`;
+        )} needs ${import_chalk11.default.greenBright("at least one")} argument${import_chalk11.default.bold(atLeastFieldsError)}.${additional}`;
       }
       if (error2.type === "atMostOne") {
         const additional = minimal ? "" : ` Please choose one. ${import_chalk11.default.dim("Available args:")} 
@@ -29449,7 +29141,7 @@ function stringify(value, inputType) {
     if (value === null) {
       return "null";
     }
-    if (value && value.values && value.__prismaRawParamaters__) {
+    if (value && value.values && value.__prismaRawParameters__) {
       return JSON.stringify(value.values);
     }
     if ((inputType == null ? void 0 : inputType.isList) && Array.isArray(value)) {
@@ -29932,7 +29624,7 @@ function sum2(n) {
 }
 __name(sum2, "sum");
 function tryInferArgs(key, value, arg2, inputType, context5) {
-  var _a3, _b2, _c, _d;
+  var _a3, _b2, _c, _d, _e;
   if (typeof value === "undefined") {
     if (!arg2.isRequired) {
       return null;
@@ -29979,11 +29671,12 @@ function tryInferArgs(key, value, arg2, inputType, context5) {
         let error2;
         const keys2 = Object.keys(val || {});
         const numKeys = keys2.length;
-        if (numKeys === 0 && typeof inputType.type.constraints.minNumFields === "number" && inputType.type.constraints.minNumFields > 0) {
+        if (numKeys === 0 && typeof inputType.type.constraints.minNumFields === "number" && inputType.type.constraints.minNumFields > 0 || ((_a3 = inputType.type.constraints.fields) == null ? void 0 : _a3.some((field) => keys2.includes(field))) === false) {
           error2 = {
             type: "atLeastOne",
             key,
-            inputType: inputType.type
+            inputType: inputType.type,
+            atLeastFields: inputType.type.constraints.fields
           };
         } else if (numKeys > 1 && typeof inputType.type.constraints.maxNumFields === "number" && inputType.type.constraints.maxNumFields < 2) {
           error2 = {
@@ -30015,14 +29708,14 @@ function tryInferArgs(key, value, arg2, inputType, context5) {
     return scalarToArg(key, value, arg2, inputType, context5);
   }
   const argInputType = inputType.type;
-  const hasAtLeastOneError = typeof ((_a3 = argInputType.constraints) == null ? void 0 : _a3.minNumFields) === "number" && ((_b2 = argInputType.constraints) == null ? void 0 : _b2.minNumFields) > 0 ? Array.isArray(value) && value.some((v) => !v || Object.keys(cleanObject(v)).length === 0) : false;
+  const hasAtLeastOneError = typeof ((_b2 = argInputType.constraints) == null ? void 0 : _b2.minNumFields) === "number" && ((_c = argInputType.constraints) == null ? void 0 : _c.minNumFields) > 0 ? Array.isArray(value) && value.some((v) => !v || Object.keys(cleanObject(v)).length === 0) : false;
   let err = hasAtLeastOneError ? {
     inputType: argInputType,
     key,
     type: "atLeastOne"
   } : void 0;
   if (!err) {
-    const hasOneOfError = typeof ((_c = argInputType.constraints) == null ? void 0 : _c.maxNumFields) === "number" && ((_d = argInputType.constraints) == null ? void 0 : _d.maxNumFields) < 2 ? Array.isArray(value) && value.find((v) => !v || Object.keys(cleanObject(v)).length !== 1) : false;
+    const hasOneOfError = typeof ((_d = argInputType.constraints) == null ? void 0 : _d.maxNumFields) === "number" && ((_e = argInputType.constraints) == null ? void 0 : _e.maxNumFields) < 2 ? Array.isArray(value) && value.find((v) => !v || Object.keys(cleanObject(v)).length !== 1) : false;
     if (hasOneOfError) {
       err = {
         inputType: argInputType,
@@ -30284,6 +29977,335 @@ function transformAggregatePrintJsonArgs({
   };
 }
 __name(transformAggregatePrintJsonArgs, "transformAggregatePrintJsonArgs");
+
+// src/runtime/core/extensions/$extends.ts
+function $extends(extension) {
+  if (!this._hasPreviewFlag("clientExtensions")) {
+    throw new PrismaClientValidationError("Extensions are not yet available");
+  }
+  return Object.create(this, {
+    _extensions: {
+      get: () => {
+        if (typeof extension === "function") {
+          return this._extensions.concat(extension());
+        }
+        return this._extensions.concat(extension);
+      }
+    }
+  });
+}
+__name($extends, "$extends");
+
+// ../../node_modules/.pnpm/stacktrace-parser@0.1.10/node_modules/stacktrace-parser/dist/stack-trace-parser.esm.js
+var UNKNOWN_FUNCTION = "<unknown>";
+function parse(stackString) {
+  var lines = stackString.split("\n");
+  return lines.reduce(function(stack, line) {
+    var parseResult = parseChrome(line) || parseWinjs(line) || parseGecko(line) || parseNode(line) || parseJSC(line);
+    if (parseResult) {
+      stack.push(parseResult);
+    }
+    return stack;
+  }, []);
+}
+__name(parse, "parse");
+var chromeRe = /^\s*at (.*?) ?\(((?:file|https?|blob|chrome-extension|native|eval|webpack|<anonymous>|\/|[a-z]:\\|\\\\).*?)(?::(\d+))?(?::(\d+))?\)?\s*$/i;
+var chromeEvalRe = /\((\S*)(?::(\d+))(?::(\d+))\)/;
+function parseChrome(line) {
+  var parts = chromeRe.exec(line);
+  if (!parts) {
+    return null;
+  }
+  var isNative = parts[2] && parts[2].indexOf("native") === 0;
+  var isEval = parts[2] && parts[2].indexOf("eval") === 0;
+  var submatch = chromeEvalRe.exec(parts[2]);
+  if (isEval && submatch != null) {
+    parts[2] = submatch[1];
+    parts[3] = submatch[2];
+    parts[4] = submatch[3];
+  }
+  return {
+    file: !isNative ? parts[2] : null,
+    methodName: parts[1] || UNKNOWN_FUNCTION,
+    arguments: isNative ? [parts[2]] : [],
+    lineNumber: parts[3] ? +parts[3] : null,
+    column: parts[4] ? +parts[4] : null
+  };
+}
+__name(parseChrome, "parseChrome");
+var winjsRe = /^\s*at (?:((?:\[object object\])?.+) )?\(?((?:file|ms-appx|https?|webpack|blob):.*?):(\d+)(?::(\d+))?\)?\s*$/i;
+function parseWinjs(line) {
+  var parts = winjsRe.exec(line);
+  if (!parts) {
+    return null;
+  }
+  return {
+    file: parts[2],
+    methodName: parts[1] || UNKNOWN_FUNCTION,
+    arguments: [],
+    lineNumber: +parts[3],
+    column: parts[4] ? +parts[4] : null
+  };
+}
+__name(parseWinjs, "parseWinjs");
+var geckoRe = /^\s*(.*?)(?:\((.*?)\))?(?:^|@)((?:file|https?|blob|chrome|webpack|resource|\[native).*?|[^@]*bundle)(?::(\d+))?(?::(\d+))?\s*$/i;
+var geckoEvalRe = /(\S+) line (\d+)(?: > eval line \d+)* > eval/i;
+function parseGecko(line) {
+  var parts = geckoRe.exec(line);
+  if (!parts) {
+    return null;
+  }
+  var isEval = parts[3] && parts[3].indexOf(" > eval") > -1;
+  var submatch = geckoEvalRe.exec(parts[3]);
+  if (isEval && submatch != null) {
+    parts[3] = submatch[1];
+    parts[4] = submatch[2];
+    parts[5] = null;
+  }
+  return {
+    file: parts[3],
+    methodName: parts[1] || UNKNOWN_FUNCTION,
+    arguments: parts[2] ? parts[2].split(",") : [],
+    lineNumber: parts[4] ? +parts[4] : null,
+    column: parts[5] ? +parts[5] : null
+  };
+}
+__name(parseGecko, "parseGecko");
+var javaScriptCoreRe = /^\s*(?:([^@]*)(?:\((.*?)\))?@)?(\S.*?):(\d+)(?::(\d+))?\s*$/i;
+function parseJSC(line) {
+  var parts = javaScriptCoreRe.exec(line);
+  if (!parts) {
+    return null;
+  }
+  return {
+    file: parts[3],
+    methodName: parts[1] || UNKNOWN_FUNCTION,
+    arguments: [],
+    lineNumber: +parts[4],
+    column: parts[5] ? +parts[5] : null
+  };
+}
+__name(parseJSC, "parseJSC");
+var nodeRe = /^\s*at (?:((?:\[object object\])?[^\\/]+(?: \[as \S+\])?) )?\(?(.*?):(\d+)(?::(\d+))?\)?\s*$/i;
+function parseNode(line) {
+  var parts = nodeRe.exec(line);
+  if (!parts) {
+    return null;
+  }
+  return {
+    file: parts[2],
+    methodName: parts[1] || UNKNOWN_FUNCTION,
+    arguments: [],
+    lineNumber: +parts[3],
+    column: parts[4] ? +parts[4] : null
+  };
+}
+__name(parseNode, "parseNode");
+
+// src/runtime/utils/CallSite.ts
+var DisabledCallSite = class {
+  getLocation() {
+    return null;
+  }
+};
+__name(DisabledCallSite, "DisabledCallSite");
+var EnabledCallSite = class {
+  constructor() {
+    this._error = new Error();
+  }
+  getLocation() {
+    const stack = this._error.stack;
+    if (!stack) {
+      return null;
+    }
+    const stackFrames = parse(stack);
+    const frame = stackFrames.find((t) => {
+      return t.file && t.file !== "<anonymous>" && !t.file.includes("@prisma") && !t.file.includes("getPrismaClient") && !t.file.startsWith("internal/") && !t.methodName.includes("new ") && !t.methodName.includes("getCallSite") && !t.methodName.includes("Proxy.") && t.methodName.split(".").length < 4;
+    });
+    if (!frame || !frame.file) {
+      return null;
+    }
+    return {
+      fileName: frame.file,
+      lineNumber: frame.lineNumber,
+      columnNumber: frame.column
+    };
+  }
+};
+__name(EnabledCallSite, "EnabledCallSite");
+function getCallSite(errorFormat) {
+  if (errorFormat === "minimal") {
+    return new DisabledCallSite();
+  }
+  return new EnabledCallSite();
+}
+__name(getCallSite, "getCallSite");
+
+// src/runtime/core/request/createPrismaPromise.ts
+function createPrismaPromise(callback) {
+  let promise;
+  const _callback = /* @__PURE__ */ __name((transaction, lock, cached = true) => {
+    try {
+      if (cached === true) {
+        return promise != null ? promise : promise = callback(transaction, lock);
+      }
+      return callback(transaction, lock);
+    } catch (error2) {
+      return Promise.reject(error2);
+    }
+  }, "_callback");
+  return {
+    then(onFulfilled, onRejected, transaction) {
+      return _callback(createItx(transaction), void 0).then(onFulfilled, onRejected, transaction);
+    },
+    catch(onRejected, transaction) {
+      return _callback(createItx(transaction), void 0).catch(onRejected, transaction);
+    },
+    finally(onFinally, transaction) {
+      return _callback(createItx(transaction), void 0).finally(onFinally, transaction);
+    },
+    requestTransaction(transactionOptions, lock) {
+      const transaction = { kind: "batch", ...transactionOptions };
+      const promise2 = _callback(transaction, lock, false);
+      if (promise2.requestTransaction) {
+        return promise2.requestTransaction(transaction, lock);
+      }
+      return promise2;
+    },
+    [Symbol.toStringTag]: "PrismaPromise"
+  };
+}
+__name(createPrismaPromise, "createPrismaPromise");
+function createItx(transaction) {
+  if (transaction) {
+    return { kind: "itx", ...transaction };
+  }
+  return void 0;
+}
+__name(createItx, "createItx");
+
+// src/runtime/core/model/aggregates/utils/aggregateMap.ts
+var aggregateMap = {
+  _avg: true,
+  _count: true,
+  _sum: true,
+  _min: true,
+  _max: true
+};
+
+// src/runtime/core/model/aggregates/aggregate.ts
+function desugarUserArgs(userArgs) {
+  const _userArgs = desugarCountInUserArgs(userArgs);
+  const userArgsEntries = Object.entries(_userArgs);
+  return userArgsEntries.reduce(
+    (aggregateArgs, [key, value]) => {
+      if (aggregateMap[key] !== void 0) {
+        aggregateArgs["select"][key] = { select: value };
+      } else {
+        aggregateArgs[key] = value;
+      }
+      return aggregateArgs;
+    },
+    { select: {} }
+  );
+}
+__name(desugarUserArgs, "desugarUserArgs");
+function desugarCountInUserArgs(userArgs) {
+  if (typeof userArgs["_count"] === "boolean") {
+    return { ...userArgs, _count: { _all: userArgs["_count"] } };
+  }
+  return userArgs;
+}
+__name(desugarCountInUserArgs, "desugarCountInUserArgs");
+function createUnpacker(userArgs) {
+  return (data) => {
+    if (typeof userArgs["_count"] === "boolean") {
+      data["_count"] = data["_count"]["_all"];
+    }
+    return data;
+  };
+}
+__name(createUnpacker, "createUnpacker");
+function aggregate(client, userArgs, modelAction) {
+  const aggregateArgs = desugarUserArgs(userArgs != null ? userArgs : {});
+  const aggregateUnpacker = createUnpacker(userArgs != null ? userArgs : {});
+  return modelAction({
+    action: "aggregate",
+    unpacker: aggregateUnpacker
+  })(aggregateArgs);
+}
+__name(aggregate, "aggregate");
+
+// src/runtime/core/model/aggregates/count.ts
+function count(client, userArgs, modelAction) {
+  const { select, ..._userArgs } = userArgs != null ? userArgs : {};
+  if (typeof select === "object") {
+    return aggregate(
+      client,
+      { ..._userArgs, _count: select },
+      (p) => modelAction({ ...p, action: "count", unpacker: (data) => {
+        var _a3;
+        return (_a3 = p.unpacker) == null ? void 0 : _a3.call(p, data)["_count"];
+      } })
+    );
+  } else {
+    return aggregate(
+      client,
+      { ..._userArgs, _count: { _all: true } },
+      (p) => modelAction({ ...p, action: "count", unpacker: (data) => {
+        var _a3;
+        return (_a3 = p.unpacker) == null ? void 0 : _a3.call(p, data)["_count"]["_all"];
+      } })
+    );
+  }
+}
+__name(count, "count");
+
+// src/runtime/core/model/aggregates/groupBy.ts
+function desugarUserArgs2(userArgs) {
+  const _userArgs = desugarUserArgs(userArgs);
+  if (Array.isArray(userArgs["by"])) {
+    for (const key of userArgs["by"]) {
+      if (typeof key === "string") {
+        _userArgs["select"][key] = true;
+      }
+    }
+  }
+  return _userArgs;
+}
+__name(desugarUserArgs2, "desugarUserArgs");
+function createUnpacker2(userArgs) {
+  return (data) => {
+    if (typeof userArgs["_count"] === "boolean") {
+      data.forEach((row) => {
+        row["_count"] = row["_count"]["_all"];
+      });
+    }
+    return data;
+  };
+}
+__name(createUnpacker2, "createUnpacker");
+function groupBy(client, userArgs, modelAction) {
+  const groupByArgs = desugarUserArgs2(userArgs != null ? userArgs : {});
+  const groupByUnpacker = createUnpacker2(userArgs != null ? userArgs : {});
+  return modelAction({
+    action: "groupBy",
+    unpacker: groupByUnpacker
+  })(groupByArgs);
+}
+__name(groupBy, "groupBy");
+
+// src/runtime/core/model/applyAggregates.ts
+function applyAggregates(client, action, modelAction) {
+  if (action === "aggregate")
+    return (userArgs) => aggregate(client, userArgs, modelAction);
+  if (action === "count")
+    return (userArgs) => count(client, userArgs, modelAction);
+  if (action === "groupBy")
+    return (userArgs) => groupBy(client, userArgs, modelAction);
+  return void 0;
+}
+__name(applyAggregates, "applyAggregates");
 
 // src/runtime/utils/rejectOnNotFound.ts
 var NotFoundError2 = class extends Error {
@@ -31278,10 +31300,12 @@ function getPrismaClient(config2) {
           this._fetcher.handleRequestError({ ...params, error: error2 });
         }
       });
+      this.$extends = $extends;
       var _a3, _b2, _c, _d, _e, _f, _g, _h, _i;
       if (optionsArg) {
         validatePrismaClientOptions(optionsArg, config2.datasourceNames);
       }
+      this._extensions = [];
       this._previewFeatures = (_b2 = (_a3 = config2.generator) == null ? void 0 : _a3.previewFeatures) != null ? _b2 : [];
       this._rejectOnNotFound = optionsArg == null ? void 0 : optionsArg.rejectOnNotFound;
       this._clientVersion = (_c = config2.clientVersion) != null ? _c : clientVersion;
@@ -31476,7 +31500,7 @@ function getPrismaClient(config2) {
         queryString = query2;
         parameters = {
           values: serializeRawParameters(values || []),
-          __prismaRawParamaters__: true
+          __prismaRawParameters__: true
         };
         checkAlter(queryString, values, "prisma.$executeRawUnsafe(<SQL>, [...values])");
       } else if (isReadonlyArray(query2)) {
@@ -31487,7 +31511,7 @@ function getPrismaClient(config2) {
             queryString = queryInstance.sql;
             parameters = {
               values: serializeRawParameters(queryInstance.values),
-              __prismaRawParamaters__: true
+              __prismaRawParameters__: true
             };
             break;
           }
@@ -31498,7 +31522,7 @@ function getPrismaClient(config2) {
             checkAlter(queryString, queryInstance.values, "prisma.$executeRaw`<SQL>`");
             parameters = {
               values: serializeRawParameters(queryInstance.values),
-              __prismaRawParamaters__: true
+              __prismaRawParameters__: true
             };
             break;
           }
@@ -31506,7 +31530,7 @@ function getPrismaClient(config2) {
             queryString = mssqlPreparedStatement(query2);
             parameters = {
               values: serializeRawParameters(values),
-              __prismaRawParamaters__: true
+              __prismaRawParameters__: true
             };
             break;
           }
@@ -31533,7 +31557,7 @@ function getPrismaClient(config2) {
         }
         parameters = {
           values: serializeRawParameters(query2.values),
-          __prismaRawParamaters__: true
+          __prismaRawParameters__: true
         };
       }
       if (parameters == null ? void 0 : parameters.values) {
@@ -31590,14 +31614,14 @@ Or read our docs at https://www.prisma.io/docs/concepts/components/prisma-client
         });
       });
     }
-    $queryRawInternal(transaction, lock, query2, ...values) {
+    async $queryRawInternal(transaction, lock, query2, ...values) {
       let queryString = "";
       let parameters = void 0;
       if (typeof query2 === "string") {
         queryString = query2;
         parameters = {
           values: serializeRawParameters(values || []),
-          __prismaRawParamaters__: true
+          __prismaRawParameters__: true
         };
       } else if (isReadonlyArray(query2)) {
         switch (this._activeProvider) {
@@ -31607,7 +31631,7 @@ Or read our docs at https://www.prisma.io/docs/concepts/components/prisma-client
             queryString = queryInstance.sql;
             parameters = {
               values: serializeRawParameters(queryInstance.values),
-              __prismaRawParamaters__: true
+              __prismaRawParameters__: true
             };
             break;
           }
@@ -31617,7 +31641,7 @@ Or read our docs at https://www.prisma.io/docs/concepts/components/prisma-client
             queryString = queryInstance.text;
             parameters = {
               values: serializeRawParameters(queryInstance.values),
-              __prismaRawParamaters__: true
+              __prismaRawParameters__: true
             };
             break;
           }
@@ -31626,7 +31650,7 @@ Or read our docs at https://www.prisma.io/docs/concepts/components/prisma-client
             queryString = mssqlPreparedStatement(queryInstance.strings);
             parameters = {
               values: serializeRawParameters(queryInstance.values),
-              __prismaRawParamaters__: true
+              __prismaRawParameters__: true
             };
             break;
           }
@@ -31653,7 +31677,7 @@ Or read our docs at https://www.prisma.io/docs/concepts/components/prisma-client
         }
         parameters = {
           values: serializeRawParameters(query2.values),
-          __prismaRawParamaters__: true
+          __prismaRawParameters__: true
         };
       }
       if (parameters == null ? void 0 : parameters.values) {
@@ -31931,7 +31955,7 @@ new PrismaClient({
   return PrismaClient;
 }
 __name(getPrismaClient, "getPrismaClient");
-var forbidden = ["$connect", "$disconnect", "$on", "$transaction", "$use"];
+var forbidden = ["$connect", "$disconnect", "$on", "$transaction", "$use", "$extends"];
 function transactionProxy(thing, transaction) {
   if (typeof thing !== "object")
     return thing;
@@ -32101,7 +32125,7 @@ var decompressFromBase642 = lzString.decompressFromBase64;
   warnEnvConflicts
 });
 /*!
- *  decimal.js v10.4.1
+ *  decimal.js v10.4.2
  *  An arbitrary-precision Decimal type for JavaScript.
  *  https://github.com/MikeMcl/decimal.js
  *  Copyright (c) 2022 Michael Mclaughlin <M8ch88l@gmail.com>

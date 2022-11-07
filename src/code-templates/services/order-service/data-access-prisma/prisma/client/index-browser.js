@@ -13,12 +13,12 @@ const Prisma = {}
 exports.Prisma = Prisma
 
 /**
- * Prisma Client JS version: 4.4.0
- * Query Engine version: f352a33b70356f46311da8b00d83386dd9f145d6
+ * Prisma Client JS version: 4.5.0
+ * Query Engine version: 0362da9eebca54d94c8ef5edd3b2e90af99ba452
  */
 Prisma.prismaVersion = {
-  client: "4.4.0",
-  engine: "f352a33b70356f46311da8b00d83386dd9f145d6"
+  client: "4.5.0",
+  engine: "0362da9eebca54d94c8ef5edd3b2e90af99ba452"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -88,12 +88,12 @@ Prisma.NullTypes = {
 // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 function makeEnum(x) { return x; }
 
-exports.Prisma.CountriesScalarFieldEnum = makeEnum({
+exports.Prisma.CountryScalarFieldEnum = makeEnum({
   id: 'id',
   name: 'name'
 });
 
-exports.Prisma.OrdersScalarFieldEnum = makeEnum({
+exports.Prisma.OrderScalarFieldEnum = makeEnum({
   id: 'id',
   externalIdentifier: 'externalIdentifier',
   userId: 'userId',
@@ -101,7 +101,8 @@ exports.Prisma.OrdersScalarFieldEnum = makeEnum({
   paymentTermsInDays: 'paymentTermsInDays',
   deliveryAddress: 'deliveryAddress',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  countryId: 'countryId'
 });
 
 exports.Prisma.QueryMode = makeEnum({
@@ -127,8 +128,8 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 
 exports.Prisma.ModelName = makeEnum({
-  Countries: 'Countries',
-  Orders: 'Orders',
+  Country: 'Country',
+  Order: 'Order',
   SequelizeMeta: 'SequelizeMeta'
 });
 

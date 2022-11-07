@@ -13,19 +13,19 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
 
 
 /**
- * Model Countries
+ * Model Country
  * 
  */
-export type Countries = {
+export type Country = {
   id: number
   name: string | null
 }
 
 /**
- * Model Orders
+ * Model Order
  * 
  */
-export type Orders = {
+export type Order = {
   id: number
   externalIdentifier: string | null
   userId: number | null
@@ -34,6 +34,7 @@ export type Orders = {
   deliveryAddress: string | null
   createdAt: Date
   updatedAt: Date
+  countryId: number
 }
 
 /**
@@ -53,7 +54,7 @@ export type SequelizeMeta = {
  * ```
  * const prisma = new PrismaClient()
  * // Fetch zero or more Countries
- * const countries = await prisma.countries.findMany()
+ * const countries = await prisma.country.findMany()
  * ```
  *
  * 
@@ -99,7 +100,7 @@ export class PrismaClient<
    * ```
    * const prisma = new PrismaClient()
    * // Fetch zero or more Countries
-   * const countries = await prisma.countries.findMany()
+   * const countries = await prisma.country.findMany()
    * ```
    *
    * 
@@ -186,24 +187,24 @@ export class PrismaClient<
   $transaction<P extends PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): Promise<UnwrapTuple<P>>;
 
       /**
-   * `prisma.countries`: Exposes CRUD operations for the **Countries** model.
+   * `prisma.country`: Exposes CRUD operations for the **Country** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Countries
-    * const countries = await prisma.countries.findMany()
+    * const countries = await prisma.country.findMany()
     * ```
     */
-  get countries(): Prisma.CountriesDelegate<GlobalReject>;
+  get country(): Prisma.CountryDelegate<GlobalReject>;
 
   /**
-   * `prisma.orders`: Exposes CRUD operations for the **Orders** model.
+   * `prisma.order`: Exposes CRUD operations for the **Order** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Orders
-    * const orders = await prisma.orders.findMany()
+    * const orders = await prisma.order.findMany()
     * ```
     */
-  get orders(): Prisma.OrdersDelegate<GlobalReject>;
+  get order(): Prisma.OrderDelegate<GlobalReject>;
 
   /**
    * `prisma.sequelizeMeta`: Exposes CRUD operations for the **SequelizeMeta** model.
@@ -254,8 +255,13 @@ export namespace Prisma {
   export import MetricHistogramBucket = runtime.MetricHistogramBucket
 
   /**
-   * Prisma Client JS version: 4.4.0
-   * Query Engine version: f352a33b70356f46311da8b00d83386dd9f145d6
+   * Extensions
+   */
+  export type Extension = runtime.Extension 
+
+  /**
+   * Prisma Client JS version: 4.5.0
+   * Query Engine version: 0362da9eebca54d94c8ef5edd3b2e90af99ba452
    */
   export type PrismaVersion = {
     client: string
@@ -559,6 +565,16 @@ export namespace Prisma {
     [P in K]: T;
   };
 
+  // cause typescript not to expand types and preserve names
+  type NoExpand<T> = T extends unknown ? T : never;
+
+  // this type assumes the passed object is entirely optional
+  type AtLeast<O extends object, K extends string> = NoExpand<
+    O extends unknown
+    ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
+      | {[P in keyof O as P extends K ? K : never]-?: O[P]} & O
+    : never>;
+
   type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
 
   export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
@@ -687,8 +703,8 @@ export namespace Prisma {
   }
 
   export const ModelName: {
-    Countries: 'Countries',
-    Orders: 'Orders',
+    Country: 'Country',
+    Order: 'Order',
     SequelizeMeta: 'SequelizeMeta'
   };
 
@@ -818,7 +834,7 @@ export namespace Prisma {
     | 'findRaw'
 
   /**
-   * These options are being passed in to the middleware as "params"
+   * These options are being passed into the middleware as "params"
    */
   export type MiddlewareParams = {
     model?: ModelName
@@ -848,93 +864,141 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type CountryCountOutputType
+   */
+
+
+  export type CountryCountOutputType = {
+    Order: number
+  }
+
+  export type CountryCountOutputTypeSelect = {
+    Order?: boolean
+  }
+
+  export type CountryCountOutputTypeGetPayload<
+    S extends boolean | null | undefined | CountryCountOutputTypeArgs,
+    U = keyof S
+      > = S extends true
+        ? CountryCountOutputType
+    : S extends undefined
+    ? never
+    : S extends CountryCountOutputTypeArgs
+    ?'include' extends U
+    ? CountryCountOutputType 
+    : 'select' extends U
+    ? {
+    [P in TrueKeys<S['select']>]:
+    P extends keyof CountryCountOutputType ? CountryCountOutputType[P] : never
+  } 
+    : CountryCountOutputType
+  : CountryCountOutputType
+
+
+
+
+  // Custom InputTypes
+
+  /**
+   * CountryCountOutputType without action
+   */
+  export type CountryCountOutputTypeArgs = {
+    /**
+     * Select specific fields to fetch from the CountryCountOutputType
+     * 
+    **/
+    select?: CountryCountOutputTypeSelect | null
+  }
+
+
 
   /**
    * Models
    */
 
   /**
-   * Model Countries
+   * Model Country
    */
 
 
-  export type AggregateCountries = {
-    _count: CountriesCountAggregateOutputType | null
-    _avg: CountriesAvgAggregateOutputType | null
-    _sum: CountriesSumAggregateOutputType | null
-    _min: CountriesMinAggregateOutputType | null
-    _max: CountriesMaxAggregateOutputType | null
+  export type AggregateCountry = {
+    _count: CountryCountAggregateOutputType | null
+    _avg: CountryAvgAggregateOutputType | null
+    _sum: CountrySumAggregateOutputType | null
+    _min: CountryMinAggregateOutputType | null
+    _max: CountryMaxAggregateOutputType | null
   }
 
-  export type CountriesAvgAggregateOutputType = {
+  export type CountryAvgAggregateOutputType = {
     id: number | null
   }
 
-  export type CountriesSumAggregateOutputType = {
+  export type CountrySumAggregateOutputType = {
     id: number | null
   }
 
-  export type CountriesMinAggregateOutputType = {
-    id: number | null
-    name: string | null
-  }
-
-  export type CountriesMaxAggregateOutputType = {
+  export type CountryMinAggregateOutputType = {
     id: number | null
     name: string | null
   }
 
-  export type CountriesCountAggregateOutputType = {
+  export type CountryMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+  }
+
+  export type CountryCountAggregateOutputType = {
     id: number
     name: number
     _all: number
   }
 
 
-  export type CountriesAvgAggregateInputType = {
+  export type CountryAvgAggregateInputType = {
     id?: true
   }
 
-  export type CountriesSumAggregateInputType = {
+  export type CountrySumAggregateInputType = {
     id?: true
   }
 
-  export type CountriesMinAggregateInputType = {
-    id?: true
-    name?: true
-  }
-
-  export type CountriesMaxAggregateInputType = {
+  export type CountryMinAggregateInputType = {
     id?: true
     name?: true
   }
 
-  export type CountriesCountAggregateInputType = {
+  export type CountryMaxAggregateInputType = {
+    id?: true
+    name?: true
+  }
+
+  export type CountryCountAggregateInputType = {
     id?: true
     name?: true
     _all?: true
   }
 
-  export type CountriesAggregateArgs = {
+  export type CountryAggregateArgs = {
     /**
-     * Filter which Countries to aggregate.
+     * Filter which Country to aggregate.
      * 
     **/
-    where?: CountriesWhereInput
+    where?: CountryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Countries to fetch.
      * 
     **/
-    orderBy?: Enumerable<CountriesOrderByWithRelationInput>
+    orderBy?: Enumerable<CountryOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      * 
     **/
-    cursor?: CountriesWhereUniqueInput
+    cursor?: CountryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -954,220 +1018,232 @@ export namespace Prisma {
      * 
      * Count returned Countries
     **/
-    _count?: true | CountriesCountAggregateInputType
+    _count?: true | CountryCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: CountriesAvgAggregateInputType
+    _avg?: CountryAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: CountriesSumAggregateInputType
+    _sum?: CountrySumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: CountriesMinAggregateInputType
+    _min?: CountryMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: CountriesMaxAggregateInputType
+    _max?: CountryMaxAggregateInputType
   }
 
-  export type GetCountriesAggregateType<T extends CountriesAggregateArgs> = {
-        [P in keyof T & keyof AggregateCountries]: P extends '_count' | 'count'
+  export type GetCountryAggregateType<T extends CountryAggregateArgs> = {
+        [P in keyof T & keyof AggregateCountry]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateCountries[P]>
-      : GetScalarType<T[P], AggregateCountries[P]>
+        : GetScalarType<T[P], AggregateCountry[P]>
+      : GetScalarType<T[P], AggregateCountry[P]>
   }
 
 
 
 
-  export type CountriesGroupByArgs = {
-    where?: CountriesWhereInput
-    orderBy?: Enumerable<CountriesOrderByWithAggregationInput>
-    by: Array<CountriesScalarFieldEnum>
-    having?: CountriesScalarWhereWithAggregatesInput
+  export type CountryGroupByArgs = {
+    where?: CountryWhereInput
+    orderBy?: Enumerable<CountryOrderByWithAggregationInput>
+    by: Array<CountryScalarFieldEnum>
+    having?: CountryScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: CountriesCountAggregateInputType | true
-    _avg?: CountriesAvgAggregateInputType
-    _sum?: CountriesSumAggregateInputType
-    _min?: CountriesMinAggregateInputType
-    _max?: CountriesMaxAggregateInputType
+    _count?: CountryCountAggregateInputType | true
+    _avg?: CountryAvgAggregateInputType
+    _sum?: CountrySumAggregateInputType
+    _min?: CountryMinAggregateInputType
+    _max?: CountryMaxAggregateInputType
   }
 
 
-  export type CountriesGroupByOutputType = {
+  export type CountryGroupByOutputType = {
     id: number
     name: string | null
-    _count: CountriesCountAggregateOutputType | null
-    _avg: CountriesAvgAggregateOutputType | null
-    _sum: CountriesSumAggregateOutputType | null
-    _min: CountriesMinAggregateOutputType | null
-    _max: CountriesMaxAggregateOutputType | null
+    _count: CountryCountAggregateOutputType | null
+    _avg: CountryAvgAggregateOutputType | null
+    _sum: CountrySumAggregateOutputType | null
+    _min: CountryMinAggregateOutputType | null
+    _max: CountryMaxAggregateOutputType | null
   }
 
-  type GetCountriesGroupByPayload<T extends CountriesGroupByArgs> = PrismaPromise<
+  type GetCountryGroupByPayload<T extends CountryGroupByArgs> = PrismaPromise<
     Array<
-      PickArray<CountriesGroupByOutputType, T['by']> &
+      PickArray<CountryGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof CountriesGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof CountryGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], CountriesGroupByOutputType[P]>
-            : GetScalarType<T[P], CountriesGroupByOutputType[P]>
+              : GetScalarType<T[P], CountryGroupByOutputType[P]>
+            : GetScalarType<T[P], CountryGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type CountriesSelect = {
+  export type CountrySelect = {
     id?: boolean
     name?: boolean
+    Order?: boolean | OrderFindManyArgs
+    _count?: boolean | CountryCountOutputTypeArgs
   }
 
-  export type CountriesGetPayload<
-    S extends boolean | null | undefined | CountriesArgs,
+  export type CountryInclude = {
+    Order?: boolean | OrderFindManyArgs
+    _count?: boolean | CountryCountOutputTypeArgs
+  }
+
+  export type CountryGetPayload<
+    S extends boolean | null | undefined | CountryArgs,
     U = keyof S
       > = S extends true
-        ? Countries
+        ? Country
     : S extends undefined
     ? never
-    : S extends CountriesArgs | CountriesFindManyArgs
+    : S extends CountryArgs | CountryFindManyArgs
     ?'include' extends U
-    ? Countries 
+    ? Country  & {
+    [P in TrueKeys<S['include']>]:
+        P extends 'Order' ? Array < OrderGetPayload<Exclude<S['include'], undefined | null>[P]>>  :
+        P extends '_count' ? CountryCountOutputTypeGetPayload<Exclude<S['include'], undefined | null>[P]> :  never
+  } 
     : 'select' extends U
     ? {
     [P in TrueKeys<S['select']>]:
-    P extends keyof Countries ? Countries[P] : never
+        P extends 'Order' ? Array < OrderGetPayload<Exclude<S['select'], undefined | null>[P]>>  :
+        P extends '_count' ? CountryCountOutputTypeGetPayload<Exclude<S['select'], undefined | null>[P]> :  P extends keyof Country ? Country[P] : never
   } 
-    : Countries
-  : Countries
+    : Country
+  : Country
 
 
-  type CountriesCountArgs = Merge<
-    Omit<CountriesFindManyArgs, 'select' | 'include'> & {
-      select?: CountriesCountAggregateInputType | true
+  type CountryCountArgs = Merge<
+    Omit<CountryFindManyArgs, 'select' | 'include'> & {
+      select?: CountryCountAggregateInputType | true
     }
   >
 
-  export interface CountriesDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+  export interface CountryDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
     /**
-     * Find zero or one Countries that matches the filter.
-     * @param {CountriesFindUniqueArgs} args - Arguments to find a Countries
+     * Find zero or one Country that matches the filter.
+     * @param {CountryFindUniqueArgs} args - Arguments to find a Country
      * @example
-     * // Get one Countries
-     * const countries = await prisma.countries.findUnique({
+     * // Get one Country
+     * const country = await prisma.country.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends CountriesFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, CountriesFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Countries'> extends True ? CheckSelect<T, Prisma__CountriesClient<Countries>, Prisma__CountriesClient<CountriesGetPayload<T>>> : CheckSelect<T, Prisma__CountriesClient<Countries | null, null>, Prisma__CountriesClient<CountriesGetPayload<T> | null, null>>
+    findUnique<T extends CountryFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, CountryFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Country'> extends True ? CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>> : CheckSelect<T, Prisma__CountryClient<Country | null, null>, Prisma__CountryClient<CountryGetPayload<T> | null, null>>
 
     /**
-     * Find the first Countries that matches the filter.
+     * Find the first Country that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CountriesFindFirstArgs} args - Arguments to find a Countries
+     * @param {CountryFindFirstArgs} args - Arguments to find a Country
      * @example
-     * // Get one Countries
-     * const countries = await prisma.countries.findFirst({
+     * // Get one Country
+     * const country = await prisma.country.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends CountriesFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, CountriesFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Countries'> extends True ? CheckSelect<T, Prisma__CountriesClient<Countries>, Prisma__CountriesClient<CountriesGetPayload<T>>> : CheckSelect<T, Prisma__CountriesClient<Countries | null, null>, Prisma__CountriesClient<CountriesGetPayload<T> | null, null>>
+    findFirst<T extends CountryFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, CountryFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Country'> extends True ? CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>> : CheckSelect<T, Prisma__CountryClient<Country | null, null>, Prisma__CountryClient<CountryGetPayload<T> | null, null>>
 
     /**
      * Find zero or more Countries that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CountriesFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {CountryFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Countries
-     * const countries = await prisma.countries.findMany()
+     * const countries = await prisma.country.findMany()
      * 
      * // Get first 10 Countries
-     * const countries = await prisma.countries.findMany({ take: 10 })
+     * const countries = await prisma.country.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const countriesWithIdOnly = await prisma.countries.findMany({ select: { id: true } })
+     * const countryWithIdOnly = await prisma.country.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends CountriesFindManyArgs>(
-      args?: SelectSubset<T, CountriesFindManyArgs>
-    ): CheckSelect<T, PrismaPromise<Array<Countries>>, PrismaPromise<Array<CountriesGetPayload<T>>>>
+    findMany<T extends CountryFindManyArgs>(
+      args?: SelectSubset<T, CountryFindManyArgs>
+    ): CheckSelect<T, PrismaPromise<Array<Country>>, PrismaPromise<Array<CountryGetPayload<T>>>>
 
     /**
-     * Create a Countries.
-     * @param {CountriesCreateArgs} args - Arguments to create a Countries.
+     * Create a Country.
+     * @param {CountryCreateArgs} args - Arguments to create a Country.
      * @example
-     * // Create one Countries
-     * const Countries = await prisma.countries.create({
+     * // Create one Country
+     * const Country = await prisma.country.create({
      *   data: {
-     *     // ... data to create a Countries
+     *     // ... data to create a Country
      *   }
      * })
      * 
     **/
-    create<T extends CountriesCreateArgs>(
-      args: SelectSubset<T, CountriesCreateArgs>
-    ): CheckSelect<T, Prisma__CountriesClient<Countries>, Prisma__CountriesClient<CountriesGetPayload<T>>>
+    create<T extends CountryCreateArgs>(
+      args: SelectSubset<T, CountryCreateArgs>
+    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
 
     /**
      * Create many Countries.
-     *     @param {CountriesCreateManyArgs} args - Arguments to create many Countries.
+     *     @param {CountryCreateManyArgs} args - Arguments to create many Countries.
      *     @example
      *     // Create many Countries
-     *     const countries = await prisma.countries.createMany({
+     *     const country = await prisma.country.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends CountriesCreateManyArgs>(
-      args?: SelectSubset<T, CountriesCreateManyArgs>
+    createMany<T extends CountryCreateManyArgs>(
+      args?: SelectSubset<T, CountryCreateManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Countries.
-     * @param {CountriesDeleteArgs} args - Arguments to delete one Countries.
+     * Delete a Country.
+     * @param {CountryDeleteArgs} args - Arguments to delete one Country.
      * @example
-     * // Delete one Countries
-     * const Countries = await prisma.countries.delete({
+     * // Delete one Country
+     * const Country = await prisma.country.delete({
      *   where: {
-     *     // ... filter to delete one Countries
+     *     // ... filter to delete one Country
      *   }
      * })
      * 
     **/
-    delete<T extends CountriesDeleteArgs>(
-      args: SelectSubset<T, CountriesDeleteArgs>
-    ): CheckSelect<T, Prisma__CountriesClient<Countries>, Prisma__CountriesClient<CountriesGetPayload<T>>>
+    delete<T extends CountryDeleteArgs>(
+      args: SelectSubset<T, CountryDeleteArgs>
+    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
 
     /**
-     * Update one Countries.
-     * @param {CountriesUpdateArgs} args - Arguments to update one Countries.
+     * Update one Country.
+     * @param {CountryUpdateArgs} args - Arguments to update one Country.
      * @example
-     * // Update one Countries
-     * const countries = await prisma.countries.update({
+     * // Update one Country
+     * const country = await prisma.country.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1177,34 +1253,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends CountriesUpdateArgs>(
-      args: SelectSubset<T, CountriesUpdateArgs>
-    ): CheckSelect<T, Prisma__CountriesClient<Countries>, Prisma__CountriesClient<CountriesGetPayload<T>>>
+    update<T extends CountryUpdateArgs>(
+      args: SelectSubset<T, CountryUpdateArgs>
+    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
 
     /**
      * Delete zero or more Countries.
-     * @param {CountriesDeleteManyArgs} args - Arguments to filter Countries to delete.
+     * @param {CountryDeleteManyArgs} args - Arguments to filter Countries to delete.
      * @example
      * // Delete a few Countries
-     * const { count } = await prisma.countries.deleteMany({
+     * const { count } = await prisma.country.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends CountriesDeleteManyArgs>(
-      args?: SelectSubset<T, CountriesDeleteManyArgs>
+    deleteMany<T extends CountryDeleteManyArgs>(
+      args?: SelectSubset<T, CountryDeleteManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Countries.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CountriesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {CountryUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many Countries
-     * const countries = await prisma.countries.updateMany({
+     * const country = await prisma.country.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1214,93 +1290,93 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends CountriesUpdateManyArgs>(
-      args: SelectSubset<T, CountriesUpdateManyArgs>
+    updateMany<T extends CountryUpdateManyArgs>(
+      args: SelectSubset<T, CountryUpdateManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Countries.
-     * @param {CountriesUpsertArgs} args - Arguments to update or create a Countries.
+     * Create or update one Country.
+     * @param {CountryUpsertArgs} args - Arguments to update or create a Country.
      * @example
-     * // Update or create a Countries
-     * const countries = await prisma.countries.upsert({
+     * // Update or create a Country
+     * const country = await prisma.country.upsert({
      *   create: {
-     *     // ... data to create a Countries
+     *     // ... data to create a Country
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Countries we want to update
+     *     // ... the filter for the Country we want to update
      *   }
      * })
     **/
-    upsert<T extends CountriesUpsertArgs>(
-      args: SelectSubset<T, CountriesUpsertArgs>
-    ): CheckSelect<T, Prisma__CountriesClient<Countries>, Prisma__CountriesClient<CountriesGetPayload<T>>>
+    upsert<T extends CountryUpsertArgs>(
+      args: SelectSubset<T, CountryUpsertArgs>
+    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
 
     /**
-     * Find one Countries that matches the filter or throw
+     * Find one Country that matches the filter or throw
      * `NotFoundError` if no matches were found.
-     * @param {CountriesFindUniqueOrThrowArgs} args - Arguments to find a Countries
+     * @param {CountryFindUniqueOrThrowArgs} args - Arguments to find a Country
      * @example
-     * // Get one Countries
-     * const countries = await prisma.countries.findUniqueOrThrow({
+     * // Get one Country
+     * const country = await prisma.country.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends CountriesFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, CountriesFindUniqueOrThrowArgs>
-    ): CheckSelect<T, Prisma__CountriesClient<Countries>, Prisma__CountriesClient<CountriesGetPayload<T>>>
+    findUniqueOrThrow<T extends CountryFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, CountryFindUniqueOrThrowArgs>
+    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
 
     /**
-     * Find the first Countries that matches the filter or
+     * Find the first Country that matches the filter or
      * throw `NotFoundError` if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CountriesFindFirstOrThrowArgs} args - Arguments to find a Countries
+     * @param {CountryFindFirstOrThrowArgs} args - Arguments to find a Country
      * @example
-     * // Get one Countries
-     * const countries = await prisma.countries.findFirstOrThrow({
+     * // Get one Country
+     * const country = await prisma.country.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends CountriesFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, CountriesFindFirstOrThrowArgs>
-    ): CheckSelect<T, Prisma__CountriesClient<Countries>, Prisma__CountriesClient<CountriesGetPayload<T>>>
+    findFirstOrThrow<T extends CountryFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, CountryFindFirstOrThrowArgs>
+    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
 
     /**
      * Count the number of Countries.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CountriesCountArgs} args - Arguments to filter Countries to count.
+     * @param {CountryCountArgs} args - Arguments to filter Countries to count.
      * @example
      * // Count the number of Countries
-     * const count = await prisma.countries.count({
+     * const count = await prisma.country.count({
      *   where: {
      *     // ... the filter for the Countries we want to count
      *   }
      * })
     **/
-    count<T extends CountriesCountArgs>(
-      args?: Subset<T, CountriesCountArgs>,
+    count<T extends CountryCountArgs>(
+      args?: Subset<T, CountryCountArgs>,
     ): PrismaPromise<
       T extends _Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], CountriesCountAggregateOutputType>
+          : GetScalarType<T['select'], CountryCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Countries.
+     * Allows you to perform aggregations operations on a Country.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CountriesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {CountryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1320,13 +1396,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends CountriesAggregateArgs>(args: Subset<T, CountriesAggregateArgs>): PrismaPromise<GetCountriesAggregateType<T>>
+    aggregate<T extends CountryAggregateArgs>(args: Subset<T, CountryAggregateArgs>): PrismaPromise<GetCountryAggregateType<T>>
 
     /**
-     * Group by Countries.
+     * Group by Country.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CountriesGroupByArgs} args - Group by arguments.
+     * @param {CountryGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1341,14 +1417,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends CountriesGroupByArgs,
+      T extends CountryGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CountriesGroupByArgs['orderBy'] }
-        : { orderBy?: CountriesGroupByArgs['orderBy'] },
+        ? { orderBy: CountryGroupByArgs['orderBy'] }
+        : { orderBy?: CountryGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends TupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1397,17 +1473,17 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, CountriesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCountriesGroupByPayload<T> : PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, CountryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCountryGroupByPayload<T> : PrismaPromise<InputErrors>
 
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Countries.
+   * The delegate class that acts as a "Promise-like" for Country.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__CountriesClient<T, Null = never> implements PrismaPromise<T> {
+  export class Prisma__CountryClient<T, Null = never> implements PrismaPromise<T> {
     [prisma]: true;
     private readonly _dmmf;
     private readonly _fetcher;
@@ -1424,6 +1500,7 @@ export namespace Prisma {
     constructor(_dmmf: runtime.DMMFClass, _fetcher: PrismaClientFetcher, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
     readonly [Symbol.toStringTag]: 'PrismaClientPromise';
 
+    Order<T extends OrderFindManyArgs = {}>(args?: Subset<T, OrderFindManyArgs>): CheckSelect<T, PrismaPromise<Array<Order>| Null>, PrismaPromise<Array<OrderGetPayload<T>>| Null>>;
 
     private get _document();
     /**
@@ -1453,25 +1530,30 @@ export namespace Prisma {
   // Custom InputTypes
 
   /**
-   * Countries base type for findUnique actions
+   * Country base type for findUnique actions
    */
-  export type CountriesFindUniqueArgsBase = {
+  export type CountryFindUniqueArgsBase = {
     /**
-     * Select specific fields to fetch from the Countries
+     * Select specific fields to fetch from the Country
      * 
     **/
-    select?: CountriesSelect | null
+    select?: CountrySelect | null
     /**
-     * Filter, which Countries to fetch.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    where: CountriesWhereUniqueInput
+    include?: CountryInclude | null
+    /**
+     * Filter, which Country to fetch.
+     * 
+    **/
+    where: CountryWhereUniqueInput
   }
 
   /**
-   * Countries: findUnique
+   * Country: findUnique
    */
-  export interface CountriesFindUniqueArgs extends CountriesFindUniqueArgsBase {
+  export interface CountryFindUniqueArgs extends CountryFindUniqueArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
@@ -1481,33 +1563,38 @@ export namespace Prisma {
       
 
   /**
-   * Countries base type for findFirst actions
+   * Country base type for findFirst actions
    */
-  export type CountriesFindFirstArgsBase = {
+  export type CountryFindFirstArgsBase = {
     /**
-     * Select specific fields to fetch from the Countries
+     * Select specific fields to fetch from the Country
      * 
     **/
-    select?: CountriesSelect | null
+    select?: CountrySelect | null
     /**
-     * Filter, which Countries to fetch.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    where?: CountriesWhereInput
+    include?: CountryInclude | null
+    /**
+     * Filter, which Country to fetch.
+     * 
+    **/
+    where?: CountryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Countries to fetch.
      * 
     **/
-    orderBy?: Enumerable<CountriesOrderByWithRelationInput>
+    orderBy?: Enumerable<CountryOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Countries.
      * 
     **/
-    cursor?: CountriesWhereUniqueInput
+    cursor?: CountryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -1528,13 +1615,13 @@ export namespace Prisma {
      * Filter by unique combinations of Countries.
      * 
     **/
-    distinct?: Enumerable<CountriesScalarFieldEnum>
+    distinct?: Enumerable<CountryScalarFieldEnum>
   }
 
   /**
-   * Countries: findFirst
+   * Country: findFirst
    */
-  export interface CountriesFindFirstArgs extends CountriesFindFirstArgsBase {
+  export interface CountryFindFirstArgs extends CountryFindFirstArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
@@ -1544,33 +1631,38 @@ export namespace Prisma {
       
 
   /**
-   * Countries findMany
+   * Country findMany
    */
-  export type CountriesFindManyArgs = {
+  export type CountryFindManyArgs = {
     /**
-     * Select specific fields to fetch from the Countries
+     * Select specific fields to fetch from the Country
      * 
     **/
-    select?: CountriesSelect | null
+    select?: CountrySelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: CountryInclude | null
     /**
      * Filter, which Countries to fetch.
      * 
     **/
-    where?: CountriesWhereInput
+    where?: CountryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Countries to fetch.
      * 
     **/
-    orderBy?: Enumerable<CountriesOrderByWithRelationInput>
+    orderBy?: Enumerable<CountryOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Countries.
      * 
     **/
-    cursor?: CountriesWhereUniqueInput
+    cursor?: CountryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -1585,199 +1677,215 @@ export namespace Prisma {
      * 
     **/
     skip?: number
-    distinct?: Enumerable<CountriesScalarFieldEnum>
+    distinct?: Enumerable<CountryScalarFieldEnum>
   }
 
 
   /**
-   * Countries create
+   * Country create
    */
-  export type CountriesCreateArgs = {
+  export type CountryCreateArgs = {
     /**
-     * Select specific fields to fetch from the Countries
+     * Select specific fields to fetch from the Country
      * 
     **/
-    select?: CountriesSelect | null
+    select?: CountrySelect | null
     /**
-     * The data needed to create a Countries.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    data: XOR<CountriesCreateInput, CountriesUncheckedCreateInput>
+    include?: CountryInclude | null
+    /**
+     * The data needed to create a Country.
+     * 
+    **/
+    data: XOR<CountryCreateInput, CountryUncheckedCreateInput>
   }
 
 
   /**
-   * Countries createMany
+   * Country createMany
    */
-  export type CountriesCreateManyArgs = {
+  export type CountryCreateManyArgs = {
     /**
      * The data used to create many Countries.
      * 
     **/
-    data: Enumerable<CountriesCreateManyInput>
+    data: Enumerable<CountryCreateManyInput>
     skipDuplicates?: boolean
   }
 
 
   /**
-   * Countries update
+   * Country update
    */
-  export type CountriesUpdateArgs = {
+  export type CountryUpdateArgs = {
     /**
-     * Select specific fields to fetch from the Countries
+     * Select specific fields to fetch from the Country
      * 
     **/
-    select?: CountriesSelect | null
+    select?: CountrySelect | null
     /**
-     * The data needed to update a Countries.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    data: XOR<CountriesUpdateInput, CountriesUncheckedUpdateInput>
+    include?: CountryInclude | null
     /**
-     * Choose, which Countries to update.
+     * The data needed to update a Country.
      * 
     **/
-    where: CountriesWhereUniqueInput
+    data: XOR<CountryUpdateInput, CountryUncheckedUpdateInput>
+    /**
+     * Choose, which Country to update.
+     * 
+    **/
+    where: CountryWhereUniqueInput
   }
 
 
   /**
-   * Countries updateMany
+   * Country updateMany
    */
-  export type CountriesUpdateManyArgs = {
+  export type CountryUpdateManyArgs = {
     /**
      * The data used to update Countries.
      * 
     **/
-    data: XOR<CountriesUpdateManyMutationInput, CountriesUncheckedUpdateManyInput>
+    data: XOR<CountryUpdateManyMutationInput, CountryUncheckedUpdateManyInput>
     /**
      * Filter which Countries to update
      * 
     **/
-    where?: CountriesWhereInput
+    where?: CountryWhereInput
   }
 
 
   /**
-   * Countries upsert
+   * Country upsert
    */
-  export type CountriesUpsertArgs = {
+  export type CountryUpsertArgs = {
     /**
-     * Select specific fields to fetch from the Countries
+     * Select specific fields to fetch from the Country
      * 
     **/
-    select?: CountriesSelect | null
+    select?: CountrySelect | null
     /**
-     * The filter to search for the Countries to update in case it exists.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    where: CountriesWhereUniqueInput
+    include?: CountryInclude | null
     /**
-     * In case the Countries found by the `where` argument doesn't exist, create a new Countries with this data.
+     * The filter to search for the Country to update in case it exists.
      * 
     **/
-    create: XOR<CountriesCreateInput, CountriesUncheckedCreateInput>
+    where: CountryWhereUniqueInput
     /**
-     * In case the Countries was found with the provided `where` argument, update it with this data.
+     * In case the Country found by the `where` argument doesn't exist, create a new Country with this data.
      * 
     **/
-    update: XOR<CountriesUpdateInput, CountriesUncheckedUpdateInput>
+    create: XOR<CountryCreateInput, CountryUncheckedCreateInput>
+    /**
+     * In case the Country was found with the provided `where` argument, update it with this data.
+     * 
+    **/
+    update: XOR<CountryUpdateInput, CountryUncheckedUpdateInput>
   }
 
 
   /**
-   * Countries delete
+   * Country delete
    */
-  export type CountriesDeleteArgs = {
+  export type CountryDeleteArgs = {
     /**
-     * Select specific fields to fetch from the Countries
+     * Select specific fields to fetch from the Country
      * 
     **/
-    select?: CountriesSelect | null
+    select?: CountrySelect | null
     /**
-     * Filter which Countries to delete.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    where: CountriesWhereUniqueInput
+    include?: CountryInclude | null
+    /**
+     * Filter which Country to delete.
+     * 
+    **/
+    where: CountryWhereUniqueInput
   }
 
 
   /**
-   * Countries deleteMany
+   * Country deleteMany
    */
-  export type CountriesDeleteManyArgs = {
+  export type CountryDeleteManyArgs = {
     /**
      * Filter which Countries to delete
      * 
     **/
-    where?: CountriesWhereInput
+    where?: CountryWhereInput
   }
 
 
   /**
-   * Countries: findUniqueOrThrow
+   * Country: findUniqueOrThrow
    */
-  export type CountriesFindUniqueOrThrowArgs = CountriesFindUniqueArgsBase
+  export type CountryFindUniqueOrThrowArgs = CountryFindUniqueArgsBase
       
 
   /**
-   * Countries: findFirstOrThrow
+   * Country: findFirstOrThrow
    */
-  export type CountriesFindFirstOrThrowArgs = CountriesFindFirstArgsBase
+  export type CountryFindFirstOrThrowArgs = CountryFindFirstArgsBase
       
 
   /**
-   * Countries without action
+   * Country without action
    */
-  export type CountriesArgs = {
+  export type CountryArgs = {
     /**
-     * Select specific fields to fetch from the Countries
+     * Select specific fields to fetch from the Country
      * 
     **/
-    select?: CountriesSelect | null
+    select?: CountrySelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: CountryInclude | null
   }
 
 
 
   /**
-   * Model Orders
+   * Model Order
    */
 
 
-  export type AggregateOrders = {
-    _count: OrdersCountAggregateOutputType | null
-    _avg: OrdersAvgAggregateOutputType | null
-    _sum: OrdersSumAggregateOutputType | null
-    _min: OrdersMinAggregateOutputType | null
-    _max: OrdersMaxAggregateOutputType | null
+  export type AggregateOrder = {
+    _count: OrderCountAggregateOutputType | null
+    _avg: OrderAvgAggregateOutputType | null
+    _sum: OrderSumAggregateOutputType | null
+    _min: OrderMinAggregateOutputType | null
+    _max: OrderMaxAggregateOutputType | null
   }
 
-  export type OrdersAvgAggregateOutputType = {
+  export type OrderAvgAggregateOutputType = {
     id: number | null
     userId: number | null
     productId: number | null
     paymentTermsInDays: number | null
+    countryId: number | null
   }
 
-  export type OrdersSumAggregateOutputType = {
+  export type OrderSumAggregateOutputType = {
     id: number | null
     userId: number | null
     productId: number | null
     paymentTermsInDays: number | null
+    countryId: number | null
   }
 
-  export type OrdersMinAggregateOutputType = {
-    id: number | null
-    externalIdentifier: string | null
-    userId: number | null
-    productId: number | null
-    paymentTermsInDays: number | null
-    deliveryAddress: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type OrdersMaxAggregateOutputType = {
+  export type OrderMinAggregateOutputType = {
     id: number | null
     externalIdentifier: string | null
     userId: number | null
@@ -1786,9 +1894,22 @@ export namespace Prisma {
     deliveryAddress: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    countryId: number | null
   }
 
-  export type OrdersCountAggregateOutputType = {
+  export type OrderMaxAggregateOutputType = {
+    id: number | null
+    externalIdentifier: string | null
+    userId: number | null
+    productId: number | null
+    paymentTermsInDays: number | null
+    deliveryAddress: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    countryId: number | null
+  }
+
+  export type OrderCountAggregateOutputType = {
     id: number
     externalIdentifier: number
     userId: number
@@ -1797,25 +1918,28 @@ export namespace Prisma {
     deliveryAddress: number
     createdAt: number
     updatedAt: number
+    countryId: number
     _all: number
   }
 
 
-  export type OrdersAvgAggregateInputType = {
+  export type OrderAvgAggregateInputType = {
     id?: true
     userId?: true
     productId?: true
     paymentTermsInDays?: true
+    countryId?: true
   }
 
-  export type OrdersSumAggregateInputType = {
+  export type OrderSumAggregateInputType = {
     id?: true
     userId?: true
     productId?: true
     paymentTermsInDays?: true
+    countryId?: true
   }
 
-  export type OrdersMinAggregateInputType = {
+  export type OrderMinAggregateInputType = {
     id?: true
     externalIdentifier?: true
     userId?: true
@@ -1824,9 +1948,10 @@ export namespace Prisma {
     deliveryAddress?: true
     createdAt?: true
     updatedAt?: true
+    countryId?: true
   }
 
-  export type OrdersMaxAggregateInputType = {
+  export type OrderMaxAggregateInputType = {
     id?: true
     externalIdentifier?: true
     userId?: true
@@ -1835,9 +1960,10 @@ export namespace Prisma {
     deliveryAddress?: true
     createdAt?: true
     updatedAt?: true
+    countryId?: true
   }
 
-  export type OrdersCountAggregateInputType = {
+  export type OrderCountAggregateInputType = {
     id?: true
     externalIdentifier?: true
     userId?: true
@@ -1846,29 +1972,30 @@ export namespace Prisma {
     deliveryAddress?: true
     createdAt?: true
     updatedAt?: true
+    countryId?: true
     _all?: true
   }
 
-  export type OrdersAggregateArgs = {
+  export type OrderAggregateArgs = {
     /**
-     * Filter which Orders to aggregate.
+     * Filter which Order to aggregate.
      * 
     **/
-    where?: OrdersWhereInput
+    where?: OrderWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Orders to fetch.
      * 
     **/
-    orderBy?: Enumerable<OrdersOrderByWithRelationInput>
+    orderBy?: Enumerable<OrderOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      * 
     **/
-    cursor?: OrdersWhereUniqueInput
+    cursor?: OrderWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -1888,60 +2015,60 @@ export namespace Prisma {
      * 
      * Count returned Orders
     **/
-    _count?: true | OrdersCountAggregateInputType
+    _count?: true | OrderCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: OrdersAvgAggregateInputType
+    _avg?: OrderAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: OrdersSumAggregateInputType
+    _sum?: OrderSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: OrdersMinAggregateInputType
+    _min?: OrderMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: OrdersMaxAggregateInputType
+    _max?: OrderMaxAggregateInputType
   }
 
-  export type GetOrdersAggregateType<T extends OrdersAggregateArgs> = {
-        [P in keyof T & keyof AggregateOrders]: P extends '_count' | 'count'
+  export type GetOrderAggregateType<T extends OrderAggregateArgs> = {
+        [P in keyof T & keyof AggregateOrder]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateOrders[P]>
-      : GetScalarType<T[P], AggregateOrders[P]>
+        : GetScalarType<T[P], AggregateOrder[P]>
+      : GetScalarType<T[P], AggregateOrder[P]>
   }
 
 
 
 
-  export type OrdersGroupByArgs = {
-    where?: OrdersWhereInput
-    orderBy?: Enumerable<OrdersOrderByWithAggregationInput>
-    by: Array<OrdersScalarFieldEnum>
-    having?: OrdersScalarWhereWithAggregatesInput
+  export type OrderGroupByArgs = {
+    where?: OrderWhereInput
+    orderBy?: Enumerable<OrderOrderByWithAggregationInput>
+    by: Array<OrderScalarFieldEnum>
+    having?: OrderScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: OrdersCountAggregateInputType | true
-    _avg?: OrdersAvgAggregateInputType
-    _sum?: OrdersSumAggregateInputType
-    _min?: OrdersMinAggregateInputType
-    _max?: OrdersMaxAggregateInputType
+    _count?: OrderCountAggregateInputType | true
+    _avg?: OrderAvgAggregateInputType
+    _sum?: OrderSumAggregateInputType
+    _min?: OrderMinAggregateInputType
+    _max?: OrderMaxAggregateInputType
   }
 
 
-  export type OrdersGroupByOutputType = {
+  export type OrderGroupByOutputType = {
     id: number
     externalIdentifier: string | null
     userId: number | null
@@ -1950,170 +2077,180 @@ export namespace Prisma {
     deliveryAddress: string | null
     createdAt: Date
     updatedAt: Date
-    _count: OrdersCountAggregateOutputType | null
-    _avg: OrdersAvgAggregateOutputType | null
-    _sum: OrdersSumAggregateOutputType | null
-    _min: OrdersMinAggregateOutputType | null
-    _max: OrdersMaxAggregateOutputType | null
+    countryId: number
+    _count: OrderCountAggregateOutputType | null
+    _avg: OrderAvgAggregateOutputType | null
+    _sum: OrderSumAggregateOutputType | null
+    _min: OrderMinAggregateOutputType | null
+    _max: OrderMaxAggregateOutputType | null
   }
 
-  type GetOrdersGroupByPayload<T extends OrdersGroupByArgs> = PrismaPromise<
+  type GetOrderGroupByPayload<T extends OrderGroupByArgs> = PrismaPromise<
     Array<
-      PickArray<OrdersGroupByOutputType, T['by']> &
+      PickArray<OrderGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof OrdersGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof OrderGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], OrdersGroupByOutputType[P]>
-            : GetScalarType<T[P], OrdersGroupByOutputType[P]>
+              : GetScalarType<T[P], OrderGroupByOutputType[P]>
+            : GetScalarType<T[P], OrderGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type OrdersSelect = {
+  export type OrderSelect = {
     id?: boolean
     externalIdentifier?: boolean
     userId?: boolean
     productId?: boolean
     paymentTermsInDays?: boolean
+    country?: boolean | CountryArgs
     deliveryAddress?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    countryId?: boolean
   }
 
-  export type OrdersGetPayload<
-    S extends boolean | null | undefined | OrdersArgs,
+  export type OrderInclude = {
+    country?: boolean | CountryArgs
+  }
+
+  export type OrderGetPayload<
+    S extends boolean | null | undefined | OrderArgs,
     U = keyof S
       > = S extends true
-        ? Orders
+        ? Order
     : S extends undefined
     ? never
-    : S extends OrdersArgs | OrdersFindManyArgs
+    : S extends OrderArgs | OrderFindManyArgs
     ?'include' extends U
-    ? Orders 
+    ? Order  & {
+    [P in TrueKeys<S['include']>]:
+        P extends 'country' ? CountryGetPayload<Exclude<S['include'], undefined | null>[P]> :  never
+  } 
     : 'select' extends U
     ? {
     [P in TrueKeys<S['select']>]:
-    P extends keyof Orders ? Orders[P] : never
+        P extends 'country' ? CountryGetPayload<Exclude<S['select'], undefined | null>[P]> :  P extends keyof Order ? Order[P] : never
   } 
-    : Orders
-  : Orders
+    : Order
+  : Order
 
 
-  type OrdersCountArgs = Merge<
-    Omit<OrdersFindManyArgs, 'select' | 'include'> & {
-      select?: OrdersCountAggregateInputType | true
+  type OrderCountArgs = Merge<
+    Omit<OrderFindManyArgs, 'select' | 'include'> & {
+      select?: OrderCountAggregateInputType | true
     }
   >
 
-  export interface OrdersDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+  export interface OrderDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
     /**
-     * Find zero or one Orders that matches the filter.
-     * @param {OrdersFindUniqueArgs} args - Arguments to find a Orders
+     * Find zero or one Order that matches the filter.
+     * @param {OrderFindUniqueArgs} args - Arguments to find a Order
      * @example
-     * // Get one Orders
-     * const orders = await prisma.orders.findUnique({
+     * // Get one Order
+     * const order = await prisma.order.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends OrdersFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, OrdersFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Orders'> extends True ? CheckSelect<T, Prisma__OrdersClient<Orders>, Prisma__OrdersClient<OrdersGetPayload<T>>> : CheckSelect<T, Prisma__OrdersClient<Orders | null, null>, Prisma__OrdersClient<OrdersGetPayload<T> | null, null>>
+    findUnique<T extends OrderFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, OrderFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Order'> extends True ? CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>> : CheckSelect<T, Prisma__OrderClient<Order | null, null>, Prisma__OrderClient<OrderGetPayload<T> | null, null>>
 
     /**
-     * Find the first Orders that matches the filter.
+     * Find the first Order that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrdersFindFirstArgs} args - Arguments to find a Orders
+     * @param {OrderFindFirstArgs} args - Arguments to find a Order
      * @example
-     * // Get one Orders
-     * const orders = await prisma.orders.findFirst({
+     * // Get one Order
+     * const order = await prisma.order.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends OrdersFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, OrdersFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Orders'> extends True ? CheckSelect<T, Prisma__OrdersClient<Orders>, Prisma__OrdersClient<OrdersGetPayload<T>>> : CheckSelect<T, Prisma__OrdersClient<Orders | null, null>, Prisma__OrdersClient<OrdersGetPayload<T> | null, null>>
+    findFirst<T extends OrderFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, OrderFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Order'> extends True ? CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>> : CheckSelect<T, Prisma__OrderClient<Order | null, null>, Prisma__OrderClient<OrderGetPayload<T> | null, null>>
 
     /**
      * Find zero or more Orders that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrdersFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {OrderFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Orders
-     * const orders = await prisma.orders.findMany()
+     * const orders = await prisma.order.findMany()
      * 
      * // Get first 10 Orders
-     * const orders = await prisma.orders.findMany({ take: 10 })
+     * const orders = await prisma.order.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const ordersWithIdOnly = await prisma.orders.findMany({ select: { id: true } })
+     * const orderWithIdOnly = await prisma.order.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends OrdersFindManyArgs>(
-      args?: SelectSubset<T, OrdersFindManyArgs>
-    ): CheckSelect<T, PrismaPromise<Array<Orders>>, PrismaPromise<Array<OrdersGetPayload<T>>>>
+    findMany<T extends OrderFindManyArgs>(
+      args?: SelectSubset<T, OrderFindManyArgs>
+    ): CheckSelect<T, PrismaPromise<Array<Order>>, PrismaPromise<Array<OrderGetPayload<T>>>>
 
     /**
-     * Create a Orders.
-     * @param {OrdersCreateArgs} args - Arguments to create a Orders.
+     * Create a Order.
+     * @param {OrderCreateArgs} args - Arguments to create a Order.
      * @example
-     * // Create one Orders
-     * const Orders = await prisma.orders.create({
+     * // Create one Order
+     * const Order = await prisma.order.create({
      *   data: {
-     *     // ... data to create a Orders
+     *     // ... data to create a Order
      *   }
      * })
      * 
     **/
-    create<T extends OrdersCreateArgs>(
-      args: SelectSubset<T, OrdersCreateArgs>
-    ): CheckSelect<T, Prisma__OrdersClient<Orders>, Prisma__OrdersClient<OrdersGetPayload<T>>>
+    create<T extends OrderCreateArgs>(
+      args: SelectSubset<T, OrderCreateArgs>
+    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
 
     /**
      * Create many Orders.
-     *     @param {OrdersCreateManyArgs} args - Arguments to create many Orders.
+     *     @param {OrderCreateManyArgs} args - Arguments to create many Orders.
      *     @example
      *     // Create many Orders
-     *     const orders = await prisma.orders.createMany({
+     *     const order = await prisma.order.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends OrdersCreateManyArgs>(
-      args?: SelectSubset<T, OrdersCreateManyArgs>
+    createMany<T extends OrderCreateManyArgs>(
+      args?: SelectSubset<T, OrderCreateManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Orders.
-     * @param {OrdersDeleteArgs} args - Arguments to delete one Orders.
+     * Delete a Order.
+     * @param {OrderDeleteArgs} args - Arguments to delete one Order.
      * @example
-     * // Delete one Orders
-     * const Orders = await prisma.orders.delete({
+     * // Delete one Order
+     * const Order = await prisma.order.delete({
      *   where: {
-     *     // ... filter to delete one Orders
+     *     // ... filter to delete one Order
      *   }
      * })
      * 
     **/
-    delete<T extends OrdersDeleteArgs>(
-      args: SelectSubset<T, OrdersDeleteArgs>
-    ): CheckSelect<T, Prisma__OrdersClient<Orders>, Prisma__OrdersClient<OrdersGetPayload<T>>>
+    delete<T extends OrderDeleteArgs>(
+      args: SelectSubset<T, OrderDeleteArgs>
+    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
 
     /**
-     * Update one Orders.
-     * @param {OrdersUpdateArgs} args - Arguments to update one Orders.
+     * Update one Order.
+     * @param {OrderUpdateArgs} args - Arguments to update one Order.
      * @example
-     * // Update one Orders
-     * const orders = await prisma.orders.update({
+     * // Update one Order
+     * const order = await prisma.order.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2123,34 +2260,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends OrdersUpdateArgs>(
-      args: SelectSubset<T, OrdersUpdateArgs>
-    ): CheckSelect<T, Prisma__OrdersClient<Orders>, Prisma__OrdersClient<OrdersGetPayload<T>>>
+    update<T extends OrderUpdateArgs>(
+      args: SelectSubset<T, OrderUpdateArgs>
+    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
 
     /**
      * Delete zero or more Orders.
-     * @param {OrdersDeleteManyArgs} args - Arguments to filter Orders to delete.
+     * @param {OrderDeleteManyArgs} args - Arguments to filter Orders to delete.
      * @example
      * // Delete a few Orders
-     * const { count } = await prisma.orders.deleteMany({
+     * const { count } = await prisma.order.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends OrdersDeleteManyArgs>(
-      args?: SelectSubset<T, OrdersDeleteManyArgs>
+    deleteMany<T extends OrderDeleteManyArgs>(
+      args?: SelectSubset<T, OrderDeleteManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Orders.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrdersUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {OrderUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many Orders
-     * const orders = await prisma.orders.updateMany({
+     * const order = await prisma.order.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2160,93 +2297,93 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends OrdersUpdateManyArgs>(
-      args: SelectSubset<T, OrdersUpdateManyArgs>
+    updateMany<T extends OrderUpdateManyArgs>(
+      args: SelectSubset<T, OrderUpdateManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Orders.
-     * @param {OrdersUpsertArgs} args - Arguments to update or create a Orders.
+     * Create or update one Order.
+     * @param {OrderUpsertArgs} args - Arguments to update or create a Order.
      * @example
-     * // Update or create a Orders
-     * const orders = await prisma.orders.upsert({
+     * // Update or create a Order
+     * const order = await prisma.order.upsert({
      *   create: {
-     *     // ... data to create a Orders
+     *     // ... data to create a Order
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Orders we want to update
+     *     // ... the filter for the Order we want to update
      *   }
      * })
     **/
-    upsert<T extends OrdersUpsertArgs>(
-      args: SelectSubset<T, OrdersUpsertArgs>
-    ): CheckSelect<T, Prisma__OrdersClient<Orders>, Prisma__OrdersClient<OrdersGetPayload<T>>>
+    upsert<T extends OrderUpsertArgs>(
+      args: SelectSubset<T, OrderUpsertArgs>
+    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
 
     /**
-     * Find one Orders that matches the filter or throw
+     * Find one Order that matches the filter or throw
      * `NotFoundError` if no matches were found.
-     * @param {OrdersFindUniqueOrThrowArgs} args - Arguments to find a Orders
+     * @param {OrderFindUniqueOrThrowArgs} args - Arguments to find a Order
      * @example
-     * // Get one Orders
-     * const orders = await prisma.orders.findUniqueOrThrow({
+     * // Get one Order
+     * const order = await prisma.order.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends OrdersFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, OrdersFindUniqueOrThrowArgs>
-    ): CheckSelect<T, Prisma__OrdersClient<Orders>, Prisma__OrdersClient<OrdersGetPayload<T>>>
+    findUniqueOrThrow<T extends OrderFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, OrderFindUniqueOrThrowArgs>
+    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
 
     /**
-     * Find the first Orders that matches the filter or
+     * Find the first Order that matches the filter or
      * throw `NotFoundError` if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrdersFindFirstOrThrowArgs} args - Arguments to find a Orders
+     * @param {OrderFindFirstOrThrowArgs} args - Arguments to find a Order
      * @example
-     * // Get one Orders
-     * const orders = await prisma.orders.findFirstOrThrow({
+     * // Get one Order
+     * const order = await prisma.order.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends OrdersFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, OrdersFindFirstOrThrowArgs>
-    ): CheckSelect<T, Prisma__OrdersClient<Orders>, Prisma__OrdersClient<OrdersGetPayload<T>>>
+    findFirstOrThrow<T extends OrderFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, OrderFindFirstOrThrowArgs>
+    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
 
     /**
      * Count the number of Orders.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrdersCountArgs} args - Arguments to filter Orders to count.
+     * @param {OrderCountArgs} args - Arguments to filter Orders to count.
      * @example
      * // Count the number of Orders
-     * const count = await prisma.orders.count({
+     * const count = await prisma.order.count({
      *   where: {
      *     // ... the filter for the Orders we want to count
      *   }
      * })
     **/
-    count<T extends OrdersCountArgs>(
-      args?: Subset<T, OrdersCountArgs>,
+    count<T extends OrderCountArgs>(
+      args?: Subset<T, OrderCountArgs>,
     ): PrismaPromise<
       T extends _Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], OrdersCountAggregateOutputType>
+          : GetScalarType<T['select'], OrderCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Orders.
+     * Allows you to perform aggregations operations on a Order.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrdersAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {OrderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2266,13 +2403,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends OrdersAggregateArgs>(args: Subset<T, OrdersAggregateArgs>): PrismaPromise<GetOrdersAggregateType<T>>
+    aggregate<T extends OrderAggregateArgs>(args: Subset<T, OrderAggregateArgs>): PrismaPromise<GetOrderAggregateType<T>>
 
     /**
-     * Group by Orders.
+     * Group by Order.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrdersGroupByArgs} args - Group by arguments.
+     * @param {OrderGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2287,14 +2424,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends OrdersGroupByArgs,
+      T extends OrderGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: OrdersGroupByArgs['orderBy'] }
-        : { orderBy?: OrdersGroupByArgs['orderBy'] },
+        ? { orderBy: OrderGroupByArgs['orderBy'] }
+        : { orderBy?: OrderGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends TupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2343,17 +2480,17 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, OrdersGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrdersGroupByPayload<T> : PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, OrderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrderGroupByPayload<T> : PrismaPromise<InputErrors>
 
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Orders.
+   * The delegate class that acts as a "Promise-like" for Order.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__OrdersClient<T, Null = never> implements PrismaPromise<T> {
+  export class Prisma__OrderClient<T, Null = never> implements PrismaPromise<T> {
     [prisma]: true;
     private readonly _dmmf;
     private readonly _fetcher;
@@ -2370,6 +2507,7 @@ export namespace Prisma {
     constructor(_dmmf: runtime.DMMFClass, _fetcher: PrismaClientFetcher, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
     readonly [Symbol.toStringTag]: 'PrismaClientPromise';
 
+    country<T extends CountryArgs = {}>(args?: Subset<T, CountryArgs>): CheckSelect<T, Prisma__CountryClient<Country | Null>, Prisma__CountryClient<CountryGetPayload<T> | Null>>;
 
     private get _document();
     /**
@@ -2399,25 +2537,30 @@ export namespace Prisma {
   // Custom InputTypes
 
   /**
-   * Orders base type for findUnique actions
+   * Order base type for findUnique actions
    */
-  export type OrdersFindUniqueArgsBase = {
+  export type OrderFindUniqueArgsBase = {
     /**
-     * Select specific fields to fetch from the Orders
+     * Select specific fields to fetch from the Order
      * 
     **/
-    select?: OrdersSelect | null
+    select?: OrderSelect | null
     /**
-     * Filter, which Orders to fetch.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    where: OrdersWhereUniqueInput
+    include?: OrderInclude | null
+    /**
+     * Filter, which Order to fetch.
+     * 
+    **/
+    where: OrderWhereUniqueInput
   }
 
   /**
-   * Orders: findUnique
+   * Order: findUnique
    */
-  export interface OrdersFindUniqueArgs extends OrdersFindUniqueArgsBase {
+  export interface OrderFindUniqueArgs extends OrderFindUniqueArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
@@ -2427,33 +2570,38 @@ export namespace Prisma {
       
 
   /**
-   * Orders base type for findFirst actions
+   * Order base type for findFirst actions
    */
-  export type OrdersFindFirstArgsBase = {
+  export type OrderFindFirstArgsBase = {
     /**
-     * Select specific fields to fetch from the Orders
+     * Select specific fields to fetch from the Order
      * 
     **/
-    select?: OrdersSelect | null
+    select?: OrderSelect | null
     /**
-     * Filter, which Orders to fetch.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    where?: OrdersWhereInput
+    include?: OrderInclude | null
+    /**
+     * Filter, which Order to fetch.
+     * 
+    **/
+    where?: OrderWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Orders to fetch.
      * 
     **/
-    orderBy?: Enumerable<OrdersOrderByWithRelationInput>
+    orderBy?: Enumerable<OrderOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Orders.
      * 
     **/
-    cursor?: OrdersWhereUniqueInput
+    cursor?: OrderWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -2474,13 +2622,13 @@ export namespace Prisma {
      * Filter by unique combinations of Orders.
      * 
     **/
-    distinct?: Enumerable<OrdersScalarFieldEnum>
+    distinct?: Enumerable<OrderScalarFieldEnum>
   }
 
   /**
-   * Orders: findFirst
+   * Order: findFirst
    */
-  export interface OrdersFindFirstArgs extends OrdersFindFirstArgsBase {
+  export interface OrderFindFirstArgs extends OrderFindFirstArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
@@ -2490,33 +2638,38 @@ export namespace Prisma {
       
 
   /**
-   * Orders findMany
+   * Order findMany
    */
-  export type OrdersFindManyArgs = {
+  export type OrderFindManyArgs = {
     /**
-     * Select specific fields to fetch from the Orders
+     * Select specific fields to fetch from the Order
      * 
     **/
-    select?: OrdersSelect | null
+    select?: OrderSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: OrderInclude | null
     /**
      * Filter, which Orders to fetch.
      * 
     **/
-    where?: OrdersWhereInput
+    where?: OrderWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Orders to fetch.
      * 
     **/
-    orderBy?: Enumerable<OrdersOrderByWithRelationInput>
+    orderBy?: Enumerable<OrderOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Orders.
      * 
     **/
-    cursor?: OrdersWhereUniqueInput
+    cursor?: OrderWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -2531,156 +2684,181 @@ export namespace Prisma {
      * 
     **/
     skip?: number
-    distinct?: Enumerable<OrdersScalarFieldEnum>
+    distinct?: Enumerable<OrderScalarFieldEnum>
   }
 
 
   /**
-   * Orders create
+   * Order create
    */
-  export type OrdersCreateArgs = {
+  export type OrderCreateArgs = {
     /**
-     * Select specific fields to fetch from the Orders
+     * Select specific fields to fetch from the Order
      * 
     **/
-    select?: OrdersSelect | null
+    select?: OrderSelect | null
     /**
-     * The data needed to create a Orders.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    data: XOR<OrdersCreateInput, OrdersUncheckedCreateInput>
+    include?: OrderInclude | null
+    /**
+     * The data needed to create a Order.
+     * 
+    **/
+    data: XOR<OrderCreateInput, OrderUncheckedCreateInput>
   }
 
 
   /**
-   * Orders createMany
+   * Order createMany
    */
-  export type OrdersCreateManyArgs = {
+  export type OrderCreateManyArgs = {
     /**
      * The data used to create many Orders.
      * 
     **/
-    data: Enumerable<OrdersCreateManyInput>
+    data: Enumerable<OrderCreateManyInput>
     skipDuplicates?: boolean
   }
 
 
   /**
-   * Orders update
+   * Order update
    */
-  export type OrdersUpdateArgs = {
+  export type OrderUpdateArgs = {
     /**
-     * Select specific fields to fetch from the Orders
+     * Select specific fields to fetch from the Order
      * 
     **/
-    select?: OrdersSelect | null
+    select?: OrderSelect | null
     /**
-     * The data needed to update a Orders.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    data: XOR<OrdersUpdateInput, OrdersUncheckedUpdateInput>
+    include?: OrderInclude | null
     /**
-     * Choose, which Orders to update.
+     * The data needed to update a Order.
      * 
     **/
-    where: OrdersWhereUniqueInput
+    data: XOR<OrderUpdateInput, OrderUncheckedUpdateInput>
+    /**
+     * Choose, which Order to update.
+     * 
+    **/
+    where: OrderWhereUniqueInput
   }
 
 
   /**
-   * Orders updateMany
+   * Order updateMany
    */
-  export type OrdersUpdateManyArgs = {
+  export type OrderUpdateManyArgs = {
     /**
      * The data used to update Orders.
      * 
     **/
-    data: XOR<OrdersUpdateManyMutationInput, OrdersUncheckedUpdateManyInput>
+    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyInput>
     /**
      * Filter which Orders to update
      * 
     **/
-    where?: OrdersWhereInput
+    where?: OrderWhereInput
   }
 
 
   /**
-   * Orders upsert
+   * Order upsert
    */
-  export type OrdersUpsertArgs = {
+  export type OrderUpsertArgs = {
     /**
-     * Select specific fields to fetch from the Orders
+     * Select specific fields to fetch from the Order
      * 
     **/
-    select?: OrdersSelect | null
+    select?: OrderSelect | null
     /**
-     * The filter to search for the Orders to update in case it exists.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    where: OrdersWhereUniqueInput
+    include?: OrderInclude | null
     /**
-     * In case the Orders found by the `where` argument doesn't exist, create a new Orders with this data.
+     * The filter to search for the Order to update in case it exists.
      * 
     **/
-    create: XOR<OrdersCreateInput, OrdersUncheckedCreateInput>
+    where: OrderWhereUniqueInput
     /**
-     * In case the Orders was found with the provided `where` argument, update it with this data.
+     * In case the Order found by the `where` argument doesn't exist, create a new Order with this data.
      * 
     **/
-    update: XOR<OrdersUpdateInput, OrdersUncheckedUpdateInput>
+    create: XOR<OrderCreateInput, OrderUncheckedCreateInput>
+    /**
+     * In case the Order was found with the provided `where` argument, update it with this data.
+     * 
+    **/
+    update: XOR<OrderUpdateInput, OrderUncheckedUpdateInput>
   }
 
 
   /**
-   * Orders delete
+   * Order delete
    */
-  export type OrdersDeleteArgs = {
+  export type OrderDeleteArgs = {
     /**
-     * Select specific fields to fetch from the Orders
+     * Select specific fields to fetch from the Order
      * 
     **/
-    select?: OrdersSelect | null
+    select?: OrderSelect | null
     /**
-     * Filter which Orders to delete.
+     * Choose, which related nodes to fetch as well.
      * 
     **/
-    where: OrdersWhereUniqueInput
+    include?: OrderInclude | null
+    /**
+     * Filter which Order to delete.
+     * 
+    **/
+    where: OrderWhereUniqueInput
   }
 
 
   /**
-   * Orders deleteMany
+   * Order deleteMany
    */
-  export type OrdersDeleteManyArgs = {
+  export type OrderDeleteManyArgs = {
     /**
      * Filter which Orders to delete
      * 
     **/
-    where?: OrdersWhereInput
+    where?: OrderWhereInput
   }
 
 
   /**
-   * Orders: findUniqueOrThrow
+   * Order: findUniqueOrThrow
    */
-  export type OrdersFindUniqueOrThrowArgs = OrdersFindUniqueArgsBase
+  export type OrderFindUniqueOrThrowArgs = OrderFindUniqueArgsBase
       
 
   /**
-   * Orders: findFirstOrThrow
+   * Order: findFirstOrThrow
    */
-  export type OrdersFindFirstOrThrowArgs = OrdersFindFirstArgsBase
+  export type OrderFindFirstOrThrowArgs = OrderFindFirstArgsBase
       
 
   /**
-   * Orders without action
+   * Order without action
    */
-  export type OrdersArgs = {
+  export type OrderArgs = {
     /**
-     * Select specific fields to fetch from the Orders
+     * Select specific fields to fetch from the Order
      * 
     **/
-    select?: OrdersSelect | null
+    select?: OrderSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: OrderInclude | null
   }
 
 
@@ -3536,15 +3714,15 @@ export namespace Prisma {
   // Based on
   // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 
-  export const CountriesScalarFieldEnum: {
+  export const CountryScalarFieldEnum: {
     id: 'id',
     name: 'name'
   };
 
-  export type CountriesScalarFieldEnum = (typeof CountriesScalarFieldEnum)[keyof typeof CountriesScalarFieldEnum]
+  export type CountryScalarFieldEnum = (typeof CountryScalarFieldEnum)[keyof typeof CountryScalarFieldEnum]
 
 
-  export const OrdersScalarFieldEnum: {
+  export const OrderScalarFieldEnum: {
     id: 'id',
     externalIdentifier: 'externalIdentifier',
     userId: 'userId',
@@ -3552,10 +3730,11 @@ export namespace Prisma {
     paymentTermsInDays: 'paymentTermsInDays',
     deliveryAddress: 'deliveryAddress',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    countryId: 'countryId'
   };
 
-  export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
+  export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
 
 
   export const QueryMode: {
@@ -3596,72 +3775,78 @@ export namespace Prisma {
    */
 
 
-  export type CountriesWhereInput = {
-    AND?: Enumerable<CountriesWhereInput>
-    OR?: Enumerable<CountriesWhereInput>
-    NOT?: Enumerable<CountriesWhereInput>
+  export type CountryWhereInput = {
+    AND?: Enumerable<CountryWhereInput>
+    OR?: Enumerable<CountryWhereInput>
+    NOT?: Enumerable<CountryWhereInput>
     id?: IntFilter | number
     name?: StringNullableFilter | string | null
+    Order?: OrderListRelationFilter
   }
 
-  export type CountriesOrderByWithRelationInput = {
+  export type CountryOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    Order?: OrderOrderByRelationAggregateInput
   }
 
-  export type CountriesWhereUniqueInput = {
+  export type CountryWhereUniqueInput = {
     id?: number
   }
 
-  export type CountriesOrderByWithAggregationInput = {
+  export type CountryOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    _count?: CountriesCountOrderByAggregateInput
-    _avg?: CountriesAvgOrderByAggregateInput
-    _max?: CountriesMaxOrderByAggregateInput
-    _min?: CountriesMinOrderByAggregateInput
-    _sum?: CountriesSumOrderByAggregateInput
+    _count?: CountryCountOrderByAggregateInput
+    _avg?: CountryAvgOrderByAggregateInput
+    _max?: CountryMaxOrderByAggregateInput
+    _min?: CountryMinOrderByAggregateInput
+    _sum?: CountrySumOrderByAggregateInput
   }
 
-  export type CountriesScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<CountriesScalarWhereWithAggregatesInput>
-    OR?: Enumerable<CountriesScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<CountriesScalarWhereWithAggregatesInput>
+  export type CountryScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<CountryScalarWhereWithAggregatesInput>
+    OR?: Enumerable<CountryScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<CountryScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
     name?: StringNullableWithAggregatesFilter | string | null
   }
 
-  export type OrdersWhereInput = {
-    AND?: Enumerable<OrdersWhereInput>
-    OR?: Enumerable<OrdersWhereInput>
-    NOT?: Enumerable<OrdersWhereInput>
+  export type OrderWhereInput = {
+    AND?: Enumerable<OrderWhereInput>
+    OR?: Enumerable<OrderWhereInput>
+    NOT?: Enumerable<OrderWhereInput>
     id?: IntFilter | number
     externalIdentifier?: StringNullableFilter | string | null
     userId?: IntNullableFilter | number | null
     productId?: IntNullableFilter | number | null
     paymentTermsInDays?: IntNullableFilter | number | null
+    country?: XOR<CountryRelationFilter, CountryWhereInput>
     deliveryAddress?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    countryId?: IntFilter | number
   }
 
-  export type OrdersOrderByWithRelationInput = {
+  export type OrderOrderByWithRelationInput = {
     id?: SortOrder
     externalIdentifier?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     paymentTermsInDays?: SortOrder
+    country?: CountryOrderByWithRelationInput
     deliveryAddress?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    countryId?: SortOrder
   }
 
-  export type OrdersWhereUniqueInput = {
+  export type OrderWhereUniqueInput = {
     id?: number
     externalIdentifier?: string
   }
 
-  export type OrdersOrderByWithAggregationInput = {
+  export type OrderOrderByWithAggregationInput = {
     id?: SortOrder
     externalIdentifier?: SortOrder
     userId?: SortOrder
@@ -3670,17 +3855,18 @@ export namespace Prisma {
     deliveryAddress?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: OrdersCountOrderByAggregateInput
-    _avg?: OrdersAvgOrderByAggregateInput
-    _max?: OrdersMaxOrderByAggregateInput
-    _min?: OrdersMinOrderByAggregateInput
-    _sum?: OrdersSumOrderByAggregateInput
+    countryId?: SortOrder
+    _count?: OrderCountOrderByAggregateInput
+    _avg?: OrderAvgOrderByAggregateInput
+    _max?: OrderMaxOrderByAggregateInput
+    _min?: OrderMinOrderByAggregateInput
+    _sum?: OrderSumOrderByAggregateInput
   }
 
-  export type OrdersScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<OrdersScalarWhereWithAggregatesInput>
-    OR?: Enumerable<OrdersScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<OrdersScalarWhereWithAggregatesInput>
+  export type OrderScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<OrderScalarWhereWithAggregatesInput>
+    OR?: Enumerable<OrderScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<OrderScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
     externalIdentifier?: StringNullableWithAggregatesFilter | string | null
     userId?: IntNullableWithAggregatesFilter | number | null
@@ -3689,6 +3875,7 @@ export namespace Prisma {
     deliveryAddress?: StringNullableWithAggregatesFilter | string | null
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    countryId?: IntWithAggregatesFilter | number
   }
 
   export type SequelizeMetaWhereInput = {
@@ -3720,81 +3907,54 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter | string
   }
 
-  export type CountriesCreateInput = {
+  export type CountryCreateInput = {
     name?: string | null
+    Order?: OrderCreateNestedManyWithoutCountryInput
   }
 
-  export type CountriesUncheckedCreateInput = {
+  export type CountryUncheckedCreateInput = {
+    id?: number
+    name?: string | null
+    Order?: OrderUncheckedCreateNestedManyWithoutCountryInput
+  }
+
+  export type CountryUpdateInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    Order?: OrderUpdateManyWithoutCountryNestedInput
+  }
+
+  export type CountryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    Order?: OrderUncheckedUpdateManyWithoutCountryNestedInput
+  }
+
+  export type CountryCreateManyInput = {
     id?: number
     name?: string | null
   }
 
-  export type CountriesUpdateInput = {
+  export type CountryUpdateManyMutationInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type CountriesUncheckedUpdateInput = {
+  export type CountryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type CountriesCreateManyInput = {
-    id?: number
-    name?: string | null
-  }
-
-  export type CountriesUpdateManyMutationInput = {
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type CountriesUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type OrdersCreateInput = {
+  export type OrderCreateInput = {
     externalIdentifier?: string | null
     userId?: number | null
     productId?: number | null
     paymentTermsInDays?: number | null
+    country: CountryCreateNestedOneWithoutOrderInput
     deliveryAddress?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type OrdersUncheckedCreateInput = {
-    id?: number
-    externalIdentifier?: string | null
-    userId?: number | null
-    productId?: number | null
-    paymentTermsInDays?: number | null
-    deliveryAddress?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type OrdersUpdateInput = {
-    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
-    productId?: NullableIntFieldUpdateOperationsInput | number | null
-    paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
-    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type OrdersUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: NullableIntFieldUpdateOperationsInput | number | null
-    productId?: NullableIntFieldUpdateOperationsInput | number | null
-    paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
-    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type OrdersCreateManyInput = {
+  export type OrderUncheckedCreateInput = {
     id?: number
     externalIdentifier?: string | null
     userId?: number | null
@@ -3803,19 +3963,21 @@ export namespace Prisma {
     deliveryAddress?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    countryId: number
   }
 
-  export type OrdersUpdateManyMutationInput = {
+  export type OrderUpdateInput = {
     externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     productId?: NullableIntFieldUpdateOperationsInput | number | null
     paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
+    country?: CountryUpdateOneRequiredWithoutOrderNestedInput
     deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type OrdersUncheckedUpdateManyInput = {
+  export type OrderUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -3824,6 +3986,41 @@ export namespace Prisma {
     deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type OrderCreateManyInput = {
+    id?: number
+    externalIdentifier?: string | null
+    userId?: number | null
+    productId?: number | null
+    paymentTermsInDays?: number | null
+    deliveryAddress?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    countryId: number
+  }
+
+  export type OrderUpdateManyMutationInput = {
+    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    productId?: NullableIntFieldUpdateOperationsInput | number | null
+    paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
+    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    productId?: NullableIntFieldUpdateOperationsInput | number | null
+    paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
+    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
   }
 
   export type SequelizeMetaCreateInput = {
@@ -3880,26 +4077,36 @@ export namespace Prisma {
     not?: NestedStringNullableFilter | string | null
   }
 
-  export type CountriesCountOrderByAggregateInput = {
+  export type OrderListRelationFilter = {
+    every?: OrderWhereInput
+    some?: OrderWhereInput
+    none?: OrderWhereInput
+  }
+
+  export type OrderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CountryCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
   }
 
-  export type CountriesAvgOrderByAggregateInput = {
+  export type CountryAvgOrderByAggregateInput = {
     id?: SortOrder
   }
 
-  export type CountriesMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-  }
-
-  export type CountriesMinOrderByAggregateInput = {
+  export type CountryMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
   }
 
-  export type CountriesSumOrderByAggregateInput = {
+  export type CountryMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type CountrySumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -3948,6 +4155,11 @@ export namespace Prisma {
     not?: NestedIntNullableFilter | number | null
   }
 
+  export type CountryRelationFilter = {
+    is?: CountryWhereInput
+    isNot?: CountryWhereInput
+  }
+
   export type DateTimeFilter = {
     equals?: Date | string
     in?: Enumerable<Date> | Enumerable<string>
@@ -3959,7 +4171,7 @@ export namespace Prisma {
     not?: NestedDateTimeFilter | Date | string
   }
 
-  export type OrdersCountOrderByAggregateInput = {
+  export type OrderCountOrderByAggregateInput = {
     id?: SortOrder
     externalIdentifier?: SortOrder
     userId?: SortOrder
@@ -3968,27 +4180,18 @@ export namespace Prisma {
     deliveryAddress?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    countryId?: SortOrder
   }
 
-  export type OrdersAvgOrderByAggregateInput = {
+  export type OrderAvgOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     paymentTermsInDays?: SortOrder
+    countryId?: SortOrder
   }
 
-  export type OrdersMaxOrderByAggregateInput = {
-    id?: SortOrder
-    externalIdentifier?: SortOrder
-    userId?: SortOrder
-    productId?: SortOrder
-    paymentTermsInDays?: SortOrder
-    deliveryAddress?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type OrdersMinOrderByAggregateInput = {
+  export type OrderMaxOrderByAggregateInput = {
     id?: SortOrder
     externalIdentifier?: SortOrder
     userId?: SortOrder
@@ -3997,13 +4200,27 @@ export namespace Prisma {
     deliveryAddress?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    countryId?: SortOrder
   }
 
-  export type OrdersSumOrderByAggregateInput = {
+  export type OrderMinOrderByAggregateInput = {
+    id?: SortOrder
+    externalIdentifier?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+    paymentTermsInDays?: SortOrder
+    deliveryAddress?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    countryId?: SortOrder
+  }
+
+  export type OrderSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     paymentTermsInDays?: SortOrder
+    countryId?: SortOrder
   }
 
   export type IntNullableWithAggregatesFilter = {
@@ -4081,8 +4298,36 @@ export namespace Prisma {
     _max?: NestedStringFilter
   }
 
+  export type OrderCreateNestedManyWithoutCountryInput = {
+    create?: XOR<Enumerable<OrderCreateWithoutCountryInput>, Enumerable<OrderUncheckedCreateWithoutCountryInput>>
+    connectOrCreate?: Enumerable<OrderCreateOrConnectWithoutCountryInput>
+    createMany?: OrderCreateManyCountryInputEnvelope
+    connect?: Enumerable<OrderWhereUniqueInput>
+  }
+
+  export type OrderUncheckedCreateNestedManyWithoutCountryInput = {
+    create?: XOR<Enumerable<OrderCreateWithoutCountryInput>, Enumerable<OrderUncheckedCreateWithoutCountryInput>>
+    connectOrCreate?: Enumerable<OrderCreateOrConnectWithoutCountryInput>
+    createMany?: OrderCreateManyCountryInputEnvelope
+    connect?: Enumerable<OrderWhereUniqueInput>
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type OrderUpdateManyWithoutCountryNestedInput = {
+    create?: XOR<Enumerable<OrderCreateWithoutCountryInput>, Enumerable<OrderUncheckedCreateWithoutCountryInput>>
+    connectOrCreate?: Enumerable<OrderCreateOrConnectWithoutCountryInput>
+    upsert?: Enumerable<OrderUpsertWithWhereUniqueWithoutCountryInput>
+    createMany?: OrderCreateManyCountryInputEnvelope
+    set?: Enumerable<OrderWhereUniqueInput>
+    disconnect?: Enumerable<OrderWhereUniqueInput>
+    delete?: Enumerable<OrderWhereUniqueInput>
+    connect?: Enumerable<OrderWhereUniqueInput>
+    update?: Enumerable<OrderUpdateWithWhereUniqueWithoutCountryInput>
+    updateMany?: Enumerable<OrderUpdateManyWithWhereWithoutCountryInput>
+    deleteMany?: Enumerable<OrderScalarWhereInput>
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -4093,12 +4338,40 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type OrderUncheckedUpdateManyWithoutCountryNestedInput = {
+    create?: XOR<Enumerable<OrderCreateWithoutCountryInput>, Enumerable<OrderUncheckedCreateWithoutCountryInput>>
+    connectOrCreate?: Enumerable<OrderCreateOrConnectWithoutCountryInput>
+    upsert?: Enumerable<OrderUpsertWithWhereUniqueWithoutCountryInput>
+    createMany?: OrderCreateManyCountryInputEnvelope
+    set?: Enumerable<OrderWhereUniqueInput>
+    disconnect?: Enumerable<OrderWhereUniqueInput>
+    delete?: Enumerable<OrderWhereUniqueInput>
+    connect?: Enumerable<OrderWhereUniqueInput>
+    update?: Enumerable<OrderUpdateWithWhereUniqueWithoutCountryInput>
+    updateMany?: Enumerable<OrderUpdateManyWithWhereWithoutCountryInput>
+    deleteMany?: Enumerable<OrderScalarWhereInput>
+  }
+
+  export type CountryCreateNestedOneWithoutOrderInput = {
+    create?: XOR<CountryCreateWithoutOrderInput, CountryUncheckedCreateWithoutOrderInput>
+    connectOrCreate?: CountryCreateOrConnectWithoutOrderInput
+    connect?: CountryWhereUniqueInput
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type CountryUpdateOneRequiredWithoutOrderNestedInput = {
+    create?: XOR<CountryCreateWithoutOrderInput, CountryUncheckedCreateWithoutOrderInput>
+    connectOrCreate?: CountryCreateOrConnectWithoutOrderInput
+    upsert?: CountryUpsertWithoutOrderInput
+    connect?: CountryWhereUniqueInput
+    update?: XOR<CountryUpdateWithoutOrderInput, CountryUncheckedUpdateWithoutOrderInput>
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -4270,6 +4543,139 @@ export namespace Prisma {
     _count?: NestedIntFilter
     _min?: NestedStringFilter
     _max?: NestedStringFilter
+  }
+
+  export type OrderCreateWithoutCountryInput = {
+    externalIdentifier?: string | null
+    userId?: number | null
+    productId?: number | null
+    paymentTermsInDays?: number | null
+    deliveryAddress?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OrderUncheckedCreateWithoutCountryInput = {
+    id?: number
+    externalIdentifier?: string | null
+    userId?: number | null
+    productId?: number | null
+    paymentTermsInDays?: number | null
+    deliveryAddress?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OrderCreateOrConnectWithoutCountryInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutCountryInput, OrderUncheckedCreateWithoutCountryInput>
+  }
+
+  export type OrderCreateManyCountryInputEnvelope = {
+    data: Enumerable<OrderCreateManyCountryInput>
+    skipDuplicates?: boolean
+  }
+
+  export type OrderUpsertWithWhereUniqueWithoutCountryInput = {
+    where: OrderWhereUniqueInput
+    update: XOR<OrderUpdateWithoutCountryInput, OrderUncheckedUpdateWithoutCountryInput>
+    create: XOR<OrderCreateWithoutCountryInput, OrderUncheckedCreateWithoutCountryInput>
+  }
+
+  export type OrderUpdateWithWhereUniqueWithoutCountryInput = {
+    where: OrderWhereUniqueInput
+    data: XOR<OrderUpdateWithoutCountryInput, OrderUncheckedUpdateWithoutCountryInput>
+  }
+
+  export type OrderUpdateManyWithWhereWithoutCountryInput = {
+    where: OrderScalarWhereInput
+    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyWithoutOrderInput>
+  }
+
+  export type OrderScalarWhereInput = {
+    AND?: Enumerable<OrderScalarWhereInput>
+    OR?: Enumerable<OrderScalarWhereInput>
+    NOT?: Enumerable<OrderScalarWhereInput>
+    id?: IntFilter | number
+    externalIdentifier?: StringNullableFilter | string | null
+    userId?: IntNullableFilter | number | null
+    productId?: IntNullableFilter | number | null
+    paymentTermsInDays?: IntNullableFilter | number | null
+    deliveryAddress?: StringNullableFilter | string | null
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+    countryId?: IntFilter | number
+  }
+
+  export type CountryCreateWithoutOrderInput = {
+    name?: string | null
+  }
+
+  export type CountryUncheckedCreateWithoutOrderInput = {
+    id?: number
+    name?: string | null
+  }
+
+  export type CountryCreateOrConnectWithoutOrderInput = {
+    where: CountryWhereUniqueInput
+    create: XOR<CountryCreateWithoutOrderInput, CountryUncheckedCreateWithoutOrderInput>
+  }
+
+  export type CountryUpsertWithoutOrderInput = {
+    update: XOR<CountryUpdateWithoutOrderInput, CountryUncheckedUpdateWithoutOrderInput>
+    create: XOR<CountryCreateWithoutOrderInput, CountryUncheckedCreateWithoutOrderInput>
+  }
+
+  export type CountryUpdateWithoutOrderInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CountryUncheckedUpdateWithoutOrderInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type OrderCreateManyCountryInput = {
+    id?: number
+    externalIdentifier?: string | null
+    userId?: number | null
+    productId?: number | null
+    paymentTermsInDays?: number | null
+    deliveryAddress?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OrderUpdateWithoutCountryInput = {
+    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    productId?: NullableIntFieldUpdateOperationsInput | number | null
+    paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
+    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderUncheckedUpdateWithoutCountryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    productId?: NullableIntFieldUpdateOperationsInput | number | null
+    paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
+    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderUncheckedUpdateManyWithoutOrderInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    productId?: NullableIntFieldUpdateOperationsInput | number | null
+    paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
+    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

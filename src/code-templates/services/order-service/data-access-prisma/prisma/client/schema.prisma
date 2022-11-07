@@ -8,20 +8,27 @@ datasource db {
   url      = "postgresql://myuser:myuserpassword@localhost:54320/shop?schema=public"
 }
 
-model Countries {
-  id   Int     @id @default(autoincrement())
-  name String? @db.VarChar(255)
+model Country {
+  id    Int     @id @default(autoincrement())
+  name  String? @db.VarChar(255)
+  Order Order[]
+
+  @@map("Country")
 }
 
-model Orders {
+model Order {
   id                 Int      @id @default(autoincrement())
   externalIdentifier String?  @unique @db.VarChar(255)
   userId             Int?
   productId          Int?
   paymentTermsInDays Int?
+  country            Country  @relation(fields: [countryId], references: [id])
   deliveryAddress    String?  @db.VarChar(255)
-  createdAt          DateTime @db.Timestamptz(6) @default(now())
-  updatedAt          DateTime @db.Timestamptz(6) @default(now())
+  createdAt          DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime @default(now()) @db.Timestamptz(6)
+  countryId          Int
+
+  @@map("Order")
 }
 
 model SequelizeMeta {
