@@ -19,7 +19,8 @@
     "build": "tsc && npm run copy-templates",
     "copy-templates": "rsync -av --exclude '*node_modules*' ./src/code-templates/ ./.dist/src/code-templates",
     "build:watch": "tsc --watch",
-    "start:cli": "node ./.dist/bin/cli.js interactive",
+    "start:cli:interactive": "node ./.dist/bin/cli.js interactive",
+    "start:cli": "node ./.dist/bin/cli.js immediate",
     "publish:build": "npm run build && npm publish ./.dist --access public"
   },
   "repository": {
