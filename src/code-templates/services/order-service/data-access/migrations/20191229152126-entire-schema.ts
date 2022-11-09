@@ -3,7 +3,7 @@ import { QueryInterface } from 'sequelize/types';
 // ✅ Best Practice: Manage DB schemas explicitly using migrations
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Orders', {
+    await queryInterface.createTable('Order', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -66,5 +66,5 @@ module.exports = {
     );
   },
 
-  down: (queryInterface) => queryInterface.dropTable('Orders'),
+  down: (queryInterface) => queryInterface.dropTable('Order'),
 };

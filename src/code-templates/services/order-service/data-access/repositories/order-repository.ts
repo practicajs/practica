@@ -1,8 +1,17 @@
-import getOrderModel from './order-model';
+import { getOrderModel, getCountryModel } from './order-model';
 
 // ️️️✅ Best Practice: The repository pattern - Wrap the entire DB layer with a simple interface that returns plain JS objects
 export async function getOrderById(id: number) {
-  return await getOrderModel().findOne({ where: { id } });
+  const foundOrder = await getOrderModel().findOne({
+    where: { id },
+    include: getCountryModel(),
+    // ✅ Best Practice: The data access layer should return a plain JS object and avoid leaking DB narratives outside
+    // The 'Raw' option below instructs to include only pure data within the response
+    raw: true,
+    nest: true,
+  });
+
+  return foundOrder;
 }
 
 export async function addOrder(orderDetails) {

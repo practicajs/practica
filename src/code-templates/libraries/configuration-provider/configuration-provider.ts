@@ -4,7 +4,7 @@ import convict from 'convict';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let convictConfigurationProvider: convict.Config<any> | undefined;
 
-export function initialize(schema) {
+export function initializeAndValidate(schema) {
   convictConfigurationProvider = convict(schema);
   convictConfigurationProvider.validate();
 }

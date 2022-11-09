@@ -33,6 +33,7 @@ const errorHandler = {
 
   handleError: (errorToHandle: unknown) => {
     try {
+      console.log('📝', errorToHandle);
       const appError: AppError = normalizeError(errorToHandle);
       logger.error(appError.message, appError);
       metricsExporter.fireMetric('error', { errorName: appError.name }); // fire any custom metric when handling error

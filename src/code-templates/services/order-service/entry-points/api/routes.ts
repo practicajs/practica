@@ -16,23 +16,25 @@ export default function defineRoutes(expressApp: express.Application) {
       return res.json(addOrderResponse);
     } catch (error) {
       next(error);
-      return undefined;
     }
   });
 
   // get existing order by id
-  router.get('/:id', async (req, res) => {
-    logger.info(`Order API was called to get user by id ${req.params.id}`);
-    const response = await newOrderUseCase.getOrder(
-      parseInt(req.params.id, 10)
-    );
+  router.get('/:id', async (req, res, next) => {
+    try {
+      logger.info(`Order API was called to get user by id ${req.params.id}`);
+      const response = await newOrderUseCase.getOrder(
+        parseInt(req.params.id, 10)
+      );
 
-    if (!response) {
-      res.status(404).end();
-      return;
+      if (!response) {
+        res.status(404).end();
+        return;
+      }
+      res.json(response);
+    } catch (error) {
+      next(error);
     }
-
-    res.json(response);
   });
 
   // delete order by id
