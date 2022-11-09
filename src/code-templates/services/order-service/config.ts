@@ -48,7 +48,7 @@ export default {
     },
     password: {
       doc: "The DB connection password. Don't put production code here",
-      format: 'String',x§
+      format: 'String',
       default: 'myuserpassword',
       nullable: false,
       env: 'DB_PASSWORD',

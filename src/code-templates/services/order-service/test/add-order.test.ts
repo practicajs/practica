@@ -48,7 +48,7 @@ afterAll(async () => {
 describe('/api', () => {
   describe('POST /orders', () => {
     // ️️️✅ Best Practice: Check the response
-    test('When adding a new valid order, Then should get back approval with 200 response', async () => {
+    test.only('When adding a new valid order, Then should get back approval with 200 response', async () => {
       // Arrange
       const orderToAdd = {
         userId: 1,
