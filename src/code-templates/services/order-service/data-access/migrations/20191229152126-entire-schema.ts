@@ -10,11 +10,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      externalIdentifier: {
-        type: Sequelize.STRING,
-        unique: true,
-        allowNull: true,
-      },
       userId: {
         type: Sequelize.INTEGER,
       },

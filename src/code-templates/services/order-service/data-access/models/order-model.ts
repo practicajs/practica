@@ -5,7 +5,8 @@ import {
   InferCreationAttributes,
   CreationOptional,
 } from 'sequelize';
-import getDbConnection from '../db-connection';
+import { getCountryModel } from './country-model';
+import getDbConnection from './db-connection';
 
 export interface OrderModelFields
   extends Model<
@@ -15,7 +16,7 @@ export interface OrderModelFields
   // Some fields are optional when calling UserModel.create() or UserModel.build()
   id: CreationOptional<number>;
   deliveryAddress: string;
-  externalIdentifier: string;
+  countryId: number;
   userId: number;
   productId: number;
   paymentTermsInDays: number;
@@ -30,15 +31,13 @@ export function getOrderModel() {
         primaryKey: true,
         autoIncrement: true,
       },
-      externalIdentifier: {
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: true,
-      },
       deliveryAddress: {
         type: DataTypes.STRING,
       },
       userId: {
+        type: DataTypes.INTEGER,
+      },
+      countryId: {
         type: DataTypes.INTEGER,
       },
       paymentTermsInDays: {
@@ -58,23 +57,4 @@ export function getOrderModel() {
   });
 
   return orderModel;
-}
-
-export function getCountryModel() {
-  return getDbConnection().define(
-    'Country',
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      name: {
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: false,
-      },
-    },
-    { freezeTableName: true, timestamps: false }
-  );
 }

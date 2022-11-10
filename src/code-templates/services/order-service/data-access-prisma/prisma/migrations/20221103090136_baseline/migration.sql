@@ -9,7 +9,6 @@ CREATE TABLE "Country" (
 -- CreateTable
 CREATE TABLE "Order" (
     "id" SERIAL NOT NULL,
-    "externalIdentifier" VARCHAR(255),
     "userId" INTEGER,
     "productId" INTEGER,
     "paymentTermsInDays" INTEGER,
@@ -20,9 +19,6 @@ CREATE TABLE "Order" (
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "Order_externalIdentifier_key" ON "Order"("externalIdentifier");
 
 -- AddForeignKey
 ALTER TABLE "Order" ADD CONSTRAINT "Order_countryId_fkey" FOREIGN KEY ("countryId") REFERENCES "Country"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

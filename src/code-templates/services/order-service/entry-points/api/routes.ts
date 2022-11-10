@@ -31,6 +31,7 @@ export default function defineRoutes(expressApp: express.Application) {
         res.status(404).end();
         return;
       }
+
       res.json(response);
     } catch (error) {
       next(error);

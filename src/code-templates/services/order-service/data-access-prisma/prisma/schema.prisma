@@ -18,7 +18,6 @@ model Country {
 
 model Order {
   id                 Int      @id @default(autoincrement())
-  externalIdentifier String?  @unique @db.VarChar(255)
   userId             Int?
   productId          Int?
   paymentTermsInDays Int?
