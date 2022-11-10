@@ -7,9 +7,15 @@ export async function handleNonInteractiveCommand(options: any) {
     const generationOptions = factorDefaultOptions({
       installDependencies: options.installDependencies,
       overrideIfExists: options.overrideIfExists,
-      targetDirectory: process.cwd(),
+      targetDirectory: options.targetDirectory || process.cwd(),
+      appName: options.appName,
     });
     await generateApp(generationOptions);
+    process.stdout.write(`
+    💚 You just treated yourself to an unmatched application starter
+    📝 Open with your code editor and start coding/learning
+    📗 Deepen your understanding by reading our article 'Coding with Practica': https://practica.dev/the-basics/coding-with-practica
+    `);
   } catch (error: AppError | any) {
     const errorMessageToUser = error.message
       ? `❣️ ${error.message}`
