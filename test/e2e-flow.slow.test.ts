@@ -10,11 +10,11 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  //await fsExtra.remove(emptyFolderForATest);
+  await fsExtra.remove(emptyFolderForATest);
 });
 
-describe("Non-interactive", () => {
-  test("When passing no parameters, the generated app sanity tests pass", async () => {
+describe("Non-interactive CLI", () => {
+  test("When installing with the default flags, the generated app sanity tests pass", async () => {
     // Arrange
     console.log(
       `Starting E2E test with the output folder: ${emptyFolderForATest}`

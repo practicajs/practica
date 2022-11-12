@@ -2,14 +2,14 @@ import { pino, Logger as PinoLoggerImpl, DestinationStream } from 'pino';
 import { LOG_LEVELS, Logger } from './definition';
 
 export default class PinoLogger implements Logger {
-  private readonly logger: PinoLoggerImpl;
+  readonly #logger: PinoLoggerImpl;
 
   constructor(
     private level: LOG_LEVELS,
     private prettyPrintEnabled: boolean,
     private destStream?: DestinationStream | string
   ) {
-    const opts = {
+    this.#logger = pino({
       level,
       transport: prettyPrintEnabled
         ? {
@@ -20,23 +20,38 @@ export default class PinoLogger implements Logger {
             },
           }
         : undefined,
-    };
-    this.logger = pino(opts);
+    });
   }
 
-  debug(message: string, ...args: unknown[]): void {
-    this.logger.debug(message, ...args);
+  debug(message: string, metadata?: object): void {
+    if (metadata) {
+      this.#logger.debug(metadata, message);
+    } else {
+      this.#logger.debug(message);
+    }
   }
 
-  error(message: string, ...args: unknown[]): void {
-    this.logger.error(message, ...args);
+  error(message: string, metadata?: object): void {
+    if (metadata) {
+      this.#logger.error(metadata, message);
+    } else {
+      this.#logger.error(message);
+    }
   }
 
-  info(message: string, ...args: unknown[]): void {
-    this.logger.info(message, ...args);
+  info(message: string, metadata?: object): void {
+    if (metadata) {
+      this.#logger.info(metadata, message);
+    } else {
+      this.#logger.info(message);
+    }
   }
 
-  warning(message: string, ...args: unknown[]): void {
-    this.logger.warn(message, ...args);
+  warning(message: string, metadata?: object): void {
+    if (metadata) {
+      this.#logger.warn(metadata, message);
+    } else {
+      this.#logger.warn(message);
+    }
   }
 }

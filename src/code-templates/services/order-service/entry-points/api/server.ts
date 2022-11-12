@@ -2,9 +2,11 @@ import { Server } from 'http';
 import { logger } from '@practica/logger';
 import { AddressInfo } from 'net';
 import express from 'express';
+import helmet from 'helmet';
 import { errorHandler } from '@practica/error-handling';
 import * as configurationProvider from '@practica/configuration-provider';
 import { jwtVerifierMiddleware } from '@practica/jwt-token-verifier';
+import { addRequestIdExpressMiddleware } from '@practica/request-context';
 import configurationSchema from '../../config';
 import defineRoutes from './routes';
 
@@ -15,11 +17,14 @@ async function startWebServer(): Promise<AddressInfo> {
   // ️️️✅ Best Practice: Declare a strict configuration schema and fail fast if the configuration is invalid
   configurationProvider.initialize(configurationSchema);
   logger.configureLogger(
-    // @ts-expect-error TODO: fix this
+    // eslint-disable-next-line
+    // @ts-ignore TODO: fix this
     { prettyPrint: configurationProvider.getValue('logger.prettyPrint') },
     true
   );
   const expressApp = express();
+  expressApp.use(addRequestIdExpressMiddleware);
+  expressApp.use(helmet());
   expressApp.use(express.urlencoded({ extended: true }));
   expressApp.use(express.json());
   expressApp.use(

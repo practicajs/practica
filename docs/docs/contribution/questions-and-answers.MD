@@ -9,7 +9,7 @@ sidebar_label: Questions and answers
 
 **1. Question-** When running the local shell command 'create-node-app' a wrong version of the code is running or it is not running at all
 
-**Answer-** Consider re-linking the local command to the code: 
+**Answer-** Consider re-linking the local command to the code and cleaning the .dist folder: 
 
 a. Locate your bin folder by typing `which node`
 
@@ -21,6 +21,10 @@ c. `rm create-node-app`
 
 d. Navigate to the code folder and build the code `npm run build`
 
-e. Navigate to `.dist` and run the command
+e. Delete [root]/.dist folder
+
+f. Build the project again with ```npm run build```
+
+f. Navigate to `.dist` and run the command again
 
 `npm link`

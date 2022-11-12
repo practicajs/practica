@@ -40,6 +40,9 @@ jobs:
       - name: Test all packages
         run: npx turbo run test
 
+      - name: Lint all packages
+        run: npm run lint
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
