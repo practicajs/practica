@@ -1,5 +1,3 @@
-import { QueryInterface } from 'sequelize/types';
-
 // ✅ Best Practice: Manage DB schemas explicitly using migrations
 module.exports = {
   up: async (queryInterface, Sequelize) => {
