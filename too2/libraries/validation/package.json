@@ -1,0 +1,26 @@
+{
+  "name": "@practica/validation",
+  "version": "0.0.3",
+  "description": "",
+  "main": "./.dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "installDependencies": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/practicajs/practica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/practicajs/practica/issues"
+  },
+  "homepage": "https://github.com/practicajs/practica#readme",
+  "dependencies": {
+    "ajv": "^8.11.0"
+  },
+  "devDependencies": {
+    "typescript": "4.6.4"
+  }
+}

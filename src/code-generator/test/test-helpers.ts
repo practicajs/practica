@@ -1,3 +1,4 @@
+import { createReadStream } from "node:fs";
 import fsExtra from "fs-extra";
 import path from "path";
 import os from "os";
@@ -6,6 +7,22 @@ function getRandomFolderPath(basePath: string) {
   const randomFolderName = new Date().getTime().toString();
 
   return path.join(basePath, randomFolderName);
+}
+
+export async function doesFolderExistInPath(path: string) {
+  return await fsExtra.pathExists(path);
+}
+
+export async function doesFileContainPhrase(filePath: string, phrase: string) {
+  const readStream = createReadStream(filePath, { encoding: "utf-8" });
+  for await (const chunkOfData of readStream) {
+    const chunkAsString = chunkOfData + "";
+    if (chunkAsString.includes(phrase)) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 export const createUniqueFolder = async (): Promise<string> => {

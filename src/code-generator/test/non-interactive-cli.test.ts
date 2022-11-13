@@ -14,52 +14,71 @@ afterEach(async () => {
 });
 
 describe("Non-interactive CLI component tests", () => {
-  test("When installing with specified app name, then the created folder has this specific name", async () => {
-    // Arrange
-    const specificAppName = "test";
+  describe("ORM type", () => {
+    test.only("When ORM type is Prisma, then the created DAL folder has prisma dependency and files", async () => {
+      // Arrange
 
-    // Act
-    await execa("ts-node", [
-      "./bin/cli.ts",
-      "immediate",
-      `--target-directory=${emptyFolderForATest}`,
-      `--app-name=${specificAppName}`,
-    ]);
+      // Act
+      await execa("ts-node", [
+        "./bin/cli.ts",
+        "immediate",
+        `--target-directory=${emptyFolderForATest}`,
+        `--app-name=test`,
+        "--orm=prisma",
+      ]);
 
-    // Assert
-    const generatedSolutionFolder = path.join(
-      emptyFolderForATest,
-      specificAppName
-    );
-    const pathExists = await fsExtra.pathExists(generatedSolutionFolder);
-    expect({ pathExists }).toStrictEqual({ pathExists: true });
-    const destinationFolderContent = await fsExtra.readdir(
-      generatedSolutionFolder
-    );
-    expect(destinationFolderContent.length).toBeGreaterThan(0);
+      // Assert
+      const rootPath = path.join(
+        emptyFolderForATest,
+        "test",
+        "services",
+        "order-service"
+      );
+      const isPrismaInPackageJSON = await testHelpers.doesFileContainPhrase(
+        path.join(rootPath, "package.json"),
+        "prisma"
+      );
+      const isSequelizeInPackageJSON = await testHelpers.doesFileContainPhrase(
+        path.join(rootPath, "package.json"),
+        "sequelize"
+      );
+      const isPrismaFolderInDALLayer = await testHelpers.doesFolderExistInPath(
+        path.join(rootPath, "data-access", "prisma")
+      );
+      expect({
+        isSequelizeInPackageJSON,
+        isPrismaInPackageJSON,
+        isPrismaFolderInDALLayer,
+      }).toStrictEqual({
+        isSequelizeInPackageJSON: false,
+        isPrismaFolderInDALLayer: true,
+        isPrismaInPackageJSON: true,
+      });
+    });
   });
+  describe("Flag app name", () => {
+    test("When installing without app name, then it's created with the default name", async () => {
+      // Arrange
 
-  test("When installing without app name, then it's created with the default name", async () => {
-    // Arrange
+      // Act
+      await execa("ts-node", [
+        "./bin/cli.ts",
+        "immediate",
+        `--target-directory=${emptyFolderForATest}`,
+        // 👉 No name provided
+      ]);
 
-    // Act
-    await execa("ts-node", [
-      "./bin/cli.ts",
-      "immediate",
-      `--target-directory=${emptyFolderForATest}`,
-      // 👉 No name provided
-    ]);
-
-    // Assert
-    const generatedSolutionFolder = path.join(
-      emptyFolderForATest,
-      "default-app-name"
-    );
-    const pathExists = await fsExtra.pathExists(generatedSolutionFolder);
-    expect({ pathExists }).toStrictEqual({ pathExists: true });
-    const destinationFolderContent = await fsExtra.readdir(
-      generatedSolutionFolder
-    );
-    expect(destinationFolderContent.length).toBeGreaterThan(0);
+      // Assert
+      const generatedSolutionFolder = path.join(
+        emptyFolderForATest,
+        "default-app-name"
+      );
+      const pathExists = await fsExtra.pathExists(generatedSolutionFolder);
+      expect({ pathExists }).toStrictEqual({ pathExists: true });
+      const destinationFolderContent = await fsExtra.readdir(
+        generatedSolutionFolder
+      );
+      expect(destinationFolderContent.length).toBeGreaterThan(0);
+    });
   });
 });
