@@ -13,7 +13,7 @@ export type generationOptions = {
 export const factorDefaultOptions = (
   overrides: Partial<generationOptions>
 ): generationOptions => {
-  const defaults: generationOptions = {
+  const defaults = {
     appName: "default-app-name",
     baseFramework: "express",
     DBType: "pg",

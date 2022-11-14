@@ -13,12 +13,12 @@ const Prisma = {}
 exports.Prisma = Prisma
 
 /**
- * Prisma Client JS version: 4.5.0
- * Query Engine version: 0362da9eebca54d94c8ef5edd3b2e90af99ba452
+ * Prisma Client JS version: 4.6.1
+ * Query Engine version: 694eea289a8462c80264df36757e4fdc129b1b32
  */
 Prisma.prismaVersion = {
-  client: "4.5.0",
-  engine: "0362da9eebca54d94c8ef5edd3b2e90af99ba452"
+  client: "4.6.1",
+  engine: "694eea289a8462c80264df36757e4fdc129b1b32"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -68,6 +68,7 @@ In case this error is unexpected for you, please report it in https://github.com
 )}
 Prisma.validator = () => (val) => val
 
+
 /**
  * Shorthand utilities for JSON filtering
  */
@@ -95,14 +96,13 @@ exports.Prisma.CountryScalarFieldEnum = makeEnum({
 
 exports.Prisma.OrderScalarFieldEnum = makeEnum({
   id: 'id',
-  externalIdentifier: 'externalIdentifier',
   userId: 'userId',
   productId: 'productId',
   paymentTermsInDays: 'paymentTermsInDays',
+  countryId: 'countryId',
   deliveryAddress: 'deliveryAddress',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  countryId: 'countryId'
+  updatedAt: 'updatedAt'
 });
 
 exports.Prisma.QueryMode = makeEnum({

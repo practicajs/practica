@@ -10,7 +10,7 @@ datasource db {
 
 model Country {
   id    Int     @id @default(autoincrement())
-  name  String? @db.VarChar(255)
+  name  String @db.VarChar(255)
   Order Order[]
 
   @@map("Country")

@@ -10,7 +10,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  await fsExtra.remove(emptyFolderForATest);
+  //await fsExtra.remove(emptyFolderForATest);
 });
 
 describe("Non-interactive CLI component tests", () => {
@@ -56,7 +56,8 @@ describe("Non-interactive CLI component tests", () => {
       });
     });
 
-    test.only("When ORM type is sequelize, then the created DAL folder has only sequelize dependency and files", async () => {
+    test("When ORM type is sequelize, then the created DAL folder has only sequelize dependency and files", async () => {
+      console.log(emptyFolderForATest);
       // Arrange
 
       // Act

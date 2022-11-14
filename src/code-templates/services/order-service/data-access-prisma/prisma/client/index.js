@@ -17,7 +17,8 @@ const {
   Decimal,
   Debug,
   objectEnumValues,
-  makeStrictEnum
+  makeStrictEnum,
+  Extensions
 } = require('./runtime/index')
 
 
@@ -26,12 +27,12 @@ const Prisma = {}
 exports.Prisma = Prisma
 
 /**
- * Prisma Client JS version: 4.5.0
- * Query Engine version: 0362da9eebca54d94c8ef5edd3b2e90af99ba452
+ * Prisma Client JS version: 4.6.1
+ * Query Engine version: 694eea289a8462c80264df36757e4fdc129b1b32
  */
 Prisma.prismaVersion = {
-  client: "4.5.0",
-  engine: "0362da9eebca54d94c8ef5edd3b2e90af99ba452"
+  client: "4.6.1",
+  engine: "694eea289a8462c80264df36757e4fdc129b1b32"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -50,6 +51,7 @@ Prisma.empty = empty
 Prisma.join = join
 Prisma.raw = raw
 Prisma.validator = () => (val) => val
+
 
 /**
  * Shorthand utilities for JSON filtering
@@ -98,14 +100,13 @@ exports.Prisma.CountryScalarFieldEnum = makeEnum({
 
 exports.Prisma.OrderScalarFieldEnum = makeEnum({
   id: 'id',
-  externalIdentifier: 'externalIdentifier',
   userId: 'userId',
   productId: 'productId',
   paymentTermsInDays: 'paymentTermsInDays',
+  countryId: 'countryId',
   deliveryAddress: 'deliveryAddress',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  countryId: 'countryId'
+  updatedAt: 'updatedAt'
 });
 
 exports.Prisma.QueryMode = makeEnum({
@@ -136,7 +137,7 @@ exports.Prisma.ModelName = makeEnum({
   SequelizeMeta: 'SequelizeMeta'
 });
 
-const dmmfString = "{\"datamodel\":{\"enums\":[],\"models\":[{\"name\":\"Country\",\"dbName\":\"Country\",\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"Order\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Order\",\"relationName\":\"CountryToOrder\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},{\"name\":\"Order\",\"dbName\":\"Order\",\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"externalIdentifier\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"productId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"paymentTermsInDays\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"country\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Country\",\"relationName\":\"CountryToOrder\",\"relationFromFields\":[\"countryId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"deliveryAddress\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"countryId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},{\"name\":\"SequelizeMeta\",\"dbName\":null,\"fields\":[{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}],\"types\":[]},\"mappings\":{\"modelOperations\":[{\"model\":\"Country\",\"plural\":\"countries\",\"findUnique\":\"findUniqueCountry\",\"findFirst\":\"findFirstCountry\",\"findMany\":\"findManyCountry\",\"create\":\"createOneCountry\",\"createMany\":\"createManyCountry\",\"delete\":\"deleteOneCountry\",\"update\":\"updateOneCountry\",\"deleteMany\":\"deleteManyCountry\",\"updateMany\":\"updateManyCountry\",\"upsert\":\"upsertOneCountry\",\"aggregate\":\"aggregateCountry\",\"groupBy\":\"groupByCountry\"},{\"model\":\"Order\",\"plural\":\"orders\",\"findUnique\":\"findUniqueOrder\",\"findFirst\":\"findFirstOrder\",\"findMany\":\"findManyOrder\",\"create\":\"createOneOrder\",\"createMany\":\"createManyOrder\",\"delete\":\"deleteOneOrder\",\"update\":\"updateOneOrder\",\"deleteMany\":\"deleteManyOrder\",\"updateMany\":\"updateManyOrder\",\"upsert\":\"upsertOneOrder\",\"aggregate\":\"aggregateOrder\",\"groupBy\":\"groupByOrder\"},{\"model\":\"SequelizeMeta\",\"plural\":\"sequelizeMetas\",\"findUnique\":\"findUniqueSequelizeMeta\",\"findFirst\":\"findFirstSequelizeMeta\",\"findMany\":\"findManySequelizeMeta\",\"create\":\"createOneSequelizeMeta\",\"createMany\":\"createManySequelizeMeta\",\"delete\":\"deleteOneSequelizeMeta\",\"update\":\"updateOneSequelizeMeta\",\"deleteMany\":\"deleteManySequelizeMeta\",\"updateMany\":\"updateManySequelizeMeta\",\"upsert\":\"upsertOneSequelizeMeta\",\"aggregate\":\"aggregateSequelizeMeta\",\"groupBy\":\"groupBySequelizeMeta\"}],\"otherOperations\":{\"read\":[],\"write\":[\"executeRaw\",\"queryRaw\"]}}}"
+const dmmfString = "{\"datamodel\":{\"enums\":[],\"models\":[{\"name\":\"Country\",\"dbName\":\"Country\",\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"Order\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Order\",\"relationName\":\"CountryToOrder\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},{\"name\":\"Order\",\"dbName\":\"Order\",\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"productId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"paymentTermsInDays\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"country\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Country\",\"relationName\":\"CountryToOrder\",\"relationFromFields\":[\"countryId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"countryId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"deliveryAddress\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},{\"name\":\"SequelizeMeta\",\"dbName\":null,\"fields\":[{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}],\"types\":[]},\"mappings\":{\"modelOperations\":[{\"model\":\"Country\",\"plural\":\"countries\",\"findUnique\":\"findUniqueCountry\",\"findFirst\":\"findFirstCountry\",\"findMany\":\"findManyCountry\",\"create\":\"createOneCountry\",\"createMany\":\"createManyCountry\",\"delete\":\"deleteOneCountry\",\"update\":\"updateOneCountry\",\"deleteMany\":\"deleteManyCountry\",\"updateMany\":\"updateManyCountry\",\"upsert\":\"upsertOneCountry\",\"aggregate\":\"aggregateCountry\",\"groupBy\":\"groupByCountry\"},{\"model\":\"Order\",\"plural\":\"orders\",\"findUnique\":\"findUniqueOrder\",\"findFirst\":\"findFirstOrder\",\"findMany\":\"findManyOrder\",\"create\":\"createOneOrder\",\"createMany\":\"createManyOrder\",\"delete\":\"deleteOneOrder\",\"update\":\"updateOneOrder\",\"deleteMany\":\"deleteManyOrder\",\"updateMany\":\"updateManyOrder\",\"upsert\":\"upsertOneOrder\",\"aggregate\":\"aggregateOrder\",\"groupBy\":\"groupByOrder\"},{\"model\":\"SequelizeMeta\",\"plural\":\"sequelizeMetas\",\"findUnique\":\"findUniqueSequelizeMeta\",\"findFirst\":\"findFirstSequelizeMeta\",\"findMany\":\"findManySequelizeMeta\",\"create\":\"createOneSequelizeMeta\",\"createMany\":\"createManySequelizeMeta\",\"delete\":\"deleteOneSequelizeMeta\",\"update\":\"updateOneSequelizeMeta\",\"deleteMany\":\"deleteManySequelizeMeta\",\"updateMany\":\"updateManySequelizeMeta\",\"upsert\":\"upsertOneSequelizeMeta\",\"aggregate\":\"aggregateSequelizeMeta\",\"groupBy\":\"groupBySequelizeMeta\"}],\"otherOperations\":{\"read\":[],\"write\":[\"executeRaw\",\"queryRaw\"]}}}"
 const dmmf = JSON.parse(dmmfString)
 exports.Prisma.dmmf = JSON.parse(dmmfString)
 
@@ -165,8 +166,8 @@ const config = {
     "rootEnvPath": null
   },
   "relativePath": "..",
-  "clientVersion": "4.5.0",
-  "engineVersion": "0362da9eebca54d94c8ef5edd3b2e90af99ba452",
+  "clientVersion": "4.6.1",
+  "engineVersion": "694eea289a8462c80264df36757e4fdc129b1b32",
   "datasourceNames": [
     "db"
   ],

@@ -78,28 +78,46 @@ async function adjustCodeBasedOnPreferences(
     console.log(prismaFolderNewName);
     await fsExtra.rename(prismaFolder, prismaFolderNewName);
     console.log("renamed");
-    const removeSequelizeRegEx = new RegExp(
+    const phrasesToRemove = [
+      '"db:migrate":().*,\n',
       '"(.*?)sequelize(.*?)": "(.*)"(,?)\n',
-      "g"
-    );
+    ];
+    for (const phraseToReplace of phrasesToRemove) {
+      const fromExpression = new RegExp(phraseToReplace, "g");
+
+      await replacementUtilities.replaceInFile({
+        files: path.join(microservicePath, "package.json"),
+        from: fromExpression,
+        to: "",
+      });
+    }
+
     await replacementUtilities.replaceInFile({
-      files: "package.json",
-      from: removeSequelizeRegEx,
-      to: "",
+      files: path.join(microservicePath, "package.json"),
+      from: "db:migrate:prisma",
+      to: "db:migrate",
+    });
+
+    await replacementUtilities.replaceInFile({
+      files: path.join(microservicePath, "package.json"),
+      from: "data-access-prisma/prisma/schema.prisma",
+      to: "data-access/prisma/schema.prisma",
     });
   } else if (options.ORM === "sequelize") {
     const prismaFolder = path.join(microservicePath, "data-access-prisma");
-    console.log(prismaFolder);
     await fsExtra.rm(prismaFolder, { recursive: true });
-    const removeSequelizeRegEx = new RegExp(
+    const patternsToRemove = [
       '"(.*?)prisma(.*?)": "(.*)"(,?)\n',
-      "g"
-    );
-    await replacementUtilities.replaceInFile({
-      files: "package.json",
-      from: removeSequelizeRegEx,
-      to: "",
-    });
+      '"db:generate-client"(.*?)\n',
+    ];
+    for (const pattern of patternsToRemove) {
+      const result = await replacementUtilities.replaceInFile({
+        files: path.join(microservicePath, "package.json"),
+        from: new RegExp(pattern, "g"),
+        to: "",
+      });
+      console.log("💜", result);
+    }
   }
 }
 

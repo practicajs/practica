@@ -18,7 +18,7 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
  */
 export type Country = {
   id: number
-  name: string | null
+  name: string
 }
 
 /**
@@ -27,14 +27,13 @@ export type Country = {
  */
 export type Order = {
   id: number
-  externalIdentifier: string | null
   userId: number | null
   productId: number | null
   paymentTermsInDays: number | null
+  countryId: number
   deliveryAddress: string | null
   createdAt: Date
   updatedAt: Date
-  countryId: number
 }
 
 /**
@@ -249,19 +248,15 @@ export namespace Prisma {
   /**
    * Metrics 
    */
-  export import Metrics = runtime.Metrics
-  export import Metric = runtime.Metric
-  export import MetricHistogram = runtime.MetricHistogram
-  export import MetricHistogramBucket = runtime.MetricHistogramBucket
+  export type Metrics = runtime.Metrics
+  export type Metric<T> = runtime.Metric<T>
+  export type MetricHistogram = runtime.MetricHistogram
+  export type MetricHistogramBucket = runtime.MetricHistogramBucket
+
 
   /**
-   * Extensions
-   */
-  export type Extension = runtime.Extension 
-
-  /**
-   * Prisma Client JS version: 4.5.0
-   * Query Engine version: 0362da9eebca54d94c8ef5edd3b2e90af99ba452
+   * Prisma Client JS version: 4.6.1
+   * Query Engine version: 694eea289a8462c80264df36757e4fdc129b1b32
    */
   export type PrismaVersion = {
     client: string
@@ -688,7 +683,7 @@ export namespace Prisma {
   type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
 
 
-  export import FieldRef = runtime.FieldRef
+  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
 
   type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
 
@@ -877,23 +872,18 @@ export namespace Prisma {
     Order?: boolean
   }
 
-  export type CountryCountOutputTypeGetPayload<
-    S extends boolean | null | undefined | CountryCountOutputTypeArgs,
-    U = keyof S
-      > = S extends true
-        ? CountryCountOutputType
-    : S extends undefined
-    ? never
-    : S extends CountryCountOutputTypeArgs
-    ?'include' extends U
+  export type CountryCountOutputTypeGetPayload<S extends boolean | null | undefined | CountryCountOutputTypeArgs, U = keyof S> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? CountryCountOutputType :
+    S extends undefined ? never :
+    S extends { include: any } & (CountryCountOutputTypeArgs)
     ? CountryCountOutputType 
-    : 'select' extends U
-    ? {
+    : S extends { select: any } & (CountryCountOutputTypeArgs)
+      ? {
     [P in TrueKeys<S['select']>]:
     P extends keyof CountryCountOutputType ? CountryCountOutputType[P] : never
   } 
-    : CountryCountOutputType
-  : CountryCountOutputType
+      : CountryCountOutputType
 
 
 
@@ -1073,7 +1063,7 @@ export namespace Prisma {
 
   export type CountryGroupByOutputType = {
     id: number
-    name: string | null
+    name: string
     _count: CountryCountAggregateOutputType | null
     _avg: CountryAvgAggregateOutputType | null
     _sum: CountrySumAggregateOutputType | null
@@ -1102,33 +1092,29 @@ export namespace Prisma {
     _count?: boolean | CountryCountOutputTypeArgs
   }
 
+
   export type CountryInclude = {
     Order?: boolean | OrderFindManyArgs
     _count?: boolean | CountryCountOutputTypeArgs
-  }
+  } 
 
-  export type CountryGetPayload<
-    S extends boolean | null | undefined | CountryArgs,
-    U = keyof S
-      > = S extends true
-        ? Country
-    : S extends undefined
-    ? never
-    : S extends CountryArgs | CountryFindManyArgs
-    ?'include' extends U
+  export type CountryGetPayload<S extends boolean | null | undefined | CountryArgs, U = keyof S> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? Country :
+    S extends undefined ? never :
+    S extends { include: any } & (CountryArgs | CountryFindManyArgs)
     ? Country  & {
     [P in TrueKeys<S['include']>]:
         P extends 'Order' ? Array < OrderGetPayload<Exclude<S['include'], undefined | null>[P]>>  :
         P extends '_count' ? CountryCountOutputTypeGetPayload<Exclude<S['include'], undefined | null>[P]> :  never
   } 
-    : 'select' extends U
-    ? {
+    : S extends { select: any } & (CountryArgs | CountryFindManyArgs)
+      ? {
     [P in TrueKeys<S['select']>]:
         P extends 'Order' ? Array < OrderGetPayload<Exclude<S['select'], undefined | null>[P]>>  :
         P extends '_count' ? CountryCountOutputTypeGetPayload<Exclude<S['select'], undefined | null>[P]> :  P extends keyof Country ? Country[P] : never
   } 
-    : Country
-  : Country
+      : Country
 
 
   type CountryCountArgs = Merge<
@@ -1151,7 +1137,7 @@ export namespace Prisma {
     **/
     findUnique<T extends CountryFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
       args: SelectSubset<T, CountryFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Country'> extends True ? CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>> : CheckSelect<T, Prisma__CountryClient<Country | null, null>, Prisma__CountryClient<CountryGetPayload<T> | null, null>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Country'> extends True ? Prisma__CountryClient<CountryGetPayload<T>> : Prisma__CountryClient<CountryGetPayload<T> | null, null>
 
     /**
      * Find the first Country that matches the filter.
@@ -1168,7 +1154,7 @@ export namespace Prisma {
     **/
     findFirst<T extends CountryFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
       args?: SelectSubset<T, CountryFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Country'> extends True ? CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>> : CheckSelect<T, Prisma__CountryClient<Country | null, null>, Prisma__CountryClient<CountryGetPayload<T> | null, null>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Country'> extends True ? Prisma__CountryClient<CountryGetPayload<T>> : Prisma__CountryClient<CountryGetPayload<T> | null, null>
 
     /**
      * Find zero or more Countries that matches the filter.
@@ -1188,7 +1174,7 @@ export namespace Prisma {
     **/
     findMany<T extends CountryFindManyArgs>(
       args?: SelectSubset<T, CountryFindManyArgs>
-    ): CheckSelect<T, PrismaPromise<Array<Country>>, PrismaPromise<Array<CountryGetPayload<T>>>>
+    ): PrismaPromise<Array<CountryGetPayload<T>>>
 
     /**
      * Create a Country.
@@ -1204,7 +1190,7 @@ export namespace Prisma {
     **/
     create<T extends CountryCreateArgs>(
       args: SelectSubset<T, CountryCreateArgs>
-    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
+    ): Prisma__CountryClient<CountryGetPayload<T>>
 
     /**
      * Create many Countries.
@@ -1236,7 +1222,7 @@ export namespace Prisma {
     **/
     delete<T extends CountryDeleteArgs>(
       args: SelectSubset<T, CountryDeleteArgs>
-    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
+    ): Prisma__CountryClient<CountryGetPayload<T>>
 
     /**
      * Update one Country.
@@ -1255,7 +1241,7 @@ export namespace Prisma {
     **/
     update<T extends CountryUpdateArgs>(
       args: SelectSubset<T, CountryUpdateArgs>
-    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
+    ): Prisma__CountryClient<CountryGetPayload<T>>
 
     /**
      * Delete zero or more Countries.
@@ -1313,7 +1299,7 @@ export namespace Prisma {
     **/
     upsert<T extends CountryUpsertArgs>(
       args: SelectSubset<T, CountryUpsertArgs>
-    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
+    ): Prisma__CountryClient<CountryGetPayload<T>>
 
     /**
      * Find one Country that matches the filter or throw
@@ -1329,7 +1315,7 @@ export namespace Prisma {
     **/
     findUniqueOrThrow<T extends CountryFindUniqueOrThrowArgs>(
       args?: SelectSubset<T, CountryFindUniqueOrThrowArgs>
-    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
+    ): Prisma__CountryClient<CountryGetPayload<T>>
 
     /**
      * Find the first Country that matches the filter or
@@ -1347,7 +1333,7 @@ export namespace Prisma {
     **/
     findFirstOrThrow<T extends CountryFindFirstOrThrowArgs>(
       args?: SelectSubset<T, CountryFindFirstOrThrowArgs>
-    ): CheckSelect<T, Prisma__CountryClient<Country>, Prisma__CountryClient<CountryGetPayload<T>>>
+    ): Prisma__CountryClient<CountryGetPayload<T>>
 
     /**
      * Count the number of Countries.
@@ -1500,7 +1486,7 @@ export namespace Prisma {
     constructor(_dmmf: runtime.DMMFClass, _fetcher: PrismaClientFetcher, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
     readonly [Symbol.toStringTag]: 'PrismaClientPromise';
 
-    Order<T extends OrderFindManyArgs = {}>(args?: Subset<T, OrderFindManyArgs>): CheckSelect<T, PrismaPromise<Array<Order>| Null>, PrismaPromise<Array<OrderGetPayload<T>>| Null>>;
+    Order<T extends OrderFindManyArgs= {}>(args?: Subset<T, OrderFindManyArgs>): PrismaPromise<Array<OrderGetPayload<T>>| Null>;
 
     private get _document();
     /**
@@ -1887,38 +1873,35 @@ export namespace Prisma {
 
   export type OrderMinAggregateOutputType = {
     id: number | null
-    externalIdentifier: string | null
     userId: number | null
     productId: number | null
     paymentTermsInDays: number | null
+    countryId: number | null
     deliveryAddress: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    countryId: number | null
   }
 
   export type OrderMaxAggregateOutputType = {
     id: number | null
-    externalIdentifier: string | null
     userId: number | null
     productId: number | null
     paymentTermsInDays: number | null
+    countryId: number | null
     deliveryAddress: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    countryId: number | null
   }
 
   export type OrderCountAggregateOutputType = {
     id: number
-    externalIdentifier: number
     userId: number
     productId: number
     paymentTermsInDays: number
+    countryId: number
     deliveryAddress: number
     createdAt: number
     updatedAt: number
-    countryId: number
     _all: number
   }
 
@@ -1941,38 +1924,35 @@ export namespace Prisma {
 
   export type OrderMinAggregateInputType = {
     id?: true
-    externalIdentifier?: true
     userId?: true
     productId?: true
     paymentTermsInDays?: true
+    countryId?: true
     deliveryAddress?: true
     createdAt?: true
     updatedAt?: true
-    countryId?: true
   }
 
   export type OrderMaxAggregateInputType = {
     id?: true
-    externalIdentifier?: true
     userId?: true
     productId?: true
     paymentTermsInDays?: true
+    countryId?: true
     deliveryAddress?: true
     createdAt?: true
     updatedAt?: true
-    countryId?: true
   }
 
   export type OrderCountAggregateInputType = {
     id?: true
-    externalIdentifier?: true
     userId?: true
     productId?: true
     paymentTermsInDays?: true
+    countryId?: true
     deliveryAddress?: true
     createdAt?: true
     updatedAt?: true
-    countryId?: true
     _all?: true
   }
 
@@ -2070,14 +2050,13 @@ export namespace Prisma {
 
   export type OrderGroupByOutputType = {
     id: number
-    externalIdentifier: string | null
     userId: number | null
     productId: number | null
     paymentTermsInDays: number | null
+    countryId: number
     deliveryAddress: string | null
     createdAt: Date
     updatedAt: Date
-    countryId: number
     _count: OrderCountAggregateOutputType | null
     _avg: OrderAvgAggregateOutputType | null
     _sum: OrderSumAggregateOutputType | null
@@ -2101,41 +2080,36 @@ export namespace Prisma {
 
   export type OrderSelect = {
     id?: boolean
-    externalIdentifier?: boolean
     userId?: boolean
     productId?: boolean
     paymentTermsInDays?: boolean
     country?: boolean | CountryArgs
+    countryId?: boolean
     deliveryAddress?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    countryId?: boolean
   }
+
 
   export type OrderInclude = {
     country?: boolean | CountryArgs
-  }
+  } 
 
-  export type OrderGetPayload<
-    S extends boolean | null | undefined | OrderArgs,
-    U = keyof S
-      > = S extends true
-        ? Order
-    : S extends undefined
-    ? never
-    : S extends OrderArgs | OrderFindManyArgs
-    ?'include' extends U
+  export type OrderGetPayload<S extends boolean | null | undefined | OrderArgs, U = keyof S> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? Order :
+    S extends undefined ? never :
+    S extends { include: any } & (OrderArgs | OrderFindManyArgs)
     ? Order  & {
     [P in TrueKeys<S['include']>]:
         P extends 'country' ? CountryGetPayload<Exclude<S['include'], undefined | null>[P]> :  never
   } 
-    : 'select' extends U
-    ? {
+    : S extends { select: any } & (OrderArgs | OrderFindManyArgs)
+      ? {
     [P in TrueKeys<S['select']>]:
         P extends 'country' ? CountryGetPayload<Exclude<S['select'], undefined | null>[P]> :  P extends keyof Order ? Order[P] : never
   } 
-    : Order
-  : Order
+      : Order
 
 
   type OrderCountArgs = Merge<
@@ -2158,7 +2132,7 @@ export namespace Prisma {
     **/
     findUnique<T extends OrderFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
       args: SelectSubset<T, OrderFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Order'> extends True ? CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>> : CheckSelect<T, Prisma__OrderClient<Order | null, null>, Prisma__OrderClient<OrderGetPayload<T> | null, null>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Order'> extends True ? Prisma__OrderClient<OrderGetPayload<T>> : Prisma__OrderClient<OrderGetPayload<T> | null, null>
 
     /**
      * Find the first Order that matches the filter.
@@ -2175,7 +2149,7 @@ export namespace Prisma {
     **/
     findFirst<T extends OrderFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
       args?: SelectSubset<T, OrderFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Order'> extends True ? CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>> : CheckSelect<T, Prisma__OrderClient<Order | null, null>, Prisma__OrderClient<OrderGetPayload<T> | null, null>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Order'> extends True ? Prisma__OrderClient<OrderGetPayload<T>> : Prisma__OrderClient<OrderGetPayload<T> | null, null>
 
     /**
      * Find zero or more Orders that matches the filter.
@@ -2195,7 +2169,7 @@ export namespace Prisma {
     **/
     findMany<T extends OrderFindManyArgs>(
       args?: SelectSubset<T, OrderFindManyArgs>
-    ): CheckSelect<T, PrismaPromise<Array<Order>>, PrismaPromise<Array<OrderGetPayload<T>>>>
+    ): PrismaPromise<Array<OrderGetPayload<T>>>
 
     /**
      * Create a Order.
@@ -2211,7 +2185,7 @@ export namespace Prisma {
     **/
     create<T extends OrderCreateArgs>(
       args: SelectSubset<T, OrderCreateArgs>
-    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
+    ): Prisma__OrderClient<OrderGetPayload<T>>
 
     /**
      * Create many Orders.
@@ -2243,7 +2217,7 @@ export namespace Prisma {
     **/
     delete<T extends OrderDeleteArgs>(
       args: SelectSubset<T, OrderDeleteArgs>
-    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
+    ): Prisma__OrderClient<OrderGetPayload<T>>
 
     /**
      * Update one Order.
@@ -2262,7 +2236,7 @@ export namespace Prisma {
     **/
     update<T extends OrderUpdateArgs>(
       args: SelectSubset<T, OrderUpdateArgs>
-    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
+    ): Prisma__OrderClient<OrderGetPayload<T>>
 
     /**
      * Delete zero or more Orders.
@@ -2320,7 +2294,7 @@ export namespace Prisma {
     **/
     upsert<T extends OrderUpsertArgs>(
       args: SelectSubset<T, OrderUpsertArgs>
-    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
+    ): Prisma__OrderClient<OrderGetPayload<T>>
 
     /**
      * Find one Order that matches the filter or throw
@@ -2336,7 +2310,7 @@ export namespace Prisma {
     **/
     findUniqueOrThrow<T extends OrderFindUniqueOrThrowArgs>(
       args?: SelectSubset<T, OrderFindUniqueOrThrowArgs>
-    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
+    ): Prisma__OrderClient<OrderGetPayload<T>>
 
     /**
      * Find the first Order that matches the filter or
@@ -2354,7 +2328,7 @@ export namespace Prisma {
     **/
     findFirstOrThrow<T extends OrderFindFirstOrThrowArgs>(
       args?: SelectSubset<T, OrderFindFirstOrThrowArgs>
-    ): CheckSelect<T, Prisma__OrderClient<Order>, Prisma__OrderClient<OrderGetPayload<T>>>
+    ): Prisma__OrderClient<OrderGetPayload<T>>
 
     /**
      * Count the number of Orders.
@@ -2507,7 +2481,7 @@ export namespace Prisma {
     constructor(_dmmf: runtime.DMMFClass, _fetcher: PrismaClientFetcher, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
     readonly [Symbol.toStringTag]: 'PrismaClientPromise';
 
-    country<T extends CountryArgs = {}>(args?: Subset<T, CountryArgs>): CheckSelect<T, Prisma__CountryClient<Country | Null>, Prisma__CountryClient<CountryGetPayload<T> | Null>>;
+    country<T extends CountryArgs= {}>(args?: Subset<T, CountryArgs>): Prisma__CountryClient<CountryGetPayload<T> | Null>;
 
     private get _document();
     /**
@@ -3004,23 +2978,19 @@ export namespace Prisma {
     name?: boolean
   }
 
-  export type SequelizeMetaGetPayload<
-    S extends boolean | null | undefined | SequelizeMetaArgs,
-    U = keyof S
-      > = S extends true
-        ? SequelizeMeta
-    : S extends undefined
-    ? never
-    : S extends SequelizeMetaArgs | SequelizeMetaFindManyArgs
-    ?'include' extends U
+
+  export type SequelizeMetaGetPayload<S extends boolean | null | undefined | SequelizeMetaArgs, U = keyof S> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? SequelizeMeta :
+    S extends undefined ? never :
+    S extends { include: any } & (SequelizeMetaArgs | SequelizeMetaFindManyArgs)
     ? SequelizeMeta 
-    : 'select' extends U
-    ? {
+    : S extends { select: any } & (SequelizeMetaArgs | SequelizeMetaFindManyArgs)
+      ? {
     [P in TrueKeys<S['select']>]:
     P extends keyof SequelizeMeta ? SequelizeMeta[P] : never
   } 
-    : SequelizeMeta
-  : SequelizeMeta
+      : SequelizeMeta
 
 
   type SequelizeMetaCountArgs = Merge<
@@ -3043,7 +3013,7 @@ export namespace Prisma {
     **/
     findUnique<T extends SequelizeMetaFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
       args: SelectSubset<T, SequelizeMetaFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'SequelizeMeta'> extends True ? CheckSelect<T, Prisma__SequelizeMetaClient<SequelizeMeta>, Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>> : CheckSelect<T, Prisma__SequelizeMetaClient<SequelizeMeta | null, null>, Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T> | null, null>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'SequelizeMeta'> extends True ? Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>> : Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T> | null, null>
 
     /**
      * Find the first SequelizeMeta that matches the filter.
@@ -3060,7 +3030,7 @@ export namespace Prisma {
     **/
     findFirst<T extends SequelizeMetaFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
       args?: SelectSubset<T, SequelizeMetaFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'SequelizeMeta'> extends True ? CheckSelect<T, Prisma__SequelizeMetaClient<SequelizeMeta>, Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>> : CheckSelect<T, Prisma__SequelizeMetaClient<SequelizeMeta | null, null>, Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T> | null, null>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'SequelizeMeta'> extends True ? Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>> : Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T> | null, null>
 
     /**
      * Find zero or more SequelizeMetas that matches the filter.
@@ -3080,7 +3050,7 @@ export namespace Prisma {
     **/
     findMany<T extends SequelizeMetaFindManyArgs>(
       args?: SelectSubset<T, SequelizeMetaFindManyArgs>
-    ): CheckSelect<T, PrismaPromise<Array<SequelizeMeta>>, PrismaPromise<Array<SequelizeMetaGetPayload<T>>>>
+    ): PrismaPromise<Array<SequelizeMetaGetPayload<T>>>
 
     /**
      * Create a SequelizeMeta.
@@ -3096,7 +3066,7 @@ export namespace Prisma {
     **/
     create<T extends SequelizeMetaCreateArgs>(
       args: SelectSubset<T, SequelizeMetaCreateArgs>
-    ): CheckSelect<T, Prisma__SequelizeMetaClient<SequelizeMeta>, Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>>
+    ): Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>
 
     /**
      * Create many SequelizeMetas.
@@ -3128,7 +3098,7 @@ export namespace Prisma {
     **/
     delete<T extends SequelizeMetaDeleteArgs>(
       args: SelectSubset<T, SequelizeMetaDeleteArgs>
-    ): CheckSelect<T, Prisma__SequelizeMetaClient<SequelizeMeta>, Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>>
+    ): Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>
 
     /**
      * Update one SequelizeMeta.
@@ -3147,7 +3117,7 @@ export namespace Prisma {
     **/
     update<T extends SequelizeMetaUpdateArgs>(
       args: SelectSubset<T, SequelizeMetaUpdateArgs>
-    ): CheckSelect<T, Prisma__SequelizeMetaClient<SequelizeMeta>, Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>>
+    ): Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>
 
     /**
      * Delete zero or more SequelizeMetas.
@@ -3205,7 +3175,7 @@ export namespace Prisma {
     **/
     upsert<T extends SequelizeMetaUpsertArgs>(
       args: SelectSubset<T, SequelizeMetaUpsertArgs>
-    ): CheckSelect<T, Prisma__SequelizeMetaClient<SequelizeMeta>, Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>>
+    ): Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>
 
     /**
      * Find one SequelizeMeta that matches the filter or throw
@@ -3221,7 +3191,7 @@ export namespace Prisma {
     **/
     findUniqueOrThrow<T extends SequelizeMetaFindUniqueOrThrowArgs>(
       args?: SelectSubset<T, SequelizeMetaFindUniqueOrThrowArgs>
-    ): CheckSelect<T, Prisma__SequelizeMetaClient<SequelizeMeta>, Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>>
+    ): Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>
 
     /**
      * Find the first SequelizeMeta that matches the filter or
@@ -3239,7 +3209,7 @@ export namespace Prisma {
     **/
     findFirstOrThrow<T extends SequelizeMetaFindFirstOrThrowArgs>(
       args?: SelectSubset<T, SequelizeMetaFindFirstOrThrowArgs>
-    ): CheckSelect<T, Prisma__SequelizeMetaClient<SequelizeMeta>, Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>>
+    ): Prisma__SequelizeMetaClient<SequelizeMetaGetPayload<T>>
 
     /**
      * Count the number of SequelizeMetas.
@@ -3724,14 +3694,13 @@ export namespace Prisma {
 
   export const OrderScalarFieldEnum: {
     id: 'id',
-    externalIdentifier: 'externalIdentifier',
     userId: 'userId',
     productId: 'productId',
     paymentTermsInDays: 'paymentTermsInDays',
+    countryId: 'countryId',
     deliveryAddress: 'deliveryAddress',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    countryId: 'countryId'
+    updatedAt: 'updatedAt'
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
@@ -3780,7 +3749,7 @@ export namespace Prisma {
     OR?: Enumerable<CountryWhereInput>
     NOT?: Enumerable<CountryWhereInput>
     id?: IntFilter | number
-    name?: StringNullableFilter | string | null
+    name?: StringFilter | string
     Order?: OrderListRelationFilter
   }
 
@@ -3809,7 +3778,7 @@ export namespace Prisma {
     OR?: Enumerable<CountryScalarWhereWithAggregatesInput>
     NOT?: Enumerable<CountryScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
-    name?: StringNullableWithAggregatesFilter | string | null
+    name?: StringWithAggregatesFilter | string
   }
 
   export type OrderWhereInput = {
@@ -3817,45 +3786,41 @@ export namespace Prisma {
     OR?: Enumerable<OrderWhereInput>
     NOT?: Enumerable<OrderWhereInput>
     id?: IntFilter | number
-    externalIdentifier?: StringNullableFilter | string | null
     userId?: IntNullableFilter | number | null
     productId?: IntNullableFilter | number | null
     paymentTermsInDays?: IntNullableFilter | number | null
     country?: XOR<CountryRelationFilter, CountryWhereInput>
+    countryId?: IntFilter | number
     deliveryAddress?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
-    countryId?: IntFilter | number
   }
 
   export type OrderOrderByWithRelationInput = {
     id?: SortOrder
-    externalIdentifier?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     paymentTermsInDays?: SortOrder
     country?: CountryOrderByWithRelationInput
+    countryId?: SortOrder
     deliveryAddress?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    countryId?: SortOrder
   }
 
   export type OrderWhereUniqueInput = {
     id?: number
-    externalIdentifier?: string
   }
 
   export type OrderOrderByWithAggregationInput = {
     id?: SortOrder
-    externalIdentifier?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     paymentTermsInDays?: SortOrder
+    countryId?: SortOrder
     deliveryAddress?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    countryId?: SortOrder
     _count?: OrderCountOrderByAggregateInput
     _avg?: OrderAvgOrderByAggregateInput
     _max?: OrderMaxOrderByAggregateInput
@@ -3868,14 +3833,13 @@ export namespace Prisma {
     OR?: Enumerable<OrderScalarWhereWithAggregatesInput>
     NOT?: Enumerable<OrderScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
-    externalIdentifier?: StringNullableWithAggregatesFilter | string | null
     userId?: IntNullableWithAggregatesFilter | number | null
     productId?: IntNullableWithAggregatesFilter | number | null
     paymentTermsInDays?: IntNullableWithAggregatesFilter | number | null
+    countryId?: IntWithAggregatesFilter | number
     deliveryAddress?: StringNullableWithAggregatesFilter | string | null
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
-    countryId?: IntWithAggregatesFilter | number
   }
 
   export type SequelizeMetaWhereInput = {
@@ -3908,43 +3872,42 @@ export namespace Prisma {
   }
 
   export type CountryCreateInput = {
-    name?: string | null
+    name: string
     Order?: OrderCreateNestedManyWithoutCountryInput
   }
 
   export type CountryUncheckedCreateInput = {
     id?: number
-    name?: string | null
+    name: string
     Order?: OrderUncheckedCreateNestedManyWithoutCountryInput
   }
 
   export type CountryUpdateInput = {
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     Order?: OrderUpdateManyWithoutCountryNestedInput
   }
 
   export type CountryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     Order?: OrderUncheckedUpdateManyWithoutCountryNestedInput
   }
 
   export type CountryCreateManyInput = {
     id?: number
-    name?: string | null
+    name: string
   }
 
   export type CountryUpdateManyMutationInput = {
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type CountryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type OrderCreateInput = {
-    externalIdentifier?: string | null
     userId?: number | null
     productId?: number | null
     paymentTermsInDays?: number | null
@@ -3956,18 +3919,16 @@ export namespace Prisma {
 
   export type OrderUncheckedCreateInput = {
     id?: number
-    externalIdentifier?: string | null
     userId?: number | null
     productId?: number | null
     paymentTermsInDays?: number | null
+    countryId: number
     deliveryAddress?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    countryId: number
   }
 
   export type OrderUpdateInput = {
-    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     productId?: NullableIntFieldUpdateOperationsInput | number | null
     paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
@@ -3979,30 +3940,27 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     productId?: NullableIntFieldUpdateOperationsInput | number | null
     paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
+    countryId?: IntFieldUpdateOperationsInput | number
     deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    countryId?: IntFieldUpdateOperationsInput | number
   }
 
   export type OrderCreateManyInput = {
     id?: number
-    externalIdentifier?: string | null
     userId?: number | null
     productId?: number | null
     paymentTermsInDays?: number | null
+    countryId: number
     deliveryAddress?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    countryId: number
   }
 
   export type OrderUpdateManyMutationInput = {
-    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     productId?: NullableIntFieldUpdateOperationsInput | number | null
     paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
@@ -4013,14 +3971,13 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     productId?: NullableIntFieldUpdateOperationsInput | number | null
     paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
+    countryId?: IntFieldUpdateOperationsInput | number
     deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    countryId?: IntFieldUpdateOperationsInput | number
   }
 
   export type SequelizeMetaCreateInput = {
@@ -4062,10 +4019,10 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type StringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
+  export type StringFilter = {
+    equals?: string
+    in?: Enumerable<string>
+    notIn?: Enumerable<string>
     lt?: string
     lte?: string
     gt?: string
@@ -4074,7 +4031,7 @@ export namespace Prisma {
     startsWith?: string
     endsWith?: string
     mode?: QueryMode
-    not?: NestedStringNullableFilter | string | null
+    not?: NestedStringFilter | string
   }
 
   export type OrderListRelationFilter = {
@@ -4126,10 +4083,10 @@ export namespace Prisma {
     _max?: NestedIntFilter
   }
 
-  export type StringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
+  export type StringWithAggregatesFilter = {
+    equals?: string
+    in?: Enumerable<string>
+    notIn?: Enumerable<string>
     lt?: string
     lte?: string
     gt?: string
@@ -4138,10 +4095,10 @@ export namespace Prisma {
     startsWith?: string
     endsWith?: string
     mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
+    not?: NestedStringWithAggregatesFilter | string
+    _count?: NestedIntFilter
+    _min?: NestedStringFilter
+    _max?: NestedStringFilter
   }
 
   export type IntNullableFilter = {
@@ -4160,6 +4117,21 @@ export namespace Prisma {
     isNot?: CountryWhereInput
   }
 
+  export type StringNullableFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    mode?: QueryMode
+    not?: NestedStringNullableFilter | string | null
+  }
+
   export type DateTimeFilter = {
     equals?: Date | string
     in?: Enumerable<Date> | Enumerable<string>
@@ -4173,14 +4145,13 @@ export namespace Prisma {
 
   export type OrderCountOrderByAggregateInput = {
     id?: SortOrder
-    externalIdentifier?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     paymentTermsInDays?: SortOrder
+    countryId?: SortOrder
     deliveryAddress?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    countryId?: SortOrder
   }
 
   export type OrderAvgOrderByAggregateInput = {
@@ -4193,26 +4164,24 @@ export namespace Prisma {
 
   export type OrderMaxOrderByAggregateInput = {
     id?: SortOrder
-    externalIdentifier?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     paymentTermsInDays?: SortOrder
+    countryId?: SortOrder
     deliveryAddress?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    countryId?: SortOrder
   }
 
   export type OrderMinOrderByAggregateInput = {
     id?: SortOrder
-    externalIdentifier?: SortOrder
     userId?: SortOrder
     productId?: SortOrder
     paymentTermsInDays?: SortOrder
+    countryId?: SortOrder
     deliveryAddress?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    countryId?: SortOrder
   }
 
   export type OrderSumOrderByAggregateInput = {
@@ -4239,6 +4208,24 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter
   }
 
+  export type StringNullableWithAggregatesFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter | string | null
+    _count?: NestedIntNullableFilter
+    _min?: NestedStringNullableFilter
+    _max?: NestedStringNullableFilter
+  }
+
   export type DateTimeWithAggregatesFilter = {
     equals?: Date | string
     in?: Enumerable<Date> | Enumerable<string>
@@ -4253,21 +4240,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter
   }
 
-  export type StringFilter = {
-    equals?: string
-    in?: Enumerable<string>
-    notIn?: Enumerable<string>
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    mode?: QueryMode
-    not?: NestedStringFilter | string
-  }
-
   export type SequelizeMetaCountOrderByAggregateInput = {
     name?: SortOrder
   }
@@ -4278,24 +4250,6 @@ export namespace Prisma {
 
   export type SequelizeMetaMinOrderByAggregateInput = {
     name?: SortOrder
-  }
-
-  export type StringWithAggregatesFilter = {
-    equals?: string
-    in?: Enumerable<string>
-    notIn?: Enumerable<string>
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter | string
-    _count?: NestedIntFilter
-    _min?: NestedStringFilter
-    _max?: NestedStringFilter
   }
 
   export type OrderCreateNestedManyWithoutCountryInput = {
@@ -4312,8 +4266,8 @@ export namespace Prisma {
     connect?: Enumerable<OrderWhereUniqueInput>
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
   export type OrderUpdateManyWithoutCountryNestedInput = {
@@ -4374,12 +4328,12 @@ export namespace Prisma {
     update?: XOR<CountryUpdateWithoutOrderInput, CountryUncheckedUpdateWithoutOrderInput>
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type NestedIntFilter = {
@@ -4393,10 +4347,10 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type NestedStringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
+  export type NestedStringFilter = {
+    equals?: string
+    in?: Enumerable<string>
+    notIn?: Enumerable<string>
     lt?: string
     lte?: string
     gt?: string
@@ -4404,7 +4358,7 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
-    not?: NestedStringNullableFilter | string | null
+    not?: NestedStringFilter | string
   }
 
   export type NestedIntWithAggregatesFilter = {
@@ -4434,10 +4388,10 @@ export namespace Prisma {
     not?: NestedFloatFilter | number
   }
 
-  export type NestedStringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
+  export type NestedStringWithAggregatesFilter = {
+    equals?: string
+    in?: Enumerable<string>
+    notIn?: Enumerable<string>
     lt?: string
     lte?: string
     gt?: string
@@ -4445,10 +4399,10 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
+    not?: NestedStringWithAggregatesFilter | string
+    _count?: NestedIntFilter
+    _min?: NestedStringFilter
+    _max?: NestedStringFilter
   }
 
   export type NestedIntNullableFilter = {
@@ -4460,6 +4414,20 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntNullableFilter | number | null
+  }
+
+  export type NestedStringNullableFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    not?: NestedStringNullableFilter | string | null
   }
 
   export type NestedDateTimeFilter = {
@@ -4500,6 +4468,23 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter | number | null
   }
 
+  export type NestedStringNullableWithAggregatesFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    not?: NestedStringNullableWithAggregatesFilter | string | null
+    _count?: NestedIntNullableFilter
+    _min?: NestedStringNullableFilter
+    _max?: NestedStringNullableFilter
+  }
+
   export type NestedDateTimeWithAggregatesFilter = {
     equals?: Date | string
     in?: Enumerable<Date> | Enumerable<string>
@@ -4514,39 +4499,7 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter
   }
 
-  export type NestedStringFilter = {
-    equals?: string
-    in?: Enumerable<string>
-    notIn?: Enumerable<string>
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringFilter | string
-  }
-
-  export type NestedStringWithAggregatesFilter = {
-    equals?: string
-    in?: Enumerable<string>
-    notIn?: Enumerable<string>
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringWithAggregatesFilter | string
-    _count?: NestedIntFilter
-    _min?: NestedStringFilter
-    _max?: NestedStringFilter
-  }
-
   export type OrderCreateWithoutCountryInput = {
-    externalIdentifier?: string | null
     userId?: number | null
     productId?: number | null
     paymentTermsInDays?: number | null
@@ -4557,7 +4510,6 @@ export namespace Prisma {
 
   export type OrderUncheckedCreateWithoutCountryInput = {
     id?: number
-    externalIdentifier?: string | null
     userId?: number | null
     productId?: number | null
     paymentTermsInDays?: number | null
@@ -4597,23 +4549,22 @@ export namespace Prisma {
     OR?: Enumerable<OrderScalarWhereInput>
     NOT?: Enumerable<OrderScalarWhereInput>
     id?: IntFilter | number
-    externalIdentifier?: StringNullableFilter | string | null
     userId?: IntNullableFilter | number | null
     productId?: IntNullableFilter | number | null
     paymentTermsInDays?: IntNullableFilter | number | null
+    countryId?: IntFilter | number
     deliveryAddress?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
-    countryId?: IntFilter | number
   }
 
   export type CountryCreateWithoutOrderInput = {
-    name?: string | null
+    name: string
   }
 
   export type CountryUncheckedCreateWithoutOrderInput = {
     id?: number
-    name?: string | null
+    name: string
   }
 
   export type CountryCreateOrConnectWithoutOrderInput = {
@@ -4627,17 +4578,16 @@ export namespace Prisma {
   }
 
   export type CountryUpdateWithoutOrderInput = {
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type CountryUncheckedUpdateWithoutOrderInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type OrderCreateManyCountryInput = {
     id?: number
-    externalIdentifier?: string | null
     userId?: number | null
     productId?: number | null
     paymentTermsInDays?: number | null
@@ -4647,7 +4597,6 @@ export namespace Prisma {
   }
 
   export type OrderUpdateWithoutCountryInput = {
-    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     productId?: NullableIntFieldUpdateOperationsInput | number | null
     paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
@@ -4658,7 +4607,6 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateWithoutCountryInput = {
     id?: IntFieldUpdateOperationsInput | number
-    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     productId?: NullableIntFieldUpdateOperationsInput | number | null
     paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
@@ -4669,7 +4617,6 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateManyWithoutOrderInput = {
     id?: IntFieldUpdateOperationsInput | number
-    externalIdentifier?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     productId?: NullableIntFieldUpdateOperationsInput | number | null
     paymentTermsInDays?: NullableIntFieldUpdateOperationsInput | number | null
