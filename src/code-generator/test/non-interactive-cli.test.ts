@@ -15,7 +15,7 @@ afterEach(async () => {
 
 describe("Non-interactive CLI component tests", () => {
   describe("ORM type", () => {
-    test.only("When ORM type is Prisma, then the created DAL folder has prisma dependency and files", async () => {
+    test("When ORM type is Prisma, then the created DAL folder has prisma dependency and files", async () => {
       // Arrange
 
       // Act
@@ -53,6 +53,48 @@ describe("Non-interactive CLI component tests", () => {
         isSequelizeInPackageJSON: false,
         isPrismaFolderInDALLayer: true,
         isPrismaInPackageJSON: true,
+      });
+    });
+
+    test.only("When ORM type is sequelize, then the created DAL folder has only sequelize dependency and files", async () => {
+      // Arrange
+
+      // Act
+      await execa("ts-node", [
+        "./bin/cli.ts",
+        "immediate",
+        `--target-directory=${emptyFolderForATest}`,
+        `--app-name=test`,
+        "--orm=sequelize",
+      ]);
+
+      // Assert
+      const rootPath = path.join(
+        emptyFolderForATest,
+        "test",
+        "services",
+        "order-service"
+      );
+      const isPrismaInPackageJSON = await testHelpers.doesFileContainPhrase(
+        path.join(rootPath, "package.json"),
+        "prisma"
+      );
+      const isSequelizeInPackageJSON = await testHelpers.doesFileContainPhrase(
+        path.join(rootPath, "package.json"),
+        "sequelize"
+      );
+      const isSequelizeFolderInDALLayer =
+        await testHelpers.doesFolderExistInPath(
+          path.join(rootPath, "data-access", "config")
+        );
+      expect({
+        isSequelizeInPackageJSON,
+        isPrismaInPackageJSON,
+        isSequelizeFolderInDALLayer,
+      }).toStrictEqual({
+        isSequelizeInPackageJSON: true,
+        isSequelizeFolderInDALLayer: true,
+        isPrismaInPackageJSON: false,
       });
     });
   });

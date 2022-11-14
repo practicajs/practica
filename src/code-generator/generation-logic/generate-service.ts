@@ -87,6 +87,19 @@ async function adjustCodeBasedOnPreferences(
       from: removeSequelizeRegEx,
       to: "",
     });
+  } else if (options.ORM === "sequelize") {
+    const prismaFolder = path.join(microservicePath, "data-access-prisma");
+    console.log(prismaFolder);
+    await fsExtra.rm(prismaFolder, { recursive: true });
+    const removeSequelizeRegEx = new RegExp(
+      '"(.*?)sequelize(.*?)": "(.*)"(,?)\n',
+      "g"
+    );
+    await replacementUtilities.replaceInFile({
+      files: "package.json",
+      from: removeSequelizeRegEx,
+      to: "",
+    });
   }
 }
 
