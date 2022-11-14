@@ -87,14 +87,19 @@ describe("Non-interactive CLI component tests", () => {
         await testHelpers.doesFolderExistInPath(
           path.join(rootPath, "data-access", "config")
         );
+      const isPrismaFolderThere = await testHelpers.doesFolderExistInPath(
+        path.join(rootPath, "data-access-prisma")
+      );
       expect({
         isSequelizeInPackageJSON,
         isPrismaInPackageJSON,
         isSequelizeFolderInDALLayer,
+        isPrismaFolderThere,
       }).toStrictEqual({
         isSequelizeInPackageJSON: true,
         isSequelizeFolderInDALLayer: true,
         isPrismaInPackageJSON: false,
+        isPrismaFolderThere: false,
       });
     });
   });

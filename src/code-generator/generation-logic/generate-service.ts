@@ -92,7 +92,7 @@ async function adjustCodeBasedOnPreferences(
     console.log(prismaFolder);
     await fsExtra.rm(prismaFolder, { recursive: true });
     const removeSequelizeRegEx = new RegExp(
-      '"(.*?)sequelize(.*?)": "(.*)"(,?)\n',
+      '"(.*?)prisma(.*?)": "(.*)"(,?)\n',
       "g"
     );
     await replacementUtilities.replaceInFile({
