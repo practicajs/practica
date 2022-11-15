@@ -17,6 +17,9 @@ module.exports = {
       paymentTermsInDays: {
         type: Sequelize.INTEGER,
       },
+      countryId: {
+        type: Sequelize.INTEGER,
+      },
       deliveryAddress: {
         type: Sequelize.STRING,
       },
@@ -30,7 +33,7 @@ module.exports = {
       },
     });
 
-    await queryInterface.createTable('Countries', {
+    await queryInterface.createTable('Country', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -43,7 +46,7 @@ module.exports = {
     });
 
     await queryInterface.bulkInsert(
-      'Countries',
+      'Country',
       [
         {
           name: 'Italy',
