@@ -11,10 +11,11 @@ export const generateApp = async (options: generationOptions) => {
 
   await createTargetPathOrThrowIfExists(targetPath, options.overrideIfExists);
   await copyAppFilesToTargetPath(targetPath);
+  await adjustCodeBasedOnFeatures(targetPath, options);
+
   if (options.installDependencies) {
     await installDependencies(targetPath);
   }
-  await adjustCodeBasedOnFeatures(targetPath, options);
   return;
 };
 
