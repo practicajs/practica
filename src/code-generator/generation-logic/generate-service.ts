@@ -1,9 +1,9 @@
-import * as replacementUtilities from "replace-in-file";
 import fsExtra from "fs-extra";
 import path from "path";
 import execa from "execa";
 import { generationOptions } from "./generation-options";
 import { AppError } from "../error-handling";
+import { chooseORM } from "./features/choose-orm";
 // This is where the code generation logic lives. In high-level, based on the provided option, it creates
 // a folder, decides which code to generate, run the code through a templating engine and emit it to the target folder
 export const generateApp = async (options: generationOptions) => {
@@ -14,7 +14,7 @@ export const generateApp = async (options: generationOptions) => {
   if (options.installDependencies) {
     await installDependencies(targetPath);
   }
-  await adjustCodeBasedOnPreferences(targetPath, options);
+  await adjustCodeBasedOnFeatures(targetPath, options);
   return;
 };
 
@@ -62,65 +62,10 @@ async function installDependencies(targetPath: string) {
   });
 }
 
-async function adjustCodeBasedOnPreferences(
+async function adjustCodeBasedOnFeatures(
   generatedAppRoot: string,
   options: generationOptions
 ) {
-  console.log("adjusting soon", options);
-  const microservicePath = getMicroservicePath(generatedAppRoot);
-  if (options.ORM === "prisma") {
-    console.log("adjusting for prisma");
-    const sequelizeFolder = path.join(microservicePath, "data-access");
-    console.log(sequelizeFolder);
-    await fsExtra.rm(sequelizeFolder, { recursive: true });
-    const prismaFolder = path.join(microservicePath, "data-access-prisma");
-    const prismaFolderNewName = path.join(microservicePath, "data-access");
-    console.log(prismaFolderNewName);
-    await fsExtra.rename(prismaFolder, prismaFolderNewName);
-    console.log("renamed");
-    const phrasesToRemove = [
-      '"db:migrate":().*,\n',
-      '"(.*?)sequelize(.*?)": "(.*)"(,?)\n',
-    ];
-    for (const phraseToReplace of phrasesToRemove) {
-      const fromExpression = new RegExp(phraseToReplace, "g");
-
-      await replacementUtilities.replaceInFile({
-        files: path.join(microservicePath, "package.json"),
-        from: fromExpression,
-        to: "",
-      });
-    }
-
-    await replacementUtilities.replaceInFile({
-      files: path.join(microservicePath, "package.json"),
-      from: "db:migrate:prisma",
-      to: "db:migrate",
-    });
-
-    await replacementUtilities.replaceInFile({
-      files: path.join(microservicePath, "package.json"),
-      from: "data-access-prisma/prisma/schema.prisma",
-      to: "data-access/prisma/schema.prisma",
-    });
-  } else if (options.ORM === "sequelize") {
-    const prismaFolder = path.join(microservicePath, "data-access-prisma");
-    await fsExtra.rm(prismaFolder, { recursive: true });
-    const patternsToRemove = [
-      '"(.*?)prisma(.*?)": "(.*)"(,?)\n',
-      '"db:generate-client"(.*?)\n',
-    ];
-    for (const pattern of patternsToRemove) {
-      const result = await replacementUtilities.replaceInFile({
-        files: path.join(microservicePath, "package.json"),
-        from: new RegExp(pattern, "g"),
-        to: "",
-      });
-      console.log("💜", result);
-    }
-  }
-}
-
-function getMicroservicePath(rootPath: string) {
-  return path.join(rootPath, "services", "order-service");
+  await chooseORM(generatedAppRoot, options);
+  // Other features will be added here
 }
