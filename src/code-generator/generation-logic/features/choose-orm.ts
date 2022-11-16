@@ -51,6 +51,11 @@ async function adjustTheCodeToSequelizeORM(microservicePath: string) {
     '"(.*?)prisma(.*?)": "(.*)"(,?)\n',
     ""
   );
+  await replacePhraseInFile(
+    packageJSONPath,
+    '"(.*?)postinstall(.*?)": "(.*)"(,?)\n',
+    ""
+  );
   await replacePhraseInFile(packageJSONPath, '"db:generate-client"(.*?)\n', "");
 }
 
