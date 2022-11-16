@@ -57,7 +57,6 @@ describe("Non-interactive CLI component tests", () => {
     });
 
     test("When ORM type is sequelize, then the created DAL folder has only sequelize dependency and files", async () => {
-      console.log(emptyFolderForATest);
       // Arrange
 
       // Act

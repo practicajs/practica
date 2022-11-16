@@ -13,7 +13,8 @@
     "db:generate-client": "npx prisma generate --schema data-access-prisma/prisma/schema.prisma",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "installDependencies": "npm install"
+    "installDependencies": "npm install",
+    "postinstall": "npm run db:generate-client"
   },
   "author": "Practica team",
   "license": "ISC",
