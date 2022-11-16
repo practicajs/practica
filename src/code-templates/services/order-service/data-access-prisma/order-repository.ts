@@ -1,6 +1,5 @@
-import * as prismaTypes from './prisma/client/index.d';
-// eslint-disable-next-line import/no-relative-packages
-import { PrismaClient } from './prisma/client';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { PrismaClient } from '.prisma/client';
 
 const prisma = new PrismaClient();
 

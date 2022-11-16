@@ -22,15 +22,23 @@ tags:
 
 Node.js is maturing. Many patterns and frameworks were embraced - it's my belief that developers' productivity 
 
-## TOC - Patterns to reconsider
+## TOC
 
-1. Dotenv
-2. Calling a service from a controller
+1. Soon
+2. Soon
+
+## What is the same?
+
+Sometimes the easiest way to understand differences between options, is to understand first what is similar
+
+Performance, core features, migration, seeding, 
 
 <!--truncate-->
 ## 1. Type safety across the board
 
-**💁‍♂️ What is it about:** A 
+**🌈 Ideas:** Show query with relations that is not typed in Sequelize/TypeORM, should query with group and counts not typed in Sequelize/TypeORM, show the weird TS interface that seq/to have - but also the non-standard workflow that Prisma client brings, other ideas here?
+
+**💁‍♂️ What is it about:** 
 
 
 ```javascript
@@ -50,8 +58,98 @@ Node.js is maturing. Many patterns and frameworks were embraced - it's my belief
 
 **🏆 Is Prisma doing better?:** I think so
 
+## 2. Different level of progress and maintenance
+
+**🌈 Ideas:** Show how higher is Prisma commits frequency (graphs and numbers), show maintenance problems in existing ORMs like issues with people wondering whether it is still maintained, 
+
+**💁‍♂️ What is it about:** 
 
 
+```javascript
+// Problem with Sequelize, include is string, count is string
+// Weird syntax
+```
+
+**📊 How important:** Image of bar
+
+**🤔 How Prisma is different:** Foo
+
+```javascript
+// Example of include and count
+// Raw with types
+```
+
+
+**🏆 Is Prisma doing better?:** I think so
+
+## 3. No active records here!
+
+**🌈 Ideas:** In every reputable architecture DB narratives are encapsulated in a layer (the mapper and repository patterns), the active record tramples this principle (bring some quotes), Prisma returns POJOs and POJOs only. You still to wrap it in a layer
+
+**💁‍♂️ What is it about:** 
+
+
+```javascript
+// Problem with Sequelize, include is string, count is string
+// Weird syntax
+```
+
+**📊 How important:** Image of bar
+
+**🤔 How Prisma is different:** Foo
+
+```javascript
+// Example of include and count
+// Raw with types
+```
+
+## 4. A different level of documentation
+
+**🌈 Ideas:** Analysis of the number of documentation pages, the number of lines per topic, topics that are not even discussed in Sequelize/TypeORM, maybe even documentation commits?
+
+**💁‍♂️ What is it about:** 
+
+
+```javascript
+// Problem with Sequelize, include is string, count is string
+// Weird syntax
+```
+
+**📊 How important:** Image of bar
+
+**🤔 How Prisma is different:** Foo
+
+```javascript
+// Example of include and count
+// Raw with types
+```
+
+
+**🏆 Is Prisma doing better?:** I think so
+
+## 5. Metric and tracing
+
+**🌈 Ideas:** Example of Prometheus and OpenTracing, show that some is achievable with Sequelize/TypeORM but not as mature and easy to use
+
+**💁‍♂️ What is it about:** 
+
+
+```javascript
+// Problem with Sequelize, include is string, count is string
+// Weird syntax
+```
+
+**📊 How important:** Image of bar
+
+**🤔 How Prisma is different:** Foo
+
+```javascript
+// Example of include and count
+// Raw with types
+```
+
+
+**🏆 Is Prisma doing better?:** I think so
 
 ## Closing
 
