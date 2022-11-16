@@ -16,6 +16,7 @@ export default function defineRoutes(expressApp: express.Application) {
       return res.json(addOrderResponse);
     } catch (error) {
       next(error);
+      return undefined;
     }
   });
 
