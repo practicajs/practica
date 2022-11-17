@@ -84,7 +84,7 @@ Performance, core features, migration, seeding,
 
 ## 3. No active records here!
 
-**🌈 Ideas:** In every reputable architecture DB narratives are encapsulated in a layer (the mapper and repository patterns), the active record tramples this principle (bring some quotes), Prisma returns POJOs and POJOs only. You still to wrap it in a layer
+**🌈 Ideas:** In every reputable architecture DB narratives are encapsulated in a layer (the mapper and repository patterns), the active record tramples this principle (bring some quotes), Prisma returns POJOs and POJOs only. You still to wrap it in a layer, no lazy loading, 
 
 **💁‍♂️ What is it about:** 
 
@@ -162,3 +162,29 @@ I hope that these thoughts, at least one of them, made you re-consider adding a 
 - [How to be a better Node.js developer in 2020](https://yonigoldberg.medium.com/20-ways-to-become-a-better-node-js-developer-in-2020-d6bd73fcf424). The 2023 version is coming soon
 - [Practica.js - A Node.js starter](https://github.com/practicajs/practica)
 - [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices)
+
+
+**Ideas**
+
+**Ideas**
+N+1
+E
+It's repository pattern! No polymorphic look
+GIS
+Serverless heavy
+Protection - at least one unique field, varchar-191, 
+"break down quickly" - not true, it's hard to break it
+Find and count all
+
+** Complicaiton **
+Compare field with field, group with count, distinct, views, triggers
+Not supported: materialized view, 
+Group by and count: https://sebhastian.com/sequelize-group-by/
+Cursor based
+Prisma prevents shooting in the foot
+Opening - An opprtunity to see a from the ground up ORM
+Opening - Node.js is like an elegant man with tints, do we finally have the NHibernate?, 
+Ending - It might be NHibernate, not yet
+Check GitHub extensions
+Example how Prisma abstratcs - you can insert multiple M2M records (posts & categories in one call)
+Performance tests
