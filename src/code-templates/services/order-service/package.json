@@ -5,7 +5,7 @@
   "main": "./.dist/start.js",
   "scripts": {
     "start": "PORT=3000 PRETTY_PRINT=false node .dist/start.js",
-    "start:dev": "PORT=0 PRETTY_PRINT=true nodemon start.ts",
+    "start:dev": "PORT=3000 PRETTY_PRINT=true nodemon start.ts",
     "test": "PRETTY_PRINT=true jest --forceExit --verbose=true --runInBand",
     "test:dev": "jest --watch --silent --runInBand --coverage=false --reporters='default'",
     "test:dev:verbose": "jest --watch --verbose=true",
@@ -33,9 +33,9 @@
     "axios": "^0.26.1",
     "express": "^4.17.3",
     "helmet": "^6.0.0",
-    "sequelize": "^6.17.0",
     "node-notifier": "^10.0.1",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "sequelize": "^6.17.0"
   },
   "devDependencies": {
     "@jest-performance-reporter/core": "^2.1.2",

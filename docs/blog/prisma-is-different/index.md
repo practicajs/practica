@@ -1,8 +1,8 @@
 ---
-slug: popular-nodejs-pattern-and-tools-to-reconsider
+slug: how-prisma-is-different-than-your-casual-orm
 date: 2022-08-02T10:00
 hide_table_of_contents: true
-title: Popular Node.js patterns and tools to re-consider
+title: Is Prisma different than traditional ORMs?
 authors: [goldbergyoni]
 tags:
   [
@@ -18,89 +18,185 @@ tags:
   ]
 ---
 
-# Intro - Why discuss yet another ORM?
+## Intro - Why discuss yet another ORM (or the man who had staints on his suite)?
 
-Node.js is maturing. Many patterns and frameworks were embraced - it's my belief that developers' productivity 
+Mention practica.js, apply thresholds in learning (test runners example), here is something new, Node.js is like suite with staints, this is a strategic discussion
+
+I would keep my ORM sleep but although this duck
+
+"If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck" but this duck wears Louie Vitton bag, is being all over news, so I had to step out my ORM cave
+
+Is it a really that different? Should it surely be your next project even ORM? If you're the 'raw queries' girl, should you stop this pesky habit and switch to ORMs now? Let's find out
 
 ## TOC
 
-1. Soon
-2. Soon
+1. Things that are mostly the same
+2. Different things
+3. Closing
 
 ## What is the same?
 
 Sometimes the easiest way to understand differences between options, is to understand first what is similar
 
-Performance, core features, migration, seeding, 
+Performance, core features, migration, seeding, transaction, popularity, database specific column types, Uni-directional, bi-directional and self-referenced relations, pagination, Streaming raw results, db types, cli
+
+## What is fundamentally different?
 
 <!--truncate-->
-## 1. Type safety across the board
+### 1. Type safety across the board
 
-**🌈 Ideas:** Show query with relations that is not typed in Sequelize/TypeORM, should query with group and counts not typed in Sequelize/TypeORM, show the weird TS interface that seq/to have - but also the non-standard workflow that Prisma client brings, other ideas here?
+**🌈 Ideas:** Show query with relations that is not typed in Sequelize/TypeORM, should query with group and counts not typed in Sequelize/TypeORM, show the weird TS interface that seq/to have + the 4 different syntax - but also the non-standard workflow that Prisma client brings, other ideas here?
 
-**💁‍♂️ What is it about:** 
-
-
-```javascript
-// Problem with Sequelize, include is string, count is string
-// Weird syntax
-```
-
-**📊 How important:** Image of bar
-
-**🤔 How Prisma is different:** Foo
-
-```javascript
-// Example of include and count
-// Raw with types
-```
-
-
-**🏆 Is Prisma doing better?:** I think so
-
-## 2. Different level of progress and maintenance
-
-**🌈 Ideas:** Show how higher is Prisma commits frequency (graphs and numbers), show maintenance problems in existing ORMs like issues with people wondering whether it is still maintained, 
-
-**💁‍♂️ What is it about:** 
+**💁‍♂️ What is it about:** ORM's life is not easier since the TypeScript rise, to say the least. The need to support typed models/queries/etc yields a lot of developers sweat. Sequelize, for example, struggle to stabilize a TypeScript interface and by now offers 3 different syntaxes + one external library (sequelize-typescript) that offers yet another style. Look at the syntax below, this feels like an afterthought - a library that was not built for TypeScript and now tries to squeeze it in somehow. Despite the struggle, both Sequelize and TypeORM offer only partial type safety. Simple queries do return typed objects, but other common corner cases like attributes/projections leave you with brittle strings. Here are few examples:
 
 
 ```javascript
-// Problem with Sequelize, include is string, count is string
-// Weird syntax
+// Sequelize pesky TypeScript interface
+type OrderAttributes = {
+  id: number,
+  price: number,
+  // other attributes...
+};
+
+type OrderCreationAttributes = Optional<OrderAttributes, 'id'>;
+
+class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>> {
+  declare id: CreationOptional<number>;
+  declare price: number;
+}
 ```
-
-**📊 How important:** Image of bar
-
-**🤔 How Prisma is different:** Foo
 
 ```javascript
-// Example of include and count
-// Raw with types
+// Sequelize loose query types
+await getOrderModel().findAll({
+    where: { noneExistingField: 'noneExistingValue' },// TypeScript will catch this 👍
+    attributes: ['none-existing-field', 'another-imaginary-column'], //none existing columns 😟
+    include: 'no-such-table', //none existing table 😟
+  });
+  await getCountryModel().findByPk('price');//price is not a primary key column 😟
 ```
 
+Isn't it ironic...
 
-**🏆 Is Prisma doing better?:** I think so
+**📊 How important:** ![Medium importance](./medium-importance-slider.png)
+
+**🤔 How Prisma is different:** It takes a totally different approach by generating per-project client code that is fully typed. This client embodies types for everything: every query, relations and others. While other ORMs struggle to infer all the types from discrete models (including associations that are declared in other files), Prisma's offline code generation is easier: It can look through the entire DB relations, use custom generation code and build an almost perfect TypeScript experience. Why 'almost' perfect? for some reason, for migrations Prisma advocates using plain SQL which might result in a discrepancy between the code models and the DB schema. Other than that, this is how Prisma's client brings end to end type safety:
+
+
+```javascript
+await prisma.order.findUnique({
+    where: {
+      noneExistingField: 1, // TypeScript will catch this 👍
+    },
+    select: {
+      noneExistingRelation: { // TypeScript will catch this 👍
+        select: { id: true }, 
+      },
+      noneExistingField: true, // TypeScript will catch this 👍
+    },
+  });
+
+  await prisma.order.findUnique({
+    where: { price: 50 }, // Price has no unique constraint, TypeScript will catch this 👍
+  });
+```
+
+**🏆 Is Prisma doing better?:** Definitely
+
+## 2. Progress and maintenance
+
+**🌈 Ideas:** Looked like, 
+
+Show how higher is Prisma commits frequency (graphs and numbers), show maintenance problems in existing ORMs like issues with people wondering whether it is still maintained, 
+
+**💁‍♂️ What is it about:** OSS shines with small to medium libraries, history shows that larger project that demands massive maintenance work - the team is likely to struggle and even fade away. ORM is a maintenance beast - making it follow all the trends (e.g., ESM, TypeScript, new DB) with a volunteering team is almost not fair. Few years ago the future of TypeORM seemed very cloudy with people wondering whether it's still maintained 
+
+![Is TypeORM dead?](./typeorm-is-dead.png)
+
+
+With that, as of 2023, I was cheered up to realize how vibrant are TypeORM and Sequelize repositories. As part of writing this article I measured the GitHub traction and while Prisma seems to be superior, the 'pure' OSS alternatives are in a surprisingly in a good shape. All the appreciation of the world for the people who make this awesome OSS work. See graphs below
+
+
+**📊 How important:** ![Medium importance](./medium-importance-slider.png)
+
+**🤔 How Prisma is different:** With [40M$ in its pocket](https://techcrunch.com/2022/05/03/prisma-raises-40m-for-its/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAHBus4GsueUUPsvSXnhV0LR76aKwoLAu93rGk7D3TDdH2umce0jtkhQ_NvbA008svtEk-PHUl9e3xjsf7AP3k2WxR2JEk8J5rDldXywyxQsMRnkCcHuHdoDG4EyFs2R8z25HXG8qehbHiGOE2knjCOGTZlzRQzLhTONVQB7hL9xo) and 80 employee (!) Prisma should fire features like a machine gun. While looking at the numbers, x3 more commits for example, it definitely has more contribution, but the differences seem rather marginal than dramatic
+
+![Prisma has more commits](./commits-comparison.png)
+
+(Based on two Prisma's repository: [prisma/prisma](https://github.com/prisma/prisma) and [prisma-engines](https://github.com/prisma/prisma-engines))
+
+Metrics: issues age, amount of issues, patreon, downloads, 
+
+
+**🏆 Is Prisma doing better?:** Yes, but the alternatives are also doing well
 
 ## 3. No active records here!
 
-**🌈 Ideas:** In every reputable architecture DB narratives are encapsulated in a layer (the mapper and repository patterns), the active record tramples this principle (bring some quotes), Prisma returns POJOs and POJOs only. You still to wrap it in a layer, no lazy loading, 
-
-**💁‍♂️ What is it about:** 
+**💁‍♂️ What is it about:** Node in its early days was heavily inspired by Ruby (e.g., testing "describe"), many great patterns were embraced, [Active Record](https://en.wikipedia.org/wiki/Active_record_pattern) is not among the successful ones. What is this pattern about in a nutshell? say you deal with Orders in your system, with Active Record an Order object/class will hold both the entity properties, possible also some of the logic functions and also CRUD functions. Many find this pattern to be awful, why? ideally, when coding some logic/flow, one should not keep her mind busy with side effects and DB narratives. It also might be that accessing some property unconsciously invokes a heavy DB call (i.e., lazy loading). If not enough, in case of heavy logic, unit tests might be in order (i.e., read ['selective unit tests'](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/)) - it's going to be much harder to write unit tests against code that interacts with the DB. In fact, all of the respectable and popular architecture (e.g., DDD, clean, 3-tiers, etc) advocate to 'isolate the domain', separate the core/logic of the system from the surrounding technologies. With all of that said, both TypeORM and Sequelize support the Active Record pattern which is displayed in many examples within their documentation. Both also support other better patterns like the data mapper (see below), but they still open the door for doubtful patterns
 
 
 ```javascript
-// Problem with Sequelize, include is string, count is string
-// Weird syntax
+// TypeORM active records 😟
+
+@Entity()
+class Order extends BaseEntity {
+    @PrimaryGeneratedColumn()
+    id: number
+
+    @Column()
+    price: number
+
+    @ManyToOne(() => Product, (product) => product.order)
+    products: Product[]
+
+    // Other columns here
+}
+
+function updateOrder(orderToUpdate: Order){
+  if(orderToUpdate.price > 100){
+    // some logic here
+    orderToUpdate.status = "approval";
+    orderToUpdate.save(); // Side effect, harder to unit test this function 😟
+    orderToUpdate.products.forEach((products) =>{ // Remarkable query just went out (lazy loading), am I aware? 😟
+
+    })
+    orderToUpdate.usedConnection = ? // Should I assign this? Entity is cluttered with distracting DB related information 😟
+  }  
+}
+
+
+
 ```
 
-**📊 How important:** Image of bar
+**📊 How important:** ![Medium importance](./medium-importance-slider.png)
 
-**🤔 How Prisma is different:** Foo
+**🤔 How Prisma is different:** The better alternative is the data mapper pattern. It acts as a bridge, an adapter, between simple object notations (domain objects with properties) to the DB language, typically SQL. Call it with a plain JS object, POJO, get it saved in the DB. Simple. It won't add functions to the result objects or do anything beyond returning pure data, no surprising side effects. In its purest sense, this is a DB-related utility and completely detached from the business logic. While both Sequelize and TypeORM support this, Prisma offers *only* this style - no room for mistakes. In [Practica.js](https://github.com/practicajs/practica) we take it one step further and put the prisma models within the "DAL" layer and wrap it with the [repository pattern](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design). You may glimpse [into the code here](https://github.com/practicajs/practica/blob/21ff12ba19cceed9a3735c09d48184b5beb5c410/src/code-templates/services/order-service/domain/new-order-use-case.ts#L21), this is the business flow that calls the DAL layer
+
 
 ```javascript
-// Example of include and count
-// Raw with types
+// Prisma mapper like approach 👍
+
+// This was generated automatically by Prisma
+type Order {
+    id: number
+
+    price: number
+
+    products: Product[]
+
+    // Other columns here
+}
+
+function updateOrder(orderToUpdate: Order){
+  if(orderToUpdate.price > 100){
+    orderToUpdate.status = "approval";
+    prisma.order.update({ where: { id: orderToUpdate.id }, data: orderToUpdate }); 
+    // Side effect 👆, but an explicit one. The thoughtful coder will move this to another function. Since it's happening outside, mocking is possible 👍
+    products.forEach((products) =>{ // No lazy loading, the data is already here 👍
+
+    })
+  }  
+}
 ```
 
 ## 4. A different level of documentation
@@ -188,3 +284,6 @@ Ending - It might be NHibernate, not yet
 Check GitHub extensions
 Example how Prisma abstratcs - you can insert multiple M2M records (posts & categories in one call)
 Performance tests
+Error handling
+License: "It allows users to use the software for any purpose, to distribute it, to modify it, and to distribute modified versions of the software under the terms of the license, without concern for royalties"
+Prisma is shooting at 3 important things

@@ -11,5 +11,7 @@ type CountryRecord = {
 export async function getAllCountries(): Promise<CountryRecord[]> {
   const results = prisma.country.findMany();
 
+  prisma.order.update({ where: { id: 1 }, data: {} });
+
   return results;
 }

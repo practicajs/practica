@@ -1,4 +1,5 @@
 import * as orderRepository from '../data-access/order-repository';
+import * as orderRepositoryPrisma from '../data-access-prisma/order-repository';
 import paymentTermsService from './payment-terms-service';
 import { assertNewOrderIsValid } from './order-validators';
 import { assertUserExists } from './user-service-client';
@@ -23,6 +24,14 @@ export async function addOrder(newOrder: addOrderDTO) {
 
 export async function deleteOrder(userId) {
   return await orderRepository.deleteOrder(userId);
+}
+
+export async function playground() {
+  return await orderRepositoryPrisma.playground();
+}
+
+export async function playground2() {
+  return await orderRepository.playground2();
 }
 
 export async function getOrder(userId) {

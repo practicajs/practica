@@ -93,4 +93,4 @@ sidebar_label: ORM
     <td><img src="/img/docs/decisions/full.png"/><br/><br/>TBD</td>
     <td><img src="/img/docs/decisions/full.png"/><br/><br/>TBD</td>
 <td><img src="/img/docs/decisions/partial.png"/><br/><br/>TBD</td>
-<tr><td colspan="4" align="center"><h2>Other important dimensions to consider?</h2></td></tr></table>
+<td colspan="4" align="center"><h2>Other important dimensions to consider?</h2></td></tr></table>

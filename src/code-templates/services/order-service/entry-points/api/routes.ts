@@ -46,5 +46,17 @@ export default function defineRoutes(expressApp: express.Application) {
     res.status(204).end();
   });
 
+  router.post('/playground', async (req, res) => {
+    logger.info(`Order API was called to playground`);
+    const response = await newOrderUseCase.playground();
+    res.json(response);
+  });
+
+  router.post('/playground2', async (req, res) => {
+    logger.info(`Order API was called to playground`);
+    const response = await newOrderUseCase.playground2();
+    res.json(response);
+  });
+
   expressApp.use('/order', router);
 }
