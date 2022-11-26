@@ -1,6 +1,7 @@
 import { AppError } from "../error-handling";
 import { factorDefaultOptions } from "../generation-logic/generation-options";
 import { generateApp } from "../generation-logic/generate-service";
+import { spinner, cliTexts } from "../utils";
 
 export async function handleNonInteractiveCommand(options: any) {
   try {
@@ -10,17 +11,14 @@ export async function handleNonInteractiveCommand(options: any) {
       targetDirectory: options.targetDirectory || process.cwd(),
       appName: options.appName,
     });
+    spinner.start(cliTexts.nonInteractiveCli.onStart);
     await generateApp(generationOptions);
-    process.stdout.write(`
-    💚 You just treated yourself to an unmatched application starter
-    📝 Open with your code editor and start coding/learning
-    📗 Deepen your understanding by reading our article 'Coding with Practica': https://practica.dev/the-basics/coding-with-practica
-    `);
+    spinner.succeed(cliTexts.nonInteractiveCli.onSucceed);
   } catch (error: AppError | any) {
     const errorMessageToUser = error.message
-      ? `❣️ ${error.message}`
-      : `❣️ Embarrassingly our code generator failed. Yeah, almost 100% test coverage did not help here. Could you be nice to us and open an issue?`;
-    console.error(errorMessageToUser);
+      ? `${error.message}`
+      : cliTexts.nonInteractiveCli.onError.default;
+    spinner.fail(errorMessageToUser);
     process.exit(1);
   }
 }

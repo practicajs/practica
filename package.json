@@ -59,6 +59,7 @@
     "ink-spinner": "^4.0.3",
     "ink-task-list": "^1.1.1",
     "ink-text-input": "^4.0.3",
+    "ora": "5.4.1",
     "prompts": "^2.4.2",
     "react": "^17.0.2"
   },
@@ -66,6 +67,7 @@
     "@types/axios": "^0.14.0",
     "@types/figlet": "^1.5.4",
     "@types/jest": "^27.4.1",
+    "@types/ora": "^3.2.0",
     "@types/prettier": "^2.4.4",
     "@types/sinon": "^10.0.11",
     "axios": "^0.27.2",
