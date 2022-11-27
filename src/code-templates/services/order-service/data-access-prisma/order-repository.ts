@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-shadow */
 import { PrismaClient } from '.prisma/client';
 
 const prisma = new PrismaClient({
@@ -42,6 +44,21 @@ export async function getOrderById(id: number) {
     include: { country: true },
   });
 
+  // eslint-disable-next-line import/no-extraneous-dependencies, @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // eslint-disable-next-line import/no-extraneous-dependencies
+  import { PrismaClient } from '.prisma/client';
+
+  const prisma = new PrismaClient();
+
+  await prisma.order.create({
+    data: {
+      userId: 1,
+      productId: 1,
+      countryId: 1,
+    },
+  });
+
   return resultOrder;
 }
 
@@ -55,41 +72,91 @@ export async function playground() {
   //     deliveryAddress: 'test',
   //   },
   // });
-  const result = await prisma.order.findMany({
-    select: {
-      userId: true,
-      country: {
-        select: { name: true, id: true },
-      },
-    },
-  });
+  // const result = await prisma.order.findMany({
+  //   select: {
+  //     userId: true,
+  //     productId: true,
+  //     country: {
+  //       select: { name: true, id: true },
+  //     },
+  //   },
+  // });
 
-  return result;
-}
+  // const result = await prisma.order.groupBy({
+  //   by: ['countryId'],
+  //   _sum: { paymentTermsInDays: true },
+  //   where: {
+  //     createdAt: {
+  //       gt: new Date('2021-01-01'),
+  //     },
+  //   },
+  //   having: {
+  //     paymentTermsInDays: {
+  //       _count: {
+  //         gt: 20,
+  //       },
+  //     },
+  //   },
+  // });
 
-export async function addOrder(newOrderRequest: Omit<OrderRecord, 'id'>) {
-  await prisma.order.findUnique({
+  // const result2 = await prisma.order.findMany({
+  //   orderBy: {
+  //     country: { name: 'asc' },
+  //   },
+  //   select: {
+  //     userId: true,
+  //     productId: true,
+  //   },
+  // });
+
+  const result3 = await prisma.order.groupBy({
+    by: ['countryId'],
+    _sum: { paymentTermsInDays: true },
     where: {
-      noneExistingField: 1,
-    },
-    select: {
-      noneExistingRelation: {
-        select: { id: true },
+      country: {
+        name: 'Japan',
       },
-      noneExistingField: true,
     },
   });
 
-  await prisma.order.findUnique({
-    where: { price: 50 },
-  });
+  // const groupUsers = await prisma.user.groupBy({
+  //   by: ['country'],
+  //   where: {
+  //     email: {
+  //       contains: 'prisma.io',
+  //     },
+  //   },
+  //   _sum: {
+  //     profileViews: true,
+  //   },
+  //   having: {
+  //     profileViews: {
+  //       _avg: {
+  //         gt: 100,
+  //       },
+  //     },
+  //   },
+  // })
 
-  const resultOrder = await prisma.order.create({
-    data: { ...newOrderRequest },
-  });
-
-  return resultOrder;
+  return result3;
 }
+
+// export async function addOrder(newOrderRequest: Omit<OrderRecord, 'id'>) {
+//   await prisma.order.findUnique({
+//     where: {
+//       noneExistingField: 1,
+//     },
+//     select: {
+//       noneExistingRelation: {
+//         select: { id: true },
+//       },
+//       noneExistingField: true,
+//     },
+//   });
+
+//   await prisma.order.findUnique({
+//     where: { price: 50 },
+//   });
 
 export async function deleteOrder(orderIdToDelete: number) {
   const deleteResult = await prisma.order.delete({

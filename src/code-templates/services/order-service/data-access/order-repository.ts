@@ -14,12 +14,12 @@ type OrderRecord = {
 
 // ️️️✅ Best Practice: The repository pattern - Wrap the entire DB layer with a simple interface that returns plain JS objects
 export async function getOrderById(id: number): Promise<OrderRecord | null> {
-  await getOrderModel().findAll({
-    where: { noneExistingField: 'noneExistingValue' },
-    attributes: ['none-existing-field', 'another-imaginary-column'],
-    include: 'no-such-table',
-  });
-  await getCountryModel().findByPk('price');
+  // await getOrderModel().findAll({
+  //   where: { noneExistingField: 'noneExistingValue' },
+  //   attributes: ['none-existing-field', 'another-imaginary-column'],
+  //   include: 'no-such-table',
+  // });
+  // await getCountryModel().findByPk('price');
 
   const foundOrder = await getOrderModel().findOne({
     where: { id },

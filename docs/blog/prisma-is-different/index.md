@@ -38,7 +38,7 @@ Is it a really that different? Should it surely be your next project even ORM? I
 
 Sometimes the easiest way to understand differences between options, is to understand first what is similar
 
-Performance, core features, migration, seeding, transaction, popularity, database specific column types, Uni-directional, bi-directional and self-referenced relations, pagination, Streaming raw results, db types, cli
+Performance, core features, migration, seeding, transaction, popularity, database specific column types, Uni-directional, bi-directional and self-referenced relations, pagination, Streaming raw results, db types, cli, upsert
 
 ## What is fundamentally different?
 
@@ -105,9 +105,6 @@ await prisma.order.findUnique({
 
 ## 2. Progress and maintenance
 
-**🌈 Ideas:** Looked like, 
-
-Show how higher is Prisma commits frequency (graphs and numbers), show maintenance problems in existing ORMs like issues with people wondering whether it is still maintained, 
 
 **💁‍♂️ What is it about:** OSS shines with small to medium libraries, history shows that larger project that demands massive maintenance work - the team is likely to struggle and even fade away. ORM is a maintenance beast - making it follow all the trends (e.g., ESM, TypeScript, new DB) with a volunteering team is almost not fair. Few years ago the future of TypeORM seemed very cloudy with people wondering whether it's still maintained 
 
@@ -170,11 +167,11 @@ function updateOrder(orderToUpdate: Order){
 
 **📊 How important:** ![Medium importance](./medium-importance-slider.png)
 
-**🤔 How Prisma is different:** The better alternative is the data mapper pattern. It acts as a bridge, an adapter, between simple object notations (domain objects with properties) to the DB language, typically SQL. Call it with a plain JS object, POJO, get it saved in the DB. Simple. It won't add functions to the result objects or do anything beyond returning pure data, no surprising side effects. In its purest sense, this is a DB-related utility and completely detached from the business logic. While both Sequelize and TypeORM support this, Prisma offers *only* this style - no room for mistakes. In [Practica.js](https://github.com/practicajs/practica) we take it one step further and put the prisma models within the "DAL" layer and wrap it with the [repository pattern](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design). You may glimpse [into the code here](https://github.com/practicajs/practica/blob/21ff12ba19cceed9a3735c09d48184b5beb5c410/src/code-templates/services/order-service/domain/new-order-use-case.ts#L21), this is the business flow that calls the DAL layer
+**🤔 How Prisma is different:** The better alternative is the data mapper pattern. It acts as a bridge, an adapter, between simple object notations (domain objects with properties) to the DB language, typically SQL. Call it with a plain JS object, POJO, get it saved in the DB. Simple. It won't add functions to the result objects or do anything beyond returning pure data, no surprising side effects. In its purest sense, this is a DB-related utility and completely detached from the business logic. While both Sequelize and TypeORM support this, Prisma offers *only* this style - no room for mistakes.
 
 
 ```javascript
-// Prisma mapper like approach 👍
+// Prisma approach with a data mapper  👍
 
 // This was generated automatically by Prisma
 type Order {
@@ -199,29 +196,24 @@ function updateOrder(orderToUpdate: Order){
 }
 ```
 
-## 4. A different level of documentation
+ In [Practica.js](https://github.com/practicajs/practica) we take it one step further and put the prisma models within the "DAL" layer and wrap it with the [repository pattern](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design). You may glimpse [into the code here](https://github.com/practicajs/practica/blob/21ff12ba19cceed9a3735c09d48184b5beb5c410/src/code-templates/services/order-service/domain/new-order-use-case.ts#L21), this is the business flow that calls the DAL layer
 
-**🌈 Ideas:** Analysis of the number of documentation pages, the number of lines per topic, topics that are not even discussed in Sequelize/TypeORM, maybe even documentation commits?
-
-**💁‍♂️ What is it about:** 
+## 4. Documentation
 
 
-```javascript
-// Problem with Sequelize, include is string, count is string
-// Weird syntax
-```
-
-**📊 How important:** Image of bar
-
-**🤔 How Prisma is different:** Foo
-
-```javascript
-// Example of include and count
-// Raw with types
-```
+**💁‍♂️ What is it about:** TypeORM and Sequelize documentation is mediocre, TypeORM might be a little better. Based on my personal experience they do get a little better over the years, but still by no mean they deserve to be called "good" or "great". For example, if you seek to learn about 'raw queries' - Sequelize offers [a very short page](https://sequelize.org/docs/v6/core-concepts/raw-queries/) on this matter, TypeORM info is spread in multiple other pages. Looking to learn about pagination? Couldn't find Sequelize documents, TypeORM has [some short explanation](https://typeorm.io/select-query-builder#using-pagination), 150 words only
 
 
-**🏆 Is Prisma doing better?:** I think so
+**📊 How important:** ![Medium importance](./medium-importance-slider.png)
+
+**🤔 How Prisma is different:** Prisma documentation rocks! See their documents on similar topics: [raw queries](https://www.prisma.io/docs/concepts/components/prisma-client/raw-database-access) and [pagingation](https://www.prisma.io/docs/concepts/components/prisma-client/pagination), thousands of words, and dozens of code examples. The writing itself is also great, feels like some professional writers were involved
+
+![Prisma docs are comprehensive](./count-docs.png)
+ 
+ This chart above shows how comprehensive are Prisma docs (Obviously this by itself doesn't prove quality)
+
+
+**🏆 Is Prisma doing better?:** You bet
 
 ## 5. Metric and tracing
 
@@ -287,3 +279,6 @@ Performance tests
 Error handling
 License: "It allows users to use the software for any purpose, to distribute it, to modify it, and to distribute modified versions of the software under the terms of the license, without concern for royalties"
 Prisma is shooting at 3 important things
+Automatic transaction
+
+TO and Seq don't really have mapper
