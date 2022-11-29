@@ -72,32 +72,50 @@ export async function playground() {
   //     deliveryAddress: 'test',
   //   },
   // });
-  // const result = await prisma.order.findMany({
-  //   select: {
-  //     userId: true,
-  //     productId: true,
-  //     country: {
-  //       select: { name: true, id: true },
-  //     },
-  //   },
-  // });
 
-  // const result = await prisma.order.groupBy({
-  //   by: ['countryId'],
-  //   _sum: { paymentTermsInDays: true },
-  //   where: {
-  //     createdAt: {
-  //       gt: new Date('2021-01-01'),
-  //     },
-  //   },
-  //   having: {
-  //     paymentTermsInDays: {
-  //       _count: {
-  //         gt: 20,
-  //       },
-  //     },
-  //   },
-  // });
+  await prisma.order.findMany({
+    select: {
+      userId: true,
+      productId: true,
+      country: {
+        select: { name: true, id: true },
+      },
+    },
+    orderBy: {
+      country: {
+        name: 'asc',
+      },
+    },
+  });
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  await createQueryBuilder('order')
+    .leftJoinAndSelect(
+      'order.userId',
+      'order.productId',
+      'country.name',
+      'country.id'
+    )
+    .orderBy('country.name')
+    .getMany();
+
+  const result = await prisma.order.groupBy({
+    by: ['countryId'],
+    _sum: { paymentTermsInDays: true },
+    where: {
+      createdAt: {
+        gt: new Date('2021-01-01'),
+      },
+    },
+    having: {
+      paymentTermsInDays: {
+        _count: {
+          gt: 20,
+        },
+      },
+    },
+  });
 
   // const result2 = await prisma.order.findMany({
   //   orderBy: {
@@ -171,3 +189,7 @@ export async function cleanupData() {
   const deleteResult = await prisma.order.deleteMany();
   return deleteResult;
 }
+function calculateOrderPrice(order: any) {
+  throw new Error('Function not implemented.');
+}
+

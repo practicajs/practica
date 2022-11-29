@@ -69,12 +69,22 @@ class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>
 ```javascript
 // Sequelize loose query types
 await getOrderModel().findAll({
-    where: { noneExistingField: 'noneExistingValue' },// TypeScript will catch this 👍
-    attributes: ['none-existing-field', 'another-imaginary-column'], //none existing columns 😟
-    include: 'no-such-table', //none existing table 😟
+    where: { noneExistingField: 'noneExistingValue' }
+    attributes: ['none-existing-field', 'another-imaginary-column'],
+    include: 'no-such-table',
   });
-  await getCountryModel().findByPk('price');//price is not a primary key column 😟
+  await getCountryModel().findByPk('price');
 ```
+
+```javascript
+const ordersOnSales: Post[] = await orderRepository.find({
+  where: { onSale: true },
+  select: ['id', 'price'],
+})
+console.log(ordersOnSales[0].userId);
+```
+
+
 
 Isn't it ironic...
 
@@ -84,20 +94,20 @@ Isn't it ironic...
 
 
 ```javascript
-await prisma.order.findUnique({
+await prisma.order.findMany({
     where: {
-      noneExistingField: 1, // TypeScript will catch this 👍
+      noneExistingField: 1,
     },
     select: {
-      noneExistingRelation: { // TypeScript will catch this 👍
+      noneExistingRelation: {
         select: { id: true }, 
       },
-      noneExistingField: true, // TypeScript will catch this 👍
+      noneExistingField: true,
     },
   });
 
   await prisma.order.findUnique({
-    where: { price: 50 }, // Price has no unique constraint, TypeScript will catch this 👍
+    where: { price: 50 },
   });
 ```
 
@@ -153,12 +163,12 @@ function updateOrder(orderToUpdate: Order){
   if(orderToUpdate.price > 100){
     // some logic here
     orderToUpdate.status = "approval";
-    orderToUpdate.save(); // Side effect, harder to unit test this function 😟
-    orderToUpdate.products.forEach((products) =>{ // Remarkable query just went out (lazy loading), am I aware? 😟
+    orderToUpdate.save(); 
+    orderToUpdate.products.forEach((products) =>{ 
 
     })
-    orderToUpdate.usedConnection = ? // Should I assign this? Entity is cluttered with distracting DB related information 😟
-  }  
+    orderToUpdate.usedConnection = ? 
+  }
 }
 
 
@@ -216,6 +226,30 @@ function updateOrder(orderToUpdate: Order){
 **🏆 Is Prisma doing better?:** You bet
 
 ## 5. Metric and tracing
+
+**🌈 Ideas:** Example of Prometheus and OpenTracing, show that some is achievable with Sequelize/TypeORM but not as mature and easy to use
+
+**💁‍♂️ What is it about:** 
+
+
+```javascript
+// Problem with Sequelize, include is string, count is string
+// Weird syntax
+```
+
+**📊 How important:** Image of bar
+
+**🤔 How Prisma is different:** Foo
+
+```javascript
+// Example of include and count
+// Raw with types
+```
+
+
+**🏆 Is Prisma doing better?:** I think so
+
+## 6. Continuity - will it be here with us in 2024/2025
 
 **🌈 Ideas:** Example of Prometheus and OpenTracing, show that some is achievable with Sequelize/TypeORM but not as mature and easy to use
 
