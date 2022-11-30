@@ -28,6 +28,8 @@ I would keep my ORM sleep but although this duck
 
 Is it a really that different? Should it surely be your next project even ORM? If you're the 'raw queries' girl, should you stop this pesky habit and switch to ORMs now? Let's find out
 
+<!--truncate-->
+
 ## TOC
 
 1. Things that are mostly the same
@@ -36,13 +38,25 @@ Is it a really that different? Should it surely be your next project even ORM? I
 
 ## What is the same?
 
-Sometimes the easiest way to understand differences between options, is to understand first what is similar
+When comparing options, before outlining differences, it's useful to state what is actually similar among these products. Here is a partial list of features that both TypeORM, Sequelize and Prisma support
 
-Performance, core features, migration, seeding, transaction, popularity, database specific column types, Uni-directional, bi-directional and self-referenced relations, pagination, Streaming raw results, db types, cli, upsert
+- Casual queries with sorting, filtering, distinct, group by, 'upsert' (update or create),etc
+- Raw queries
+- Association/relations of any type (e.g., many to many, self-relation, etc)
+- Aggregation queries
+- Pagination
+- CLI
+- Transactions
+- Migration & seeding
+- Hooks/events (called middleware in Prisma)
+- Connection pool
+- Based on various community benchmarks, no dramatic performance differences
+- All have huge amount of stars and downloads
+
+With that, shall we focus on what set them apart and make a difference
 
 ## What is fundamentally different?
 
-<!--truncate-->
 ### 1. Type safety across the board
 
 **🌈 Ideas:** Show query with relations that is not typed in Sequelize/TypeORM, should query with group and counts not typed in Sequelize/TypeORM, show the weird TS interface that seq/to have + the 4 different syntax - but also the non-standard workflow that Prisma client brings, other ideas here?
@@ -225,11 +239,20 @@ function updateOrder(orderToUpdate: Order){
 
 **🏆 Is Prisma doing better?:** You bet
 
-## 5. Metric and tracing
+## 5. Observability, metrics, and tracing
 
 **🌈 Ideas:** Example of Prometheus and OpenTracing, show that some is achievable with Sequelize/TypeORM but not as mature and easy to use
 
-**💁‍♂️ What is it about:** 
+**💁‍♂️ What is it about:** 100% chances analyze slow queries or unaware the DB perf issue in production. The majority of ORM provides logging about the query execution time, . Assuming that you don't read production logs 24/7, you'd probably need an alert to fire when things seem faulty. When such an alert is fired, say slow query, you can appreciate a break-down of the query phases to understand where the bottle-neck is. With traditional ORM it's your responsibility write code that poll the pool, read the transaction time, and convert to your moniroting platform format. There is no way to get a break-down of the query phases, a black-box for you
+
+This leaves with two challenges: when something is wrong, convert to metrics, no breakdown of the internal pipeline - a black-box, 
+
+https://www.prisma.io/docs/concepts/components/prisma-client/metrics
+prisma_client_queries_duration_histogram_ms
+https://www.prisma.io/docs/concepts/components/prisma-client/metrics
+sequelize.connectionManager.pool.read.{size,available,using,waiting}
+https://orkhan.gitbook.io/typeorm/docs/logging
+https://sequelize.org/api/v7/interfaces/queryoptions#benchmark
 
 
 ```javascript
@@ -237,9 +260,9 @@ function updateOrder(orderToUpdate: Order){
 // Weird syntax
 ```
 
-**📊 How important:** Image of bar
+**📊 How important:** ![Medium importance](./medium-importance-slider.png)
 
-**🤔 How Prisma is different:** Foo
+**🤔 How Prisma is different:** Looks like Prisma was built with modern ops, it provides both metrics and open-tracing out of the box. Sweet. 
 
 ```javascript
 // Example of include and count
@@ -251,27 +274,28 @@ function updateOrder(orderToUpdate: Order){
 
 ## 6. Continuity - will it be here with us in 2024/2025
 
-**🌈 Ideas:** Example of Prometheus and OpenTracing, show that some is achievable with Sequelize/TypeORM but not as mature and easy to use
+**💁‍♂️ What is it about:** We live quite peacefully with the risk of one of our dependencies to disappear. With ORM though, this risk demand special attention because our buy-in is higher (i.e., harder to replace) and maintaining it was proven to be harder. Just look at a handful of successful ORMs in the past: objection.js, waterline, bookshelf - all of these respectful project had 0 commits in the past month. The single maintainer of objection.js [announced that he won't work the project anymore](https://github.com/Vincit/objection.js/issues/2335). This high churn rate is not surprising given the huge amount of moving parts to maintain, the gazillion corner cases and the modest 'budget' OSS projects live with. Looking at OpenCollective shows that [Sequelize](https://opencollective.com/sequelize#category-BUDGET) and [TypeORM](https://opencollective.com/typeorm) are funded with ~1500$ month in average. This is barely enough to cover a daily Starbucks cappuccino and croissant (6.95$ x 365) for 5 maintainers. Nothing contrasts this model more than a startup company that just raised its series B - Prisma is [funded with 40,000,000$ (40 millions)](https://www.prisma.io/blog/series-b-announcement-v8t12ksi6x#:~:text=We%20are%20excited%20to%20announce,teams%20%26%20organizations%20in%20this%20article.) and recruited 80 people! Should not this inspire us with high confidence about their continuity? I'll surprisingly suggest that quite the opposite is true
 
-**💁‍♂️ What is it about:** 
+See, an OSS ORM has to go over one huge hump, but a startup company must pass through TWO. The OSS project will struggle to achieve the critical mass of features, including some high technical barriers (e.g., TypeScript support, ESM). This typically lasts years, but once it does - a project can focus mostly on maintenance and step out of the danger zone. The good news for TypeORM and Sequelize is that they already did! Both struggled to keep their heads above the water, there were rumors in the past that [TypeORM is not maintained anymore](https://github.com/typeorm/typeorm/issues/3267), but they managed to go through this hump. I counted, both projects had approximately ~2000 PRs in the past 3 years! Going with [repo-tracker](https://repo-tracker.com/r/gh/sequelize/sequelize), each see multiple commits every week. They both have vibrant traction, and the majority of features you would expect from an ORM. TypeORM even supports beyond-the-basics features like multi data source and caching. It's unlikely that now, once they reached the promise land - they will fade away. It might happen, there is no guarantee in the OSS galaxy, but the risk is low
 
-
-```javascript
-// Problem with Sequelize, include is string, count is string
-// Weird syntax
-```
-
-**📊 How important:** Image of bar
-
-**🤔 How Prisma is different:** Foo
-
-```javascript
-// Example of include and count
-// Raw with types
-```
+![One hump](./one-hump.png)
 
 
-**🏆 Is Prisma doing better?:** I think so
+**📊 How important:** ![Medium importance](./medium-importance-slider.png)
+
+**🤔 How Prisma is different:** Prisma a little lags behind in terms of features, but with a budget of 40M$ - there are good reasons to believe that they will pass the first hump, achieving a critical mass of features. I'm more concerned with the second hump - showing revenues in 2 years or saying goodbye. As a company that is backed by venture capitals - the model is clear and cruel: In order to secure their next round, series B or C (depends whether the seed is counted), there must be a viable and proven business model. How do you 'sell' ORM? Prisma experiments with multiple products, none is mature yet or being paid for. How big is this risk? According to [this startup companies success statistics](https://spdload.com/blog/startup-success-rate/), "About 65% of the Series A startups get series B, while 35% of the companies that get series A fail.". Since Prisma already gained a lot of love and adoption from the community, there success chances are higher than the average round A/B company, but even 20% or 10% chances to fade away is concerning
+
+> This is terrifying news - companies happily choose a young commercial OSS product without realizing that there are 10-30% chances for this product to disappear
+
+
+![Two humps](./two-humps.png)
+
+Some of startup companies who seek a viable business model do not shut the doors rather change the product, the license or the free features. This is not my subjective business analysis, here are few examples: [MongoDB changed their license](https://techcrunch.com/2018/10/16/mongodb-switches-up-its-open-source-license/), this is why the majority had to host their Mongo DB over a single vendor. [Redis did something similar](https://techcrunch.com/2019/02/21/redis-labs-changes-its-open-source-license-again/). What are the chances of Prisma pivoting to another type of product? It actually already happened before, Prisma 1 was mostly about graphQL client and server, [it's now retired](https://github.com/prisma/prisma1)
+
+It's just fair to mention the other potential path - most round B companies do succeed to qualify for the next round, when this happens even bigger money will be involved in building the 'Ferrari' of JavaScript ORMs. I'm surely crossing my fingers for these great people, at the same time we have to be conscious about our choices
+
+
+**🏆 Is Prisma doing better?:** Quite the opposite
 
 ## Closing
 
@@ -316,3 +340,5 @@ Prisma is shooting at 3 important things
 Automatic transaction
 
 TO and Seq don't really have mapper
+
+Prisma doesnt support: replication, soft delete, caching, 
