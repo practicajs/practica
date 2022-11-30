@@ -241,28 +241,13 @@ function updateOrder(orderToUpdate: Order){
 
 ## 5. Observability, metrics, and tracing
 
-**🌈 Ideas:** Example of Prometheus and OpenTracing, show that some is achievable with Sequelize/TypeORM but not as mature and easy to use
-
-**💁‍♂️ What is it about:** 100% chances analyze slow queries or unaware the DB perf issue in production. The majority of ORM provides logging about the query execution time, . Assuming that you don't read production logs 24/7, you'd probably need an alert to fire when things seem faulty. When such an alert is fired, say slow query, you can appreciate a break-down of the query phases to understand where the bottle-neck is. With traditional ORM it's your responsibility write code that poll the pool, read the transaction time, and convert to your moniroting platform format. There is no way to get a break-down of the query phases, a black-box for you
-
-This leaves with two challenges: when something is wrong, convert to metrics, no breakdown of the internal pipeline - a black-box, 
-
-https://www.prisma.io/docs/concepts/components/prisma-client/metrics
-prisma_client_queries_duration_histogram_ms
-https://www.prisma.io/docs/concepts/components/prisma-client/metrics
-sequelize.connectionManager.pool.read.{size,available,using,waiting}
-https://orkhan.gitbook.io/typeorm/docs/logging
-https://sequelize.org/api/v7/interfaces/queryoptions#benchmark
+**💁‍♂️ What is it about:** Good chances are (say about 99.9%) that you'll find yourself diagnostic slow queries in production or any other DB-related quirks. What can you expect from traditional ORMs in terms of observability? Mostly logging. [Sequelize provides both logging](https://sequelize.org/api/v7/interfaces/queryoptions#benchmark) of query duration and programmatic access to the connection pool state ({size,available,using,waiting}). [TypeORM provides only logging](https://orkhan.gitbook.io/typeorm/docs/logging) of queries that suppress a pre-defined duration threshold. This is better than nothing, but assuming you don't read production logs 24/7, you'd probably need more than logging - an alert to fire when things seem faulty. To achieve this, it's your responsibility to bridge this info to your preferred monitoring system. Unfortunately, there is no breakdown of the query phases duration - it's being left to you as a black-box
 
 
-```javascript
-// Problem with Sequelize, include is string, count is string
-// Weird syntax
-```
 
 **📊 How important:** ![Medium importance](./medium-importance-slider.png)
 
-**🤔 How Prisma is different:** Looks like Prisma was built with modern ops, it provides both metrics and open-tracing out of the box. Sweet. 
+**🤔 How Prisma is different:** Since Prisma targets also enterprises, it must bring strong ops capabilities. Beautifully, it packs support for both [metrics](https://www.prisma.io/docs/concepts/components/prisma-client/metrics) and [open telemetry tracing](https://www.prisma.io/docs/concepts/components/prisma-client/opentelemetry-tracing)!. For metrics, it generates custom JSON with metric keys and values so anyone can adapt this to any monitoring system (e.g., CloudWatch, statsD, etc). On top of this, it produces out of the box metrics in [Prometheus](https://prometheus.io/) format (one of the most popular monitoring platforms). For example, the metric 'prisma_client_queries_duration_histogram_ms' provides the average query length in the system overtime. What is even more impressive is the support for open-tracing - it feeds your OpenTelemetry collector with spans that describe the various phases of every query. For example, it might help realize what is the bottleneck in the query pipeline: Is it the DB connection, the query itself or the serialization?
 
 ```javascript
 // Example of include and count
@@ -270,7 +255,7 @@ https://sequelize.org/api/v7/interfaces/queryoptions#benchmark
 ```
 
 
-**🏆 Is Prisma doing better?:** I think so
+**🏆 Is Prisma doing better?:** Definitely
 
 ## 6. Continuity - will it be here with us in 2024/2025
 
@@ -338,6 +323,7 @@ Error handling
 License: "It allows users to use the software for any purpose, to distribute it, to modify it, and to distribute modified versions of the software under the terms of the license, without concern for royalties"
 Prisma is shooting at 3 important things
 Automatic transaction
+Sequelize are writing v7
 
 TO and Seq don't really have mapper
 
