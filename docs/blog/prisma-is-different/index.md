@@ -46,6 +46,7 @@ When comparing options, before outlining differences, it's useful to state what 
 
 - Casual queries with sorting, filtering, distinct, group by, 'upsert' (update or create),etc
 - Raw queries
+- Full text search
 - Association/relations of any type (e.g., many to many, self-relation, etc)
 - Aggregation queries
 - Pagination
@@ -150,6 +151,52 @@ With that, as of 2023, I was cheered up to realize how vibrant are TypeORM and S
 
 Metrics: issues age, amount of issues, patreon, downloads, 
 
+
+**🏆 Is Prisma doing better?:** Yes, but the alternatives are also doing well
+
+## 2. Make you forget SQL
+
+
+**💁‍♂️ What is it about:** Using ORM is a doubtful choice for many who prefer interacting with the DB using lower level techniques. One of their arguments is against the efficiency of ORMs: Since the generated queries are not visible immediately to the developers, wasteful queries might get executed unknowingly. While all ORMs provide a syntactic sugar over SQL, there are differences in the level of abstraction. The more the ORM syntax resembles SQL, the more likely the developers will understand their actions
+
+For example, TypeORM's query builder looks like SQL broken into convenient functions
+
+```javascript
+await createQueryBuilder('order')
+    .leftJoinAndSelect(
+      'order.userId',
+      'order.productId',
+      'country.name',
+      'country.id'
+    )
+    .getMany();
+```
+
+A developer who read this code 👆 is likely to infer that a *join* query between two tables will get executed
+
+
+**📊 How important:** ![Medium importance](./medium-importance-slider.png)
+
+**🤔 How Prisma is different:** Prisma's mission statement is to simplify DB work, this is taken from their homepage:
+
+"We designed its API to be intuitive, both for SQL veterans and *developers brand new to databases*"
+
+Being ambitious to appeal to database layman, Prisma builds a syntax with a little bit higher abstraction, for example:
+
+```javascript
+await prisma.order.findMany({
+    select: {
+      userId: true,
+      productId: true,
+      country: {
+        select: { name: true, id: true },
+      },
+    },
+});
+
+```
+
+No join is reminded here also it fetches record from two related tables (order, and country). Guess what? under the hood, indeed no join is being made.
 
 **🏆 Is Prisma doing better?:** Yes, but the alternatives are also doing well
 
