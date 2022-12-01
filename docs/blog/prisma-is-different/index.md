@@ -20,20 +20,24 @@ tags:
 
 ## Intro - Why discuss yet another ORM (or the man who had staints on his suite)?
 
-Mention practica.js, apply thresholds in learning (test runners example), here is something new, Node.js is like suite with staints, this is a strategic discussion
+Betteridge's law of headlines suggests that a 'headline that ends in a question mark can be answered by the word NO'. Will this article follow this rule? Is Prisma ORM the 'Ferarri' ORM we've been waiting for?
 
-I would keep my ORM sleep but although this duck
+Node.js is like an elegant businessman (or woman), wearing a fancy tuxedo, a luxury watch wrapped around his palm while people are watching admirably. Although highly popular socially, one can't ignore that his white shirt has a dark stain. Node is so capable and popular, and yet, in certain areas, its offering basket is stained with inferior offerings. One of these areas is the ORM space, "I wish we had something like (Java) hibernate or (.NET) Entity Framework" are common words being heard by Node developers. What about existing mature ORMs like TypeORM and Sequelize? We owe so much to these maintainers, and yet, their developer experience, the level of maintenance - just don't feel delightful, some may say even mediocre
 
-"If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck" but this duck wears Louie Vitton bag, is being all over news, so I had to step out my ORM cave
+From time to time, a shiny new ORM is launched, and there is hope. Then soon it's realized that these new emerging projects are more of the same, if they survive. Until one day, Prisma ORM arrived surrounded with glamour: It's gaining tons of attention all over, producing fantastic content, being used by respectful frameworks and... raised 40,000,000$ (40 million) to build the next generation ORM - It it the 'Ferrari' ORM we've been waiting for? Is it a game changer? If you're are the 'no ORM for me' type, will this one make you convert your religion?
 
-Is it a really that different? Should it surely be your next project even ORM? If you're the 'raw queries' girl, should you stop this pesky habit and switch to ORMs now? Let's find out
+In [Practica.js](https://github.com/practicajs/practica) (the free starter based off [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices)) we aim to make the best decisions for our users, the Prisma hype made us stop by for a second, evaluate its unique offering and conclude whether we should upgrade our toolbox?
+
+This article is certainly not an 'ORM 101' but rather a spotlight on specific dimensions in which Prisma aims to shine. It's compared against the two most popular Node.js ORM - TypeORM and Sequelize. Why not others? what about other promising contenders like MikroORM? Just because they are not as popular yet ana maturity is a critical trait of ORMs
+
+Ready to explore how good Prisma is and whether you should throw away your current tools?
 
 <!--truncate-->
 
 ## TOC
 
 1. Things that are mostly the same
-2. Different things
+2. Differentiation
 3. Closing
 
 ## What is the same?
@@ -58,8 +62,6 @@ With that, shall we focus on what set them apart and make a difference
 ## What is fundamentally different?
 
 ### 1. Type safety across the board
-
-**🌈 Ideas:** Show query with relations that is not typed in Sequelize/TypeORM, should query with group and counts not typed in Sequelize/TypeORM, show the weird TS interface that seq/to have + the 4 different syntax - but also the non-standard workflow that Prisma client brings, other ideas here?
 
 **💁‍♂️ What is it about:** ORM's life is not easier since the TypeScript rise, to say the least. The need to support typed models/queries/etc yields a lot of developers sweat. Sequelize, for example, struggle to stabilize a TypeScript interface and by now offers 3 different syntaxes + one external library (sequelize-typescript) that offers yet another style. Look at the syntax below, this feels like an afterthought - a library that was not built for TypeScript and now tries to squeeze it in somehow. Despite the struggle, both Sequelize and TypeORM offer only partial type safety. Simple queries do return typed objects, but other common corner cases like attributes/projections leave you with brittle strings. Here are few examples:
 
@@ -241,19 +243,25 @@ function updateOrder(orderToUpdate: Order){
 
 ## 5. Observability, metrics, and tracing
 
-**💁‍♂️ What is it about:** Good chances are (say about 99.9%) that you'll find yourself diagnostic slow queries in production or any other DB-related quirks. What can you expect from traditional ORMs in terms of observability? Mostly logging. [Sequelize provides both logging](https://sequelize.org/api/v7/interfaces/queryoptions#benchmark) of query duration and programmatic access to the connection pool state ({size,available,using,waiting}). [TypeORM provides only logging](https://orkhan.gitbook.io/typeorm/docs/logging) of queries that suppress a pre-defined duration threshold. This is better than nothing, but assuming you don't read production logs 24/7, you'd probably need more than logging - an alert to fire when things seem faulty. To achieve this, it's your responsibility to bridge this info to your preferred monitoring system. Unfortunately, there is no breakdown of the query phases duration - it's being left to you as a black-box
+**💁‍♂️ What is it about:** Good chances are (say about 99.9%) that you'll find yourself diagnostic slow queries in production or any other DB-related quirks. What can you expect from traditional ORMs in terms of observability? Mostly logging. [Sequelize provides both logging](https://sequelize.org/api/v7/interfaces/queryoptions#benchmark) of query duration and programmatic access to the connection pool state ({size,available,using,waiting}). [TypeORM provides only logging](https://orkhan.gitbook.io/typeorm/docs/logging) of queries that suppress a pre-defined duration threshold. This is better than nothing, but assuming you don't read production logs 24/7, you'd probably need more than logging - an alert to fire when things seem faulty. To achieve this, it's your responsibility to bridge this info to your preferred monitoring system. Another logging downside for this sake is verbosity - we need to emit tons of information to the logs when all we really care for is the average duration. Metrics can serve this purpose much better as we're about to see soon with Prisma
 
+What if you need to dig into which specific part of the query is slow? unfortunately, there is no breakdown of the query phases duration - it's being left to you as a black-box
+
+```javascript
+// Sequelize - logging various DB information
+
+```
+
+![Logging query duration](./sequelize-log.png)
+Logging each query in order to realize trends and anomaly in the monitoring system
 
 
 **📊 How important:** ![Medium importance](./medium-importance-slider.png)
 
 **🤔 How Prisma is different:** Since Prisma targets also enterprises, it must bring strong ops capabilities. Beautifully, it packs support for both [metrics](https://www.prisma.io/docs/concepts/components/prisma-client/metrics) and [open telemetry tracing](https://www.prisma.io/docs/concepts/components/prisma-client/opentelemetry-tracing)!. For metrics, it generates custom JSON with metric keys and values so anyone can adapt this to any monitoring system (e.g., CloudWatch, statsD, etc). On top of this, it produces out of the box metrics in [Prometheus](https://prometheus.io/) format (one of the most popular monitoring platforms). For example, the metric 'prisma_client_queries_duration_histogram_ms' provides the average query length in the system overtime. What is even more impressive is the support for open-tracing - it feeds your OpenTelemetry collector with spans that describe the various phases of every query. For example, it might help realize what is the bottleneck in the query pipeline: Is it the DB connection, the query itself or the serialization?
 
-```javascript
-// Example of include and count
-// Raw with types
-```
-
+![prisma tracing](./trace-diagram.png)
+Prisma visualizes the various query phases duration with open-telemtry 
 
 **🏆 Is Prisma doing better?:** Definitely
 
