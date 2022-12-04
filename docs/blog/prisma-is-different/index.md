@@ -20,15 +20,15 @@ tags:
 
 ## Intro - Why discuss yet another ORM (or the man who had staints on his suite)?
 
-Betteridge's law of headlines suggests that a 'headline that ends in a question mark can be answered by the word NO'. Will this article follow this rule? Is Prisma ORM the 'Ferarri' ORM we've been waiting for?
+Betteridge's law of headlines suggests that a 'headline that ends in a question mark can be answered by the word NO'. Will this article follow this rule? Is Prisma ORM the 'Ferrari' ORM we've all been waiting for?
 
-Node.js is like an elegant businessman (or woman), wearing a fancy tuxedo, a luxury watch wrapped around his palm while people are watching admirably. Although highly popular socially, one can't ignore that his white shirt has a dark stain. Node is so capable and popular, and yet, in certain areas, its offering basket is stained with inferior offerings. One of these areas is the ORM space, "I wish we had something like (Java) hibernate or (.NET) Entity Framework" are common words being heard by Node developers. What about existing mature ORMs like TypeORM and Sequelize? We owe so much to these maintainers, and yet, their developer experience, the level of maintenance - just don't feel delightful, some may say even mediocre
+Node.js is like an elegant businessman (or woman), wearing a fancy tuxedo, a luxury watch wrapped around his palm while people are watching admirably. Although highly popular socially, one can't ignore that his white shirt has a dark stain. Node is so capable and popular, and yet, in certain areas, its offering basket is stained with inferior offerings. One of these areas is the ORM space, "I wish we had something like (Java) hibernate or (.NET) Entity Framework" are common words being heard by Node developers. What about existing mature ORMs like TypeORM and Sequelize? We owe so much to these maintainers, and yet, the produced developer experience, the level of maintenance - just don't feel delightful, some may say even mediocre
 
-From time to time, a shiny new ORM is launched, and there is hope. Then soon it's realized that these new emerging projects are more of the same, if they survive. Until one day, Prisma ORM arrived surrounded with glamour: It's gaining tons of attention all over, producing fantastic content, being used by respectful frameworks and... raised 40,000,000$ (40 million) to build the next generation ORM - It it the 'Ferrari' ORM we've been waiting for? Is it a game changer? If you're are the 'no ORM for me' type, will this one make you convert your religion?
+From time to time, a shiny new ORM is launched, and there is hope. Then soon it's realized that these new emerging projects are more of the same, if they survive. Until one day, Prisma ORM arrived surrounded with glamour: It's gaining tons of attention all over, producing fantastic content, being used by respectful frameworks and... raised 40,000,000$ (40 million) to build the next generation ORM - Is it the 'Ferrari' ORM we've been waiting for? Is it a game changer? If you're are the 'no ORM for me' type, will this one make you convert your religion?
 
 In [Practica.js](https://github.com/practicajs/practica) (the free starter based off [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices)) we aim to make the best decisions for our users, the Prisma hype made us stop by for a second, evaluate its unique offering and conclude whether we should upgrade our toolbox?
 
-This article is certainly not an 'ORM 101' but rather a spotlight on specific dimensions in which Prisma aims to shine. It's compared against the two most popular Node.js ORM - TypeORM and Sequelize. Why not others? what about other promising contenders like MikroORM? Just because they are not as popular yet ana maturity is a critical trait of ORMs
+This article is certainly not an 'ORM 101' but rather a spotlight on specific dimensions in which Prisma aims to shine or struggle. It's compared against the two most popular Node.js ORM - TypeORM and Sequelize. Why not others? Why other promising contenders like MikroORM weren't covered? Just because they are not as popular yet ana maturity is a critical trait of ORMs
 
 Ready to explore how good Prisma is and whether you should throw away your current tools?
 
@@ -181,7 +181,7 @@ A developer who read this code 👆 is likely to infer that a *join* query betwe
 
 "We designed its API to be intuitive, both for SQL veterans and *developers brand new to databases*"
 
-Being ambitious to appeal to database layman, Prisma builds a syntax with a little bit higher abstraction, for example:
+Being ambitious to appeal also to database layman, Prisma builds a syntax with a little bit higher abstraction, for example:
 
 ```javascript
 await prisma.order.findMany({
@@ -196,9 +196,30 @@ await prisma.order.findMany({
 
 ```
 
-No join is reminded here also it fetches record from two related tables (order, and country). Guess what? under the hood, indeed no join is being made.
+No join is reminded here also it fetches record from two related tables (order, and country). Could you guess what SQL is produced here? how many queries? One right, a simple join. Surprise for you, actually two queries are made, one for each table, as the join logic happens on the client side. Why like this? in some cases, mostly where there is a lot of repetition in the DB cartesian join, querying each side of the relation is more efficient. But in other cases it's not, Prisma tries to make a guess for you but it will never be nearly as efficient as a developer who is making a thoughtful call. My point is, Prisma sweet and simple syntax might be a  bless for developer who are brand new to databases and aim to achieve a working solution in a short time. For longer term, having full awareness of the DB interactions is imperative, other ORMs encourage this awareness better
 
-**🏆 Is Prisma doing better?:** Yes, but the alternatives are also doing well
+**🏆 Is Prisma doing better?:** Not necessarily
+
+## 4. Performance
+
+**💁‍♂️ What is it about:** Speak to ORM antagonist and you'll hear a common sensible argument: ORMs are much slower than a raw approach. To an extent, this is a legit observation as [most comparison](https://welingtonfidelis.medium.com/pg-driver-vs-knex-js-vs-sequelize-vs-typeorm-f9ed53e9f802) will show a none-negligible differences between raw/query-builder and ORM.
+
+![raw is faster d](./pg-driver-is-faster.png)
+*Example: : a direct insert against the PG driver is much shorter [Source](https://welingtonfidelis.medium.com/pg-driver-vs-knex-js-vs-sequelize-vs-typeorm-f9ed53e9f802)* 
+
+ It should also be noted that these benchmarks don't tell the entire story - on top of raw queries, every solution must build a mapper layer that maps the raw data to JS objects, nesting them and more. This work is included within every ORM but not shown in benchmarks for the raw option. In reality, every team which doesn't use ORM would have to build their own small "ORM", including a mapper, which will also impact performance
+
+
+**📊 How important:** ![Medium importance](./medium-importance-slider.png)
+
+**🤔 How Prisma is different:** It was my hope to see a magic here, eating the ORM cake without counting the calories, seeing Prisma achieving an almost 'raw' query speed. I had some good and logical reasons for this hope: Prisma uses a DB client that is built with Rust, theoretically it could serialize to and nest objects faster. It was also built from the ground up and could build on the knowledge that was pilled in ORM space for years. Also, since it returns POJOs only (see bullet 'No Active Record here!') - no time should be spend on decorating objects with ORM fields
+
+You already got it, this hope was not fulfilled. Going with every community benchmark ([one](https://dev.to/josethz00/benchmark-prisma-vs-typeorm-3873), [two](https://github.com/edgedb/imdbench), [three](https://deepkit.io/library)), Prisma at best is not faster than the average ORM. What is the reason? I can't tell exactly. Maybe the complicated system that must support Go, future languages, MongoDB and other non-relational DBs - has a price. Prisma might be a premium car you to bring home, it's not a 'Ferrari' though
+
+![Prisma is not faster](./throughput-benchmark.png)
+*Example: Prisma is not faster than others. It should be noted that in other benchmarks Prisma score higher and shows an 'average' performance [Source](https://github.com/edgedb/imdbench)*
+
+**🏆 Is Prisma doing better?:** No
 
 ## 3. No active records here!
 
@@ -340,6 +361,8 @@ It's just fair to mention the other potential path - most round B companies do s
 ## Closing
 
 I hope that these thoughts, at least one of them, made you re-consider adding a new technique to your toolbox. In any case, let's keep our community vibrant, disruptive and kind. Respectful discussions are almost as important as the event loop. Almost.
+
+https://www.edgedb.com/
 
 ## Some of my other articles
 
