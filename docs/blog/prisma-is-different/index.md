@@ -1,8 +1,8 @@
 ---
-slug: how-prisma-is-different-than-your-casual-orm
+slug: is-prisma-better-than-your-casual-orm
 date: 2022-08-02T10:00
 hide_table_of_contents: true
-title: Is Prisma different than traditional ORMs?
+title: Is Prisma better than your casual ORM?
 authors: [goldbergyoni]
 tags:
   [
@@ -180,7 +180,7 @@ No join is reminded here also it fetches records from two related tables (order,
 
 **🏆 Is Prisma doing better?:** Not necessarily
 
-## 4. Performance
+## 3. Performance
 
 **💁‍♂️ What is it about:** Speak to an ORM antagonist and you'll hear a common sensible argument: ORMs are much slower than a 'raw' approach. To an extent, this is a legit observation as [most comparisons](https://welingtonfidelis.medium.com/pg-driver-vs-knex-js-vs-sequelize-vs-typeorm-f9ed53e9f802) will show none-negligible differences between raw/query-builder and ORM.
 
@@ -201,7 +201,7 @@ You already got it, this hope was not fulfilled. Going with every community benc
 
 **🏆 Is Prisma doing better?:** No
 
-## 5. No active records here!
+## 4. No active records here!
 
 **💁‍♂️ What is it about:** Node in its early days was heavily inspired by Ruby (e.g., testing "describe"), many great patterns were embraced, [Active Record](https://en.wikipedia.org/wiki/Active_record_pattern) is not among the successful ones. What is this pattern about in a nutshell? say you deal with Orders in your system, with Active Record an Order object/class will hold both the entity properties, possible also some of the logic functions and also CRUD functions. Many find this pattern to be awful, why? ideally, when coding some logic/flow, one should not keep her mind busy with side effects and DB narratives. It also might be that accessing some property unconsciously invokes a heavy DB call (i.e., lazy loading). If not enough, in case of heavy logic, unit tests might be in order (i.e., read ['selective unit tests'](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/)) - it's going to be much harder to write unit tests against code that interacts with the DB. In fact, all of the respectable and popular architecture (e.g., DDD, clean, 3-tiers, etc) advocate to 'isolate the domain', separate the core/logic of the system from the surrounding technologies. With all of that said, both TypeORM and Sequelize support the Active Record pattern which is displayed in many examples within their documentation. Both also support other better patterns like the data mapper (see below), but they still open the door for doubtful patterns
 
@@ -272,7 +272,7 @@ function updateOrder(orderToUpdate: Order){
 
  In [Practica.js](https://github.com/practicajs/practica) we take it one step further and put the prisma models within the "DAL" layer and wrap it with the [repository pattern](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design). You may glimpse [into the code here](https://github.com/practicajs/practica/blob/21ff12ba19cceed9a3735c09d48184b5beb5c410/src/code-templates/services/order-service/domain/new-order-use-case.ts#L21), this is the business flow that calls the DAL layer
 
-## 6. Documentation
+## 5. Documentation and DX
 
 
 **💁‍♂️ What is it about:** TypeORM and Sequelize documentation is mediocre, TypeORM might be a little better. Based on my personal experience they do get a little better over the years, but still by no mean they deserve to be called "good" or "great". For example, if you seek to learn about 'raw queries' - Sequelize offers [a very short page](https://sequelize.org/docs/v6/core-concepts/raw-queries/) on this matter, TypeORM info is spread in multiple other pages. Looking to learn about pagination? Couldn't find Sequelize documents, TypeORM has [some short explanation](https://typeorm.io/select-query-builder#using-pagination), 150 words only
@@ -289,7 +289,7 @@ function updateOrder(orderToUpdate: Order){
 
 **🏆 Is Prisma doing better?:** You bet
 
-## 5. Observability, metrics, and tracing
+## 6. Observability, metrics, and tracing
 
 **💁‍♂️ What is it about:** Good chances are (say about 99.9%) that you'll find yourself diagnostic slow queries in production or any other DB-related quirks. What can you expect from traditional ORMs in terms of observability? Mostly logging. [Sequelize provides both logging](https://sequelize.org/api/v7/interfaces/queryoptions#benchmark) of query duration and programmatic access to the connection pool state ({size,available,using,waiting}). [TypeORM provides only logging](https://orkhan.gitbook.io/typeorm/docs/logging) of queries that suppress a pre-defined duration threshold. This is better than nothing, but assuming you don't read production logs 24/7, you'd probably need more than logging - an alert to fire when things seem faulty. To achieve this, it's your responsibility to bridge this info to your preferred monitoring system. Another logging downside for this sake is verbosity - we need to emit tons of information to the logs when all we really care for is the average duration. Metrics can serve this purpose much better as we're about to see soon with Prisma
 
@@ -348,7 +348,7 @@ Before proposing my key take away - which is the primary ORM, let's repeat the k
 
 Based on these observations, which should you pick? which ORM will we use for [practica.js](https://github.com/practicajs/practica)?
    
-Prisma is an excellent addition to Node.js ORMs family, but not the hassle-free one tool to rule them all. It's a mixed bag of many delicious candies and a few gotchas. Wouldn't it grow to tick all the boxes? Maybe, but unlikely. Once built, it's too hard to dramatically change the syntax and engine performance. Then, during the writing and speaking with the community, including some Prisma enthusiasts, I realized that it doesn't aim to be the can-do-everything 'Ferrari'. Its positioning seems to resemble more a convenient family car with a solid engine and awesome user experience. In other words, it probably aims for the enterprise space where there is mostly demand for great DX, OK performance, and business-class support. It's not 2004, building ORM for the modern JavaScript ecosystem is 100x harder than building a Java Hibernate. I should probably stop envisioning 'Ferraris'
+Prisma is an excellent addition to Node.js ORMs family, but not the hassle-free one tool to rule them all. It's a mixed bag of many delicious candies and a few gotchas. Wouldn't it grow to tick all the boxes? Maybe, but unlikely. Once built, it's too hard to dramatically change the syntax and engine performance. Then, during the writing and speaking with the community, including some Prisma enthusiasts, I realized that it doesn't aim to be the can-do-everything 'Ferrari'. Its positioning seems to resemble more a convenient family car with a solid engine and awesome user experience. In other words, it probably aims for the enterprise space where there is mostly demand for great DX, OK performance, and business-class support. It's not 2004, building ORM for the modern JavaScript ecosystem is 100x harder than building a Java Hibernate. I should probably stop envisioning 'Ferrari'
 
 ### When will it shine?
 
