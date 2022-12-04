@@ -182,26 +182,26 @@ No join is reminded here also it fetches records from two related tables (order,
 
 ## 4. Performance
 
-**💁‍♂️ What is it about:** Speak to ORM antagonist and you'll hear a common sensible argument: ORMs are much slower than a raw approach. To an extent, this is a legit observation as [most comparison](https://welingtonfidelis.medium.com/pg-driver-vs-knex-js-vs-sequelize-vs-typeorm-f9ed53e9f802) will show a none-negligible differences between raw/query-builder and ORM.
+**💁‍♂️ What is it about:** Speak to an ORM antagonist and you'll hear a common sensible argument: ORMs are much slower than a 'raw' approach. To an extent, this is a legit observation as [most comparisons](https://welingtonfidelis.medium.com/pg-driver-vs-knex-js-vs-sequelize-vs-typeorm-f9ed53e9f802) will show none-negligible differences between raw/query-builder and ORM.
 
 ![raw is faster d](./pg-driver-is-faster.png)
-*Example: : a direct insert against the PG driver is much shorter [Source](https://welingtonfidelis.medium.com/pg-driver-vs-knex-js-vs-sequelize-vs-typeorm-f9ed53e9f802)* 
+*Example: a direct insert against the PG driver is much shorter [Source](https://welingtonfidelis.medium.com/pg-driver-vs-knex-js-vs-sequelize-vs-typeorm-f9ed53e9f802)* 
 
- It should also be noted that these benchmarks don't tell the entire story - on top of raw queries, every solution must build a mapper layer that maps the raw data to JS objects, nesting them and more. This work is included within every ORM but not shown in benchmarks for the raw option. In reality, every team which doesn't use ORM would have to build their own small "ORM", including a mapper, which will also impact performance
+ It should also be noted that these benchmarks don't tell the entire story - on top of raw queries, every solution must build a mapper layer that maps the raw data to JS objects, nest the results, cast types, and more. This work is included within every ORM but not shown in benchmarks for the raw option. In reality, every team which doesn't use ORM would have to build their own small "ORM", including a mapper, which will also impact performance
 
 
 **📊 How important:** ![Medium importance](./medium-importance-slider.png)
 
-**🤔 How Prisma is different:** It was my hope to see a magic here, eating the ORM cake without counting the calories, seeing Prisma achieving an almost 'raw' query speed. I had some good and logical reasons for this hope: Prisma uses a DB client that is built with Rust, theoretically it could serialize to and nest objects faster. It was also built from the ground up and could build on the knowledge that was pilled in ORM space for years. Also, since it returns POJOs only (see bullet 'No Active Record here!') - no time should be spend on decorating objects with ORM fields
+**🤔 How Prisma is different:** It was my hope to see a magic here, eating the ORM cake without counting the calories, seeing Prisma achieving an almost 'raw' query speed. I had some good and logical reasons for this hope: Prisma uses a DB client built with Rust. Theoretically, it could serialize to and nest objects faster (in reality, this happens on the JS side). It was also built from the ground up and could build on the knowledge pilled in ORM space for years. Also, since it returns POJOs only (see bullet 'No Active Record here!') - no time should be spent on decorating objects with ORM fields
 
-You already got it, this hope was not fulfilled. Going with every community benchmark ([one](https://dev.to/josethz00/benchmark-prisma-vs-typeorm-3873), [two](https://github.com/edgedb/imdbench), [three](https://deepkit.io/library)), Prisma at best is not faster than the average ORM. What is the reason? I can't tell exactly. Maybe the complicated system that must support Go, future languages, MongoDB and other non-relational DBs - has a price. Prisma might be a premium car you to bring home, it's not a 'Ferrari' though
+You already got it, this hope was not fulfilled. Going with every community benchmark ([one](https://dev.to/josethz00/benchmark-prisma-vs-typeorm-3873), [two](https://github.com/edgedb/imdbench), [three](https://deepkit.io/library)), Prisma at best is not faster than the average ORM. What is the reason? I can't tell exactly but it might be due the complicated system that must support Go, future languages, MongoDB and other non-relational DBs
 
 ![Prisma is not faster](./throughput-benchmark.png)
-*Example: Prisma is not faster than others. It should be noted that in other benchmarks Prisma score higher and shows an 'average' performance [Source](https://github.com/edgedb/imdbench)*
+*Example: Prisma is not faster than others. It should be noted that in other benchmarks Prisma scores higher and shows an 'average' performance [Source](https://github.com/edgedb/imdbench)*
 
 **🏆 Is Prisma doing better?:** No
 
-## 3. No active records here!
+## 5. No active records here!
 
 **💁‍♂️ What is it about:** Node in its early days was heavily inspired by Ruby (e.g., testing "describe"), many great patterns were embraced, [Active Record](https://en.wikipedia.org/wiki/Active_record_pattern) is not among the successful ones. What is this pattern about in a nutshell? say you deal with Orders in your system, with Active Record an Order object/class will hold both the entity properties, possible also some of the logic functions and also CRUD functions. Many find this pattern to be awful, why? ideally, when coding some logic/flow, one should not keep her mind busy with side effects and DB narratives. It also might be that accessing some property unconsciously invokes a heavy DB call (i.e., lazy loading). If not enough, in case of heavy logic, unit tests might be in order (i.e., read ['selective unit tests'](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/)) - it's going to be much harder to write unit tests against code that interacts with the DB. In fact, all of the respectable and popular architecture (e.g., DDD, clean, 3-tiers, etc) advocate to 'isolate the domain', separate the core/logic of the system from the surrounding technologies. With all of that said, both TypeORM and Sequelize support the Active Record pattern which is displayed in many examples within their documentation. Both also support other better patterns like the data mapper (see below), but they still open the door for doubtful patterns
 
@@ -272,7 +272,7 @@ function updateOrder(orderToUpdate: Order){
 
  In [Practica.js](https://github.com/practicajs/practica) we take it one step further and put the prisma models within the "DAL" layer and wrap it with the [repository pattern](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design). You may glimpse [into the code here](https://github.com/practicajs/practica/blob/21ff12ba19cceed9a3735c09d48184b5beb5c410/src/code-templates/services/order-service/domain/new-order-use-case.ts#L21), this is the business flow that calls the DAL layer
 
-## 4. Documentation
+## 6. Documentation
 
 
 **💁‍♂️ What is it about:** TypeORM and Sequelize documentation is mediocre, TypeORM might be a little better. Based on my personal experience they do get a little better over the years, but still by no mean they deserve to be called "good" or "great". For example, if you seek to learn about 'raw queries' - Sequelize offers [a very short page](https://sequelize.org/docs/v6/core-concepts/raw-queries/) on this matter, TypeORM info is spread in multiple other pages. Looking to learn about pagination? Couldn't find Sequelize documents, TypeORM has [some short explanation](https://typeorm.io/select-query-builder#using-pagination), 150 words only
@@ -313,7 +313,7 @@ Prisma visualizes the various query phases duration with open-telemtry
 
 **🏆 Is Prisma doing better?:** Definitely
 
-## 6. Continuity - will it be here with us in 2024/2025
+## 7. Continuity - will it be here with us in 2024/2025
 
 **💁‍♂️ What is it about:** We live quite peacefully with the risk of one of our dependencies to disappear. With ORM though, this risk demand special attention because our buy-in is higher (i.e., harder to replace) and maintaining it was proven to be harder. Just look at a handful of successful ORMs in the past: objection.js, waterline, bookshelf - all of these respectful project had 0 commits in the past month. The single maintainer of objection.js [announced that he won't work the project anymore](https://github.com/Vincit/objection.js/issues/2335). This high churn rate is not surprising given the huge amount of moving parts to maintain, the gazillion corner cases and the modest 'budget' OSS projects live with. Looking at OpenCollective shows that [Sequelize](https://opencollective.com/sequelize#category-BUDGET) and [TypeORM](https://opencollective.com/typeorm) are funded with ~1500$ month in average. This is barely enough to cover a daily Starbucks cappuccino and croissant (6.95$ x 365) for 5 maintainers. Nothing contrasts this model more than a startup company that just raised its series B - Prisma is [funded with 40,000,000$ (40 millions)](https://www.prisma.io/blog/series-b-announcement-v8t12ksi6x#:~:text=We%20are%20excited%20to%20announce,teams%20%26%20organizations%20in%20this%20article.) and recruited 80 people! Should not this inspire us with high confidence about their continuity? I'll surprisingly suggest that quite the opposite is true
 
@@ -344,20 +344,19 @@ Before proposing my key take away - which is the primary ORM, let's repeat the k
 
 1. 🥇 Prisma deserves a medal for its awesome DX, documentation, observability support and end-to-end TypeScript coverage
 2. 🤔 There are reasons to be concerned about Prisma's business continuity as a young startup without a viable business model. Also Prisma's abstract client syntax might blind developers a little more than other ORMs
-3. 👵🏼 The contenders, TypeORM and Sequelize, matured and doing quite well: both have merged thousand PRs in the past 3 years to become more stable, they keep introducing new releases (see [repo-tracker](https://repo-tracker.com/r/gh/sequelize/sequelize)), and for now are holds more features than Prisma. Also, both show solid performance (for an ORM)
+3. 🎩 The contenders, TypeORM and Sequelize, matured and doing quite well: both have merged thousand PRs in the past 3 years to become more stable, they keep introducing new releases (see [repo-tracker](https://repo-tracker.com/r/gh/sequelize/sequelize)), and for now holds more features than Prisma. Also, both show solid performance (for an ORM). Hats off to the maintainers!
 
 Based on these observations, which should you pick? which ORM will we use for [practica.js](https://github.com/practicajs/practica)?
    
-Prisma is a great addition to Node.js ORMs family, but not the one hassle-free one to rule them all. It's a mixed bag of many delicious candies and a few other pills that are a little harder to swallow. Wouldn't it grow to tick all the boxes? maybe, but unlikely. Once built, it's too hard to dramatically change the syntax and engine performance. During the writing, I realized that maybe it doesn't aim to be the can-do-everything, the 'Ferrari' rather a convenient family car, an enterprise product with great DX, solid engine, and business-class support
+Prisma is an excellent addition to Node.js ORMs family, but not the hassle-free one tool to rule them all. It's a mixed bag of many delicious candies and a few gotchas. Wouldn't it grow to tick all the boxes? Maybe, but unlikely. Once built, it's too hard to dramatically change the syntax and engine performance. Then, during the writing and speaking with the community, including some Prisma enthusiasts, I realized that it doesn't aim to be the can-do-everything 'Ferrari'. Its positioning seems to resemble more a convenient family car with a solid engine and awesome user experience. In other words, it probably aims for the enterprise space where there is mostly demand for great DX, OK performance, and business-class support. It's not 2004, building ORM for the modern JavaScript ecosystem is 100x harder than building a Java Hibernate. I should probably stop envisioning 'Ferraris'
 
-When will it shine?
+### When will it shine?
 
-**Surely use Prisma under these scenarios -** If your data needs are rather simple, when time is a bigger concern than the data processing accuracy, when the DB is relatively small, if you're a mobile/frontend developer who is doing her first steps in the backend world, and when Prisma's long term business continuity is a non-issue for you
+**Surely use Prisma under these scenarios -** If your data needs are rather simple; when time-to-market concern takes precedence over the  data processing accuracy; when the DB is relatively small; if you're a mobile/frontend developer who is doing her first steps in the backend world; when there is a need for business-class support; AND when Prisma's long term business continuity risk is a non-issue for you
 
-**I'd probably prefer other options under these conditions -** If the DB layer performance is a major concern, if you're savvy backend developer with solid SQL capabilities, when there is need for a fine grain control over the data layer. For all of these cases, Prisma might still work, but my primary choices would be using knex/TypeORM/Sequelize with a data-mapper style
+**I'd probably prefer other options under these conditions -** If the DB layer performance is a major concern; if you're savvy backend developer with solid SQL capabilities; when there is a need for fine grain control over the data layer. For all of these cases, Prisma might still work, but my primary choices would be using knex/TypeORM/Sequelize with a data-mapper style
 
 Consequently, we add Prisma behind flag (--orm=prisma) to Practica.js while leaving Sequelize as our default ORM for now
-
 ## Some of my other articles
 
 - [Book: Node.js testing best practices](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
