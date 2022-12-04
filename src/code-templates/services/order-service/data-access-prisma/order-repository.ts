@@ -1,7 +1,26 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { PrismaClient } from '.prisma/client';
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  log: [
+    {
+      emit: 'stdout',
+      level: 'query',
+    },
+    {
+      emit: 'stdout',
+      level: 'error',
+    },
+    {
+      emit: 'stdout',
+      level: 'info',
+    },
+    {
+      emit: 'stdout',
+      level: 'warn',
+    },
+  ],
+});
 
 // ️️️✅ Best Practice: The repository pattern - This is a plain JS object (POJO) that is returned to the domain layer
 // This way, the domain/business-logic can focus on its business and avoid delving into DB/ORM narratives
