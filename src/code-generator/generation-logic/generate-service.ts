@@ -6,26 +6,39 @@ import { AppError } from "../error-handling";
 // This is where the code generation logic lives. In high-level, based on the provided option, it creates
 // a folder, decides which code to generate, run the code through a templating engine and emit it to the target folder
 export const generateApp = async (options: generationOptions) => {
-  const targetDirectory = path.join(options.targetDirectory, options.appName);
-  const sourceDirectory = path.join(__dirname, "../../code-templates");
+  const targetPath = path.join(options.targetDirectory, options.appName);
 
-  const targetDirectoryExists = await fsExtra.pathExists(targetDirectory);
+  await createTargetPathOrThrowIfExists(targetPath, options.overrideIfExists);
+  await copyAppFilesToTargetPath(targetPath);
+  if (options.installDependencies) {
+    await installDependencies(targetPath);
+  }
+  return;
+};
 
-  if (targetDirectoryExists) {
+async function createTargetPathOrThrowIfExists(
+  targetPath: string,
+  overrideIfExists: boolean
+) {
+  const targetPathExists = await fsExtra.pathExists(targetPath);
+
+  if (targetPathExists) {
     const isTargetDirectoryEmpty =
-      (await fsExtra.readdir(targetDirectory)).length === 0;
-    if (!isTargetDirectoryEmpty && !options.overrideIfExists) {
+      (await fsExtra.readdir(targetPath)).length === 0;
+    if (!isTargetDirectoryEmpty && !overrideIfExists) {
       throw new AppError(
         "directory-is-not-empty",
         "The target directory is not empty, if you want to override it please provide option --overrideIfExists=true or -ov=true"
       );
     } else {
-      await fsExtra.rm(targetDirectory, { recursive: true });
-      await fsExtra.mkdir(targetDirectory, {});
+      await fsExtra.rm(targetPath, { recursive: true });
+      await fsExtra.mkdir(targetPath, {});
     }
   }
-
-  await fsExtra.copy(sourceDirectory, targetDirectory, {
+}
+async function copyAppFilesToTargetPath(targetPath: string) {
+  const sourceDirectory = path.join(__dirname, "../../code-templates");
+  await fsExtra.copy(sourceDirectory, targetPath, {
     // We don't want to copy the node_modules folder since it's slow and error-prone
     filter: (copyFromPath, copyToPath) => {
       if (path.basename(copyFromPath) === "node_modules") {
@@ -36,15 +49,12 @@ export const generateApp = async (options: generationOptions) => {
     },
     overwrite: true,
   });
-  if (options.installDependencies) {
-    await execa("npm", ["install"], {
-      cwd: targetDirectory,
-    });
-    await execa("npx", ["turbo", "run", "build", "--continue=false"], {
-      cwd: targetDirectory,
-    });
-  }
-
-  console.log(`The app was generated successfully`);
-  return;
-};
+}
+async function installDependencies(targetPath: string) {
+  await execa("npm", ["install"], {
+    cwd: targetPath,
+  });
+  await execa("npx", ["turbo", "run", "build", "--continue=false"], {
+    cwd: targetPath,
+  });
+}

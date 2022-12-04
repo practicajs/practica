@@ -1,7 +1,6 @@
 import fsExtra from "fs-extra";
 import execa from "execa";
 import path from "path";
-import axios from "axios";
 import * as testHelpers from "./test-helpers";
 
 let emptyFolderForATest: string;
@@ -11,7 +10,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  //await fsExtra.remove(emptyFolderForATest);
+  await fsExtra.remove(emptyFolderForATest);
 });
 
 describe("Non-interactive CLI", () => {

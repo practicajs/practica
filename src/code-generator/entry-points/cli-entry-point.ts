@@ -1,7 +1,7 @@
 import { program } from "commander";
 import { renderWizard } from "./interactive-cli";
 import { handleNonInteractiveCommand } from "./non-interactive-cli";
-import { version } from "../../../package.json"
+import { version } from "../../../package.json";
 
 export function startAppGenerator() {
   program
@@ -19,9 +19,16 @@ export function startAppGenerator() {
   program
     .command("immediate")
     .description("Generates code using flags (a non-interactive CLI)")
-    .option("-f, --framework <string>", "Framework to use")
-    .option("-d, --db <string>", "DB to use")
     .option("-id, --install-dependencies", "Whether to install dependencies")
+    .option(
+      "-td, --target-directory <type>",
+      "Tha path to where the app should be installed"
+    )
+    .option(
+      "-an, --app-name <type>",
+      "The name of the app which will get used for the root folder name, package.json. and others",
+      "default-app-name"
+    )
     .option(
       "-ov, --override-if-exists",
       "If set to true, the existing generated app will be overriden"
