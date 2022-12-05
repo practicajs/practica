@@ -1,8 +1,7 @@
 import { AppError } from "../error-handling";
 import { factorDefaultOptions } from "../generation-logic/generation-options";
 import { generateApp } from "../generation-logic/generate-service";
-import { spinner, cliTexts } from "../utils";
-
+import { spinner, nonInteractiveCliTexts } from "./ui-elements";
 export async function handleNonInteractiveCommand(options: any) {
   try {
     const generationOptions = factorDefaultOptions({
@@ -11,13 +10,13 @@ export async function handleNonInteractiveCommand(options: any) {
       targetDirectory: options.targetDirectory || process.cwd(),
       appName: options.appName,
     });
-    spinner.start(cliTexts.nonInteractiveCli.onStart);
+    spinner.start(nonInteractiveCliTexts.onStart);
     await generateApp(generationOptions);
-    spinner.succeed(cliTexts.nonInteractiveCli.onSucceed);
+    spinner.succeed(nonInteractiveCliTexts.onSucceed);
   } catch (error: AppError | any) {
     const errorMessageToUser = error.message
       ? `${error.message}`
-      : cliTexts.nonInteractiveCli.onError.default;
+      : nonInteractiveCliTexts.onError.default;
     spinner.fail(errorMessageToUser);
     process.exit(1);
   }
