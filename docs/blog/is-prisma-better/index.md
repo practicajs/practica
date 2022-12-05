@@ -18,11 +18,13 @@ tags:
   ]
 ---
 
-## Intro - Why discuss yet another ORM (or the man who had staints on his suite)?
+## Intro - Why discuss yet another ORM (or the man who had a stain on his fancy suite)?
 
 *Betteridge's law of headlines suggests that a 'headline that ends in a question mark can be answered by the word NO'. Will this article follow this rule?*
 
-Imagine an elegant businessman (or woman) walking into a building, wearing a fancy tuxedo, a luxury watch wrapped around his palm. He smiles and waves all over to say hello while people around are starring admirably. Shockingly, when getting closer, one can't ignore that his branded white shirt has a dark stain. A bold one
+Imagine an elegant businessman (or woman) walking into a building, wearing a fancy tuxedo, a luxury watch wrapped around his palm. He smiles and waves all over to say hello while people around are starring admirably. Shockingly, when getting closer, one can't ignore that his branded white shirt has a dark stain. A bold one. What a cognitive dissonance...
+
+![Suite with stain](./suite.png)
 
  Like this businessman, Node is highly capable and popular, and yet, in certain areas, its offering basket is stained with inferior offerings. One of these areas is the ORM space, "I wish we had something like (Java) hibernate or (.NET) Entity Framework" are common words being heard by Node developers. What about existing mature ORMs like TypeORM and Sequelize? We owe so much to these maintainers, and yet, the produced developer experience, the level of maintenance - just don't feel delightful, some may say even mediocre. At least so I believed *before* writing this article...
 
@@ -38,9 +40,62 @@ Ready to explore how good Prisma is and whether you should throw away your curre
 
 ## TOC
 
-1. Things that are mostly the same
-2. Differentiation
-3. Closing
+1. Prisma basics in 3 minutes
+2. Things that are mostly the same
+3. Differentiation
+4. Closing
+
+## Prisma basics in 3 minutes
+
+Just before delving into the strategic differences, for the benefit of those unfamiliar with Prisma - here is a quick 'hello-world' workflow with Prisma ORM. If you're already familiar with it - skipping to the next section sounds sensible. Simply put, Prisma dictates 3 key steps to get our ORM code working:
+
+**A. Define a model -** Unlike almost any other ORM, Prisma brings a unique language (DSL) for modeling the database-to-code mapping. This proprietary syntax aims to express these models with minimum clutter (i.e., TypeScript generics and verbose code). Worried about having intellisense and validation? A well-crafted vscode extension gets you covered. In the following example, the prisma.schema file describes a DB with an Order table that has a one-to-many relation with a Country table:
+
+```prisma
+// prisma.schema file
+model Order {
+  id                 Int      @id @default(autoincrement())
+  userId             Int?
+  paymentTermsInDays Int?
+  deliveryAddress    String? @db.VarChar(255)
+  country            Country  @relation(fields: [countryId], references: [id])
+  countryId          Int
+}
+
+model Country {
+  id    Int     @id @default(autoincrement())
+  name  String @db.VarChar(255)
+  Order Order[]
+}
+```
+
+**B. Generate the client code -** Another unusual technique: to get the ORM code ready, one must invoke Prisma's CLI and ask for it: 
+
+```bash
+npx prisma generate
+```
+
+This will generate the TypeScript ORM code base on the model. The generated code location is defaulted under '[root]/NODE_MODULES/.prisma/client'. Every time the model changes, the code must get re-generated again. While most ORMs name this code 'repository' or 'entity' or 'active record', interestingly, Prisma calls it a 'client'. This shows part of its unique philosophy, which we will explore later
+
+**C. All good; use the client to interact with the DB -** The generated client has a rich set of functions and types for your DB interactions. Just import the ORM/client code and use it:
+
+```javascript
+import { PrismaClient } from '.prisma/client';
+
+const prisma = new PrismaClient();
+// A query example
+prisma.order.findMany({
+    where: {
+      paymentTermsInDays: 30,
+    },
+    orderBy: {
+      id: 'asc',
+    },
+  });
+// Use the same client for insertion, deletion, updates, etc
+```
+
+That's the nuts and bolts of Prisma. Is it different and better?
 
 ## What is the same?
 
@@ -109,7 +164,6 @@ console.log(ordersOnSales[0].userId); //😯 No warning here although the 'userI
 
 Isn't it ironic that a library called **Type**ORM base its queries on strings?
 
-**📊 How important:** ![Medium importance](./medium-importance-slider.png)
 
 **🤔 How Prisma is different:** It takes a totally different approach by generating per-project client code that is fully typed. This client embodies types for everything: every query, relations, sub-queries, everything (except migrations). While other ORMs struggles to infer types from discrete models (including associations that are declared in other files), Prisma's offline code generation is easier: It can look through the entire DB relations, use custom generation code and build an almost perfect TypeScript experience. Why 'almost' perfect? for some reason, Prisma advocates using plain SQL for migrations, which might result in a discrepancy between the code models and the DB schema. Other than that, this is how Prisma's client brings end to end type safety:
 
@@ -131,7 +185,9 @@ await prisma.order.findMany({
   });
 ```
 
-Although door-to-door TypeScript support is valuable, I don't find this to be necessary for a production-safe environment. Luckily, we have another safety net: The project tests will also realize type mismatches
+**📊 How important:** TypeScript support across the board is valuable for DX mostly. Luckily, we have another safety net: The project testing. Since tests are mandatory, having build-time type verification is important but not a life saver
+
+![Medium importance](./medium2-importance-slider.png)
 
 **🏆 Is Prisma doing better?:** Definitely
 
@@ -155,8 +211,6 @@ await createQueryBuilder('order')
 A developer who read this code 👆 is likely to infer that a *join* query between two tables will get executed
 
 
-**📊 How important:** ![Medium importance](./medium-importance-slider.png)
-
 **🤔 How Prisma is different:** Prisma's mission statement is to simplify DB work, the following statement is taken from their homepage:
 
 "We designed its API to be intuitive, both for SQL veterans and *developers brand new to databases*"
@@ -178,6 +232,10 @@ await prisma.order.findMany({
 
 No join is reminded here also it fetches records from two related tables (order, and country). Could you guess what SQL is being produced here? how many queries? One right, a simple join? Surprise,  actually, two queries are made. Prisma fires one query per-table here, as the join logic happens on the ORM client side (not inside the DB). But why?? in some cases, mostly where there is a lot of repetition in the DB cartesian join, querying each side of the relation is more efficient. But in other cases, it's not. Prisma arbitrarily chose what they believe will perform better in *most* cases. I checked, in my case it's *slower* than doing a one-join query on the DB side. As a developer, I would miss this deficiency due to the high-level syntax (no join is mentioned). My point is, Prisma sweet and simple syntax might be a  bless for developer who are brand new to databases and aim to achieve a working solution in a short time. For the longer term, having full awareness of the DB interactions is helpful, other ORMs encourage this awareness a little better
 
+**📊 How important:** Any ORM will hide SQL details from their users - without developer's awareness no ORM will save the day
+
+![Medium importance](./medium2-importance-slider.png)
+
 **🏆 Is Prisma doing better?:** Not necessarily
 
 ## 3. Performance
@@ -190,14 +248,16 @@ No join is reminded here also it fetches records from two related tables (order,
  It should also be noted that these benchmarks don't tell the entire story - on top of raw queries, every solution must build a mapper layer that maps the raw data to JS objects, nest the results, cast types, and more. This work is included within every ORM but not shown in benchmarks for the raw option. In reality, every team which doesn't use ORM would have to build their own small "ORM", including a mapper, which will also impact performance
 
 
-**📊 How important:** ![Medium importance](./medium-importance-slider.png)
-
 **🤔 How Prisma is different:** It was my hope to see a magic here, eating the ORM cake without counting the calories, seeing Prisma achieving an almost 'raw' query speed. I had some good and logical reasons for this hope: Prisma uses a DB client built with Rust. Theoretically, it could serialize to and nest objects faster (in reality, this happens on the JS side). It was also built from the ground up and could build on the knowledge pilled in ORM space for years. Also, since it returns POJOs only (see bullet 'No Active Record here!') - no time should be spent on decorating objects with ORM fields
 
 You already got it, this hope was not fulfilled. Going with every community benchmark ([one](https://dev.to/josethz00/benchmark-prisma-vs-typeorm-3873), [two](https://github.com/edgedb/imdbench), [three](https://deepkit.io/library)), Prisma at best is not faster than the average ORM. What is the reason? I can't tell exactly but it might be due the complicated system that must support Go, future languages, MongoDB and other non-relational DBs
 
 ![Prisma is not faster](./throughput-benchmark.png)
 *Example: Prisma is not faster than others. It should be noted that in other benchmarks Prisma scores higher and shows an 'average' performance [Source](https://github.com/edgedb/imdbench)*
+
+**📊 How important:** It's expected from ORM users to live peacefully with inferior performance, for many systems it won't make a great deal. With that, 10%-30% performance differences between various ORMs are not a key factor
+
+![Medium importance](./medium2-importance-slider.png)
 
 **🏆 Is Prisma doing better?:** No
 
@@ -239,8 +299,6 @@ function updateOrder(orderToUpdate: Order){
 
 ```
 
-**📊 How important:** ![Medium importance](./medium-importance-slider.png)
-
 **🤔 How Prisma is different:** The better alternative is the data mapper pattern. It acts as a bridge, an adapter, between simple object notations (domain objects with properties) to the DB language, typically SQL. Call it with a plain JS object, POJO, get it saved in the DB. Simple. It won't add functions to the result objects or do anything beyond returning pure data, no surprising side effects. In its purest sense, this is a DB-related utility and completely detached from the business logic. While both Sequelize and TypeORM support this, Prisma offers *only* this style - no room for mistakes.
 
 
@@ -272,19 +330,28 @@ function updateOrder(orderToUpdate: Order){
 
  In [Practica.js](https://github.com/practicajs/practica) we take it one step further and put the prisma models within the "DAL" layer and wrap it with the [repository pattern](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design). You may glimpse [into the code here](https://github.com/practicajs/practica/blob/21ff12ba19cceed9a3735c09d48184b5beb5c410/src/code-templates/services/order-service/domain/new-order-use-case.ts#L21), this is the business flow that calls the DAL layer
 
+
+**📊 How important:** On the one hand, this is a key architectural principle to follow but the other hand most ORMs *allow* doing it right
+
+![Medium importance](./high1-importance-slider.png)
+
+**🏆 Is Prisma doing better?:** Yes!
+
 ## 5. Documentation and DX
 
 
 **💁‍♂️ What is it about:** TypeORM and Sequelize documentation is mediocre, TypeORM might be a little better. Based on my personal experience they do get a little better over the years, but still by no mean they deserve to be called "good" or "great". For example, if you seek to learn about 'raw queries' - Sequelize offers [a very short page](https://sequelize.org/docs/v6/core-concepts/raw-queries/) on this matter, TypeORM info is spread in multiple other pages. Looking to learn about pagination? Couldn't find Sequelize documents, TypeORM has [some short explanation](https://typeorm.io/select-query-builder#using-pagination), 150 words only
 
 
-**📊 How important:** ![Medium importance](./medium-importance-slider.png)
-
 **🤔 How Prisma is different:** Prisma documentation rocks! See their documents on similar topics: [raw queries](https://www.prisma.io/docs/concepts/components/prisma-client/raw-database-access) and [pagingation](https://www.prisma.io/docs/concepts/components/prisma-client/pagination), thousands of words, and dozens of code examples. The writing itself is also great, feels like some professional writers were involved
 
 ![Prisma docs are comprehensive](./count-docs.png)
  
- This chart above shows how comprehensive are Prisma docs (Obviously this by itself doesn't prove quality)
+This chart above shows how comprehensive are Prisma docs (Obviously this by itself doesn't prove quality)
+
+**📊 How important:** Great docs are a key to awareness and avoiding pitfalls
+
+![Medium importance](./high1-importance-slider.png)
 
 
 **🏆 Is Prisma doing better?:** You bet
@@ -304,14 +371,17 @@ What if you need to dig into which specific part of the query is slow? unfortuna
 Logging each query in order to realize trends and anomaly in the monitoring system
 
 
-**📊 How important:** ![Medium importance](./medium-importance-slider.png)
-
 **🤔 How Prisma is different:** Since Prisma targets also enterprises, it must bring strong ops capabilities. Beautifully, it packs support for both [metrics](https://www.prisma.io/docs/concepts/components/prisma-client/metrics) and [open telemetry tracing](https://www.prisma.io/docs/concepts/components/prisma-client/opentelemetry-tracing)!. For metrics, it generates custom JSON with metric keys and values so anyone can adapt this to any monitoring system (e.g., CloudWatch, statsD, etc). On top of this, it produces out of the box metrics in [Prometheus](https://prometheus.io/) format (one of the most popular monitoring platforms). For example, the metric 'prisma_client_queries_duration_histogram_ms' provides the average query length in the system overtime. What is even more impressive is the support for open-tracing - it feeds your OpenTelemetry collector with spans that describe the various phases of every query. For example, it might help realize what is the bottleneck in the query pipeline: Is it the DB connection, the query itself or the serialization?
 
 ![prisma tracing](./trace-diagram.png)
 Prisma visualizes the various query phases duration with open-telemtry 
 
 **🏆 Is Prisma doing better?:** Definitely
+
+
+**📊 How important:** Goes without words how impactful is observability, however filling the gap in other ORM will demand no more than a few days
+
+![Medium importance](./medium2-importance-slider.png)
 
 ## 7. Continuity - will it be here with us in 2024/2025
 
@@ -321,8 +391,6 @@ See, an OSS ORM has to go over one huge hump, but a startup company must pass th
 
 ![One hump](./one-hump.png)
 
-
-**📊 How important:** ![Medium importance](./medium-importance-slider.png)
 
 **🤔 How Prisma is different:** Prisma a little lags behind in terms of features, but with a budget of 40M$ - there are good reasons to believe that they will pass the first hump, achieving a critical mass of features. I'm more concerned with the second hump - showing revenues in 2 years or saying goodbye. As a company that is backed by venture capitals - the model is clear and cruel: In order to secure their next round, series B or C (depends whether the seed is counted), there must be a viable and proven business model. How do you 'sell' ORM? Prisma experiments with multiple products, none is mature yet or being paid for. How big is this risk? According to [this startup companies success statistics](https://spdload.com/blog/startup-success-rate/), "About 65% of the Series A startups get series B, while 35% of the companies that get series A fail.". Since Prisma already gained a lot of love and adoption from the community, there success chances are higher than the average round A/B company, but even 20% or 10% chances to fade away is concerning
 
@@ -334,6 +402,10 @@ See, an OSS ORM has to go over one huge hump, but a startup company must pass th
 Some of startup companies who seek a viable business model do not shut the doors rather change the product, the license or the free features. This is not my subjective business analysis, here are few examples: [MongoDB changed their license](https://techcrunch.com/2018/10/16/mongodb-switches-up-its-open-source-license/), this is why the majority had to host their Mongo DB over a single vendor. [Redis did something similar](https://techcrunch.com/2019/02/21/redis-labs-changes-its-open-source-license-again/). What are the chances of Prisma pivoting to another type of product? It actually already happened before, Prisma 1 was mostly about graphQL client and server, [it's now retired](https://github.com/prisma/prisma1)
 
 It's just fair to mention the other potential path - most round B companies do succeed to qualify for the next round, when this happens even bigger money will be involved in building the 'Ferrari' of JavaScript ORMs. I'm surely crossing my fingers for these great people, at the same time we have to be conscious about our choices
+
+**📊 How important:** As important as having to code again the entire DB layer in a big system
+
+![Medium importance](./high2-importance-slider.png)
 
 
 **🏆 Is Prisma doing better?:** Quite the opposite
@@ -348,7 +420,7 @@ Before proposing my key take away - which is the primary ORM, let's repeat the k
 
 Based on these observations, which should you pick? which ORM will we use for [practica.js](https://github.com/practicajs/practica)?
    
-Prisma is an excellent addition to Node.js ORMs family, but not the hassle-free one tool to rule them all. It's a mixed bag of many delicious candies and a few gotchas. Wouldn't it grow to tick all the boxes? Maybe, but unlikely. Once built, it's too hard to dramatically change the syntax and engine performance. Then, during the writing and speaking with the community, including some Prisma enthusiasts, I realized that it doesn't aim to be the can-do-everything 'Ferrari'. Its positioning seems to resemble more a convenient family car with a solid engine and awesome user experience. In other words, it probably aims for the enterprise space where there is mostly demand for great DX, OK performance, and business-class support. It's not 2004, building ORM for the modern JavaScript ecosystem is 100x harder than building a Java Hibernate. I should probably stop envisioning 'Ferrari'
+Prisma is an excellent addition to Node.js ORMs family, but not the hassle-free one tool to rule them all. It's a mixed bag of many delicious candies and a few gotchas. Wouldn't it grow to tick all the boxes? Maybe, but unlikely. Once built, it's too hard to dramatically change the syntax and engine performance. Then, during the writing and speaking with the community, including some Prisma enthusiasts, I realized that it doesn't aim to be the can-do-everything 'Ferrari'. Its positioning seems to resemble more a convenient family car with a solid engine and awesome user experience. In other words, it probably aims for the enterprise space where there is mostly demand for great DX, OK performance, and business-class support. It's not 2004, building ORM for the modern JavaScript ecosystem is 10x harder than building a Java Hibernate. I should probably stop envisioning 'Ferrari'
 
 ### When will it shine?
 
