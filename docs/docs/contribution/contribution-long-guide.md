@@ -111,7 +111,7 @@ graph
 All libraries are independent npm packages that can be testing in isolation
 
 ```mermaid
-%%{init: {'theme': 'forest', 'themeVariables': { 'darkMode':'true', 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
 graph
       A[Libraries] --> B(Logger)
       A[Libraries] --> |Token-based auth| C(Authorization)
