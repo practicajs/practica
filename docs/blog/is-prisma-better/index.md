@@ -1,8 +1,8 @@
 ---
-slug: is-prisma-better-than-your-casual-orm
+slug: is-prisma-better-than-your-traditional-orm
 date: 2022-08-02T10:00
 hide_table_of_contents: true
-title: Is Prisma better than your casual ORM?
+title: Is Prisma better than your 'traditional' ORM?
 authors: [goldbergyoni]
 tags:
   [
@@ -22,7 +22,7 @@ tags:
 
 *Betteridge's law of headlines suggests that a 'headline that ends in a question mark can be answered by the word NO'. Will this article follow this rule?*
 
-Imagine an elegant businessman (or woman) walking into a building, wearing a fancy tuxedo, a luxury watch wrapped around his palm. He smiles and waves all over to say hello while people around are starring admirably. Shockingly, when getting closer, one can't ignore that his branded white shirt has a dark stain. A bold one. What a cognitive dissonance...
+Imagine an elegant businessman (or woman) walking into a building, wearing a fancy tuxedo and a luxury watch wrapped around his palm. He smiles and waves all over to say hello while people around are starring admirably. You get a little closer, then shockingly, while standing nearby it's hard ignore a bold a dark stain over his white shirt. What a dissonance, suddenly all of that glamour is stained
 
 ![Suite with stain](./suite.png)
 
@@ -337,10 +337,10 @@ function updateOrder(orderToUpdate: Order){
 
 **🏆 Is Prisma doing better?:** Yes!
 
-## 5. Documentation and DX
+## 5. Documentation and developer-experience
 
 
-**💁‍♂️ What is it about:** TypeORM and Sequelize documentation is mediocre, TypeORM might be a little better. Based on my personal experience they do get a little better over the years, but still by no mean they deserve to be called "good" or "great". For example, if you seek to learn about 'raw queries' - Sequelize offers [a very short page](https://sequelize.org/docs/v6/core-concepts/raw-queries/) on this matter, TypeORM info is spread in multiple other pages. Looking to learn about pagination? Couldn't find Sequelize documents, TypeORM has [some short explanation](https://typeorm.io/select-query-builder#using-pagination), 150 words only
+**💁‍♂️ What is it about:** TypeORM and Sequelize documentation is mediocre, though TypeORM is a little better. Based on my personal experience they do get a little better over the years, but still by no mean they deserve to be called "good" or "great". For example, if you seek to learn about 'raw queries' - Sequelize offers [a very short page](https://sequelize.org/docs/v6/core-concepts/raw-queries/) on this matter, TypeORM info is spread in multiple other pages. Looking to learn about pagination? Couldn't find Sequelize documents, TypeORM has [some short explanation](https://typeorm.io/select-query-builder#using-pagination), 150 words only
 
 
 **🤔 How Prisma is different:** Prisma documentation rocks! See their documents on similar topics: [raw queries](https://www.prisma.io/docs/concepts/components/prisma-client/raw-database-access) and [pagingation](https://www.prisma.io/docs/concepts/components/prisma-client/pagination), thousands of words, and dozens of code examples. The writing itself is also great, feels like some professional writers were involved
@@ -420,7 +420,9 @@ Before proposing my key take away - which is the primary ORM, let's repeat the k
 
 Based on these observations, which should you pick? which ORM will we use for [practica.js](https://github.com/practicajs/practica)?
    
-Prisma is an excellent addition to Node.js ORMs family, but not the hassle-free one tool to rule them all. It's a mixed bag of many delicious candies and a few gotchas. Wouldn't it grow to tick all the boxes? Maybe, but unlikely. Once built, it's too hard to dramatically change the syntax and engine performance. Then, during the writing and speaking with the community, including some Prisma enthusiasts, I realized that it doesn't aim to be the can-do-everything 'Ferrari'. Its positioning seems to resemble more a convenient family car with a solid engine and awesome user experience. In other words, it probably aims for the enterprise space where there is mostly demand for great DX, OK performance, and business-class support. It's not 2004, building ORM for the modern JavaScript ecosystem is 10x harder than building a Java Hibernate. I should probably stop envisioning 'Ferrari'
+Prisma is an excellent addition to Node.js ORMs family, but not the hassle-free one tool to rule them all. It's a mixed bag of many delicious candies and a few gotchas. Wouldn't it grow to tick all the boxes? Maybe, but unlikely. Once built, it's too hard to dramatically change the syntax and engine performance. Then, during the writing and speaking with the community, including some Prisma enthusiasts, I realized that it doesn't aim to be the can-do-everything 'Ferrari'. Its positioning seems to resemble more a convenient family car with a solid engine and awesome user experience. In other words, it probably aims for the enterprise space where there is mostly demand for great DX, OK performance, and business-class support
+
+In the end of this journey I see no dominant flawless 'Ferrari' ORM. I should probably change my perspective: Building ORM for the hectic modern JavaScript ecosystem is 10x harder than building a Java ORM back then in 2001. There is no stain in the shirt, it's a cool JavaScript swag. I learned to accept what we have, a rich set of features, tolerable performance, good enough for many systems. Need more? Don't use ORM. Nothing is going to change dramatically, it's now as good as it can be
 
 ### When will it shine?
 
@@ -429,6 +431,8 @@ Prisma is an excellent addition to Node.js ORMs family, but not the hassle-free 
 **I'd probably prefer other options under these conditions -** If the DB layer performance is a major concern; if you're savvy backend developer with solid SQL capabilities; when there is a need for fine grain control over the data layer. For all of these cases, Prisma might still work, but my primary choices would be using knex/TypeORM/Sequelize with a data-mapper style
 
 Consequently, we add Prisma behind flag (--orm=prisma) to Practica.js while leaving Sequelize as our default ORM for now
+
+Consequently, we love Prisma and add it behind flag (--orm=prisma) to Practica.js. At the same time, until some clouds will disappear, we don't feel that its matured enough to be our default ORM, hence we leave Sequelize as our default ORM for now
 ## Some of my other articles
 
 - [Book: Node.js testing best practices](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
