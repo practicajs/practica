@@ -58,7 +58,7 @@ The repo has 3 root folders that represents what we do:
 - **code-templates** - The code that we generate with the right patterns and practices
 
 ```mermaid
-%%{init: {'theme': 'forest', 'themeVariables': { 'darkMode':'true', 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode':'true', 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
 graph
       A[Practica] -->|How we create apps| B(Code Generators)
       A -->|The code that we generate!| C(Code Templates)
