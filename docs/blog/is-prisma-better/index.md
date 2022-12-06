@@ -430,9 +430,7 @@ In the end of this journey I see no dominant flawless 'Ferrari' ORM. I should pr
 
 **I'd probably prefer other options under these conditions -** If the DB layer performance is a major concern; if you're savvy backend developer with solid SQL capabilities; when there is a need for fine grain control over the data layer. For all of these cases, Prisma might still work, but my primary choices would be using knex/TypeORM/Sequelize with a data-mapper style
 
-Consequently, we add Prisma behind flag (--orm=prisma) to Practica.js while leaving Sequelize as our default ORM for now
-
-Consequently, we love Prisma and add it behind flag (--orm=prisma) to Practica.js. At the same time, until some clouds will disappear, we don't feel that its matured enough to be our default ORM, hence we leave Sequelize as our default ORM for now
+Consequently, we love Prisma and add it behind flag (--orm=prisma) to Practica.js. At the same time, until some clouds will disappear, Sequelize will remain our default ORM
 ## Some of my other articles
 
 - [Book: Node.js testing best practices](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
