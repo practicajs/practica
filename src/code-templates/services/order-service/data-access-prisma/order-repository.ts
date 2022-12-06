@@ -1,25 +1,14 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { PrismaClient } from '.prisma/client';
 
+const a = `postgresql://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_URL}:${process.env.DB_PORT}/shop?schema=public`;
+console.log('👵🏼', a);
 const prisma = new PrismaClient({
-  log: [
-    {
-      emit: 'stdout',
-      level: 'query',
+  datasources: {
+    db: {
+      url: `postgresql://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_URL}:${process.env.DB_PORT}/shop?schema=public`,
     },
-    {
-      emit: 'stdout',
-      level: 'error',
-    },
-    {
-      emit: 'stdout',
-      level: 'info',
-    },
-    {
-      emit: 'stdout',
-      level: 'warn',
-    },
-  ],
+  },
 });
 
 // ️️️✅ Best Practice: The repository pattern - This is a plain JS object (POJO) that is returned to the domain layer
@@ -33,17 +22,22 @@ type OrderRecord = {
   deliveryAddress: string;
 };
 
-// ️️️✅ Best Practice: The repository pattern - Wrap the entire DB layer with a simple interface that returns plain JS objects
-export async function getOrderById(id: number) {
-  const resultOrder = await prisma.order.findUnique({
-    where: {
-      id,
-    },
-    include: { country: true },
-  });
+class OrderRepository {
+  async getOrderById(id: number) {
+    const resultOrder = await prisma.order.findUnique({
+      where: {
+        id,
+      },
+      include: { country: true },
+    });
 
-  return resultOrder;
+    return resultOrder;
+  }
 }
+
+export function initialize() {}
+
+// ️️️✅ Best Practice: The repository pattern - Wrap the entire DB layer with a simple interface that returns plain JS objects
 
 export async function addOrder(newOrderRequest: Omit<OrderRecord, 'id'>) {
   const resultOrder = await prisma.order.create({
