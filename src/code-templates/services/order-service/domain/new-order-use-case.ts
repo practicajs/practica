@@ -1,4 +1,4 @@
-import * as orderRepository from '../data-access-prisma/order-repository';
+import * as orderRepository from '../data-access/order-repository';
 import paymentTermsService from './payment-terms-service';
 import { assertNewOrderIsValid } from './order-validators';
 import { assertUserExists } from './user-service-client';

@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Run tests",
       "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "program": "${workspaceFolder}/src/code-templates/node_modules/jest-cli/build/cli/index.js",
       "outFiles": ["${workspaceFolder}/**/*.js"]
