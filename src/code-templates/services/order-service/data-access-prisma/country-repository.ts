@@ -1,7 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { PrismaClient } from '.prisma/client';
-
-const prisma = new PrismaClient();
+import { getPrismaClient } from './prisma-client-factory';
 
 type CountryRecord = {
   id: number;
@@ -9,7 +6,7 @@ type CountryRecord = {
 };
 
 export async function getAllCountries(): Promise<CountryRecord[]> {
-  const results = prisma.country.findMany();
+  const results = getPrismaClient().country.findMany();
 
   return results;
 }

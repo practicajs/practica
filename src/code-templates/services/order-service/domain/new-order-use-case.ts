@@ -15,7 +15,6 @@ export async function addOrder(newOrder: addOrderDTO) {
     userWhoOrdered.terms
   );
   finalOrderToSave.paymentTermsInDays = approvedPaymentTerms;
-
   const response = await orderRepository.addOrder(finalOrderToSave);
 
   return response;
