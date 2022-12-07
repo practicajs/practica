@@ -21,7 +21,6 @@ export async function addOrder(newOrderRequest: Omit<OrderRecord, 'id'>) {
 }
 
 export async function getOrderById(id: number) {
-  console.log(await getPrismaClient().$metrics.json());
   const resultOrder = await getPrismaClient().order.findUnique({
     where: {
       id,
