@@ -5,6 +5,12 @@
   "cSpell.words": ["practica"],
   "editor.suggest.showStatusBar": true,
   "debug.showInStatusBar": "onFirstSessionStart",
-  "gitlens.codeLens.enabled": false,
-  "gitlens.codeLens.scopes": ["document"]
+  "jestrunner.debugOptions": {
+    "skipFiles": [
+      "${workspaceFolder}/node_modules/**/*.js",
+      "<node_internals>/**",
+      "**/node_modules/*.*"
+    ],
+    "smartStep": true
+  }
 }

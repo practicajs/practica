@@ -46,6 +46,20 @@ export default {
       nullable: false,
       env: 'DB_USERNAME',
     },
+    port: {
+      doc: 'The DB port',
+      format: 'Number',
+      default: '54320',
+      nullable: false,
+      env: 'DB_PORT',
+    },
+    url: {
+      doc: 'The DB cluster URL',
+      format: 'String',
+      default: 'localhost',
+      nullable: false,
+      env: 'DB_URL',
+    },
     password: {
       doc: "The DB connection password. Don't put production code here",
       format: 'String',

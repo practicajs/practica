@@ -15,16 +15,15 @@ let connection: Server;
 // ️️️✅ Best Practice: API exposes a start/stop function to allow testing control WHEN this should happen
 async function startWebServer(): Promise<AddressInfo> {
   // ️️️✅ Best Practice: Declare a strict configuration schema and fail fast if the configuration is invalid
-  console.log("foo")
   configurationProvider.initializeAndValidate(configurationSchema);
-  console.log("fo1")
   logger.configureLogger(
-    // eslint-disable-next-line
-    // @ts-ignore TODO: fix this
-    { prettyPrint: configurationProvider.getValue('logger.prettyPrint') },
+    {
+      prettyPrint: Boolean(
+        configurationProvider.getValue('logger.prettyPrint')
+      ),
+    },
     true
   );
-  console.log("fo3")
   const expressApp = express();
   expressApp.use(addRequestIdExpressMiddleware);
   expressApp.use(helmet());
@@ -36,8 +35,12 @@ async function startWebServer(): Promise<AddressInfo> {
     })
   );
   defineRoutes(expressApp);
+<<<<<<< HEAD
   console.log("fo6")
   handleRouteErrors(expressApp);
+=======
+  defineErrorHandlingMiddleware(expressApp);
+>>>>>>> 8a23e66495591c0d7792b96ee4fda5ba106d6f2e
   const APIAddress = await openConnection(expressApp);
   return APIAddress;
 }
@@ -69,7 +72,7 @@ async function openConnection(
   });
 }
 
-function handleRouteErrors(expressApp: express.Application) {
+function defineErrorHandlingMiddleware(expressApp: express.Application) {
   expressApp.use(
     async (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -87,7 +90,6 @@ function handleRouteErrors(expressApp: express.Application) {
       }
       // ✅ Best Practice: Pass all error to a centralized error handler so they get treated equally
       errorHandler.handleError(error);
-
       res.status(error?.HTTPStatus || 500).end();
     }
   );
