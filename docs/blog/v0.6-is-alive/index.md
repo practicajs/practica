@@ -3,7 +3,7 @@ slug: practica-v0.0.6-is-alive
 date: 2022-12-10T10:00
 hide_table_of_contents: true
 title: Practica v0.0.6 is alive
-authors: [goldbergyoni]
+authors: [goldbergyoni, razluvaton, danielgluskin, michaelsalomon]
 tags:
   [
     node.js,
