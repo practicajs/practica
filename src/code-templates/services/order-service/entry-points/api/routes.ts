@@ -12,9 +12,8 @@ export default function defineRoutes(expressApp: express.Application) {
         `Order API was called to add new Order ${util.inspect(req.body)}`
       );
       // ✅ Best Practice: Using the 3-tier architecture, routes/controller are kept thin, logic is encapsulated in a dedicated domain folder
-      console.log("fo9")
+
       const addOrderResponse = await newOrderUseCase.addOrder(req.body);
-      console.log("fo11")
       return res.json(addOrderResponse);
     } catch (error) {
       next(error);
