@@ -1,6 +1,6 @@
 ---
 slug: is-prisma-better-than-your-traditional-orm
-date: 2022-08-02T10:00
+date: 2022-12-07T11:00
 hide_table_of_contents: true
 title: Is Prisma better than your 'traditional' ORM?
 authors: [goldbergyoni]
@@ -75,16 +75,25 @@ model Country {
 npx prisma generate
 ```
 
-This will generate the TypeScript ORM code base on the model. The generated code location is defaulted under '[root]/NODE_MODULES/.prisma/client'. Every time the model changes, the code must get re-generated again. While most ORMs name this code 'repository' or 'entity' or 'active record', interestingly, Prisma calls it a 'client'. This shows part of its unique philosophy, which we will explore later
+Alternatively, if you wish to have your DB ready and the code generated with one command, just fire:
 
-**C. All good; use the client to interact with the DB -** The generated client has a rich set of functions and types for your DB interactions. Just import the ORM/client code and use it:
+```bash
+npx prisma migrate deploy
+```
+
+This will generate migration files that you can execute later in production and also the ORM client code
+
+
+This will generate migration files that you can execute later in production and the TypeScript ORM code based on the model. The generated code location is defaulted under '[root]/NODE_MODULES/.prisma/client'. Every time the model changes, the code must get re-generated again. While most ORMs name this code 'repository' or 'entity' or 'active record', interestingly, Prisma calls it a 'client'. This shows part of its unique philosophy, which we will explore later
+
+**C. All good, use the client to interact with the DB -** The generated client has a rich set of functions and types for your DB interactions. Just import the ORM/client code and use it:
 
 ```javascript
 import { PrismaClient } from '.prisma/client';
 
 const prisma = new PrismaClient();
 // A query example
-prisma.order.findMany({
+await prisma.order.findMany({
     where: {
       paymentTermsInDays: 30,
     },
@@ -147,10 +156,10 @@ class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>
 // Sequelize loose query types
 await getOrderModel().findAll({
     where: { noneExistingField: 'noneExistingValue' } //👍 TypeScript will warn here
-    attributes: ['none-existing-field', 'another-imaginary-column'], // No warnings here although these columns do not exist
-    include: 'no-such-table', //😯 no warning here although this table doesn't exist
+    attributes: ['none-existing-field', 'another-imaginary-column'], // No errors here although these columns do not exist
+    include: 'no-such-table', //😯 no errors here although this table doesn't exist
   });
-  await getCountryModel().findByPk('price'); //😯 No warning here although the price column is not a primary key
+  await getCountryModel().findByPk('price'); //😯 No errors here although the price column is not a primary key
 ```
 
 ```javascript
@@ -159,7 +168,7 @@ const ordersOnSales: Post[] = await orderRepository.find({
   where: { onSale: true }, //👍 TypeScript will warn here
   select: ['id', 'price'],
 })
-console.log(ordersOnSales[0].userId); //😯 No warning here although the 'userId' column is not part of the returned object
+console.log(ordersOnSales[0].userId); //😯 No errors here although the 'userId' column is not part of the returned object
 ```
 
 Isn't it ironic that a library called **Type**ORM base its queries on strings?
@@ -170,18 +179,18 @@ Isn't it ironic that a library called **Type**ORM base its queries on strings?
 ```javascript
 await prisma.order.findMany({
     where: {
-      noneExistingField: 1, //👍 TypeScript warning here
+      noneExistingField: 1, //👍 TypeScript error here
     },
     select: {
-      noneExistingRelation: {  //👍 TypeScript warning here
+      noneExistingRelation: {  //👍 TypeScript error here
         select: { id: true }, 
       },
-      noneExistingField: true,  //👍 TypeScript warning here
+      noneExistingField: true,  //👍 TypeScript error here
     },
   });
 
   await prisma.order.findUnique({
-    where: { price: 50 },  //👍 TypeScript warning here
+    where: { price: 50 },  //👍 TypeScript error here
   });
 ```
 
@@ -431,11 +440,11 @@ In the end of this journey I see no dominant flawless 'Ferrari' ORM. I should pr
 **I'd probably prefer other options under these conditions -** If the DB layer performance is a major concern; if you're savvy backend developer with solid SQL capabilities; when there is a need for fine grain control over the data layer. For all of these cases, Prisma might still work, but my primary choices would be using knex/TypeORM/Sequelize with a data-mapper style
 
 Consequently, we love Prisma and add it behind flag (--orm=prisma) to Practica.js. At the same time, until some clouds will disappear, Sequelize will remain our default ORM
+
 ## Some of my other articles
 
 - [Book: Node.js testing best practices](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
 - [Book: JavaScript testing best practices](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
-- [How to be a better Node.js developer in 2020](https://yonigoldberg.medium.com/20-ways-to-become-a-better-node-js-developer-in-2020-d6bd73fcf424). The 2023 version is coming soon
+- [Popular Node.js patterns and tools to re-consider](https://practica.dev/blog/popular-nodejs-pattern-and-tools-to-reconsider)
 - [Practica.js - A Node.js starter](https://github.com/practicajs/practica)
 - [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices)
-
