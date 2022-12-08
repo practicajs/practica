@@ -3,6 +3,7 @@ import path from "path";
 import execa from "execa";
 import { generationOptions } from "./generation-options";
 import { AppError } from "../error-handling";
+import { chooseORM } from "./features/choose-orm";
 // This is where the code generation logic lives. In high-level, based on the provided option, it creates
 // a folder, decides which code to generate, run the code through a templating engine and emit it to the target folder
 export const generateApp = async (options: generationOptions) => {
@@ -10,6 +11,8 @@ export const generateApp = async (options: generationOptions) => {
 
   await createTargetPathOrThrowIfExists(targetPath, options.overrideIfExists);
   await copyAppFilesToTargetPath(targetPath);
+  await adjustCodeBasedOnFeatures(targetPath, options);
+
   if (options.installDependencies) {
     await installDependencies(targetPath);
   }
@@ -50,6 +53,7 @@ async function copyAppFilesToTargetPath(targetPath: string) {
     overwrite: true,
   });
 }
+
 async function installDependencies(targetPath: string) {
   await execa("npm", ["install"], {
     cwd: targetPath,
@@ -57,4 +61,12 @@ async function installDependencies(targetPath: string) {
   await execa("npx", ["turbo", "run", "build", "--continue=false"], {
     cwd: targetPath,
   });
+}
+
+async function adjustCodeBasedOnFeatures(
+  generatedAppRoot: string,
+  options: generationOptions
+) {
+  await chooseORM(generatedAppRoot, options);
+  // Other features will be added here
 }

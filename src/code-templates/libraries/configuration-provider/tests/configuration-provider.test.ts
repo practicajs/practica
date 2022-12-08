@@ -6,7 +6,7 @@ describe('getValue function', () => {
   });
   test('When a default value exist in the schema, then get this value in response', () => {
     // Arrange
-    configurationProvider.initialize({
+    configurationProvider.initializeAndValidate({
       port: {
         format: 'Number',
         default: 3000,
@@ -22,7 +22,7 @@ describe('getValue function', () => {
 
   test('When a key does not exist, then an exception should be thrown', () => {
     // Arrange
-    configurationProvider.initialize({
+    configurationProvider.initializeAndValidate({
       port: {
         format: 'Number',
       },
@@ -41,7 +41,7 @@ describe('getValue function', () => {
   test('When there is default but ENV VAR override exists, then the ENV VAR value is returned', () => {
     // Arrange
     process.env.LOGGER_LEVEL = 'the-new-value';
-    configurationProvider.initialize({
+    configurationProvider.initializeAndValidate({
       logLevel: {
         format: 'String',
         default: 'the-default-value',
@@ -76,7 +76,9 @@ describe('getValue function', () => {
 
 describe('initialize function', () => {
   test('When initializing without config data, then an exception should be thrown', () => {
-    expect(configurationProvider.initialize.bind(null, null)).toThrow();
+    expect(
+      configurationProvider.initializeAndValidate.bind(null, null)
+    ).toThrow();
   });
 
   test('When a non-null key without default value is null, then an exception should be thrown', () => {
@@ -90,7 +92,7 @@ describe('initialize function', () => {
     };
 
     // Act
-    const functionUnderTest = configurationProvider.initialize.bind(
+    const functionUnderTest = configurationProvider.initializeAndValidate.bind(
       null,
       configWithNullMandatoryKey
     );
@@ -111,7 +113,7 @@ describe('initialize function', () => {
     };
 
     // Act
-    const functionUnderTest = configurationProvider.initialize.bind(
+    const functionUnderTest = configurationProvider.initializeAndValidate.bind(
       null,
       configWithTypeMismatch
     );
