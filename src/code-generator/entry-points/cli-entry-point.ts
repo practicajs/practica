@@ -1,4 +1,4 @@
-import { program } from "commander";
+import { program, Option } from "commander";
 import { renderWizard } from "./interactive-cli";
 import { handleNonInteractiveCommand } from "./non-interactive-cli";
 import { version } from "../../../package.json";
@@ -32,7 +32,7 @@ export function startAppGenerator() {
     .option(
       "-o, --orm <type>",
       "The Type of ORM to use, currently 'sequelize' or 'prisma'",
-      "prisma"
+      "sequelize"
     )
     .option(
       "-ov, --override-if-exists",

@@ -35,7 +35,7 @@ async function startWebServer(): Promise<AddressInfo> {
     })
   );
   defineRoutes(expressApp);
-  handleRouteErrors(expressApp);
+  defineErrorHandlingMiddleware(expressApp);
   const APIAddress = await openConnection(expressApp);
   return APIAddress;
 }
@@ -65,7 +65,7 @@ async function openConnection(
   });
 }
 
-function handleRouteErrors(expressApp: express.Application) {
+function defineErrorHandlingMiddleware(expressApp: express.Application) {
   expressApp.use(
     async (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

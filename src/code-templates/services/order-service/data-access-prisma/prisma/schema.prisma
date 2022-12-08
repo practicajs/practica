@@ -30,7 +30,3 @@ model Order {
   
   @@map("Order")
 }
-
-model SequelizeMeta {
-  name String @id @db.VarChar(255)
-}
