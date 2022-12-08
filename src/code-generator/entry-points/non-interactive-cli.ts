@@ -7,6 +7,7 @@ export async function handleNonInteractiveCommand(options: any) {
     const generationOptions = factorDefaultOptions({
       installDependencies: options.installDependencies,
       overrideIfExists: options.overrideIfExists,
+      ORM: options.orm,
       targetDirectory: options.targetDirectory || process.cwd(),
       appName: options.appName,
     });

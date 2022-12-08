@@ -1,5 +1,6 @@
 export type generationOptions = {
   appName: string;
+  ORM: "sequelize" | "prisma";
   baseFramework: string;
   DBType: string;
   mainMicroserviceName: string;
@@ -12,10 +13,11 @@ export type generationOptions = {
 export const factorDefaultOptions = (
   overrides: Partial<generationOptions>
 ): generationOptions => {
-  const defaults: generationOptions = {
+  const defaults = {
     appName: "default-app-name",
     baseFramework: "express",
     DBType: "pg",
+    ORM: "sequelize",
     mainMicroserviceName: "microservice-example-1",
     emitBestPracticesHints: true,
     targetDirectory: process.cwd(),
