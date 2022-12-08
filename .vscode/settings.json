@@ -4,5 +4,13 @@
   },
   "cSpell.words": ["practica"],
   "editor.suggest.showStatusBar": true,
-  "debug.showInStatusBar": "onFirstSessionStart"
+  "debug.showInStatusBar": "onFirstSessionStart",
+  "jestrunner.debugOptions": {
+    "skipFiles": [
+      "${workspaceFolder}/node_modules/**/*.js",
+      "<node_internals>/**",
+      "**/node_modules/*.*"
+    ],
+    "smartStep": true
+  }
 }
