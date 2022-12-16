@@ -58,7 +58,7 @@ The repo has 3 root folders that represents what we do:
 - **code-templates** - The code that we generate with the right patterns and practices
 
 ```mermaid
-%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor':'#99BF2C','secondaryColor':'#C2DF84','lineColor':'#ABCA64','fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
 graph
       A[Practica] -->|How we create apps| B(Code Generators)
       A -->|The code that we generate!| C(Code Templates)
@@ -72,7 +72,7 @@ graph
 Typically, the two main sections are the Microservice (apps) and cross-cutting-concern libraries:
 
 ```mermaid
-%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor':'#99BF2C','secondaryColor':'#C2DF84','lineColor':'#ABCA64','fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
 graph
       A[Code Templates] -->|The example Microservice/app| B(Services)
       B -->|Where the API, logic and data lives| D(Example Microservice)
@@ -89,7 +89,7 @@ graph
 The entry-point of the generated code is an example Microservice that exposes API and has the traditional layers of a component:
 
 ```mermaid
-%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor':'#99BF2C','secondaryColor':'#C2DF84','lineColor':'#ABCA64','fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
 graph
       A[Services] -->|Where the API, logic and data lives| D(Example Microservice)
       A -->|Almost empty, used to exemplify<br/> Microservice communication| E(Collaborator Microservice)
@@ -106,7 +106,7 @@ graph
 All libraries are independent npm packages that can be testing in isolation
 
 ```mermaid
-%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor':'#99BF2C','secondaryColor':'#C2DF84','lineColor':'#ABCA64','fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
 graph
       A[Libraries] --> B(Logger)
       A[Libraries] --> |Token-based auth| C(Authorization)

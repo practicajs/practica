@@ -4,14 +4,14 @@ sidebar_position: 3
 
 # Coding with Practica
 
-Now that you have Practice installed (if not, [do this first](./getting-started-quickly.md)), it's time to code a great app using it and understand its unique power. You might also get some ideas for good patterns and practices. All the concepts in this guide are not our unique ideas, quite the opposite, they are all standard patterns or libraries that we just put together. In this tutorial we will implement a simple feature using Practica, ready?
+Now that you have Practice installed (if not, [do this first](./getting-started-quickly.md)), it's time to code a great app using it and understand its unique power. This journey will inspire you with good patterns and practices. All the concepts in this guide are not our unique ideas, quite the opposite, they are all standard patterns or libraries that we just put together. In this tutorial we will implement a simple feature using Practica, ready?
 ## Pre-requisites
 
-Just before you start coding, ensure you have [Docker](https://www.docker.com/) and [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) (a utility that installs Node.js) installed. Both are common development tooling that are considered as a 'best practice'.
+Just before you start coding, ensure you have [Docker](https://www.docker.com/) and [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) (a utility that installs Node.js) installed. Both are common development tooling that are considered as a 'good practice'.
 
 ## What's inside that box?
 
-You now have a folder with Practica code inside. What is inside this box? Practica created for you an example Node.js solution with a single component (API, Microservice) that is called 'order-service'. Of course you'll change its name to something that represents your solution. Inside, it packs a lot of thoughtful and standard optimizations that will save you countless hours doing what others have done before.
+You now have a folder with Practica code. What will you find inside this box? Practica created for you an example Node.js solution with a single component (API, Microservice) that is called 'order-service'. Of course you'll change its name to something that represents your solution. Inside, it packs a lot of thoughtful and standard optimizations that will save you countless hours doing what others have done before.
 
 Besides this component, there are also a bunch of reusable libraries like logger, error-handler and more. All sit together under a single root folder in a single Git repository - this popular structure is called a 'Monorepo'.
 
@@ -63,6 +63,17 @@ Start the process first by navigating to the example component (order-service):
 ```bash
 cd services/order-service
 ```
+
+Start the DB using Docker and install tables (migration):
+```bash
+docker-compose -f ./test/docker-compose.yml up
+```
+
+```bash
+npm run db:migrate
+```
+
+This step is not necessary for running tests as it will happen automatically
 
 Then start the app:
 
@@ -129,7 +140,7 @@ router.put('/:id', async (req, res, next) => {
       logger.info(`Order API was called to edit order ${req.params.id}`);
       // Later on we will call the main code in the domain layer
       // Fow now let's put hard coded values
-      res.json({id:1, userId: 1, productId: 2,
+      res.json({id:1, userId: 1, productId: 2, countryId: 1,
       deliveryAddress: '123 Main St, New York',
       paymentTermsInDays: 30}).status(200).end();
     } catch (err) {
@@ -262,15 +273,15 @@ paymentTermsInDays: number) {
 
 We're tasked with saving the edited order in the database. Any DB-related code is located within the folder: [root]/services/order-service/data-access.
 
-The database code is implemented with the popular ORM, [Sequelize](https://github.com/sequelize/sequelize). We have plans to evaluate other ORMs like Prisma. In any case, the current choice, Sequelize, is a battle-tested and reputable option that will surely serve you well as long as the DB complexity is not overwhelming.
+Practica supports two popular ORM, [Sequelize](https://github.com/sequelize/sequelize) (default) and [Prisma](https://www.prisma.io/). Whatever you chose, both are a battle-tested and reputable option that will surely serve you well as long as the DB complexity is not overwhelming. 
 
 Before discussing the ORM-side, we wrap the entire DB layer with a simple class that externalizes all the DB functions to the domain layer. This is the [repository pattern](https://martinfowler.com/eaaCatalog/repository.html) which advocates decoupling the DB narratives from the one who codes business logic. Inside [root]/services/order-service/data-access/repositories, you'll find a file 'order-repository', open it and add a new function:
 
 ```javascript
-[root]/services/order-service/data-access/repositories/order-repository.js
-import getOrderModel from './order-model';// 👈 This is the ORM code which will get explained soon 
+[root]/services/order-service/data-access/order-repository.js
+import { getOrderModel } from './models/order-model';// 👈 This is the ORM code which will get explained soon 
 
-export async function editOrder(orderId: number, orderDetails) {
+export async function editOrder(orderId: number, orderDetails): OrderRecord {
   const orderEditingResponse = await getOrderModel().update(orderDetails, {
     where: { id: orderId },
   });
@@ -279,9 +290,21 @@ export async function editOrder(orderId: number, orderDetails) {
 }
 ```
 
+Note that this file contains a type - OrderRecord. This is a plain JS object (POJO) that is used to interact with the data access layer. This approach prevents leaking DB/ORM narratives to the domain layer (e.g., ActiveRecord style)
+
 > **✅Best practice:** Externalize any DB data with a response that contains plain JavaScript objects (the repository pattern)
 
-Let's configure the ORM now and define the Order model - a mapper between JavaScript object and a database table (a common ORM notion). Open the file [root]/services/order-service/data-access/repositories/order-model.ts:
+Add the new Status field to this type:
+
+```javascript
+type OrderRecord = {
+  id: number;
+  // ... other existing fields
+  status: string;// 👈 Add this field per our requirements
+};
+```
+
+Let's configure the ORM now and define the Order model - a mapper between JavaScript object and a database table (a common ORM notion). Open the file [root]/services/order-service/data-access/models/order-model.ts:
 
 ```javascript
 import { DataTypes } from 'sequelize';

@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["metrics"]
+}
+
+datasource db {
+  provider = "postgresql"
+  // TODO: Extract the user/pass to env var asap before finalizing the PR
+  url      = "postgresql://myuser:myuserpassword@localhost:54320/shop?schema=public"
+}
+
+model Country {
+  id    Int     @id @default(autoincrement())
+  name  String @db.VarChar(255)
+  Order Order[]
+
+  @@map("Country")
+}
+
+model Order {
+  id                 Int      @id @default(autoincrement())
+  userId             Int?
+  productId          Int?
+  paymentTermsInDays Int?
+  country            Country  @relation(fields: [countryId], references: [id])
+  countryId          Int
+  deliveryAddress    String?  @db.VarChar(255)
+  createdAt          DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime @default(now()) @db.Timestamptz(6)
+  
+  @@map("Order")
+}
