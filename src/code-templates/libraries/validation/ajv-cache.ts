@@ -7,4 +7,4 @@ const ajv = new AJV();
 ajv.addKeyword('kind');
 ajv.addKeyword('modifier');
 
-export { ajv };
+export default ajv;

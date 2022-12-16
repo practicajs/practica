@@ -1,6 +1,6 @@
 {
   "name": "@practica/create-node-app",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "Create Node.js app that is packed with best practices AND strive for simplicity",
   "main": "./src/code-generator/index.js",
   "directories": {
@@ -15,10 +15,12 @@
     "test:quick": "jest \"^((?!slow).)*$\"",
     "test:dev": "jest --silent --watch \"^((?!slow).)*$\"",
     "test:dev:verbose": "jest --watch \"^((?!slow).)*$\"",
+    "lint": "eslint",
     "build": "tsc && npm run copy-templates",
     "copy-templates": "rsync -av --exclude '*node_modules*' ./src/code-templates/ ./.dist/src/code-templates",
     "build:watch": "tsc --watch",
-    "start:cli": "node ./.dist/bin/cli.js interactive",
+    "start:cli:interactive": "node ./.dist/bin/cli.js interactive",
+    "start:cli": "node ./.dist/bin/cli.js immediate",
     "publish:build": "npm run build && npm publish ./.dist --access public"
   },
   "repository": {
@@ -37,6 +39,8 @@
   },
   "homepage": "https://github.com/bestpractices/practica#readme",
   "dependencies": {
+    "@docusaurus/core": "^2.1.0",
+    "@docusaurus/preset-classic": "^2.1.0",
     "@types/blessed": "^0.1.19",
     "@types/commander": "^2.12.2",
     "@types/fs-extra": "^9.0.13",
@@ -55,16 +59,19 @@
     "ink-spinner": "^4.0.3",
     "ink-task-list": "^1.1.1",
     "ink-text-input": "^4.0.3",
+    "ora": "5.4.1",
     "prompts": "^2.4.2",
     "react": "^17.0.2",
-    "terminal-image": "^1.2.1",
-    "terminal-image-cli": "^1.1.0"
+    "replace-in-file": "^6.3.5"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/figlet": "^1.5.4",
     "@types/jest": "^27.4.1",
+    "@types/ora": "^3.2.0",
     "@types/prettier": "^2.4.4",
     "@types/sinon": "^10.0.11",
+    "axios": "^0.27.2",
     "execa": "^5.1.1",
     "jest": "^27.5.1",
     "jest-watch-suspend": "^1.1.2",
@@ -73,8 +80,8 @@
     "nodemon": "^2.0.15",
     "prettier": "2.6.2",
     "sinon": "^13.0.1",
-    "ts-jest": "^27.1.3",
+    "ts-jest": "^27.1.5",
     "ts-node": "^10.7.0",
-    "typescript": "^4.6.2"
+    "typescript": "4.6.2"
   }
 }

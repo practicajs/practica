@@ -1,0 +1,54 @@
+name: app-quality-check
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches: [main]
+
+defaults:
+  run:
+    working-directory: ./src/code-templates
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+        # Uncomment and replace this with current `os` when windows-run bug is fixed
+        # os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
+
+    env:
+      OS: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          cache: "npm"
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install root dependencies
+        run: npm i
+
+      - name: Test all packages
+        run: npx turbo run test
+
+      - name: Lint all packages
+        run: npm run lint
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./src/code-templates/services/order-service/test-reports/coverage
+          env_vars: OS
+          fail_ci_if_error: true
+          flags: app
+          name: codecov-umbrella
+          verbose: true

@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": "This config was generated using 'stryker init'. Please take a look at: https://stryker-mutator.io/docs/stryker-js/configuration/ for more information",
+  "packageManager": "npm",
+  "reporters": ["html", "clear-text", "progress", "dashboard"],
+  "testRunner": "jest",
+  "jest": {
+    "configFile": "./jest.config.js"
+  },
+  "coverageAnalysis": "perTest",
+  "timeoutMS": 15000,
+  "mutate": ["{src,lib}/**/*.ts?(x)", "!/**/?(*.)+(spec|test).ts?(x)"]
+}

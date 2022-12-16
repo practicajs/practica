@@ -1,0 +1,36 @@
+name: Security
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches: [main]
+
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Create output directory
+        run: mkdir ~/sarif 
+      - name: Run Snyk to check for vulnerabilities (SCA)
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: test
+          args: --all-projects --severity-threshold=critical --sarif-file-output=~/sarif/sca.sarif
+      - name: Run Snyk Static Code Analysis
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: code test
+          args: --severity-threshold=high --sarif-file-output=~/sarif/sast.sarif
+      - name: list
+        run: "ls -a ~/sarif" 
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ~/sarif

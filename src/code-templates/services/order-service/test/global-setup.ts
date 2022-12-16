@@ -3,7 +3,7 @@ import path from 'path';
 import dockerCompose from 'docker-compose';
 import { execSync } from 'child_process';
 
-module.exports = async () => {
+export default async () => {
   console.time('global-setup');
 
   // ️️️✅ Best Practice: Speed up during development, if already live then do nothing
@@ -25,8 +25,6 @@ module.exports = async () => {
 
     // ️️️✅ Best Practice: Use npm script for data seeding and migrations
     execSync('npm run db:migrate');
-    // ✅ Best Practice: Seed only metadata and not test record, read "Dealing with data" section for further information
-    execSync('npm run db:seed');
   }
 
   // 👍🏼 We're ready

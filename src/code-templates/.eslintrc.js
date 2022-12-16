@@ -18,18 +18,21 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
-    'consistent-return': 'warn',
-    'no-return-await': 'warn',
-    'no-use-before-define': 'warn',
-    'no-underscore-dangle': 'warn',
-    'no-param-reassign': 'warn',
-    'no-shadow': 'warn',
-    'import/extensions': 'warn',
-    'import/prefer-default-export': 'warn',
-    'import/no-extraneous-dependencies': 'warn',
-    'import/no-unresolved': 'warn',
-    'import/no-import-module-exports': 'warn',
-    '@typescript-eslint/no-empty-function': 'warn',
-    '@typescript-eslint/ban-ts-comment': 'warn',
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['**/tests/**', '**/test/**'] },
+    ],
+    'no-console': ['error', { allow: ['time', 'timeEnd'] }],
+    // not sure why we need this if Typescript already enforces it.
+    // If we want to enable these rules, we need use: eslint-import-resolver-typescript
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
+    // https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/errorhandling/returningpromises.md
+    'no-return-await': 'off',
+    // Turn it back on after this being fixed: https://github.com/eslint/eslint/issues/15617
+    'no-restricted-exports': 'off',
+    'no-param-reassign': 'off',
+    'no-use-before-define': 'off',
+    'import/prefer-default-export': 'off',
   },
 };

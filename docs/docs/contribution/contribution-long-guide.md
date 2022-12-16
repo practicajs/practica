@@ -7,7 +7,7 @@ sidebar_label: Long guide
 
 ## You belong with us
 
-If you reached down to this page, you probably belong with us 💜. We are in an ever-going quest for better software practices. This journey can bring two things to your benefit: A lot of learning and global impact on many people's craft. Does this sounds attractive? 
+If you reached down to this page, you probably belong with us 💜. We are in an ever-going quest for better software practices. This journey can bring two things to your benefit: A lot of learning and global impact on many people's craft. Does this sounds attractive?
 
 ## Consider the shortened guide first
 ****
@@ -18,11 +18,11 @@ Every small change can make this repo much better. If you intend to contribute a
 
 Our main selling point is our philosophy, our philosophy is 'make it SIMPLE'. There is one really important holy grail in software - Speed. The faster you move, the more features and value is created for the users. The faster you move, more improvements cycles are deployed and the software/ops become better. [Researches show](https://puppet.com/resources/report/2020-state-of-devops-report) that faster team produces software that is more reliable. Complexity is the enemy of speed - Commonly apps are big, sophisticated, has a lot of internal abstractions and demand long training before being productive. Our mission is to minimize complexity, get onboarded developers up to speed quickly, or in simple words - Let the reader of the code understand it in a breeze. If you make simplicity a 1st principle - Great things will come your way.
 
-![The sweet spot](https://raw.githubusercontent.com/practicajs/practica/main/docs/static/images/balance.png)
+![The sweet spot](/img/docs/balance.png)
 
 Big words, how exactly? Here are few examples:
 
-**- Simple language -** We use TypeScript because we believe in types, but we minimize advanced features. This boils down to using functions only, sometimes also classes. No abstracts, generic, complex types or anything that demand more CPU cycles from the reader. 
+**- Simple language -** We use TypeScript because we believe in types, but we minimize advanced features. This boils down to using functions only, sometimes also classes. No abstracts, generic, complex types or anything that demand more CPU cycles from the reader.
 
 **- Less generic -** Yes, you read it right. If you can code a function that covers less scenarios but is shorter and simpler to understand - Consider this option first. Sometimes one if forced to make things generic - That's fine, at least we minimized the amount of complex code locations
 
@@ -63,7 +63,7 @@ The repo has 3 root folders that represents what we do:
 - **code-templates** - The code that we generate with the right patterns and practices
 
 ```mermaid
-%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor':'#99BF2C','secondaryColor':'#C2DF84','lineColor':'#ABCA64','fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
 graph
       A[Practica] -->|How we create apps| B(Code Generators)
       A -->|The code that we generate!| C(Code Templates)
@@ -77,7 +77,7 @@ graph
 Typically, the two main sections are the Microservice (apps) and cross-cutting-concern libraries:
 
 ```mermaid
-%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor':'#99BF2C','secondaryColor':'#C2DF84','lineColor':'#ABCA64','fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
 graph
       A[Code Templates] -->|The example Microservice/app| B(Services)
       B -->|Where the API, logic and data lives| D(Example Microservice)
@@ -94,7 +94,7 @@ graph
 The entry-point of the generated code is an example Microservice that exposes API and has the traditional layers of a component:
 
 ```mermaid
-%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor':'#99BF2C','secondaryColor':'#C2DF84','lineColor':'#ABCA64','fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
 graph
       A[Services] -->|Where the API, logic and data lives| D(Example Microservice)
       A -->|Almost empty, used to exemplify<br/> Microservice communication| E(Collaborator Microservice)
@@ -111,7 +111,7 @@ graph
 All libraries are independent npm packages that can be testing in isolation
 
 ```mermaid
-%%{init: {'theme': 'forest', 'themeVariables': { 'primaryColor': '#ff0000', 'fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor':'#99BF2C','secondaryColor':'#C2DF84','lineColor':'#ABCA64','fontWeight': 'bold', 'fontFamily': 'comfortaa, Roboto'}}}%%
 graph
       A[Libraries] --> B(Logger)
       A[Libraries] --> |Token-based auth| C(Authorization)

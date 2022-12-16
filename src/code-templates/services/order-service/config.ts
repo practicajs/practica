@@ -1,6 +1,13 @@
 // ️️️✅ Best Practice: Store configuration in a self-explanatory, strongly typed and hierarchical store
 
 export default {
+  jwtTokenSecret: {
+    doc: 'The JWT token signing algorithm secret',
+    format: 'String',
+    default: 'just-a-default-secret',
+    nullable: false,
+    env: 'JWT_TOKEN_SECRET',
+  },
   port: {
     doc: 'The API listening port. By default is 0 (ephemeral) which serves as a dynamic port for testing purposes. For production use, a specific port must be assigned',
     format: 'Number',
@@ -38,6 +45,20 @@ export default {
       default: 'myuser',
       nullable: false,
       env: 'DB_USERNAME',
+    },
+    port: {
+      doc: 'The DB port',
+      format: 'Number',
+      default: '54320',
+      nullable: false,
+      env: 'DB_PORT',
+    },
+    url: {
+      doc: 'The DB cluster URL',
+      format: 'String',
+      default: 'localhost',
+      nullable: false,
+      env: 'DB_URL',
     },
     password: {
       doc: "The DB connection password. Don't put production code here",
