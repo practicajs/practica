@@ -4,14 +4,14 @@ sidebar_position: 3
 
 # Coding with Practica
 
-Now that you have Practice installed (if not, [do this first](./getting-started-quickly.md)), it's time to code a great app using it and understand its unique power. You might also get some ideas for good patterns and practices. All the concepts in this guide are not our unique ideas, quite the opposite, they are all standard patterns or libraries that we just put together. In this tutorial we will implement a simple feature using Practica, ready?
+Now that you have Practice installed (if not, [do this first](./getting-started-quickly.md)), it's time to code a great app using it and understand its unique power. This journey will inspire you with good patterns and practices. All the concepts in this guide are not our unique ideas, quite the opposite, they are all standard patterns or libraries that we just put together. In this tutorial we will implement a simple feature using Practica, ready?
 ## Pre-requisites
 
-Just before you start coding, ensure you have [Docker](https://www.docker.com/) and [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) (a utility that installs Node.js) installed. Both are common development tooling that are considered as a 'best practice'.
+Just before you start coding, ensure you have [Docker](https://www.docker.com/) and [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) (a utility that installs Node.js) installed. Both are common development tooling that are considered as a 'good practice'.
 
 ## What's inside that box?
 
-You now have a folder with Practica code inside. What is inside this box? Practica created for you an example Node.js solution with a single component (API, Microservice) that is called 'order-service'. Of course you'll change its name to something that represents your solution. Inside, it packs a lot of thoughtful and standard optimizations that will save you countless hours doing what others have done before.
+You now have a folder with Practica code. What will you find inside this box? Practica created for you an example Node.js solution with a single component (API, Microservice) that is called 'order-service'. Of course you'll change its name to something that represents your solution. Inside, it packs a lot of thoughtful and standard optimizations that will save you countless hours doing what others have done before.
 
 Besides this component, there are also a bunch of reusable libraries like logger, error-handler and more. All sit together under a single root folder in a single Git repository - this popular structure is called a 'Monorepo'.
 
@@ -64,6 +64,17 @@ Start the process first by navigating to the example component (order-service):
 cd services/order-service
 ```
 
+Start the DB using Docker and install tables (migration):
+```bash
+docker-compose -f ./test/docker-compose.yml up
+```
+
+```bash
+npm run db:migrate
+```
+
+This step is not necessary for running tests as it will happen automatically
+
 Then start the app:
 
 ```bash
@@ -71,6 +82,10 @@ npm start
 ```
 
 Now visit our [online POSTMAN collection](https://documenter.getpostman.com/view/190644/VUqmxKok), explore the routes, invoke and make yourself familiar with the app
+
+**Note:** The API routes authorize requests, a valid token must be provided. You may generate one yourself ([see here how](../questions-and-answers.md)), or just use the default _development_ token that we generated for you 👇. Put it inside an 'Authorization' header:
+
+```Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NjIwMTY5NjIsImV4cCI6MTY5MzU1Mjk2MiwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.65ACAjHy2ZE5i_uS5hyiEkOQfkqOqdj-WtBm-w23qZQ```
 
 We have the ground ready 🐥. Let's code now, just remember to run the tests (or POSTMAN) once in a while to ensure nothing breaks
 ## The 3 layers of a component
@@ -125,7 +140,7 @@ router.put('/:id', async (req, res, next) => {
       logger.info(`Order API was called to edit order ${req.params.id}`);
       // Later on we will call the main code in the domain layer
       // Fow now let's put hard coded values
-      res.json({id:1, userId: 1, productId: 2,
+      res.json({id:1, userId: 1, productId: 2, countryId: 1,
       deliveryAddress: '123 Main St, New York',
       paymentTermsInDays: 30}).status(200).end();
     } catch (err) {
@@ -206,7 +221,7 @@ Let's code our logic, but where? Obviously not in the controller/route which mer
 
 A use-case is a plain JavaScript object/class which is created for every flow/feature. It summarizes the flow in a business and simple language without delving into the technical and small details. It mostly orchestrates other small services that hold all the implementation details. With use cases, the reader can grasp the high-level flow easily and avoid exposure to *unnecessary* complexity.
 
-Let's add inside the domain layer a new file: edit-order-use-case.ts and code the requirements:
+Let's add a new file inside the domain layer: edit-order-use-case.ts, and code the requirements:
 
 ```javascript
 // [root]/services/order-service/domain/edit-order-use-case.ts
@@ -221,7 +236,7 @@ export default async function editOrder(orderId: number, updatedOrder: editOrder
 }
 ```
 
-Note how reading this function above easily tells the flow without messing with too much details. This is where uses cases shines - by summarizing long details.
+Note how reading this function above easily tells the flow without messing with too much details. This is where use cases shine - by summarizing long details.
 
 > **✅Best practice:** Describe every feature/flow with a 'use case' object that summarizes the flow for better readability
 > 
@@ -252,21 +267,21 @@ paymentTermsInDays: number) {
 
 ```
 
-> **🗝 Key insight:** Note how everything we did thus far is mostly coding *functions*. No fancy constructs, no abstractions, not even classes - we try to keep things as simple as possible. You may of course use other language features **when the need arise**. We suggest by-default to stick to plain functions and use other constructs when a strong need is identified.
+> **🗝 Key insight:** Note how everything we did thus far is mostly coding *functions*. No fancy constructs, no abstractions, not even classes - we try to keep things as simple as possible. You may of course use other language features **when the need arises**. We suggest by-default to stick to plain functions and use other constructs when a strong need is identified.
 
 **6. Put the data access code**
 
 We're tasked with saving the edited order in the database. Any DB-related code is located within the folder: [root]/services/order-service/data-access.
 
-The database code is implemented with the popular ORM, [Sequelize](https://github.com/sequelize/sequelize). We have plans to evaluate other ORMs like Prisma. In any case, the current choice, Sequelize, is a battle-tested and reputable option that will surely serve you well as long the DB complexity is not overwhelming.
+Practica supports two popular ORM, [Sequelize](https://github.com/sequelize/sequelize) (default) and [Prisma](https://www.prisma.io/). Whatever you chose, both are a battle-tested and reputable option that will surely serve you well as long as the DB complexity is not overwhelming. 
 
-Before discussing the ORM-side, we wrap the entire DB layer with a simple class that externalize all the DB functions to the domain layer. This is the [repository pattern](https://martinfowler.com/eaaCatalog/repository.html) which advocates decoupling the DB narratives from the one who codes business logic. Inside [root]/services/order-service/data-access/repositories, you'll find a file 'order-repository', open it and add a new function:
+Before discussing the ORM-side, we wrap the entire DB layer with a simple class that externalizes all the DB functions to the domain layer. This is the [repository pattern](https://martinfowler.com/eaaCatalog/repository.html) which advocates decoupling the DB narratives from the one who codes business logic. Inside [root]/services/order-service/data-access/repositories, you'll find a file 'order-repository', open it and add a new function:
 
 ```javascript
-[root]/services/order-service/data-access/repositories/order-repository.js
-import getOrderModel from './order-model';// 👈 This is the ORM code which will get explained soon 
+[root]/services/order-service/data-access/order-repository.js
+import { getOrderModel } from './models/order-model';// 👈 This is the ORM code which will get explained soon 
 
-export async function editOrder(orderId: number, orderDetails) {
+export async function editOrder(orderId: number, orderDetails): OrderRecord {
   const orderEditingResponse = await getOrderModel().update(orderDetails, {
     where: { id: orderId },
   });
@@ -275,9 +290,21 @@ export async function editOrder(orderId: number, orderDetails) {
 }
 ```
 
+Note that this file contains a type - OrderRecord. This is a plain JS object (POJO) that is used to interact with the data access layer. This approach prevents leaking DB/ORM narratives to the domain layer (e.g., ActiveRecord style)
+
 > **✅Best practice:** Externalize any DB data with a response that contains plain JavaScript objects (the repository pattern)
 
-Let's configure the ORM now and define the Order model - a mapper between JavaScript object and a database table (a common ORM notion). Open the file [root]/services/order-service/data-access/repositories/order-model.ts:
+Add the new Status field to this type:
+
+```javascript
+type OrderRecord = {
+  id: number;
+  // ... other existing fields
+  status: string;// 👈 Add this field per our requirements
+};
+```
+
+Let's configure the ORM now and define the Order model - a mapper between JavaScript object and a database table (a common ORM notion). Open the file [root]/services/order-service/data-access/models/order-model.ts:
 
 ```javascript
 import { DataTypes } from 'sequelize';
@@ -314,4 +341,4 @@ You should now be able to run the automated tests or POSTMAN and see the full fl
 
 We will be grateful if you share with us how to make this guide better
 
-- Ideas for future iterations: How to work with the Monorepo commands, Focus on a singel componenent or run commands from the root, DB migration
+- Ideas for future iterations: How to work with the Monorepo commands, Focus on a single componenent or run commands from the root, DB migration

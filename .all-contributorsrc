@@ -20,7 +20,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/16746759?v=4",
       "profile": "https://github.com/rluvaton",
       "contributions": [
-        "content"
+        "content",
+        "code"
       ]
     },
     {
@@ -240,6 +241,42 @@
       "profile": "https://vaucouleur.com",
       "contributions": [
         "content"
+      ]
+    },
+    {
+      "login": "hkdobrev",
+      "name": "Harry Dobrev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/506129?v=4",
+      "profile": "https://hkdobrev.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "skippednote",
+      "name": "Bassam Ismail",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2114712?v=4",
+      "profile": "https://skippednote.dev",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "marcosmol204",
+      "name": "Marcos Molina",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53741892?v=4",
+      "profile": "https://github.com/marcosmol204",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "isenkasa",
+      "name": "Isen Kasa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65561129?v=4",
+      "profile": "https://github.com/isenkasa",
+      "contributions": [
+        "code"
       ]
     }
   ],

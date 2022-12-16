@@ -2,9 +2,11 @@ import { Server } from 'http';
 import { logger } from '@practica/logger';
 import { AddressInfo } from 'net';
 import express from 'express';
+import helmet from 'helmet';
 import { errorHandler } from '@practica/error-handling';
 import * as configurationProvider from '@practica/configuration-provider';
 import { jwtVerifierMiddleware } from '@practica/jwt-token-verifier';
+import { addRequestIdExpressMiddleware } from '@practica/request-context';
 import configurationSchema from '../../config';
 import defineRoutes from './routes';
 
@@ -13,13 +15,18 @@ let connection: Server;
 // ️️️✅ Best Practice: API exposes a start/stop function to allow testing control WHEN this should happen
 async function startWebServer(): Promise<AddressInfo> {
   // ️️️✅ Best Practice: Declare a strict configuration schema and fail fast if the configuration is invalid
-  configurationProvider.initialize(configurationSchema);
+  configurationProvider.initializeAndValidate(configurationSchema);
   logger.configureLogger(
-    // @ts-expect-error TODO: fix this
-    { prettyPrint: configurationProvider.getValue('logger.prettyPrint') },
+    {
+      prettyPrint: Boolean(
+        configurationProvider.getValue('logger.prettyPrint')
+      ),
+    },
     true
   );
   const expressApp = express();
+  expressApp.use(addRequestIdExpressMiddleware);
+  expressApp.use(helmet());
   expressApp.use(express.urlencoded({ extended: true }));
   expressApp.use(express.json());
   expressApp.use(
@@ -28,7 +35,7 @@ async function startWebServer(): Promise<AddressInfo> {
     })
   );
   defineRoutes(expressApp);
-  handleRouteErrors(expressApp);
+  defineErrorHandlingMiddleware(expressApp);
   const APIAddress = await openConnection(expressApp);
   return APIAddress;
 }
@@ -58,7 +65,7 @@ async function openConnection(
   });
 }
 
-function handleRouteErrors(expressApp: express.Application) {
+function defineErrorHandlingMiddleware(expressApp: express.Application) {
   expressApp.use(
     async (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -76,7 +83,6 @@ function handleRouteErrors(expressApp: express.Application) {
       }
       // ✅ Best Practice: Pass all error to a centralized error handler so they get treated equally
       errorHandler.handleError(error);
-
       res.status(error?.HTTPStatus || 500).end();
     }
   );

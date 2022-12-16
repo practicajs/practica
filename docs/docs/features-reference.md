@@ -24,7 +24,7 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **🎁 Bundles:** example-flow, full-flow
 
-**🏁 CLI flags:** --logger=true|false
+**🏁 CLI flags:** `--logger=true|false`
 
 ### 1.2 Prevent infinite logger serialization loop
 
@@ -78,7 +78,6 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **🏆 Chosen libraries:** [jest-watch-typeahead](https://github.com/jest-community/jest-watch-typeahead)
 
-**🎁 Bundles:** example-flow, full-flow
 
 ## 4. Docker
 ### 4.1 Secured dockerfile
@@ -91,7 +90,26 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **🏆 Chosen libraries:** N/A
 
-**🎁 Bundles:** example-flow, full-flow
+### 4.1 Layered build
+
+**What:** The poduction artifact omit building tools to stay more compact and minimize attack sutface
+
+**Tags:** #security #docker
+
+**👷🏾 Status:** <img src="/img/full.png"/>  Production-ready, more hardening is welcome
+
+**🏆 Chosen libraries:** N/A
+
+### 4.2 Compact base image
+
+**What:** A small, ~100MB, base image of Node is used
+
+**Tags:** #docker
+
+**👷🏾 Status:** <img src="/img/full.png"/>  Production-ready, more hardening is welcome
+
+**🏆 Chosen libraries:** N/A
+
 
 ### 4.2 Testing docker-compose
 
@@ -103,6 +121,48 @@ Here will come a filter panel to search by categories, what's strategic, and mor
 
 **🏆 Chosen libraries:** N/A
 
-**🎁 Bundles:** example-flow, full-flow
 
 **Additional 100 features will come here**
+
+## 5. Database
+### 5.1 Sequelize ORM
+
+**What:** Support for one of the most popular and matured ORM - Sequelize
+
+**Tags:** #orm #db
+
+**👷🏾 Status:** <img src="/img/full.png"/>  Production-ready, more hardening is welcome
+
+**🏆 Chosen libraries:** Sequelize
+
+### 5.2 Prisma ORM
+
+**What:** Support for one of an emerging and type safe ORM - Prisma
+
+**Tags:** #orm #db
+
+**👷🏾 Status:** <img src="/img/full.png"/>  Production-ready, more hardening is welcome
+
+**🏆 Chosen libraries:** Prisma
+
+### 5.3 Migration
+
+**What:** Includes migration files and commands for production-safe updates
+
+**Tags:** #orm #db
+
+**👷🏾 Status:** <img src="/img/full.png"/>  Production-ready, more hardening is welcome
+
+**🏆 Chosen libraries:** Prisma
+
+## 6. Request-level store
+
+### 6.1 Automatic correlation-id
+
+**What:** Automatically emit unique correlation id to every log line
+
+**Tags:** #log #tracing
+
+**👷🏾 Status:** <img src="/img/full.png"/>  Production-ready, more hardening is welcome
+
+**🏆 Chosen libraries:** N/A

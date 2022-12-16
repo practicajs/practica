@@ -53,6 +53,7 @@ describe('/api', () => {
       const orderToAdd = {
         userId: 1,
         productId: 2,
+        countryId: 1,
         deliveryAddress: '123 Main St, New York, NY 10001',
         paymentTermsInDays: 30,
       };
@@ -78,6 +79,7 @@ describe('/api', () => {
       const orderToAdd = {
         userId: 1,
         productId: 2,
+        countryId: 1,
         deliveryAddress: '123 Main St, New York, NY 10001',
         paymentTermsInDays: 30,
       };
@@ -138,6 +140,7 @@ describe('/api', () => {
       const orderToAdd = {
         userId: 7,
         productId: 1,
+        countryId: 1,
         deliveryAddress: '123 Main St, New York, NY 10001',
         paymentTermsInDays: 30,
       };

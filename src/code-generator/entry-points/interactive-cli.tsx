@@ -1,17 +1,16 @@
 import React from "react";
 import { render, Text, Box, Newline, Spacer } from "ink";
-import MultiSelect from "ink-multi-select"
-import SelectInput from "ink-select-input"
+import MultiSelect from "ink-multi-select";
+import SelectInput from "ink-select-input";
 import { UncontrolledTextInput as TextInput } from "ink-text-input";
 import figlet from "figlet";
 import * as generateService from "../generation-logic/generate-service";
-import {
-  factorDefaultOptions,
-} from "../generation-logic/generation-options";
+import { factorDefaultOptions } from "../generation-logic/generation-options";
 
 const QuestionsWizard = () => {
   const initialQuestionsWizard: any = {
     isOver: false,
+    chosenName: "",
     finalMessage: "",
     chosenFramework: "",
     chosenDB: "",
@@ -110,6 +109,7 @@ const QuestionsWizard = () => {
   const handleNameChoose = (name) => {
     setQuestionsWizard({
       ...questionsWizard,
+      chosenName: name,
       showDBTypeQuestion: false,
       showNameQuestion: false,
       showFrameworkQuestion: true,
@@ -181,9 +181,7 @@ const QuestionsWizard = () => {
   return (
     <Box width={"100%"} alignSelf="center" flexDirection="column">
       <Box flexDirection="row" width="100%" flexBasis="100%">
-        <Text wrap="wrap">
-          {questionsWizard.title}
-        </Text>
+        <Text wrap="wrap">{questionsWizard.title}</Text>
       </Box>
       {!questionsWizard.isOver ? (
         <Box flexDirection="row">
@@ -331,11 +329,7 @@ const QuestionsWizard = () => {
       )}
       {questionsWizard.isOver ? (
         <Box flexDirection="row" width="100%" flexBasis="100%">
-          <Text
-            wrap="wrap"
-            color="white"
-            bold={true}
-          >
+          <Text wrap="wrap" color="white" bold={true}>
             {questionsWizard.finalMessage}
           </Text>
         </Box>

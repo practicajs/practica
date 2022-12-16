@@ -1,9 +1,10 @@
 {
   "name": "@practica/jwt-token-verifier",
-  "version": "0.0.1-alpha.5",
+  "version": "0.0.2",
   "description": "JWT for Practica",
   "main": ".dist/index.js",
   "scripts": {
+    "installDependencies": "npm install",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "test": "jest --forceExit",
@@ -31,6 +32,6 @@
     "node-notifier": "^10.0.1",
     "sinon": "^13.0.2",
     "ts-jest": "^28.0.1",
-    "typescript": "^4.6.4"
+    "typescript": "4.6.4"
   }
 }
