@@ -1,11 +1,11 @@
-FROM node:16-bullseye AS base
+FROM node:16-bullseye-slim AS base
 
 WORKDIR /app
 RUN npm install turbo -g
 COPY . .
 RUN npx turbo prune --scope=order-service --docker
  
-FROM node:16-bullseye AS build
+FROM node:16-bullseye-slim AS build
 
 WORKDIR /app
 COPY --from=base /app/out/json/ .
