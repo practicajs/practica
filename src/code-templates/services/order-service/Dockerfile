@@ -19,7 +19,7 @@ COPY turbo.json turbo.json
 RUN npm run build
 
 # Install prod dependencies
-RUN npm install --omit=dev
+# RUN npm install --omit=dev
 
 # Production
 FROM node:16-alpine AS production
@@ -30,7 +30,7 @@ RUN adduser --system --uid 1001 service
 USER service
 
 WORKDIR /app
-COPY --from=build /app .
+COPY --from=build --chown=service:nodejs /app .
  
 ENV PORT=3000
 ENV PRETTY_PRINT_LOG=false
