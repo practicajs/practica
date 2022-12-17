@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "turbo run test --parallel",
-    "build": "tsc",
-    "build:watch": "tsc --watch",
+    "build": "turbo run build",
     "lint": "eslint '**/*.{js,jsx,ts}'",
     "maintenance:delete-node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
     "maintenance:delete-dist": "find . -name '.dist' -type d -prune -exec rm -rf '{}' +"

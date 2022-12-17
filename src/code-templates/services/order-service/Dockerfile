@@ -1,26 +1,39 @@
-FROM node:16 AS dependencies
-WORKDIR /app
-COPY package*.json .
-RUN npm install
+FROM node:16-bullseye AS base
 
-FROM dependencies AS build
+WORKDIR /app
+RUN npm install turbo -g
 COPY . .
+RUN npx turbo prune --scope=order-service --docker
+ 
+FROM node:16-bullseye AS build
+
+WORKDIR /app
+COPY --from=base /app/out/json/ .
+COPY --from=base /app/out/full/services/order-service/data-access-prisma services/order-service/data-access-prisma
+COPY --from=base /app/out/package-lock.json package-lock.json
+RUN npm install
+ 
+# Build
+COPY --from=base /app/out/full/ .
+COPY turbo.json turbo.json
 RUN npm run build
 
-# FROM build AS test
-# RUN npm run test
+# Install prod dependencies
+RUN npm install --omit=dev
 
-FROM node:16-alpine AS prod
+# Production
+FROM node:16-alpine AS production
 RUN apk add dumb-init
-USER node
-WORKDIR /app
-COPY --chown=node:node package*.json .
-RUN npm install --only=production
+ 
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 service
+USER service
 
-FROM prod
-COPY --chown=node:node --from=build /app/.dist dist
-ENV NODE_ENV production
-ENV PORT 3000
-ENV PRETTY_PRINT_LOG false
+WORKDIR /app
+COPY --from=build /app .
+ 
+ENV PORT=3000
+ENV PRETTY_PRINT_LOG=false
+
 EXPOSE 3000
-CMD [ "dumb-init", "node", "dist/start.js" ]
+CMD ["dumb-init", "node", "services/order-service/.dist/start.js"]
