@@ -1,0 +1,33 @@
+{
+  "name": "@practica/error-handling",
+  "version": "0.0.3",
+  "description": "",
+  "main": ".dist/index.js",
+  "scripts": {
+    "test": "jest --runInBand",
+    "test:dev": "jest --watch --silent --runInBand",
+    "installDependencies": "npm install",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/practicajs/practica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/practicajs/practica/issues"
+  },
+  "homepage": "https://github.com/practicajs/practica#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.33",
+    "ts-jest": "^28.0.3",
+    "typescript": "4.6.4"
+  },
+  "dependencies": {
+    "@practica/logger": "^0.0.1-alpha.4",
+    "jest": "^28.1.0",
+    "jest-sinon": "^1.0.4",
+    "sinon": "^14.0.0"
+  }
+}
