@@ -47,17 +47,19 @@ p.s. This author has another outstanding post about a modern testing strategy, c
 
 **✍️ Author:** Kent Beck
 
-**🔖 Abstract:** His majesty,
+**🔖 Abstract:** Not sure about this article yet. His majesty, 
 
 **👓 Read time:** 5 min (908 words)
 
 **🔗 Link:** [https://medium.com/@kentbeck_7670/test-desiderata-94150638a4b3](https://medium.com/@kentbeck_7670/test-desiderata-94150638a4b3)
 
-### 🏅 4. 'How to Unit Test with NodeJS?' (for beginners)
+### 🏅 4. 'How to Unit Test with Node.js?' (for beginners)
 
 **✍️ Author:** Ryan Jones
 
-**🔖 Abstract:** One for beginners
+**🔖 Abstract:** *One single recommendation for beginners:* Any other article on this list covers advanced testing. This article, and only this one, is meant for testing newbies who are looking to take their first practical steps in this world
+
+This tutorial was chosen from a handful of other alternatives because it's well-written and also relatively comprehensive. It covers the first steps 'kata' that a beginner should learn first about: the test anatomy syntax, test runners CLI, assertions and asynchronous tests. Goes without words, this knowledge won't be sufficient for covering a real-world app with testing, but it gets you safely to the next phase. My personal advice: after reading this one, your next step is learning about [test doubles (mocking)](https://www.testim.io/blog/sinon-js-tutorial/)
 
 **👓 Read time:** 16 min (3000 words)
 
@@ -73,17 +75,35 @@ p.s. This author has another outstanding post about a modern testing strategy, c
 
 **🔗 Link:** [https://copyconstruct.medium.com/testing-microservices-the-sane-way-9bb31d158c16](https://copyconstruct.medium.com/testing-microservices-the-sane-way-9bb31d158c16)
 
-### 🏅 6. 'Testing Microservices, the sane way'
+### 🏅 6. 'Mocking is a Code Smell'
 
-**✍️ Author:** Cindy Sridharan
+**✍️ Author:** Eric Elliott
 
-**🔖 Abstract:** 12k claps
+**🔖 Abstract:** Most of the articles here belong more to the 'modern wave of testing', here is something more 'classic' and appealing to TDD lovers or just anyone with a need to write unit tests. This article is about HOW to reduce the number of mocking (test doubles) in your tests. Not only because mocking is an overhead in test writing, also because they hint that something might be wrong. In other words, mocking is not definitely wrong and must be fixed right away but *many* mocking are a sign of something. Consider a module that inherits from many others, or a chatty one that collaborates with a handful of other modules to do its job - testing and changing this structure is a burden:
 
-**👓 Read time:** 52 min (10,500 words)
+`
+Mocking is required when our decomposition strategy has failed
+`
+The author goes through a various of techniques to design more autonomous units like using pure functions by isolating side-effects from the rest of the program logic, using pub/sub, isolating I/O, composing units with patterns like monadic compositions, and some more
 
-**🔗 Link:** [https://copyconstruct.medium.com/testing-microservices-the-sane-way-9bb31d158c16](https://copyconstruct.medium.com/testing-microservices-the-sane-way-9bb31d158c16)
+The overall article tone is balanced. In some parts, it encourages functional programming and techniques that are far from the mainstream - consider reading these few parts with a grain of salt
 
-### 🏅 7. 'An Overview of JavaScript Testing in 2022'
+**👓 Read time:** 32 min (6,300 words)
+
+**🔗 Link:** [https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a](https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a)
+
+### 🏅 7. 'Why Good Developers Write Bad Unit Tests'
+
+**✍️ Author:** Michael Lynch
+
+**🔖 Abstract:** Probably my favourite as it can convert, shows why especially, example
+
+**👓 Read time:** 11 min (2,2000 words)
+
+**🔗 Link:** [https://mtlynch.io/good-developers-bad-tests/](https://mtlynch.io/good-developers-bad-tests/)
+
+
+### 🏅 8. 'An Overview of JavaScript Testing in 2022'
 
 **✍️ Author:** Vitali Zaidman
 
@@ -93,15 +113,6 @@ p.s. This author has another outstanding post about a modern testing strategy, c
 
 **🔗 Link:** [https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870](https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870)
 
-### 🏅 8. 'Why Good Developers Write Bad Unit Tests'
-
-**✍️ Author:** Michael Lynch
-
-**🔖 Abstract:** Probably my favourite as it can convert, shows why especially, example
-
-**👓 Read time:** 11 min (2,2000 words)
-
-**🔗 Link:** [https://mtlynch.io/good-developers-bad-tests/](https://mtlynch.io/good-developers-bad-tests/)
 
 ### 🏅 9. 'Testing Error Handling in node.js'
 
