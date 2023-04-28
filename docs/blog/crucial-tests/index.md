@@ -30,21 +30,19 @@ Code under test, api.js:
 
 ```javascript
 // A common express server initialization
-const startWebServer = () => {
-  return new Promise((resolve, reject) => {
-    try {
-      // A typical Express setup
-      expressApp = express();
-      defineRoutes(expressApp); // a function that defines all routes
-      connection = expressApp.listen(process.env.WEB_SERVER_PORT, () => {
-        resolve(connection.address());
-      });
-    } catch (error) {
-      //log here, fire a metric, maybe even retry and finally:
-      process.exit();
-    }
-  });
-};
+async function startWebServer() {
+    return new Promise((resolve, reject) => {
+        // A typical Express setup
+        expressApp = express();
+        defineRoutes(expressApp); // a function that defines all routes
+        connection = expressApp.listen(process.env.WEB_SERVER_PORT, () => {
+            resolve(connection.address());
+        });
+    }).catch((error) => {
+        //log here, fire a metric, maybe even retry and finally:
+        process.exit();
+    });
+}
 ```
 
 The test:
