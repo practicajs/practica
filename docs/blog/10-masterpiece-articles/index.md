@@ -17,9 +17,11 @@ tags:
 
 ## What's so special about these articles?
 
-As a testing consultant, I read tons of testing articles throughout the years. The majority are mediocre articles and aren't worth your precious time. Once in a while, not very often, I landed on an article that was *shockingly good*. Below is a list of articles that I've cherry-picked for you, articles that are likely to make you a better test writer. Half of these articles are related directly with JavaScript/Node.js, the second half covers ubiquitous testing concepts that are applicable in every language.
+As a testing consultant, I read tons of testing articles throughout the years. The majority is just mediocre pieces of content that probably aren't worth your precious time. Once in a while, not very often, I landed on an article that was *shockingly good*. Below is a list of articles that I've cherry-picked for you, articles that are likely to make you a better test writer. Half of these articles are related directly with JavaScript/Node.js, the second half covers ubiquitous testing concepts that are applicable in every language
 
-Busy these days? search for articles that are decorated with a medal 🏅, these are a true masterpiece piece of content that you never wanna miss
+What's so special about them? First, the writing quality is just good, or great. Second, they mostly deal with the 'new world of testing', not the commonly known 'TDD-ish' stuff but rather modern concepts and tooling
+
+Too busy to read them all? search for articles that are decorated with a medal 🏅, these are a true masterpiece piece of content that you never wanna miss
 
 ### 📄 1. 'Selective Unit Testing – Costs and Benefits'
 
@@ -40,16 +42,6 @@ Side note, not part of the article: Personally I (Yoni) always start with compon
 
 **🔗 Link:** [https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/)
 
-### 📄 1. 'Unit test fetish'
-
-**✍️ Author:** Martin Sústrik
-
-**🔖 Abstract:** The article opens with 'I hear that prople feel an uncontrollable urge to write unit tests nowaydays. If you are one of those affected, spare few minutes and consider these reasons for NOT writing unit tests'. Despite these words, the article is not against unit tests as a principle rather highlights when & where unit tests fall short. In these cases, other techniques should be considered. Here is an example: Unit tests inherently have lower return on investment, the author comes with a sounding analogy for this: 'If you are painting a house, you want to start with a biggest brush at hand and spare the tiny brush for the end to deal with fine details. If you begin your QA work with unit tests, you are essentially trying to paint entire house using the finest chinese calligraphy brush...'
-
-**👓 Read time:** 5 min (1000 words)
-
-**🔗 Link:** [https://250bpm.com/blog:40/](https://250bpm.com/blog:40/)
-
 ### 📄 2. 'Testing implementation details'
 
 **✍️ Author:** Kent C Dodds
@@ -62,29 +54,7 @@ p.s. This author has another outstanding post about a modern testing strategy, c
 
 **🔗 Link:** [https://kentcdodds.com/blog/testing-implementation-details](https://kentcdodds.com/blog/testing-implementation-details)
 
-### 📄 3. 'Test Desiderata'
-
-**✍️ Author:** Kent Beck
-
-**🔖 Abstract:** Not sure about this article yet. His majesty, 
-
-**👓 Read time:** 5 min (908 words)
-
-**🔗 Link:** [https://medium.com/@kentbeck_7670/test-desiderata-94150638a4b3](https://medium.com/@kentbeck_7670/test-desiderata-94150638a4b3)
-
-### 📄 4. 'How to Unit Test with Node.js?' (for beginners)
-
-**✍️ Author:** Ryan Jones
-
-**🔖 Abstract:** *One single recommendation for beginners:* Any other article on this list covers advanced testing. This article, and only this one, is meant for testing newbies who are looking to take their first practical steps in this world
-
-This tutorial was chosen from a handful of other alternatives because it's well-written and also relatively comprehensive. It covers the first steps 'kata' that a beginner should learn first about: the test anatomy syntax, test runners CLI, assertions and asynchronous tests. Goes without words, this knowledge won't be sufficient for covering a real-world app with testing, but it gets you safely to the next phase. My personal advice: after reading this one, your next step is learning about [test doubles (mocking)](https://www.testim.io/blog/sinon-js-tutorial/)
-
-**👓 Read time:** 16 min (3000 words)
-
-**🔗 Link:** [https://medium.com/serverlessguru/how-to-unit-test-with-nodejs-76967019ba56](https://medium.com/serverlessguru/how-to-unit-test-with-nodejs-76967019ba56)
-
-### 📄 5. 'Testing Microservices, the sane way'
+### 📄 3. 'Testing Microservices, the sane way'
 
 🏅 This is a masterpiece
 
@@ -105,6 +75,31 @@ Beyond its main scope, whatever type of system you are dealing with - this artic
 
 **🔗 Link:** [https://copyconstruct.medium.com/testing-microservices-the-sane-way-9bb31d158c16](https://copyconstruct.medium.com/testing-microservices-the-sane-way-9bb31d158c16)
 
+
+
+### 📄 4. 'How to Unit Test with Node.js?' (for beginners)
+
+**✍️ Author:** Ryan Jones
+
+**🔖 Abstract:** *One single recommendation for beginners:* Any other article on this list covers advanced testing. This article, and only this one, is meant for testing newbies who are looking to take their first practical steps in this world
+
+This tutorial was chosen from a handful of other alternatives because it's well-written and also relatively comprehensive. It covers the first steps 'kata' that a beginner should learn first about: the test anatomy syntax, test runners CLI, assertions and asynchronous tests. Goes without words, this knowledge won't be sufficient for covering a real-world app with testing, but it gets you safely to the next phase. My personal advice: after reading this one, your next step is learning about [test doubles (mocking)](https://www.testim.io/blog/sinon-js-tutorial/)
+
+**👓 Read time:** 16 min (3000 words)
+
+**🔗 Link:** [https://medium.com/serverlessguru/how-to-unit-test-with-nodejs-76967019ba56](https://medium.com/serverlessguru/how-to-unit-test-with-nodejs-76967019ba56)
+
+### 📄 5. 'Unit test fetish'
+
+**✍️ Author:** Martin Sústrik
+
+**🔖 Abstract:** The article opens with 'I hear that prople feel an uncontrollable urge to write unit tests nowaydays. If you are one of those affected, spare few minutes and consider these reasons for NOT writing unit tests'. Despite these words, the article is not against unit tests as a principle rather highlights when & where unit tests fall short. In these cases, other techniques should be considered. Here is an example: Unit tests inherently have lower return on investment, the author comes with a sounding analogy for this: 'If you are painting a house, you want to start with a biggest brush at hand and spare the tiny brush for the end to deal with fine details. If you begin your QA work with unit tests, you are essentially trying to paint entire house using the finest chinese calligraphy brush...'
+
+**👓 Read time:** 5 min (1000 words)
+
+**🔗 Link:** [https://250bpm.com/blog:40/](https://250bpm.com/blog:40/)
+
+
 ### 📄 6. 'Mocking is a Code Smell'
 
 **✍️ Author:** Eric Elliott
@@ -124,9 +119,15 @@ The overall article tone is balanced. In some parts, it encourages functional pr
 
 ### 📄 7. 'Why Good Developers Write Bad Unit Tests'
 
+🏅 This is a masterpiece
+
 **✍️ Author:** Michael Lynch
 
-**🔖 Abstract:** Probably my favourite as it can convert, shows why especially, example
+**🔖 Abstract:** I love this one so much. The author exemplifies how *unexpectedly* it is sometimes the good developers with their great intentions who write bad tests:
+
+> Too often, software developers approach unit testing with the same flawed thinking... They mechanically apply all the “rules” they learned in production code without examining whether they’re appropriate for tests. As a result, they build skyscrapers at the beach
+
+Concrete code examples show how the test readability deteriorates once we apply 'sky scrapper' thinking and how to keep it simple. In one part, he demonstrates how violating the DRY principle thoughtfully allows the reader to stay within the test while still keeping the code maintainable. This article alone, in 11 minutes, can greatly improve the tests of developers who tend to write sophisticated tests. If you have someone like this in your team, you now know what to do
 
 **👓 Read time:** 11 min (2,2000 words)
 
@@ -143,23 +144,6 @@ The overall article tone is balanced. In some parts, it encourages functional pr
 
 **🔗 Link:** [https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870](https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870)
 
-
-### 📄 9. 'Please don't mock me'
-
-🏅 This is a masterpiece
-
-**✍️ Author:** Justin Searls 
-
-**🔖 Abstract:** This is a *masterpiece* YouTube on the Achilles heel of testing: where exactly to mock. The dilemma where to end the test scope, what should be mocked and what's not - is presumably the most strategic test design decision. Consider for example having module A which interacts with module B. If you isolate A by mocking B, A will always pass, even when B's interface has changed and A's code didn't follow. This makes A's tests highly stable but... production will fail in hours. In his talk Justin says:
-
-> "A test that never fails is a bad test because it doesn't tell you anything. Design tests to fail"
-
-Then he goes and tackle many other interesting mocking crossroads, with beautiful visuals, tons of insights. Please don't miss this one
-
-**👓 Read time:** 39 min
-
-**🔗 Link:** [https://www.youtube.com/watch?v=x8sKpJwq6lY&list=PL1CRgzydk3vzk5nMZNLTODfMartQQzInE&index=148](https://www.youtube.com/watch?v=x8sKpJwq6lY&list=PL1CRgzydk3vzk5nMZNLTODfMartQQzInE&index=148)
-
 ### 📄 9. 'Testing Error Handling in node.js'
 
 **✍️ Author:** Lars Trieloff
@@ -171,11 +155,26 @@ Then he goes and tackle many other interesting mocking crossroads, with beautifu
 **🔗 Link:** [https://blog.developer.adobe.com/testing-error-handling-in-node-js-567323397114](https://blog.developer.adobe.com/testing-error-handling-in-node-js-567323397114)
 
 
+### 📄 10. 'Please don't mock me'
+
+🏅 This is a masterpiece
+
+**✍️ Author:** Justin Searls 
+
+**🔖 Abstract:** This fantastic YouTube deals with the Achilles heel of testing: where exactly to mock. The dilemma where to end the test scope, what should be mocked and what's not - is presumably the most strategic test design decision. Consider for example having module A which interacts with module B. If you isolate A by mocking B, A will always pass, even when B's interface has changed and A's code didn't follow. This makes A's tests highly stable but... production will fail in hours. In his talk Justin says:
+
+> "A test that never fails is a bad test because it doesn't tell you anything. Design tests to fail"
+
+Then he goes and tackle many other interesting mocking crossroads, with beautiful visuals, tons of insights. Please don't miss this one
+
+**👓 Read time:** 39 min
+
+**🔗 Link:** [https://www.youtube.com/watch?v=x8sKpJwq6lY&list=PL1CRgzydk3vzk5nMZNLTODfMartQQzInE&index=148](https://www.youtube.com/watch?v=x8sKpJwq6lY&list=PL1CRgzydk3vzk5nMZNLTODfMartQQzInE&index=148)
+
+
 • https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks
 • Mine
-• Mock is a code smell
 • The long run
-* Selective unit tests
 * Choose one in the end, put only one
 
 
