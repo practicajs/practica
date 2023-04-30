@@ -433,6 +433,7 @@ Why do we need this? a lot of times we don't test our build or dependencies requ
 
 You can also extend this by:
 - Testing different version of peer dependency you support - let's say your package support react 16 to 18, you can now test that
+- You want to test ESM and CJS consumers
 - If you have CLI application you can test it like your users
 
 ___
