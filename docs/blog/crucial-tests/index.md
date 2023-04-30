@@ -374,7 +374,7 @@ test('When an order with duplicated coupon is added , then 409 error should get 
   // We're adding the same coupon twice 👇
   const receivedResponse = await axios.post('/order', orderToAdd);
 
-  Assert;
+  // Assert;
   expect(receivedResponse.status).toBe(409);
   expect(res).toSatisfyApiSpec();
   // This 👆 will throw if the API response, body or status, is different that was it stated in the OpenAPI
