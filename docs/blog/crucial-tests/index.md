@@ -392,6 +392,49 @@ beforeAll(() => {
 });
 ```
 
+## 📦 Test the package as a consumer
+
+a lot of times we don't test our packages as how our consumers will use them,
+this is a simplified example of how we could do that
+
+```js
+// global-setup.js
+
+// 1. Setup the in memory NPM registry
+await setupVerdaccio();
+
+// 2. Building our package 
+await execa('npm', ['run', 'build'], {
+    cwd: packagePath,
+});
+
+// 3. Publish it to the in memory registry
+await execa('npm', ['publish', '--registry=http://localhost:4873'], {
+    cwd: packagePath,
+});
+
+// 4. Installing it in the consumer directory
+await execa('npm', ['install', 'my-package', '--registry=http://localhost:4873'], {
+    cwd: consumerPath,
+});
+
+// Test file in the consumerPath
+
+// 5. Test the package 🚀
+test("should succeed", async () => {
+    const {function1} = require('my-package');
+
+    expect(function1()).toEqual(1);
+});
+```
+for full version you can look [here](https://github.com/rluvaton/e2e-verdaccio-example)
+
+Why do we need this? a lot of times we don't test our build or dependencies requirements
+
+You can also extend this by:
+- Testing different version of peer dependency you support - let's say your package support react 16 to 18, you can now test that
+- If you have CLI application you can test it like your users
+
 ___
 
 ## Internal: Tasks for release
