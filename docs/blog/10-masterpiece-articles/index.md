@@ -42,7 +42,7 @@ Side note, not part of the article: Personally I (Yoni) always start with compon
 
 **🔗 Link:** [https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/)
 
-### 📄 2. 'Testing implementation details'
+### 📄 2. 'Testing implementation details' (JavaScript example)
 
 **✍️ Author:** Kent C Dodds
 
@@ -77,7 +77,7 @@ Beyond its main scope, whatever type of system you are dealing with - this artic
 
 
 
-### 📄 4. 'How to Unit Test with Node.js?' (for beginners)
+### 📄 4. 'How to Unit Test with Node.js?' (JavaScript examples, for beginners)
 
 **✍️ Author:** Ryan Jones
 
@@ -100,7 +100,7 @@ This tutorial was chosen from a handful of other alternatives because it's well-
 **🔗 Link:** [https://250bpm.com/blog:40/](https://250bpm.com/blog:40/)
 
 
-### 📄 6. 'Mocking is a Code Smell'
+### 📄 6. 'Mocking is a Code Smell' (JavaScript examples)
 
 **✍️ Author:** Eric Elliott
 
@@ -134,11 +134,15 @@ Concrete code examples show how the test readability deteriorates once we apply 
 **🔗 Link:** [https://mtlynch.io/good-developers-bad-tests/](https://mtlynch.io/good-developers-bad-tests/)
 
 
-### 📄 8. 'An Overview of JavaScript Testing in 2022'
+### 📄 8. 'An Overview of JavaScript Testing in 2022' (JavaScript examples)
 
 **✍️ Author:** Vitali Zaidman
 
-**🔖 Abstract:** Different beast, rundown, comprehensive
+**🔖 Abstract:** This paper is unique here as it doesn't cover a single topic rather being a rundown of (almost) all JavaScript testing tools. This allows you to enrich the toolbox in your mind, and have more screwdrivers for more type of screws. For example, knowing that there are IDE extensions that shows coverage information right within the code might help you boost the tests adoption in the team, if needed. Knowing that there are solid, free, and open source visual regression tools might encourage you to dip your toes in this water, to name a few examples.
+
+> "We reviewed the most trending testing strategies and tools in the web development community and hopefully made it easier for you to test your sites. In the end, the best decisions regarding application architecture today are made by understanding general patterns that are trending in the very active community of developers, and combining them with your own experience and the characteristics of your application."
+
+ The author was also kind enough to leave pros/cons nearby most tools so the reader can quickly get a sense of how the various options stack with each other. The article covers categories like assertion libraries, test runners, code coverage tools, visual regression tools, E2E suits and more
 
 **👓 Read time:** 37 min (7,400 words)
 
@@ -155,7 +159,7 @@ Concrete code examples show how the test readability deteriorates once we apply 
 **🔗 Link:** [https://blog.developer.adobe.com/testing-error-handling-in-node-js-567323397114](https://blog.developer.adobe.com/testing-error-handling-in-node-js-567323397114)
 
 
-### 📄 10. 'Please don't mock me'
+### 📄 10. 'Please don't mock me' (JavaScript examples)
 
 🏅 This is a masterpiece
 
@@ -170,6 +174,14 @@ Then he goes and tackle many other interesting mocking crossroads, with beautifu
 **👓 Read time:** 39 min
 
 **🔗 Link:** [https://www.youtube.com/watch?v=x8sKpJwq6lY&list=PL1CRgzydk3vzk5nMZNLTODfMartQQzInE&index=148](https://www.youtube.com/watch?v=x8sKpJwq6lY&list=PL1CRgzydk3vzk5nMZNLTODfMartQQzInE&index=148)
+
+### 📄 Shameless plug: my articles
+
+Here are a few articles that I wrote, obviously I don't 'recommend' my own craft, just checking modestly whether they appeal to you. Together, these articles gained 25,000 GitHub stars, maybe you'll find them useful:
+
+* [50+ JavaScript testing best practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
+* [Node.js testing - beyond the basics](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
+* [Writing clean JavaScript tests](https://yonigoldberg.medium.com/fighting-javascript-tests-complexity-with-the-basic-principles-87b7622eac9a)
 
 
 • https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks
