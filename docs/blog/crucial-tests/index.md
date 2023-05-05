@@ -394,7 +394,7 @@ beforeAll(() => {
 
 ## 📦 Test the package as a consumer
 
-**👉What & why -** While all your test pass the package still fail in production, how come? while the tests work against the local developer files, your user will work with the artifacts that were packed, zipped or heck even transpiled (I'm looking at you babel users). If polyfills are not added correctly a single file is excluded due to .npmignore, the code will fail...
+**👉What & why -** While all your test pass the package still fail in production, how come? while the tests work against the local developer files, your user will work with the artifacts that were packed, zipped or heck even transpiled (I'm looking at you babel users). If a single file is excluded due to .npmignore or polyfills are not added correctly, the code will fail...
 
 Consider the following scenario, you're developing a library, and you wrote this code:
 ```js
