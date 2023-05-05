@@ -394,27 +394,63 @@ beforeAll(() => {
 
 ## 📦 Test the package as a consumer
 
-a lot of times we don't test our packages as how our consumers will use them,
+**👉What & why -** 100% of your library's tests pass, the tests are great, they cover all the scenarios, but shockingly they fail in production, how come?? while the tests work against the local developer files, your user will work against the artifacts that were packed and zipped. If a single file is excluded due to build configuration or because of .npmignore, the code will fail...
+
+Consider the following scenario, you're developing a library, and you wrote this code:
+```js
+// index.js
+export * from './calculate.js';
+
+// calculate.js
+export function calculate() {
+  return 1;
+}
+```
+
+and some tests:
+```js
+import { calculate } from './index.js';
+
+test('should return 1', () => {
+  expect(calculate()).toBe(1);
+})
+```
+
+While this is passing locally and in the CI, it won't work in production. Why? because you forgot to include the `calculate.js` in the package.json `files` array:
+```json5
+{
+  // ....
+  "files": [
+    "index.js"
+  ]
+}
+```
+
+What can we do instead? we can test the library as its consumers. how? one of the option is to publish the package to a local registry like verdaccio and run the tests on that
+while it seems hard it actually isn't and quite fast
+
 this is a simplified example of how we could do that
+
+**📝 Code**
 
 ```js
 // global-setup.js
 
-// 1. Setup the in memory NPM registry
+// 1. Setup the in-memory NPM registry
 await setupVerdaccio();
 
 // 2. Building our package 
-await execa('npm', ['run', 'build'], {
+await exec('npm', ['run', 'build'], {
     cwd: packagePath,
 });
 
-// 3. Publish it to the in memory registry
-await execa('npm', ['publish', '--registry=http://localhost:4873'], {
+// 3. Publish it to the in-memory registry
+await exec('npm', ['publish', '--registry=http://localhost:4873'], {
     cwd: packagePath,
 });
 
 // 4. Installing it in the consumer directory
-await execa('npm', ['install', 'my-package', '--registry=http://localhost:4873'], {
+await exec('npm', ['install', 'my-package', '--registry=http://localhost:4873'], {
     cwd: consumerPath,
 });
 
@@ -422,16 +458,15 @@ await execa('npm', ['install', 'my-package', '--registry=http://localhost:4873']
 
 // 5. Test the package 🚀
 test("should succeed", async () => {
-    const {function1} = require('my-package');
+    const { fn1 } = await import('my-package');
 
-    expect(function1()).toEqual(1);
+    expect(fn1()).toEqual(1);
 });
 ```
+
 for full version you can look [here](https://github.com/rluvaton/e2e-verdaccio-example)
 
-Why do we need this? a lot of times we don't test our build or dependencies requirements
-
-You can also extend this by:
+What else this technique can be useful for?
 - Testing different version of peer dependency you support - let's say your package support react 16 to 18, you can now test that
 - You want to test ESM and CJS consumers
 - If you have CLI application you can test it like your users
