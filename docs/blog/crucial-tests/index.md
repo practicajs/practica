@@ -394,7 +394,7 @@ beforeAll(() => {
 
 ## 📦 Test the package as a consumer
 
-**👉What & why -** 100% of your library's tests pass, the tests are great, they cover all the scenarios, but shockingly they fail in production, how come?? while the tests work against the local developer files, your user will work against the artifacts that were packed and zipped. If a single file is excluded due to build configuration or because of .npmignore, the code will fail...
+**👉What & why -** While all your test pass the package still fail in production, how come? while the tests work against the local developer files, your user will work with the artifacts that were packed, zipped or heck even transpiled (I'm looking at you babel users). If polyfills are not added correctly a single file is excluded due to .npmignore, the code will fail...
 
 Consider the following scenario, you're developing a library, and you wrote this code:
 ```js
@@ -427,9 +427,7 @@ While this is passing locally and in the CI, it won't work in production. Why? b
 ```
 
 What can we do instead? we can test the library as its consumers. how? one of the option is to publish the package to a local registry like verdaccio and run the tests on that
-while it seems hard it actually isn't and quite fast
-
-this is a simplified example of how we could do that
+while it seems hard it actually isn't and quite fast, this is a simplified example of how we could do that
 
 **📝 Code**
 
@@ -470,6 +468,7 @@ What else this technique can be useful for?
 - Testing different version of peer dependency you support - let's say your package support react 16 to 18, you can now test that
 - You want to test ESM and CJS consumers
 - If you have CLI application you can test it like your users
+- Making sure all the voodoo magic in that babel file is working as expected
 
 ___
 
