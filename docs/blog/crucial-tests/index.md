@@ -30,21 +30,19 @@ Code under test, api.js:
 
 ```javascript
 // A common express server initialization
-const startWebServer = () => {
-  return new Promise((resolve, reject) => {
-    try {
-      // A typical Express setup
-      expressApp = express();
-      defineRoutes(expressApp); // a function that defines all routes
-      connection = expressApp.listen(process.env.WEB_SERVER_PORT, () => {
-        resolve(connection.address());
-      });
-    } catch (error) {
-      //log here, fire a metric, maybe even retry and finally:
-      process.exit();
-    }
-  });
-};
+async function startWebServer() {
+    return new Promise((resolve, reject) => {
+        // A typical Express setup
+        expressApp = express();
+        defineRoutes(expressApp); // a function that defines all routes
+        connection = expressApp.listen(process.env.WEB_SERVER_PORT, () => {
+            resolve(connection.address());
+        });
+    }).catch((error) => {
+        //log here, fire a metric, maybe even retry and finally:
+        process.exit();
+    });
+}
 ```
 
 The test:
@@ -376,7 +374,7 @@ test('When an order with duplicated coupon is added , then 409 error should get 
   // We're adding the same coupon twice 👇
   const receivedResponse = await axios.post('/order', orderToAdd);
 
-  Assert;
+  // Assert;
   expect(receivedResponse.status).toBe(409);
   expect(res).toSatisfyApiSpec();
   // This 👆 will throw if the API response, body or status, is different that was it stated in the OpenAPI
@@ -393,6 +391,84 @@ beforeAll(() => {
   });
 });
 ```
+
+## 📦 Test the package as a consumer
+
+**👉What & why -** While all your test pass the package still fail in production, how come? while the tests work against the local developer files, your user will work with the artifacts that were packed, zipped or heck even transpiled (I'm looking at you babel users). If a single file is excluded due to .npmignore or polyfills are not added correctly, the code will fail...
+
+Consider the following scenario, you're developing a library, and you wrote this code:
+```js
+// index.js
+export * from './calculate.js';
+
+// calculate.js
+export function calculate() {
+  return 1;
+}
+```
+
+and some tests:
+```js
+import { calculate } from './index.js';
+
+test('should return 1', () => {
+  expect(calculate()).toBe(1);
+})
+```
+
+While this is passing locally and in the CI, it won't work in production. Why? because you forgot to include the `calculate.js` in the package.json `files` array:
+```json5
+{
+  // ....
+  "files": [
+    "index.js"
+  ]
+}
+```
+
+What can we do instead? we can test the library as its consumers. how? one of the option is to publish the package to a local registry like verdaccio and run the tests on that
+while it seems hard it actually isn't and quite fast, this is a simplified example of how we could do that
+
+**📝 Code**
+
+```js
+// global-setup.js
+
+// 1. Setup the in-memory NPM registry
+await setupVerdaccio();
+
+// 2. Building our package 
+await exec('npm', ['run', 'build'], {
+    cwd: packagePath,
+});
+
+// 3. Publish it to the in-memory registry
+await exec('npm', ['publish', '--registry=http://localhost:4873'], {
+    cwd: packagePath,
+});
+
+// 4. Installing it in the consumer directory
+await exec('npm', ['install', 'my-package', '--registry=http://localhost:4873'], {
+    cwd: consumerPath,
+});
+
+// Test file in the consumerPath
+
+// 5. Test the package 🚀
+test("should succeed", async () => {
+    const { fn1 } = await import('my-package');
+
+    expect(fn1()).toEqual(1);
+});
+```
+
+for full version you can look [here](https://github.com/rluvaton/e2e-verdaccio-example)
+
+What else this technique can be useful for?
+- Testing different version of peer dependency you support - let's say your package support react 16 to 18, you can now test that
+- You want to test ESM and CJS consumers
+- If you have CLI application you can test it like your users
+- Making sure all the voodoo magic in that babel file is working as expected
 
 ___
 
