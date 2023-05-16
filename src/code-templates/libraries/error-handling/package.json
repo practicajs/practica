@@ -2,7 +2,7 @@
   "name": "@practica/error-handling",
   "version": "0.0.3",
   "description": "",
-  "main": ".dist/index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "jest --runInBand",
     "test:dev": "jest --watch --silent --runInBand",
