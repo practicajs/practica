@@ -30,7 +30,7 @@ sidebar_label: Monorepo
   </tr>
   <tr valign="top">
     <td><b>Community and maintenance</b></td>
-    <td><img src="/docs/static/img/docs/decisions"/><br/><br/>Huge eco-system and commercial-grade maintenance</td>
+    <td><img src="/docs/static/img/docs/decisions/full.png"/><br/><br/>Huge eco-system and commercial-grade maintenance</td>
     <td><img src="/img/docs/decisions/full.png"/><br/><br/>Trending, commercial-grade maintenance</td>
     <td>
       <img src="/img/docs/decisions/partial.png"/><br/><br/>Not maintained anymore</td>
