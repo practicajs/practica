@@ -189,7 +189,7 @@ const QuestionsWizard = () => {
             width="50%"
             alignSelf="flex-start"
             borderStyle="classic"
-            borderColor="grey"
+            borderColor="white"
             height={15}
             paddingX={3}
             marginX={3}
@@ -222,7 +222,7 @@ const QuestionsWizard = () => {
                       questionsWizard.showWarningMessage ? "flex" : "none"
                     }
                   >
-                    <Text color="grey">
+                    <Text color="white">
                       🔖 This is an alpha version of this wizard which is meant
                       for demo purposes. Whatever technologies you'll choose,
                       for now the generated app will be based on Express +
@@ -305,7 +305,7 @@ const QuestionsWizard = () => {
           <Box
             width="30%"
             borderStyle="classic"
-            borderColor="grey"
+            borderColor="white"
             height={15}
             paddingX={5}
             marginX={3}
