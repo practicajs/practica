@@ -2,7 +2,7 @@
   "name": "@practica/configuration-provider",
   "version": "0.0.2",
   "description": "",
-  "main": "./.dist/index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "jest",
     "test:dev": "jest --watch --silent",
