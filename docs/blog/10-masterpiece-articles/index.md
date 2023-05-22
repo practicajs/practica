@@ -2,7 +2,7 @@
 slug: masterpiece-articles
 date: 2022-12-10T10:00
 hide_table_of_contents: true
-title: 10 masterpiece articles about testing that you don't want to miss
+title: Outstanding testing articles (with JavaScript)
 authors: [goldbergyoni]
 tags:
   [
@@ -27,7 +27,7 @@ Too busy to read them all? search for articles that are decorated with a medal �
 
 **✍️ Author:** Steve Sanderson
 
-**🔖 Abstract:** We all found ourselves at least once in the ongoing and flammable discussion about 'units' vs 'integration'. This articles delve into a greater level of specificity and discuss WHEN unit test shine by considering the costs of writing these tests under various scenarios. Many treat their testing strategy as a static model - a testing technique they always write regardless of the context. "Always write unit tests against functions", "Write mostly integration tests" are a type of arguments often heard. Conversely, this article suggests that the attractiveness of unit tests should be evaluated based on the *costs and benefits*. The article classifies multiple scenarios where the net value of unit tests is high or low, for example:
+**🔖 Abstract:** We all found ourselves at least once in the ongoing and flammable discussion about 'units' vs 'integration'. This articles delve into a greater level of specificity and discuss WHEN unit test shine by considering the costs of writing these tests under *various scenarios*. Many treat their testing strategy as a static model - a testing technique they always write regardless of the context. "Always write unit tests against functions", "Write mostly integration tests" are a type of arguments often heard. Conversely, this article suggests that the attractiveness of unit tests should be evaluated based on the *costs and benefits per module*. The article classifies multiple scenarios where the net value of unit tests is high or low, for example:
 
 > If your code is basically obvious – so at a glance you can see exactly what it does – then additional design and verification (e.g., through unit testing) yields extremely minimal benefit, if any
 
@@ -159,7 +159,7 @@ Concrete code examples show how the test readability deteriorates once we apply 
 **🔗 Link:** [https://blog.developer.adobe.com/testing-error-handling-in-node-js-567323397114](https://blog.developer.adobe.com/testing-error-handling-in-node-js-567323397114)
 
 
-### 📄 10. 'Please don't mock me' (JavaScript examples)
+### 📄 10. 'Please don't mock me' (JavaScript examples, from JSConf)
 
 🏅 This is a masterpiece
 
@@ -183,13 +183,33 @@ Here are a few articles that I wrote, obviously I don't 'recommend' my own craft
 * [Node.js testing - beyond the basics](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
 * [Writing clean JavaScript tests](https://yonigoldberg.medium.com/fighting-javascript-tests-complexity-with-the-basic-principles-87b7622eac9a)
 
+### 🎁 Bonus: Some other great testing content
 
-• https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks
+* Property-Based Testing for everyone by Romeu Moura https://www.youtube.com/watch?v=5pwv3cuo3Qk, 
+* METAMORPHIC TESTING https://www.hillelwayne.com/post/metamorphic-testing/
+* Lean Testing or Why Unit Tests are Worse than You Think https://medium.com/@eugenkiss/lean-testing-or-why-unit-tests-are-worse-than-you-think-b6500139a009
+* Testing Strategies in a Microservice Architecture https://martinfowler.com/articles/microservice-testing/?utm_source=pocket_saves
+* Test Desiderata https://kentbeck.github.io/TestDesiderata/
+* TDD is dead. Long live testing. https://dhh.dk/2014/tdd-is-dead-long-live-testing.html
+* test-induced-design-damage https://dhh.dk/2014/test-induced-design-damage.html
+* Testing in Production, the safe way Cindy Sridharan https://copyconstruct.medium.com/testing-in-production-the-safe-way-18ca102d0ef1
+* testing-without-mocks • https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks
+
+
+
+
 • Mine
 • The long run
 * Choose one in the end, put only one
 
 
 Alternative title - 
-Awesome JavaScript testing articles
+Outstanding JavaScript testing articles that I cherry-picked for you
 Eleven awesome & cherry-picked JavaScript testing articles
+
+** Tasks **
+- Title
+- More article
+- Revise
+- Bonus
+- Quotes
