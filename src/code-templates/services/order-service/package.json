@@ -4,8 +4,8 @@
   "description": "An example Node.js app that is packed with best practices",
   "main": "./.dist/start.js",
   "scripts": {
-    "start": "PORT=3000 PRETTY_PRINT=false node .dist/start.js",
-    "start:dev": "PORT=3000 PRETTY_PRINT=true nodemon start.ts",
+    "start": "cross-env PORT=3000 PRETTY_PRINT=false node .dist/start.js",
+    "start:dev": "cross-env PORT=3000 PRETTY_PRINT=true nodemon start.ts",
     "test": "PRETTY_PRINT=true jest --forceExit --verbose=true --runInBand",
     "test:dev": "jest --watch --silent --runInBand --coverage=false --reporters='default'",
     "test:dev:verbose": "jest --watch --verbose=true",
@@ -33,9 +33,9 @@
     "axios": "^0.26.1",
     "express": "^4.17.3",
     "helmet": "^6.0.0",
-    "sequelize": "^6.17.0",
     "node-notifier": "^10.0.1",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "sequelize": "^6.17.0"
   },
   "devDependencies": {
     "@jest-performance-reporter/core": "^2.1.2",
@@ -48,6 +48,7 @@
     "@types/pg": "^8.6.5",
     "@types/sequelize": "^4.28.11",
     "@types/sinon": "^10.0.11",
+    "cross-env": "^7.0.3",
     "docker-compose": "^0.23.17",
     "is-ci": "^3.0.1",
     "is-port-reachable": "^3.0.0",

@@ -2,7 +2,7 @@
   "name": "@practica/logger",
   "version": "1.0.0",
   "description": "",
-  "main": "./.dist/index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "jest --forceExit",
     "test:dev": "jest --watch --silent --runInBand",

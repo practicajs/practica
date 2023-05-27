@@ -2,7 +2,7 @@
   "name": "practica-example-app",
   "version": "0.0.3",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "turbo run test --parallel",
     "build": "tsc",
