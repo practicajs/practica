@@ -235,12 +235,12 @@ ___
 
 **🤔 Why it might be wrong:** When tasked with guarding your routes with JWT token - you're just a few lines of code shy from ticking the goal. Instead of messing up with a new framework, instead of introducing levels of indirections (you call passport, then it calls you), instead of spending time learning new abstractions - use a JWT library directly. Libraries like [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) or [fast-jwt](https://github.com/nearform/fast-jwt) are simple and well maintained. Have concerns with the security hardening? Good point, your concerns are valid. But would you not get better hardening with a direct understanding of your configuration and flow? Will hiding things behind a framework help? Even if you prefer the hardening of a battle-tested framework, Passport doesn't handle a handful of security risks like secrets/token, secured user management, DB protection, and more. My point, you probably anyway need fully-featured user and authentication management platforms. Various cloud services and OSS projects, can tick all of those security concerns. Why then start in the first place with a framework that doesn't satisfy your security needs? It seems like many who opt for Passport.js are not fully aware of which needs are satisfied and which are left open. All of that said, Passport definitely shines when looking for a quick way to support _many_ social login providers
 
-**☀️ Better alternative:** Is token authentication in order? These few lines of code below might be all you need. You may also glimpse into [Practica.js wrapper around these libraries](https://github.com/practicajs/practica/tree/main/src/code-templates/libraries/jwt-token-verifier). A real-world project at scale typically need more: supporting async JWT [(JWKS)](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets), securely manage and rotate the secrets to name a few examples. In this case, OSS solution like [keycloak (https://github.com/keycloak/keycloak) or commercial options like Auth0[https://github.com/auth0] are alternatives to consider
+**☀️ Better alternative:** Is token authentication in order? These few lines of code below might be all you need. You may also glimpse into [Practica.js wrapper around these libraries](https://github.com/practicajs/practica/tree/main/src/code-templates/libraries/jwt-token-verifier). A real-world project at scale typically need more: supporting async JWT [(JWKS)](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets), securely manage and rotate the secrets to name a few examples. In this case, OSS solution like [keycloak] (https://github.com/keycloak/keycloak) or commercial options like [Auth0](https://github.com/auth0) are alternatives to consider
 
 ```javascript
 // jwt-middleware.js, a simplified version - Refer to Practica.js to see some more corner cases
 const middleware = (req, res, next) => {
-    if(!req.headers.authorization){
+    if (!req.headers.authorization) {
         res.sendStatus(401)
     }
 
@@ -357,7 +357,7 @@ fastify.get('/api/orders', async function (request, reply) {
 })
 
 // my-business-logic.js
-exports function calculateSomething(){
+exports function calculateSomething () {
   metricsService.fireMetric({name: 'new-request'})
 }
 ```
@@ -367,10 +367,9 @@ exports function calculateSomething(){
 **💁‍♂️ What is it about:** You catch an error somewhere deep in the code (not on the route level), then call logger.error to make this error observable. Seems simple and necessary
 
 ```javascript
-try{
+try {
     axios.post('https://thatService.io/api/users);
-}
-catch(error){
+} catch (error) {
     logger.error(error, this, {operation: addNewOrder});
 }
 ```
@@ -383,10 +382,9 @@ catch(error){
 
 ```javascript
 // A case where we wish to retry upon failure
-try{
+try {
     axios.post('https://thatService.io/api/users);
-}
-catch(error){
+} catch (error) {
     // ✅ A central location that handles error
     errorHandler.handle(error, this, {operation: addNewOrder});
     callTheUserService(numOfRetries++);
