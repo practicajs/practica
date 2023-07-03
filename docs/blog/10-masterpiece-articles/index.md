@@ -17,7 +17,7 @@ tags:
 
 ## What's so special about these articles?
 
-As a testing consultant, I read tons of testing articles throughout the years. The majority is just mediocre pieces of content that probably aren't worth your precious time. Once in a while, not very often, I landed on an article that was *shockingly good*. Below is a list of articles that I've cherry-picked for you, articles that are likely to make you a better test writer. Half of these articles are related directly with JavaScript/Node.js, the second half covers ubiquitous testing concepts that are applicable in every language
+As a testing consultant, I **read** tons of testing articles throughout the years. The majority is just casual pieces of content that maybe aren't worth your precious time. Once in a while, not very often, I landed on an article that was *shockingly good*. Below is a list of articles that I've cherry-picked for you, articles that are likely to make you a better test writer. Half of these articles are related directly with JavaScript/Node.js, the second half covers ubiquitous testing concepts that are applicable in every language
 
 What's so special about them? First, the writing quality is just good, or great. Second, they mostly deal with the 'new world of testing', not the commonly known 'TDD-ish' stuff but rather modern concepts and tooling
 
@@ -185,20 +185,19 @@ Here are a few articles that I wrote, obviously I don't 'recommend' my own craft
 
 ### 🎁 Bonus: Some other great testing content
 
+These articles are also great, some are highly popular:
+
 * Property-Based Testing for everyone by Romeu Moura https://www.youtube.com/watch?v=5pwv3cuo3Qk, 
 * METAMORPHIC TESTING https://www.hillelwayne.com/post/metamorphic-testing/
 * Lean Testing or Why Unit Tests are Worse than You Think https://medium.com/@eugenkiss/lean-testing-or-why-unit-tests-are-worse-than-you-think-b6500139a009
 * Testing Strategies in a Microservice Architecture https://martinfowler.com/articles/microservice-testing/?utm_source=pocket_saves
 * Test Desiderata https://kentbeck.github.io/TestDesiderata/
 * TDD is dead. Long live testing. https://dhh.dk/2014/tdd-is-dead-long-live-testing.html
-* test-induced-design-damage https://dhh.dk/2014/test-induced-design-damage.html
+* Test-induced-design-damage https://dhh.dk/2014/test-induced-design-damage.html
 * Testing in Production, the safe way Cindy Sridharan https://copyconstruct.medium.com/testing-in-production-the-safe-way-18ca102d0ef1
 * testing-without-mocks • https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks
 
 
-
-
-• Mine
 • The long run
 * Choose one in the end, put only one
 
@@ -209,7 +208,7 @@ Eleven awesome & cherry-picked JavaScript testing articles
 
 ** Tasks **
 - Title
-- More article
+- Replace error handling drama with testing in production?
 - Revise
 - Bonus
 - Quotes
