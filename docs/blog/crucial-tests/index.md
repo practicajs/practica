@@ -314,17 +314,90 @@ test('When a poisoned message arrives, then it is being rejected back', async ()
 
 **📝Full code example -** [is here](https://github.com/testjavascript/nodejs-integration-tests-best-practices/blob/master/recipes/message-queue/fake-message-queue.test.js)
 
-## 🗞 The 'false envelope' test - when the caller provides an invalid JWT token (not easy to test!)
+## 📦 Test the package as a consumer
 
-**👉What & why -** Use real, if your components holds private - let the test sign. Things become more interesting when using Asymmetric JWT where test no access to sign, it grabs the public key (used for verification) for the token issuer. The returned public key typically comes in the form of JWKS. If you stub this code out, bad. Keep it in, just fake the network response with your own public key
-
-Ideas: ?
+**👉What & why -** When publishing a library to npm, easily all your tests might pass BUT... the same functionality will fail over the end-user's computer. How come? tests are executed against the local developer files, but the end-user is only exposed to artifacts _that were built_. See the mismatch here? _after_ running the tests, the package files are transpiled (I'm looking at you babel users), zipped and packed. If a single file is excluded due to .npmignore or a polyfill is not added correctly, the published code will lack mandatory files
 
 **📝 Code**
 
-```javascript
+Consider the following scenario, you're developing a library, and you wrote this code:
+```js
+// index.js
+export * from './calculate.js';
 
+// calculate.js 👈
+export function calculate() {
+  return 1;
+}
 ```
+
+Then some tests:
+```js
+import { calculate } from './index.js';
+
+test('should return 1', () => {
+  expect(calculate()).toBe(1);
+})
+
+✅ All tests pass 🎊
+```
+
+Finally configure the package.json:
+```json5
+{
+  // ....
+  "files": [
+    "index.js"
+  ]
+}
+```
+
+See, 100% coverage, all tests pass locally and in the CI ✅, it just won't work in production 👹. Why? because you forgot to include the `calculate.js` in the package.json `files` array 👆
+
+
+What can we do instead? we can test the library as _its end-users_. How? publish the package to a local registry like [verdaccio](https://verdaccio.org/), let the tests install and approach the *published* code. Sounds troublesome? judge yourself 👇
+
+**📝 Code**
+
+```js
+// global-setup.js
+
+// 1. Setup the in-memory NPM registry, one function that's it! 🔥
+await setupVerdaccio();
+
+// 2. Building our package 
+await exec('npm', ['run', 'build'], {
+    cwd: packagePath,
+});
+
+// 3. Publish it to the in-memory registry
+await exec('npm', ['publish', '--registry=http://localhost:4873'], {
+    cwd: packagePath,
+});
+
+// 4. Installing it in the consumer directory
+await exec('npm', ['install', 'my-package', '--registry=http://localhost:4873'], {
+    cwd: consumerPath,
+});
+
+// Test file in the consumerPath
+
+// 5. Test the package 🚀
+test("should succeed", async () => {
+    const { fn1 } = await import('my-package');
+
+    expect(fn1()).toEqual(1);
+});
+```
+
+**📝Full code example -** [is here](https://github.com/rluvaton/e2e-verdaccio-example)
+
+What else this technique can be useful for?
+
+- Testing different version of peer dependency you support - let's say your package support react 16 to 18, you can now test that
+- You want to test ESM and CJS consumers
+- If you have CLI application you can test it like your users
+- Making sure all the voodoo magic in that babel file is working as expected
 
 ## 🗞 The 'broken contract' test - when the code is great but its corresponding OpenAPI docs leads to a production bug
 
@@ -336,7 +409,7 @@ The following sweet technique is based on libraries (jest, mocha) that listen to
 
 **📝 Code**
 
-API throw a new error status
+**Code under test, an API throw a new error status**
 
 ```javascript
 if (doesOrderCouponAlreadyExist) {
@@ -355,12 +428,12 @@ The OpenAPI doesn't document HTTP status '409', no framework knows to update the
     "400": {
       "description": "Invalid ID",
       "content": {}
-    },// No 409 in this list
+    },// No 409 in this list😲👈
 }
 
 ```
 
-Test it
+**The test code**
 
 ```javascript
 const jestOpenAPI = require('jest-openapi');
@@ -379,7 +452,7 @@ test('When an order with duplicated coupon is added , then 409 error should get 
   // We're adding the same coupon twice 👇
   const receivedResponse = await axios.post('/order', orderToAdd);
 
-  Assert;
+  // Assert;
   expect(receivedResponse.status).toBe(409);
   expect(res).toSatisfyApiSpec();
   // This 👆 will throw if the API response, body or status, is different that was it stated in the OpenAPI
