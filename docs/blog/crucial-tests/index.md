@@ -16,11 +16,15 @@ tags:
   ]
 ---
 
-## Short intro: Easy to test, and yet these critical tests are overlooked
+## Where the dead-bodies are covered
 
-Where are the dead-bodies covered?
+This post is about tests that are easy to write, 5-8 lines typically, they cover dark and dangerous corners of our applications, but are often overlooked
 
-Short intro here
+Some context first: How do we test a modern backend? With [the testing diamond](https://ritesh-kapoor.medium.com/testing-automation-what-are-pyramids-and-diamonds-67494fec7c55), of course, by putting the focus on component/integration tests that cover all the layers, including a real DB. With this approach, our tests 99% resemble the production and the user flows, while the development experience is almost as good as with unit tests. Sweet. If this topic is of interest, we've also written [a guide with 50 best practices for integration tests in Node.js](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
+
+But there is a pitfall: most developers write _only_ semi-happy test cases that are focused on the core user flows. Like invalid inputs, CRUD operations, various application states, etc. This is indeed the bread and butter, a great start, but a whole area is left uncovered. For example, typical tests don't simulate an unhandled promise rejection that leads to process crash, nor do they simulate the webserver bootstrap phase that might fail and leave the process idle, or HTTP calls to external services that often end with timeouts and retries. They typically not covering the health and readiness route, nor the integrity of the OpenAPI to the actual routes schema, to name just a few examples. There are many dead bodies covered beyond business logic, things that sometimes are even beyond bugs but rather are concerned with application downtime
+
+Here are a handful of examples that might open your mind to a whole new class of risks and tests
 
 ## 🧟‍♀️ The zombie process test
 
@@ -470,39 +474,16 @@ beforeAll(() => {
 });
 ```
 
-___
+## Even more ideas
 
-## Internal: Tasks for release
+- Test readiness and health routes
+- Test message queue connection failures
+- Test JWT and JWKS failures
+- Test security-related things like CSRF tokens
+- Test your HTTP client retry mechanism (very easy with nock)
+- Test that the DB migration succeed and the new code can work with old records format
+- Test DB connection disconnects
+  
+## It's not just ideas, it a whole new mindset
 
-✅ Language proof
-✅ Write Verdaccio and JWKS bullets
-✅ Write opening paragraph with a diagram
-✅ Cross post in Medium, dev.to, more
-
-
-## Internal: Ideas for more
-
-One more bullet: Test with Verdaccio
-
-Convey the message of reaching to all corners, maybe visual of squares and coverage
-Unlike unit and E2E
-Alternative title: 'You may be overlooking these critical backend tests'
-
-Ideas for opening paragraph: 
-Gist: critical things that might render you down are easy to test but overlooked because we're not used to these
-Some context first
-About component tests
-When they fall short - diagram of areas that are not covered
-Where dead-bodies are covered, examples, this blog post is all about examples, not just logic bugs but things that...
-Should we test this?
-Prioritize this opportunity because frequent and not hard to test
-The formula of important test - frequency, effort to mitigate, damage
-You definitely want to include these in your toolbox
-
-How do we cover a modern backend? with the testing diamond of course, by writing component tests that scope all the layers and minimize mocking
-
-Some intro words here, a demonstration of component tests power, 5-8 statements, fast, and much closer to production, my course, happens to 99% of apps
-
-The code under test is about
-
-Story telling techniques: specific, the world is broken, prevent downtime!, bold words, naive, tests are meant to fail, those edges
+The examples above were not meant only to be a checklist of 'don't forget' test cases, but rather a fresh mindset on what tests could cover for you. Modern tests are not just about functions, or user flows, but any risk that might visit your production. This is doable only with component/integration tests but never with unit or end-to-end tests. Why? Because unlike unit you need all the parts to play together (e.g., the DB migration file, with the DAL layer and the error handler all together). Unlike E2E, you have the power to simulate in-process scenarios that demand some tweaking and mocking. Component tests allow you to include many production moving parts early on your machine. I like calling this 'production-oriented development'
