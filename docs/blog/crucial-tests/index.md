@@ -24,7 +24,7 @@ Some context first: How do we test a modern backend? With [the testing diamond](
 
 But there is a pitfall: most developers write _only_ semi-happy test cases that are focused on the core user flows. Like invalid inputs, CRUD operations, various application states, etc. This is indeed the bread and butter, a great start, but a whole area is left uncovered. For example, typical tests don't simulate an unhandled promise rejection that leads to process crash, nor do they simulate the webserver bootstrap phase that might fail and leave the process idle, or HTTP calls to external services that often end with timeouts and retries. They typically not covering the health and readiness route, nor the integrity of the OpenAPI to the actual routes schema, to name just a few examples. There are many dead bodies covered beyond business logic, things that sometimes are even beyond bugs but rather are concerned with application downtime
 
-![The hidden corners](./the-hidden-corners.PNG)
+![The hidden corners](./the-hidden-corners.png)
 
 Here are a handful of examples that might open your mind to a whole new class of risks and tests
 
