@@ -1,8 +1,8 @@
 ---
-slug: crucial-backend-tests-that-youre-probably-not-writing-enough
-date: 2022-12-07T11:00
+slug: testing-the-dark-scenarios-of-your-nodejs-application
+date: 2023-07-07T11:00
 hide_table_of_contents: true
-title: Crucial backend tests that you're probably not writing enough
+title: Testing the dark scenarios of your Node.js application
 authors: [goldbergyoni, razluvaton ]
 tags:
   [
@@ -206,7 +206,7 @@ test('When deleting an existing order, Then it should NOT be retrievable', async
 
 ## 🕰 The 'slow collaborator' test - when the other HTTP service times out
 
-**👉What & why -** When your code approaches other services/microservices via HTTP, savvy testers minimize end-to-end tests because they lean toward happy paths (it's harder to simulate scenarios). This mandates using some mocking tool to act like the remote service, for example, using tools like [nock](https://github.com/nock/nock) or [wiremock](https://wiremock.org/). These tools are great, only some are using them naively and check mainly that calls outside were indeed made. What if the other service is not available **in production**, what if it is slower and times out occasionally? While you can't wholly save this transaction, your code should do the best given the situation and retry, or at least log and return the right status to the caller. All the network mocking tools allow simulating delays, timeouts and other 'chaotic' scenarios. Question left is how to simulate slow response without having slow tests? You may use [fake timers](https://sinonjs.org/releases/latest/fake-timers/) and trick the system into believing as few seconds passed in a single tick. If you're using [nock](https://github.com/nock/nock), it offers an interesting feature to simulate timeouts **quickly**: the .delay function simulates slow responses, then nock will realize immediately if the delay is higher than the HTTP client timeout and throw a timeout event immediately without waiting
+**👉What & why -** When your code approaches other services/microservices via HTTP, savvy testers minimize end-to-end tests because these tests lean toward happy paths (it's harder to simulate scenarios). This mandates using some mocking tool to act like the remote service, for example, using tools like [nock](https://github.com/nock/nock) or [wiremock](https://wiremock.org/). These tools are great, only some are using them naively and check mainly that calls outside were indeed made. What if the other service is not available **in production**, what if it is slower and times out occasionally (one of the biggest risks of Microservices)? While you can't wholly save this transaction, your code should do the best given the situation and retry, or at least log and return the right status to the caller. All the network mocking tools allow simulating delays, timeouts and other 'chaotic' scenarios. Question left is how to simulate slow response without having slow tests? You may use [fake timers](https://sinonjs.org/releases/latest/fake-timers/) and trick the system into believing as few seconds passed in a single tick. If you're using [nock](https://github.com/nock/nock), it offers an interesting feature to simulate timeouts **quickly**: the .delay function simulates slow responses, then nock will realize immediately if the delay is higher than the HTTP client timeout and throw a timeout event immediately without waiting
 
 **📝 Code**
 
