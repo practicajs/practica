@@ -3,7 +3,7 @@ slug: testing-the-dark-scenarios-of-your-nodejs-application
 date: 2023-07-07T11:00
 hide_table_of_contents: true
 title: Testing the dark scenarios of your Node.js application
-authors: [goldbergyoni, razluvaton ]
+authors: [goldbergyoni, razluvaton]
 tags:
   [
     node.js,
@@ -28,7 +28,7 @@ But there is a pitfall: most developers write _only_ semi-happy test cases that 
 
 Here are a handful of examples that might open your mind to a whole new class of risks and tests
 
-_Side note: I've just released a comprehensive testing course that I've been working on for two years. 🎁 It's now on sale, but only for the month of July. Check it out at [testjavascript.com](https://testjavascript.com/)_
+**July 2023: My testing course was launched: I've just released a comprehensive testing course that I've been working on for two years. 🎁 It's now on sale, but only for the month of July. Check it out at [testjavascript.com](https://testjavascript.com/)**
 
 ## **Test Examples**
 
@@ -489,11 +489,9 @@ beforeAll(() => {
 - Test your HTTP client retry mechanism (very easy with nock)
 - Test that the DB migration succeed and the new code can work with old records format
 - Test DB connection disconnects
-- You may find many more examples at my fresh new testing course - [testjavascript.com](https://testjavascript.com)
-
   
 ## It's not just ideas, it a whole new mindset
 
 The examples above were not meant only to be a checklist of 'don't forget' test cases, but rather a fresh mindset on what tests could cover for you. Modern tests are not just about functions, or user flows, but any risk that might visit your production. This is doable only with component/integration tests but never with unit or end-to-end tests. Why? Because unlike unit you need all the parts to play together (e.g., the DB migration file, with the DAL layer and the error handler all together). Unlike E2E, you have the power to simulate in-process scenarios that demand some tweaking and mocking. Component tests allow you to include many production moving parts early on your machine. I like calling this 'production-oriented development'
 
-**My new online testing course -** If you're intrigued with beyond the basics testing patterns, ]consider my online course which was just launched and is 🎁 on sale for 30 days (July 2023)](https://testjavascript.com)
+**My new online testing course -** If you're intrigued with beyond the basics testing patterns, [consider my online course which was just launched and is 🎁 on sale for 30 days (July 2023)](https://testjavascript.com)
