@@ -490,6 +490,7 @@ beforeAll(() => {
 - Test that the DB migration succeed and the new code can work with old records format
 - Test DB connection disconnects
 - You may find many more examples at my fresh new testing course - [testjavascript.com](https://testjavascript.com)
+
   
 ## It's not just ideas, it a whole new mindset
 
