@@ -1,5 +1,6 @@
 ---
 slug: monorepo-backend
+date: 2023-01-07T11:00
 title: Which Monorepo is right for a Node.js BACKEND now?
 authors: [goldbergyoni, michaelsalomon]
 tags: [monorepo, decisions]
