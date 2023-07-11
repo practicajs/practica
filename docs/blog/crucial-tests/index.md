@@ -28,6 +28,10 @@ But there is a pitfall: most developers write _only_ semi-happy test cases that 
 
 Here are a handful of examples that might open your mind to a whole new class of risks and tests
 
+_Side note: I've just released a comprehensive testing course that I've been working on for two years. 🎁 It's now on sale, but only for the month of July. Check it out at [testjavascript.com](https://testjavascript.com/)_
+
+## **Test Examples**
+
 ## 🧟‍♀️ The zombie process test
 
 **👉What & so what? -** In all of your tests, you assume that the app has already started successfully, lacking a test against the initialization flow. This is a pity because this phase hides some potential catastrophic failures: First, initialization failures are frequent - many bad things can happen here, like a DB connection failure or a new version that crashes during deployment. For this reason, runtime platforms (like Kubernetes and others) encourage components to signal when they are ready (see [readiness probe](https://komodor.com/learn/kubernetes-readiness-probes-a-practical-guide/#:~:text=A%20readiness%20probe%20allows%20Kubernetes,on%20deletion%20of%20a%20pod.)). Errors at this stage also have a dramatic effect over the app health - if the initialization fails and the process stays alive, it becomes a 'zombie process'. In this scenario, the runtime platform won't realize that something went bad, forward traffic to it and avoid creating alternative instances. Besides exiting gracefully, you may want to consider logging, firing a metric, and adjusting your /readiness route. Does it work? only test can tell!
@@ -74,7 +78,7 @@ test('When an error happens during the startup phase, then the process exits', a
   expect(processExitListener.called).toBe(true);
 });
 ```
-
+  
 ## 👀 The observability test
 
 **👉What & why -** For many, testing error means checking the exception type or the API response. This leaves one of the most essential parts uncovered - making the error **correctly observable**. In plain words, ensuring that it's being logged correctly and exposed to the monitoring system. It might sound like an internal thing, implementation testing, but actually, it goes directly to a user. Yes, not the end-user, but rather another important one - the ops user who is on-call. What are the expectations of this user? At the very basic level, when a production issue arises, she must see detailed log entries, _including stack trace_, cause and other properties. This info can save the day when dealing with production incidents. On to of this, in many systems, monitoring is managed separately to conclude about the overall system state using cumulative heuristics (e.g., an increase in the number of errors over the last 3 hours). To support this monitoring needs, the code also must fire error metrics. Even tests that do try to cover these needs take a naive approach by checking that the logger function was called - but hey, does it include the right data? Some write better tests that check the error type that was passed to the logger, good enough? No! The ops user doesn't care about the JavaScript class names but the JSON data that is sent out. The following test focuses on the specific properties that are being made observable:
@@ -485,7 +489,10 @@ beforeAll(() => {
 - Test your HTTP client retry mechanism (very easy with nock)
 - Test that the DB migration succeed and the new code can work with old records format
 - Test DB connection disconnects
+- You may find many more examples at my fresh new testing course - [testjavascript.com](www.testjavascript.com)
   
 ## It's not just ideas, it a whole new mindset
 
 The examples above were not meant only to be a checklist of 'don't forget' test cases, but rather a fresh mindset on what tests could cover for you. Modern tests are not just about functions, or user flows, but any risk that might visit your production. This is doable only with component/integration tests but never with unit or end-to-end tests. Why? Because unlike unit you need all the parts to play together (e.g., the DB migration file, with the DAL layer and the error handler all together). Unlike E2E, you have the power to simulate in-process scenarios that demand some tweaking and mocking. Component tests allow you to include many production moving parts early on your machine. I like calling this 'production-oriented development'
+
+**My new online testing course -** If you're intrigued with beyond the basics testing patterns, consider my online course which was just launched and is 🎁 on sale for 30 days (July 2023)
