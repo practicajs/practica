@@ -495,4 +495,4 @@ beforeAll(() => {
 
 The examples above were not meant only to be a checklist of 'don't forget' test cases, but rather a fresh mindset on what tests could cover for you. Modern tests are not just about functions, or user flows, but any risk that might visit your production. This is doable only with component/integration tests but never with unit or end-to-end tests. Why? Because unlike unit you need all the parts to play together (e.g., the DB migration file, with the DAL layer and the error handler all together). Unlike E2E, you have the power to simulate in-process scenarios that demand some tweaking and mocking. Component tests allow you to include many production moving parts early on your machine. I like calling this 'production-oriented development'
 
-**My new online testing course - ** If you're intrigued with beyond the basics testing patterns, consider my online course which was just launched and is 🎁 on sale for 30 days (July 2023)
+**My new online testing course -** If you're intrigued with beyond the basics testing patterns, consider my online course which was just launched and is 🎁 on sale for 30 days (July 2023)
