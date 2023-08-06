@@ -1,8 +1,8 @@
 ---
-slug: masterpiece-articles
-date: 2022-12-10T10:00
+slug: a-compilation-of-outstanding-testing-articles-with-javaScript
+date: 2023-08-06T10:00
 hide_table_of_contents: true
-title: Outstanding testing articles (with JavaScript)
+title: A compilation of outstanding testing articles (with JavaScript)
 authors: [goldbergyoni]
 tags:
   [
@@ -15,15 +15,19 @@ tags:
   ]
 ---
 
-## What's so special about these articles?
+## What's special about this article?
 
-As a testing consultant, I **read** tons of testing articles throughout the years. The majority is just casual pieces of content that maybe aren't worth your precious time. Once in a while, not very often, I landed on an article that was *shockingly good*. Below is a list of articles that I've cherry-picked for you, articles that are likely to make you a better test writer. Half of these articles are related directly with JavaScript/Node.js, the second half covers ubiquitous testing concepts that are applicable in every language
+As a testing consultant, I read tons of testing articles throughout the years. The majority is nice-to-read, casual pieces of content which not always worth your precious time. Once in a while, not very often, I landed on an article that was _shockingly good_ and could genuinely improve your test writing skills. I've cherry-picked these outstanding articles for you, and added my abstract nearby. Half of these articles are related directly to JavaScript/Node.js, the second half covers ubiquitous testing concepts that are applicable in every language
 
-What's so special about them? First, the writing quality is just good, or great. Second, they mostly deal with the 'new world of testing', not the commonly known 'TDD-ish' stuff but rather modern concepts and tooling
+Why did I find these articles to be outstanding? First, the writing quality is excellent. Second, they deal with the 'new world of testing', not the commonly known 'TDD-ish' stuff but rather modern concepts and tooling
 
-Too busy to read them all? search for articles that are decorated with a medal 🏅, these are a true masterpiece piece of content that you never wanna miss
+Too busy to read them all? Search for articles that are decorated with a medal 🏅, these are a true masterpiece pieces of content that you never wanna miss
 
-### 📄 1. 'Selective Unit Testing – Costs and Benefits'
+Here they are, 10 outstanding testing articles:
+
+<br/>
+
+## 📄 1. 'Selective Unit Testing – Costs and Benefits'
 
 **✍️ Author:** Steve Sanderson
 
@@ -42,19 +46,29 @@ Side note, not part of the article: Personally I (Yoni) always start with compon
 
 **🔗 Link:** [https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/](https://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/)
 
-### 📄 2. 'Testing implementation details' (JavaScript example)
+<br/>
+
+## 📄 2. 'Testing implementation details' (JavaScript example)
 
 **✍️ Author:** Kent C Dodds
 
 **🔖 Abstract:** The author outlines with a code example the unavoidable tragic faith of a tester who assert on implementation details. Put aside the effort in testing so many details, going this route always end with 'false positive' and 'false negative' that clouds the tests reliability. The article illustrate this with a frontend code example but the lesson takeaway is ubiquitous to any kind of testing
 
+> "There are two distinct reasons that it's important to avoid testing implementation details. Tests which test implementation details: 
+> 1. Can break when you refactor application code. *False negatives*
+> 2. May not fail when you break application code. *False positives*"
+
+
 p.s. This author has another outstanding post about a modern testing strategy, checkout this one as well - ['Write tests. Not too many. Mostly integration'](https://kentcdodds.com/blog/write-tests)
+
 
 **👓 Read time:** 13 min (2600 words)
 
 **🔗 Link:** [https://kentcdodds.com/blog/testing-implementation-details](https://kentcdodds.com/blog/testing-implementation-details)
 
-### 📄 3. 'Testing Microservices, the sane way'
+  <br/>
+
+## 📄 3. 'Testing Microservices, the sane way'
 
 🏅 This is a masterpiece
 
@@ -75,9 +89,9 @@ Beyond its main scope, whatever type of system you are dealing with - this artic
 
 **🔗 Link:** [https://copyconstruct.medium.com/testing-microservices-the-sane-way-9bb31d158c16](https://copyconstruct.medium.com/testing-microservices-the-sane-way-9bb31d158c16)
 
+<br/>
 
-
-### 📄 4. 'How to Unit Test with Node.js?' (JavaScript examples, for beginners)
+## 📄 4. 'How to Unit Test with Node.js?' (JavaScript examples, for beginners)
 
 **✍️ Author:** Ryan Jones
 
@@ -89,7 +103,9 @@ This tutorial was chosen from a handful of other alternatives because it's well-
 
 **🔗 Link:** [https://medium.com/serverlessguru/how-to-unit-test-with-nodejs-76967019ba56](https://medium.com/serverlessguru/how-to-unit-test-with-nodejs-76967019ba56)
 
-### 📄 5. 'Unit test fetish'
+<br/>
+
+## 📄 5. 'Unit test fetish'
 
 **✍️ Author:** Martin Sústrik
 
@@ -99,8 +115,9 @@ This tutorial was chosen from a handful of other alternatives because it's well-
 
 **🔗 Link:** [https://250bpm.com/blog:40/](https://250bpm.com/blog:40/)
 
+<br/>
 
-### 📄 6. 'Mocking is a Code Smell' (JavaScript examples)
+## 📄 6. 'Mocking is a Code Smell' (JavaScript examples)
 
 **✍️ Author:** Eric Elliott
 
@@ -117,7 +134,9 @@ The overall article tone is balanced. In some parts, it encourages functional pr
 
 **🔗 Link:** [https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a](https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a)
 
-### 📄 7. 'Why Good Developers Write Bad Unit Tests'
+<br/>
+
+## 📄 7. 'Why Good Developers Write Bad Unit Tests'
 
 🏅 This is a masterpiece
 
@@ -133,8 +152,9 @@ Concrete code examples show how the test readability deteriorates once we apply 
 
 **🔗 Link:** [https://mtlynch.io/good-developers-bad-tests/](https://mtlynch.io/good-developers-bad-tests/)
 
+<br/>
 
-### 📄 8. 'An Overview of JavaScript Testing in 2022' (JavaScript examples)
+## 📄 8. 'An Overview of JavaScript Testing in 2022' (JavaScript examples)
 
 **✍️ Author:** Vitali Zaidman
 
@@ -148,18 +168,27 @@ Concrete code examples show how the test readability deteriorates once we apply 
 
 **🔗 Link:** [https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870](https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870)
 
-### 📄 9. 'Testing Error Handling in node.js'
+<br/>
 
-**✍️ Author:** Lars Trieloff
+## 📄 9. Testing in Production, the safe way
 
-**🔖 Abstract:** Drama, 
+**✍️ Author:** Cindy Sridharan
 
-**👓 Read time:** 8 min (1,670 words)
+**🔖 Abstract:** 'Testing in production' is a provocative term that sounds like a risky and careless approach of testing over production instead of verifying the delivery beforehand (yet another case of bad testing terminology). In practice, testing in production doesn't replace coding-time testing, it just add _additional_ layer of confidence by _safely_ testing in 3 more phases: deployment, release and post-release. This comprehensive article covers dozens of techniques, some are unusual like traffic shadowing, tap compare and more. More than anything else, it illustrates an holistic testing workflow, build confidence cumulatively from developer machine until the new version is serving users in production
 
-**🔗 Link:** [https://blog.developer.adobe.com/testing-error-handling-in-node-js-567323397114](https://blog.developer.adobe.com/testing-error-handling-in-node-js-567323397114)
+> I’m more and more convinced that staging environments are like mocks - at best a pale imitation of the genuine article and the worst form of confirmation bias. 
 
+> It’s still better than having nothing - but “works in staging” is only one step better than “works on my machine”.
 
-### 📄 10. 'Please don't mock me' (JavaScript examples, from JSConf)
+![Testing in production](./the-3-phases.jpeg)
+
+**👓 Read time:** 54 min (10,725 words)
+
+**🔗 Link:** [https://copyconstruct.medium.com/testing-in-production-the-safe-way-18ca102d0ef1](https://copyconstruct.medium.com/testing-in-production-the-safe-way-18ca102d0ef1)
+
+<br/>
+
+## 📄 10. 'Please don't mock me' (JavaScript examples, from JSConf)
 
 🏅 This is a masterpiece
 
@@ -175,40 +204,26 @@ Then he goes and tackle many other interesting mocking crossroads, with beautifu
 
 **🔗 Link:** [https://www.youtube.com/watch?v=x8sKpJwq6lY&list=PL1CRgzydk3vzk5nMZNLTODfMartQQzInE&index=148](https://www.youtube.com/watch?v=x8sKpJwq6lY&list=PL1CRgzydk3vzk5nMZNLTODfMartQQzInE&index=148)
 
+<br/>
+
 ### 📄 Shameless plug: my articles
 
-Here are a few articles that I wrote, obviously I don't 'recommend' my own craft, just checking modestly whether they appeal to you. Together, these articles gained 25,000 GitHub stars, maybe you'll find them useful:
+Here are a few articles that I wrote, obviously I don't 'recommend' my own craft, just checking modestly whether they appeal to you. Together, these articles gained 25,000 GitHub stars, maybe you'll find one of them them useful?
 
-* [50+ JavaScript testing best practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
 * [Node.js testing - beyond the basics](https://github.com/testjavascript/nodejs-integration-tests-best-practices)
+* [50+ JavaScript testing best practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
 * [Writing clean JavaScript tests](https://yonigoldberg.medium.com/fighting-javascript-tests-complexity-with-the-basic-principles-87b7622eac9a)
 
 ### 🎁 Bonus: Some other great testing content
 
 These articles are also great, some are highly popular:
 
-* Property-Based Testing for everyone by Romeu Moura https://www.youtube.com/watch?v=5pwv3cuo3Qk, 
-* METAMORPHIC TESTING https://www.hillelwayne.com/post/metamorphic-testing/
-* Lean Testing or Why Unit Tests are Worse than You Think https://medium.com/@eugenkiss/lean-testing-or-why-unit-tests-are-worse-than-you-think-b6500139a009
-* Testing Strategies in a Microservice Architecture https://martinfowler.com/articles/microservice-testing/?utm_source=pocket_saves
-* Test Desiderata https://kentbeck.github.io/TestDesiderata/
-* TDD is dead. Long live testing. https://dhh.dk/2014/tdd-is-dead-long-live-testing.html
-* Test-induced-design-damage https://dhh.dk/2014/test-induced-design-damage.html
-* Testing in Production, the safe way Cindy Sridharan https://copyconstruct.medium.com/testing-in-production-the-safe-way-18ca102d0ef1
-* testing-without-mocks • https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks
-
-
-• The long run
-* Choose one in the end, put only one
-
-
-Alternative title - 
-Outstanding JavaScript testing articles that I cherry-picked for you
-Eleven awesome & cherry-picked JavaScript testing articles
-
-** Tasks **
-- Title
-- Replace error handling drama with testing in production?
-- Revise
-- Bonus
-- Quotes
+* [Property-Based Testing for everyone](https://www.youtube.com/watch?v=5pwv3cuo3Qk)
+* [METAMORPHIC TESTING](https://www.hillelwayne.com/post/metamorphic-testing/)
+* [Lean Testing or Why Unit Tests are Worse than You Think](https://medium.com/@eugenkiss/lean-testing-or-why-unit-tests-are-worse-than-you-think-b6500139a009)
+* [Testing Strategies in a Microservice Architecture](https://martinfowler.com/articles/microservice-testing/?utm_source=pocket_saves)
+* [Test Desiderata](https://kentbeck.github.io/TestDesiderata/)
+* [TDD is dead. Long live testing](https://dhh.dk/2014/tdd-is-dead-long-live-testing.html)
+* [Test-induced-design-damage](https://dhh.dk/2014/test-induced-design-damage.html)
+* [testing-without-mocks](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks)
+* [Testing Node.js error handling](https://blog.developer.adobe.com/testing-error-handling-in-node-js-567323397114)
