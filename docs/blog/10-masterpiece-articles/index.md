@@ -23,6 +23,8 @@ Why did I find these articles to be outstanding? First, the writing quality is e
 
 Too busy to read them all? Search for articles that are decorated with a medal 🏅, these are a true masterpiece pieces of content that you never wanna miss
 
+**Before we start:** If you haven't heard, I've launched my comprehensive Node.js testing course a week ago ([curriculum here](https://testjavascript.com/curriculum2/)). Less than 48 hours left for the [🎁 special launch deal](https://courses.testjavascript.com/p/node-js-javascript-testing-from-a-to-z)
+
 Here they are, 10 outstanding testing articles:
 
 <br/>
@@ -227,3 +229,5 @@ These articles are also great, some are highly popular:
 * [Test-induced-design-damage](https://dhh.dk/2014/test-induced-design-damage.html)
 * [testing-without-mocks](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks)
 * [Testing Node.js error handling](https://blog.developer.adobe.com/testing-error-handling-in-node-js-567323397114)
+
+p.s. Last reminder, less than 48 hours left for my [online course 🎁 special launch offer](https://courses.testjavascript.com/p/node-js-javascript-testing-from-a-to-z)
