@@ -49,7 +49,7 @@
     "commander": "^9.1.0",
     "figlet": "^1.5.2",
     "fs-extra": "^10.0.1",
-    "import-jsx": "^4.0.1",
+    "import-jsx": "^5.0.0",
     "ink": "^3.2.0",
     "ink-big-text": "^1.2.0",
     "ink-image": "^2.0.0",
