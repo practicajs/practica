@@ -58,7 +58,7 @@ async function installDependencies(targetPath: string) {
   await execa("npm", ["install"], {
     cwd: targetPath,
   });
-  await execa("npx", ["turbo", "run", "build", "--continue=false"], {
+  await execa("npx", ["turbo", "run", "build"], {
     cwd: targetPath,
   });
 }
