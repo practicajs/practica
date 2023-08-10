@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Coding with Practica
 
-Now that you have Practice installed (if not, [do this first](./getting-started-quickly.md)), it's time to code a great app using it and understand its unique power. This journey will inspire you with good patterns and practices. All the concepts in this guide are not our unique ideas, quite the opposite, they are all standard patterns or libraries that we just put together. In this tutorial we will implement a simple feature using Practica, ready?
+Now that you have Practica installed (if not, [do this first](./getting-started-quickly.md)), it's time to code a great app using it and understand its unique power. This journey will inspire you with good patterns and practices. All the concepts in this guide are not our unique ideas, quite the opposite, they are all standard patterns or libraries that we just put together. In this tutorial we will implement a simple feature using Practica, ready?
 ## Pre-requisites
 
 Just before you start coding, ensure you have [Docker](https://www.docker.com/) and [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) (a utility that installs Node.js) installed. Both are common development tooling that are considered as a 'good practice'.
