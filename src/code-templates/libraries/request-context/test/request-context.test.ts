@@ -1,5 +1,5 @@
-import sinon from 'sinon';
 import { context } from '../index';
+import sinon from 'sinon';
 
 describe('request-context', () => {
   test('When instantiating a new context with initial values, then should get back the context', () => {
