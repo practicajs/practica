@@ -14,6 +14,8 @@ export function addRequestId(
   res: ServerResponse,
   next: () => void
 ) {
+  if (process.env.SKIP_ADD_REQUEST_ID_MIDDLEWARE === 'true') return next();
+
   let requestId = req.headers[REQUEST_ID_HEADER];
 
   if (!requestId) {

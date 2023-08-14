@@ -4,6 +4,7 @@ import { AddressInfo } from 'net';
 import axios from 'axios';
 import { addRequestIdExpressMiddleware, context } from '../index';
 import { REQUEST_ID_HEADER } from '../src/request-id/constant';
+import sinon from 'sinon';
 
 let currentServer: Server;
 
@@ -36,6 +37,8 @@ describe('Request ID express middleware', () => {
 
       currentServer = undefined;
     }
+
+    sinon.restore();
   });
 
   describe('when the request ID already exists in the request header', () => {
@@ -243,6 +246,30 @@ describe('Request ID express middleware', () => {
         requestId: expect.any(String),
         ...existingContextData,
       },
+    });
+  });
+
+  test('when request ID middleware should be omited', async () => {
+    // Arrange
+    const client = await setupExpressServer((app) => {
+      app.use(addRequestIdExpressMiddleware);
+
+      app.get('/', (req, res) => {
+        res.send({});
+      });
+    });
+    sinon
+      .stub(process, 'env')
+      .value({ SKIP_ADD_REQUEST_ID_MIDDLEWARE: 'true' });
+
+    // Act
+    const response = await client.get('/');
+
+    // Assert
+    expect(response).toMatchObject({
+      status: 200,
+      data: {},
+      headers: {},
     });
   });
 });
