@@ -2,9 +2,9 @@ import express, { Express } from 'express';
 import { Server } from 'http';
 import { AddressInfo } from 'net';
 import axios from 'axios';
+import sinon from 'sinon';
 import { addRequestIdExpressMiddleware, context } from '../index';
 import { REQUEST_ID_HEADER } from '../src/request-id/constant';
-import sinon from 'sinon';
 
 let currentServer: Server;
 
