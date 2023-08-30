@@ -7,6 +7,8 @@ import figlet from "figlet";
 import * as generateService from "../generation-logic/generate-service";
 import { factorDefaultOptions } from "../generation-logic/generation-options";
 
+const MAIN_COLOR = "white";
+
 const QuestionsWizard = () => {
   const initialQuestionsWizard: any = {
     isOver: false,
@@ -176,12 +178,12 @@ const QuestionsWizard = () => {
     setQuestionsWizard({ ...questionsWizard, advice: activeAdvice });
   };
 
-  React.useEffect(() => {}, []);
-
   return (
     <Box width={"100%"} alignSelf="center" flexDirection="column">
       <Box flexDirection="row" width="100%" flexBasis="100%">
-        <Text wrap="wrap">{questionsWizard.title}</Text>
+        <Text wrap="wrap" color={MAIN_COLOR}>
+          {questionsWizard.title}
+        </Text>
       </Box>
       {!questionsWizard.isOver ? (
         <Box flexDirection="row">
@@ -189,7 +191,7 @@ const QuestionsWizard = () => {
             width="50%"
             alignSelf="flex-start"
             borderStyle="classic"
-            borderColor="grey"
+            borderColor={MAIN_COLOR}
             height={15}
             paddingX={3}
             marginX={3}
@@ -197,7 +199,7 @@ const QuestionsWizard = () => {
           >
             <Box flexDirection="column">
               <Box paddingY={1} alignSelf="flex-start">
-                <Text color="white" bold={true}>
+                <Text color={MAIN_COLOR} bold={true}>
                   ⦾ Just a few questions first
                 </Text>
                 <Newline />
@@ -222,7 +224,7 @@ const QuestionsWizard = () => {
                       questionsWizard.showWarningMessage ? "flex" : "none"
                     }
                   >
-                    <Text color="grey">
+                    <Text color={MAIN_COLOR}>
                       🔖 This is an alpha version of this wizard which is meant
                       for demo purposes. Whatever technologies you'll choose,
                       for now the generated app will be based on Express +
@@ -305,7 +307,7 @@ const QuestionsWizard = () => {
           <Box
             width="30%"
             borderStyle="classic"
-            borderColor="grey"
+            borderColor={MAIN_COLOR}
             height={15}
             paddingX={5}
             marginX={3}
@@ -314,7 +316,7 @@ const QuestionsWizard = () => {
           >
             <Box flexDirection="column">
               <Box paddingY={1} alignSelf="flex-start">
-                <Text color="white" bold={true}>
+                <Text color={MAIN_COLOR} bold={true}>
                   ⦾ More Info
                 </Text>
               </Box>
@@ -329,7 +331,7 @@ const QuestionsWizard = () => {
       )}
       {questionsWizard.isOver ? (
         <Box flexDirection="row" width="100%" flexBasis="100%">
-          <Text wrap="wrap" color="white" bold={true}>
+          <Text wrap="wrap" color="green" bold={true}>
             {questionsWizard.finalMessage}
           </Text>
         </Box>
