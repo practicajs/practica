@@ -11,7 +11,7 @@ Although Node.js has great frameworks 💚, they were never meant to be producti
 **1 min video 👇**
 
 
-<iframe width="1024" height="768" src="https://www.youtube.com/embed/F6kAs2VEcKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="768" src="https://www.youtube.com/embed/F6kAs2VEcKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Our Philosophies and Unique Values
 
