@@ -30,7 +30,7 @@
     "@sinclair/typebox": "^0.23.5",
     "ajv": "^8.11.0",
     "amqplib": "^0.8.0",
-    "axios": "^0.26.1",
+    "axios": "^1.6.3",
     "express": "^4.17.3",
     "helmet": "^6.0.0",
     "sequelize": "^6.17.0",
