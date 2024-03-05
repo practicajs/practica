@@ -1,6 +1,6 @@
 import { logger } from '@practica/logger';
 import { AppError, errorHandler } from '@practica/error-handling';
-import { startWebServer } from './entry-points/api/server';
+import { startWebServer } from './entry-points/api/fastify-server';
 
 async function start() {
   // 🦉 Array of entry point is being used to support more entry-points kinds like message queue, scheduled job,
