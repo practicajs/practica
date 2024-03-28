@@ -24,16 +24,16 @@ export default function defineRoutes(expressApp: express.Application) {
   router.get('/:id', async (req, res, next) => {
     try {
       logger.info(`Order API was called to get user by id ${req.params.id}`);
-      const response = await newOrderUseCase.getOrder(
+      const result = await newOrderUseCase.getOrder(
         parseInt(req.params.id, 10)
       );
 
-      if (!response) {
+      if (!result) {
         res.status(404).end();
         return;
       }
 
-      res.json(response);
+      res.json(result);
     } catch (error) {
       next(error);
     }

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "turbo run test --parallel",
-    "build": "tsc",
+    "build": "turbo run build",
     "build:watch": "tsc --watch",
     "lint": "eslint '**/*.{js,jsx,ts}'",
     "maintenance:delete-node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
@@ -27,6 +27,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "graphviz": "^0.0.9",
     "turbo": "^1.9.3",
-    "typescript": "4.6.4"
+    "typescript": "5.2.2",
+    "@types/node": "^20.11.30"
   }
 }

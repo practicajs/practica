@@ -30,6 +30,11 @@ export function startAppGenerator() {
       "default-app-name"
     )
     .option(
+      "-wf, --web-framework <type>",
+      "The web framework to use, currently 'express' or 'fastify'",
+      "fastify"
+    )
+    .option(
       "-o, --orm <type>",
       "The Type of ORM to use, currently 'sequelize' or 'prisma'",
       "sequelize"

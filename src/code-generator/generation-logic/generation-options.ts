@@ -1,7 +1,7 @@
 export type generationOptions = {
   appName: string;
   ORM: "sequelize" | "prisma";
-  baseFramework: string;
+  webFramework: "express" | "fastify";
   DBType: string;
   mainMicroserviceName: string;
   emitBestPracticesHints: boolean;
@@ -15,7 +15,7 @@ export const factorDefaultOptions = (
 ): generationOptions => {
   const defaults = {
     appName: "default-app-name",
-    baseFramework: "express",
+    webFramework: "fastify",
     DBType: "pg",
     ORM: "sequelize",
     mainMicroserviceName: "microservice-example-1",

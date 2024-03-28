@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { AppError } from '@practica/error-handling';
+import { logger } from '@practica/logger';
 
 export async function assertUserExists(userId: number) {
   const userVerificationRequest = await axios.get(

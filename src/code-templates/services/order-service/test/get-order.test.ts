@@ -1,7 +1,10 @@
 import axios from 'axios';
 import nock from 'nock';
 import sinon from 'sinon';
-import { startWebServer, stopWebServer } from '../entry-points/api/server';
+import {
+  startWebServer,
+  stopWebServer,
+} from '../entry-points-fastify/api/server';
 import * as testHelpers from './test-helpers';
 
 // Configuring file-level HTTP client with base URL will allow

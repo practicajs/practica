@@ -1,9 +1,10 @@
 import * as fsExtra from "fs-extra";
 import path from "path";
 import { generationOptions } from "../generation-options";
-import * as replacementUtilities from "replace-in-file";
-
-// shorten string replacement
+import {
+  getMicroservicePath,
+  replacePhraseInFile,
+} from "../string-manipulation-helpers";
 
 // This feature allows the user to choose which ORM (DB mapper) to use
 export async function chooseORM(
@@ -57,20 +58,4 @@ async function adjustTheCodeToSequelizeORM(microservicePath: string) {
     ""
   );
   await replacePhraseInFile(packageJSONPath, '"db:generate-client"(.*?)\n', "");
-}
-
-async function replacePhraseInFile(
-  path: string,
-  whatToReplaceInRegex: string,
-  replacement: string
-) {
-  await replacementUtilities.replaceInFile({
-    files: path,
-    from: new RegExp(whatToReplaceInRegex, "g"),
-    to: replacement,
-  });
-}
-
-function getMicroservicePath(rootPath: string) {
-  return path.join(rootPath, "services", "order-service");
 }
