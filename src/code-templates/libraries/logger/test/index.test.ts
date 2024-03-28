@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import { context } from '@practica/request-context';
+import { context } from '@practica/middlewares';
 import { logger } from '../index';
 
 describe('logger', () => {

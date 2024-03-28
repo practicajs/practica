@@ -1,5 +1,5 @@
 {
-  "name": "@practica/request-context",
+  "name": "@practica/middlewares",
   "version": "0.1.0",
   "description": "",
   "main": ".dist/index.js",

@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import { errorHandler } from '@practica/error-handling';
 import * as configurationProvider from '@practica/configuration-provider';
 import { jwtVerifierMiddleware } from '@practica/jwt-token-verifier';
-import { addRequestIdExpressMiddleware } from '@practica/request-context';
+import { addRequestIdExpressMiddleware } from '@practica/middlewares';
 import configurationSchema from '../../config';
 import defineRoutes from './routes';
 
