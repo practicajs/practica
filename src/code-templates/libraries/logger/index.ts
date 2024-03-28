@@ -1,4 +1,4 @@
-import { context } from '@practica/request-context';
+import { context } from '@practica/middlewares';
 import { Logger, LoggerConfiguration } from './definition';
 import PinoLogger from './pino.logger';
 

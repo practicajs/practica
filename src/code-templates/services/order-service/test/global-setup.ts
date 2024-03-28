@@ -1,6 +1,6 @@
 import isPortReachable from 'is-port-reachable';
 import path from 'path';
-import dockerCompose from 'docker-compose';
+import { v2 as dockerCompose } from 'docker-compose'
 import { execSync } from 'child_process';
 
 export default async () => {

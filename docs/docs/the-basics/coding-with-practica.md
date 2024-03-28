@@ -135,18 +135,14 @@ This is a very typical express code, if you're familiar with express you'll be p
 
 ```javascript
 // A new route to edit order
-router.put('/:id', async (req, res, next) => {
-    try {
-      logger.info(`Order API was called to edit order ${req.params.id}`);
-      // Later on we will call the main code in the domain layer
-      // Fow now let's put hard coded values
-      res.json({id:1, userId: 1, productId: 2, countryId: 1,
-      deliveryAddress: '123 Main St, New York',
-      paymentTermsInDays: 30}).status(200).end();
-    } catch (err) {
-      next(err);
-    }
-  });
+router.put('/:id', wrapHandler(async (req, res, next) => {
+  logger.info(`Order API was called to edit order ${req.params.id}`);
+  // Later on we will call the main code in the domain layer
+  // Fow now let's put hard coded values
+  res.json({id:1, userId: 1, productId: 2, countryId: 1,
+  deliveryAddress: '123 Main St, New York',
+  paymentTermsInDays: 30}).status(200).end();
+}));
 ```
 
 > **✅Best practice:** The API entry-point (controller) should stay thin and focus on forwarding the request to the domain layer.
