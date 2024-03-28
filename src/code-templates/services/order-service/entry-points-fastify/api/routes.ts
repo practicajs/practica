@@ -8,7 +8,7 @@ import { orderSchema } from '../../domain/order-schema';
 import * as newOrderUseCase from '../../domain/new-order-use-case';
 
 export async function routes(app: FastifyWithTypeProvider) {
-  app.post('/order', {
+  app.post('/', {
     schema: {
       body: orderSchema,
       response: {
@@ -30,7 +30,7 @@ export async function routes(app: FastifyWithTypeProvider) {
     },
   });
 
-  app.get('/order/:id', {
+  app.get('/:id', {
     schema: {
       response: {
         200: orderSchema,
@@ -49,10 +49,27 @@ export async function routes(app: FastifyWithTypeProvider) {
       );
 
       if (!result) {
-        return response.status(404);
+        return response.status(404).send();
       }
 
       return result;
+    },
+  });
+
+  app.delete('/:id', {
+    schema: {
+      response: {
+        204: orderSchema,
+        ...commonHTTPResponses,
+      },
+      params: Type.Object({
+        id: Type.String(),
+      }),
+    },
+    handler: async (request, response) => {
+      logger.info(`Order API was called to delete order ${request.params.id}`);
+      await newOrderUseCase.deleteOrder(parseInt(request.params.id, 10));
+      response.status(204).send();
     },
   });
 }

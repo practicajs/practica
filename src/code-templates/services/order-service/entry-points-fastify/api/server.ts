@@ -5,26 +5,29 @@ import fastifySwaggerUi from '@fastify/swagger-ui';
 import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import Fastify, { FastifyInstance } from 'fastify';
 import { Server } from 'http';
+import { AddressInfo } from 'net';
+import { fastifyErrorMiddleware } from '@practica/error-handling';
 import { OpenAPIOptions, OpenAPIUIOptions } from './open-api-options';
 import configurationSchema from '../../config';
-import { routes } from './fastify-routes';
+import { routes } from './routes';
 
 let httpServer: Server;
 
 // ️️️✅ Best Practice: API exposes a start/stop function to allow testing control WHEN this should happen
-export async function startWebServer() {
+export async function startWebServer(): Promise<AddressInfo> {
   configurationProvider.initializeAndValidate(configurationSchema);
   // logger.info(`Starting the web server now`);
   const app = Fastify({
     logger: true,
   }).withTypeProvider<TypeBoxTypeProvider>();
 
+  app.setErrorHandler(fastifyErrorMiddleware);
   await generateOpenAPI(app);
   registerCommonPlugins(app);
   registerAllRoutes(app);
-  await listenToRequests(app);
+  const connectionAddress = await listenToRequests(app);
   httpServer = app.server;
-  return app.server.address();
+  return connectionAddress;
 }
 
 export async function stopWebServer() {
@@ -40,10 +43,10 @@ async function generateOpenAPI(app: FastifyInstance) {
 }
 
 async function registerAllRoutes(app: FastifyInstance) {
-  app.register(routes, { prefix: 'api/v1' });
+  app.register(routes, { prefix: '/order' });
 }
 
-async function listenToRequests(app: FastifyInstance): Promise<void> {
+async function listenToRequests(app: FastifyInstance): Promise<AddressInfo> {
   return new Promise((resolve, reject) => {
     const portToListenTo = configurationProvider.getValue('port');
     const webServerPort = portToListenTo
@@ -56,7 +59,7 @@ async function listenToRequests(app: FastifyInstance): Promise<void> {
         // eslint-disable-next-line
         process.exit(1);
       }
-      resolve();
+      resolve(app.server.address() as AddressInfo);
     });
   });
 }

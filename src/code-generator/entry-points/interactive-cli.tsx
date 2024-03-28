@@ -147,7 +147,7 @@ const QuestionsWizard = () => {
     const generationOptions = factorDefaultOptions({
       installDependencies: true,
       targetDirectory: process.cwd(),
-      baseFramework: questionsWizard.chosenFramework,
+      webFramework: questionsWizard.chosenFramework,
     });
     await generateService.generateApp(generationOptions);
     setQuestionsWizard({

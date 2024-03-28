@@ -5,13 +5,14 @@
   "main": "./.dist/start.js",
   "scripts": {
     "start": "PORT=3000 PRETTY_PRINT=false node .dist/start.js",
-    "start:dev": "PORT=3000 PRETTY_PRINT=true nodemon start.ts",
+    "start:dev": "PORT=3000 PRETTY_PRINT=true nodemon start.ts -r ts-node/register --inspect=9229",
     "test": "PRETTY_PRINT=true jest --forceExit --verbose=true --runInBand",
-    "test:dev": "jest --watch --silent --runInBand --coverage=false --reporters='default'",
+    "test:dev": "PRETTY_PRINT=true jest --watch --silent --runInBand --coverage=false --reporters='default'",
     "test:dev:verbose": "jest --watch --verbose=true",
     "db:migrate": "cd data-access && sequelize-cli db:migrate",
     "db:migrate:prisma": "npx prisma migrate  deploy --schema data-access-prisma/prisma/schema.prisma",
     "db:generate-client": "npx prisma generate --schema data-access-prisma/prisma/schema.prisma",
+    "generate-open-api": "npx generate-oai --output ../libraries/order-contracts/openapi.json",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "postinstall": "npm run db:generate-client",
@@ -36,7 +37,7 @@
     "amqplib": "^0.8.0",
     "axios": "^0.26.1",
     "express": "^4.17.3",
-    "fastify": "4.24.3",
+    "fastify": "^4.24.3",
     "helmet": "^6.0.0",
     "node-notifier": "^10.0.1",
     "pg": "^8.7.3",
@@ -50,7 +51,7 @@
     "@types/jest": "^27.4.1",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/nock": "^11.1.0",
-    "@types/node": "^20.9.2",
+    "@types/node": "^20.11.30",
     "@types/pg": "^8.6.5",
     "@types/sequelize": "^4.28.11",
     "@types/sinon": "^10.0.11",
@@ -59,7 +60,7 @@
     "is-port-reachable": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-node": "^27.4.1",
-    "jest-watch-typeahead": "^1.1.0",
+    "jest-watch-typeahead": "^2.2.2",
     "jsonwebtoken": "^8.5.1",
     "nock": "^13.2.4",
     "nodemon": "^2.0.15",
@@ -68,6 +69,6 @@
     "sinon": "^13.0.1",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.7.0",
-    "typescript": "5.3.3"
+    "typescript": "5.2.2"
   }
 }

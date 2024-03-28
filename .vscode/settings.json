@@ -12,5 +12,6 @@
       "**/node_modules/*.*"
     ],
     "smartStep": true
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

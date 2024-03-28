@@ -2,9 +2,11 @@ import sinon from 'sinon';
 import { Server } from 'http';
 import { logger } from '@practica/logger';
 import { AppError, errorHandler } from '..';
+import { metadata } from 'figlet';
 
 beforeEach(() => {
   sinon.restore();
+  sinon.stub(process, 'exit');
 });
 
 describe('handleError', () => {
@@ -64,7 +66,7 @@ describe('handleError', () => {
         name: 'invalid-input',
         HTTPStatus: 400,
         message: 'missing important field',
-        isTrusted: true,
+        isCatastrophic: true,
         stack: expect.any(String),
       },
     ]);
@@ -83,18 +85,22 @@ describe('handleError', () => {
     '🐥',
     () => undefined,
   ])(
-    'When handling an Error instance, should log an AppError instance after receiving unknown error of multiple types',
+    'When receiving non standard Error input, then calling the logger with all the mandatory properties',
     (unknownErrorValue) => {
       // Arrange
-      const loggerStub = sinon.stub(logger, 'error');
+      const loggerStub = jest.spyOn(logger, 'error');
       // Act
       errorHandler.handleError(unknownErrorValue);
+      console.log(loggerStub.mock.lastCall);
       // Assert
-      const message = loggerStub.firstCall.args[0];
-      const appError = loggerStub.firstCall.args[1];
-      expect(loggerStub.callCount).toBe(1);
-      expect(message.includes(typeof unknownErrorValue)).toBe(true);
-      expect((appError as AppError).name).toBe('general-error');
+      expect(loggerStub).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          name: 'unknown-error',
+          HTTPStatus: 500,
+          isCatastrophic: true,
+        })
+      );
     }
   );
 });
