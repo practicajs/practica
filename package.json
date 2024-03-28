@@ -35,9 +35,9 @@
   "author": "Practica",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bestpractices/practica/issues"
+    "url": "https://github.com/practicajs/practica/issues"
   },
-  "homepage": "https://github.com/bestpractices/practica#readme",
+  "homepage": "https://github.com/practicajs/practica#readme",
   "dependencies": {
     "@docusaurus/core": "^2.1.0",
     "@docusaurus/preset-classic": "^2.1.0",
