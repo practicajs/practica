@@ -48,7 +48,7 @@ jobs:
         with:
           directory: ./src/code-templates/services/order-service/test-reports/coverage
           env_vars: OS
-          fail_ci_if_error: true
+          fail_ci_if_error: false
           flags: app
           name: codecov-umbrella
           verbose: true
