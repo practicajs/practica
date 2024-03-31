@@ -40,8 +40,8 @@
     "fastify": "^4.24.3",
     "helmet": "^6.0.0",
     "node-notifier": "^10.0.1",
-    "pg": "^8.7.3",
-    "sequelize": "^6.17.0"
+    "sequelize": "^6.17.0",
+    "pg": "^8.7.3"
   },
   "devDependencies": {
     "@jest-performance-reporter/core": "^2.1.2",
@@ -69,6 +69,8 @@
     "sinon": "^13.0.1",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.7.0",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "uuid": "^9.0.1",
+    "yaml": "^2.4.1"
   }
 }

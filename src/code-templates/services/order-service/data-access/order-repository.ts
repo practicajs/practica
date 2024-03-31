@@ -20,7 +20,7 @@ export async function getOrderById(id: number): Promise<OrderRecord | null> {
     // ✅ Best Practice: The data access layer should return a plain JS object and avoid leaking DB narratives outside
     // The 'Raw' option below instructs to include only pure data within the response
     raw: true,
-    nest: true,
+    nest: false,
   });
 
   return foundOrder;

@@ -1,8 +1,6 @@
 import { logger } from '@practica/logger';
 import * as Http from 'http';
-import * as util from 'util';
 import { AppError } from './app-error';
-
 let httpServerRef: Http.Server;
 
 export const errorHandler = {
@@ -66,6 +64,7 @@ const terminateHttpServerAndExit = async () => {
 // return the best standard AppError object
 const normalizeError = (errorToHandle: unknown): AppError => {
   if (errorToHandle instanceof AppError) {
+    // This means the error was thrown by our code and contains all the necessary information
     return errorToHandle;
   }
   const errorToEnrich: object = getObjectIfNotAlreadyObject(errorToHandle);
@@ -81,7 +80,7 @@ const normalizeError = (errorToHandle: unknown): AppError => {
   );
   const httpStatus = getOneOfTheseProperties(
     errorToEnrich,
-    ['HTTPStatus', 'statusCode'],
+    ['HTTPStatus', 'statusCode', 'status'],
     500
   );
   const isCatastrophic = getOneOfTheseProperties<boolean>(
@@ -95,15 +94,14 @@ const normalizeError = (errorToHandle: unknown): AppError => {
     ['stack'],
     undefined
   );
-  const normalizedError = new AppError(
-    name,
-    message,
-    httpStatus,
-    isCatastrophic
+  const standardError = new AppError(name, message, httpStatus, isCatastrophic);
+  standardError.stack = stackTrace;
+  const standardErrorWithOriginProperties = Object.assign(
+    standardError,
+    errorToEnrich
   );
-  normalizedError.stack = stackTrace;
 
-  return normalizedError;
+  return standardErrorWithOriginProperties;
 };
 
 const getOneOfTheseProperties = <ReturnType>(
@@ -123,12 +121,7 @@ const getOneOfTheseProperties = <ReturnType>(
 // like Prometheus, DataDog, CloudWatch, etc
 const metricsExporter = {
   fireMetric: async (name: string, labels: object) => {
-    // TODO: use logger instead of conso.log
-    // eslint-disable-next-line no-console
-    console.log('In real production code I will really fire metrics', {
-      name,
-      labels,
-    });
+    // 'In real production code I will really fire metrics', {
   },
 };
 function getObjectIfNotAlreadyObject(target: unknown): object {

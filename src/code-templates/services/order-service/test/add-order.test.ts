@@ -113,6 +113,7 @@ describe('/api', () => {
       // Arrange
       const orderToAdd = {
         userId: 1,
+        countryId: 1,
         deliveryAddress: '123 Main St, New York, NY 10001',
         paymentTermsInDays: 30,
       };

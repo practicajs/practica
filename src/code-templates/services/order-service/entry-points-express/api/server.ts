@@ -77,8 +77,11 @@ function defineErrorHandlingMiddleware(expressApp: express.Application) {
       next: express.NextFunction
     ) => {
       if (error && typeof error === 'object') {
-        if (error.isTrusted === undefined || error.isTrusted === null) {
-          error.isTrusted = true; // Error during a specific request is usually not fatal and should not lead to process exit
+        if (
+          error.isCatastrophic === undefined ||
+          error.isCatastrophic === null
+        ) {
+          error.isCatastrophic = true; // Error during a specific request is usually not fatal and should not lead to process exit
         }
       }
       // ✅ Best Practice: Pass all error to a centralized error handler so they get treated equally

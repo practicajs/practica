@@ -25,5 +25,6 @@ export async function deleteOrder(userId) {
 }
 
 export async function getOrder(userId) {
-  return await orderRepository.getOrderById(userId);
+  const response = await orderRepository.getOrderById(userId);
+  return response;
 }

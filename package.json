@@ -11,7 +11,7 @@
     "create-node-app": "bin/cli.js"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:quick": "jest \"^((?!slow).)*$\"",
     "test:dev": "jest --silent --watch \"^((?!slow).)*$\"",
     "test:dev:verbose": "jest --watch \"^((?!slow).)*$\"",

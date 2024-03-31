@@ -57,7 +57,9 @@ async function adjustTheCodeToExpressFramework(microservicePath: string) {
     ""
   );
   const expressFolderNewName = path.join(microservicePath, "entry-points");
-  await fsExtra.rename(expressFolderOldName, expressFolderNewName);
+  await fsExtra.move(expressFolderOldName, expressFolderNewName, {
+    overwrite: true,
+  });
   await replacePhraseInAllFiles(
     microservicePath,
     "/entry-points-fastify/api/",

@@ -6,6 +6,7 @@ export function fastifyErrorMiddleware(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
+  error['isCatastrophic'] = false;
   const responseToRequest = errorHandler.handleError(error);
 
   reply.status(responseToRequest).send();

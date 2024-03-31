@@ -1,4 +1,4 @@
-name: generator-quality-check
+name: generator-e2e
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x, 20.x]
         # Uncomment and replace with current `os` when windows-run bug is fixed
         # os: [ubuntu-latest, windows-latest]
         os: [ubuntu-latest]
@@ -32,7 +32,7 @@ jobs:
       - run: npm ci
 
       - name: Test
-        run: npm t -- --collectCoverage e2e-non-interactive-default-flags.slow.test.ts
+        run: npm t -- --collectCoverage e2e
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
