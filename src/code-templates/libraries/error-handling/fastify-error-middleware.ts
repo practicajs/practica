@@ -1,13 +1,14 @@
 import { FastifyError, FastifyReply, FastifyRequest } from 'fastify';
-import { errorHandler } from './error-handler';
+import { covertUnknownToAppError, errorHandler } from './error-handler';
 
 export function fastifyErrorMiddleware(
   error: FastifyError,
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  error['isCatastrophic'] = false;
-  const responseToRequest = errorHandler.handleError(error);
+  // The error strategy is to assume that errors that happened during a request are not fatal (vs errors that happened during the app initialization)
+  const standardAppError = covertUnknownToAppError(error);
+  const responseToRequest = errorHandler.handleError(standardAppError);
 
   reply.status(responseToRequest).send();
 }

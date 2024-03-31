@@ -1,6 +1,7 @@
 import { logger } from '@practica/logger';
 import * as Http from 'http';
 import { AppError } from './app-error';
+
 let httpServerRef: Http.Server;
 
 export const errorHandler = {
@@ -32,7 +33,7 @@ export const errorHandler = {
 
   handleError: (errorToHandle: unknown): number => {
     try {
-      const appError: AppError = normalizeError(errorToHandle);
+      const appError: AppError = covertUnknownToAppError(errorToHandle);
       logger.error(appError.message, appError);
       metricsExporter.fireMetric('error', { errorName: appError.name }); // fire any custom metric when handling error
       // A common best practice is to crash when an unknown error (catastrophic) is being thrown
@@ -62,7 +63,7 @@ const terminateHttpServerAndExit = async () => {
 
 // Responsible to get all sort of crazy error objects including none error objects and
 // return the best standard AppError object
-const normalizeError = (errorToHandle: unknown): AppError => {
+export function covertUnknownToAppError(errorToHandle: unknown): AppError {
   if (errorToHandle instanceof AppError) {
     // This means the error was thrown by our code and contains all the necessary information
     return errorToHandle;
@@ -102,7 +103,7 @@ const normalizeError = (errorToHandle: unknown): AppError => {
   );
 
   return standardErrorWithOriginProperties;
-};
+}
 
 const getOneOfTheseProperties = <ReturnType>(
   object: object,
@@ -121,7 +122,8 @@ const getOneOfTheseProperties = <ReturnType>(
 // like Prometheus, DataDog, CloudWatch, etc
 const metricsExporter = {
   fireMetric: async (name: string, labels: object) => {
-    // 'In real production code I will really fire metrics', {
+    // 'In real production code I will really fire metrics'
+    logger.info(`Firing metric ${name} with labels ${JSON.stringify(labels)}`);
   },
 };
 function getObjectIfNotAlreadyObject(target: unknown): object {

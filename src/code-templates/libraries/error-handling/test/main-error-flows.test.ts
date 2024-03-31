@@ -1,7 +1,7 @@
 import { logger } from '@practica/logger';
+import * as http from 'node:http';
 import { AppError } from '../app-error';
 import { errorHandler } from '../error-handler';
-import * as http from 'node:http';
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -107,7 +107,6 @@ describe('Error handler', () => {
         const loggerStub = jest.spyOn(logger, 'error');
         // Act
         errorHandler.handleError(unknownErrorValue);
-        console.log(loggerStub.mock.lastCall);
         // Assert
         expect(loggerStub).toHaveBeenCalledWith(
           expect.any(String),

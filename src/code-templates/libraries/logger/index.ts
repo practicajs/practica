@@ -59,8 +59,7 @@ export class LoggerWrapper implements Logger {
   static #insertContextIntoMetadata(metadata?: object): object | undefined {
     const currentContext = context().getStore();
 
-    // Doing this to avoid merging objects...
-    if (currentContext == null) {
+    if (currentContext === null || typeof currentContext !== 'object') {
       return metadata;
     }
 
@@ -68,7 +67,6 @@ export class LoggerWrapper implements Logger {
       return currentContext;
     }
 
-    // Metadata would override the current context
     return { ...currentContext, ...metadata };
   }
 }

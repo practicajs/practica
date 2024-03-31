@@ -1,4 +1,4 @@
-import { Sequelize, Options } from 'sequelize';
+import { Sequelize } from 'sequelize';
 import * as configurationProvider from '@practica/configuration-provider';
 import { logger } from '@practica/logger';
 

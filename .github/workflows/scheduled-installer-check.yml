@@ -12,5 +12,3 @@ jobs:
     steps:
       - name: Install practica
         run: npx @practica/create-node-app immediate --install-dependencies
-# TODO: Create an issue on failure using:
-# https://github.com/marketplace/actions/create-an-issue
