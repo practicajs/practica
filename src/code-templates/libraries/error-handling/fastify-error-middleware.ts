@@ -11,5 +11,5 @@ export function fastifyErrorMiddleware(
   standardAppError.isCatastrophic = false;
   const responseToRequest = errorHandler.handleError(standardAppError);
 
-  reply.status(responseToRequest).send();
+  reply.status(responseToRequest).send({});
 }

@@ -11,7 +11,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  //await fsExtra.remove(emptyFolderForATest);
+  await fsExtra.remove(emptyFolderForATest);
 });
 
 describe("Non-interactive CLI component tests", () => {

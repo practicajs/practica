@@ -10,7 +10,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  //await fsExtra.remove(emptyFolderForATest);
+  await fsExtra.remove(emptyFolderForATest);
 });
 
 describe("Non-interactive CLI", () => {
@@ -27,7 +27,12 @@ describe("Non-interactive CLI", () => {
     // Act
     await execa(
       "create-node-app",
-      ["immediate", "--orm=prisma", "--web-framework=fastify", "--install-dependencies"],
+      [
+        "immediate",
+        "--orm=prisma",
+        "--web-framework=fastify",
+        "--install-dependencies",
+      ],
       {
         cwd: emptyFolderForATest,
       }

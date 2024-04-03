@@ -92,7 +92,7 @@ function defineErrorHandlingMiddleware(expressApp: express.Application) {
       }
       // ✅ Best Practice: Pass all error to a centralized error handler so they get treated equally
       errorHandler.handleError(error);
-      res.status(error?.HTTPStatus || 500).end();
+      res.status(error?.HTTPStatus || 500).json({});
     }
   );
 }
