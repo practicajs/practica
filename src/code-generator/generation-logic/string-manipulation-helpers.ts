@@ -28,3 +28,7 @@ export async function replacePhraseInAllFiles(
 export function getMicroservicePath(rootPath: string) {
   return path.join(rootPath, "services", "order-service");
 }
+
+export function getLibrariesPath(rootPath: string) {
+  return path.join(rootPath, "libraries");
+}

@@ -1,4 +1,4 @@
-import { context } from '@practica/request-context';
+import { context } from '@practica/global-context';
 import { Logger, LoggerConfiguration } from './definition';
 import PinoLogger from './pino.logger';
 
@@ -42,7 +42,6 @@ export class LoggerWrapper implements Logger {
   }
 
   info(message: string, metadata?: object): void {
-    // If never initialized, the set default configuration
     this.#getInitializeLogger().info(
       message,
       LoggerWrapper.#insertContextIntoMetadata(metadata)

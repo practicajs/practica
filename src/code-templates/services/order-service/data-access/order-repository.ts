@@ -1,3 +1,4 @@
+import { logger } from '@practica/logger';
 import { getCountryModel } from './models/country-model';
 import { getOrderModel } from './models/order-model';
 
@@ -14,6 +15,7 @@ type OrderRecord = {
 
 // ️️️✅ Best Practice: The repository pattern - Wrap the entire DB layer with a simple interface that returns plain JS objects
 export async function getOrderById(id: number): Promise<OrderRecord | null> {
+  logger.info(`Getting order by id ${id}`);
   const foundOrder = await getOrderModel().findOne({
     where: { id },
     include: getCountryModel(),

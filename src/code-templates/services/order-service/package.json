@@ -1,6 +1,6 @@
 {
   "name": "order-service",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "An example Node.js app that is packed with best practices",
   "main": "./.dist/start.js",
   "scripts": {
@@ -22,25 +22,26 @@
   "license": "ISC",
   "dependencies": {
     "@fastify/cors": "^8.4.2",
+    "@fastify/request-context": "^5.1.0",
     "@fastify/swagger": "^8.12.0",
     "@fastify/swagger-ui": "^1.10.1",
     "@fastify/type-provider-typebox": "^3.5.0",
+    "@practica/common-express-middlewares": "^0.0.1",
+    "@practica/common-fastify-plugins": "^0.0.1",
     "@practica/configuration-provider": "^0.0.2",
     "@practica/error-handling": "^0.0.3",
-    "@practica/jwt-token-verifier": "^0.0.2",
-    "@practica/logger": "^0.0.3",
-    "@practica/request-context": "^0.1.0",
+    "@practica/logger": "^0.0.4",
     "@practica/validation": "^0.0.3",
     "@prisma/client": "^4.6.1",
     "@sinclair/typebox": "^0.31.28",
     "ajv": "^8.11.0",
     "amqplib": "^0.8.0",
     "axios": "^0.26.1",
+    "sequelize": "^6.17.0",
     "express": "^4.17.3",
     "fastify": "^4.24.3",
     "helmet": "^6.0.0",
     "node-notifier": "^10.0.1",
-    "sequelize": "^6.17.0",
     "pg": "^8.7.3"
   },
   "devDependencies": {
@@ -68,7 +69,7 @@
     "sequelize-cli": "^6.4.1",
     "sinon": "^13.0.1",
     "ts-jest": "^29.1.2",
-    "ts-node": "^10.7.0",
+    "ts-node": "^10.9.2",
     "typescript": "5.2.2",
     "uuid": "^9.0.1",
     "yaml": "^2.4.1"

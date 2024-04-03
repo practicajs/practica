@@ -5,8 +5,10 @@ import express from 'express';
 import helmet from 'helmet';
 import { errorHandler } from '@practica/error-handling';
 import * as configurationProvider from '@practica/configuration-provider';
-import { jwtVerifierMiddleware } from '@practica/jwt-token-verifier';
-import { addRequestIdExpressMiddleware } from '@practica/request-context';
+import {
+  jwtVerifierMiddleware,
+  addRequestId,
+} from '@practica/common-express-middlewares';
 import configurationSchema from '../../config';
 import defineRoutes from './routes';
 
@@ -25,15 +27,7 @@ async function startWebServer(): Promise<AddressInfo> {
     true
   );
   const expressApp = express();
-  expressApp.use(addRequestIdExpressMiddleware);
-  expressApp.use(helmet());
-  expressApp.use(express.urlencoded({ extended: true }));
-  expressApp.use(express.json());
-  expressApp.use(
-    jwtVerifierMiddleware({
-      secret: configurationProvider.getValue('jwtTokenSecret'),
-    })
-  );
+  defineCommonMiddlewares(expressApp);
   defineRoutes(expressApp);
   defineErrorHandlingMiddleware(expressApp);
   const APIAddress = await openConnection(expressApp);
@@ -48,6 +42,18 @@ async function stopWebServer() {
       });
     }
   });
+}
+
+function defineCommonMiddlewares(expressApp: express.Application) {
+  expressApp.use(addRequestId);
+  expressApp.use(helmet());
+  expressApp.use(express.urlencoded({ extended: true }));
+  expressApp.use(express.json());
+  expressApp.use(
+    jwtVerifierMiddleware({
+      secret: configurationProvider.getValue('jwtTokenSecret'),
+    })
+  );
 }
 
 async function openConnection(

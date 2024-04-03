@@ -9,7 +9,8 @@
     "build:watch": "tsc --watch",
     "lint": "eslint '**/*.{js,jsx,ts}'",
     "maintenance:delete-node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
-    "maintenance:delete-dist": "find . -name '.dist' -type d -prune -exec rm -rf '{}' +"
+    "maintenance:delete-dist": "find . -name '.dist' -type d -prune -exec rm -rf '{}' +",
+    "maintenance:delete-package-lock": "find . -name 'package-lock.json' -type f -prune -exec rm -rf '{}' +"
   },
   "workspaces": [
     "libraries/*",

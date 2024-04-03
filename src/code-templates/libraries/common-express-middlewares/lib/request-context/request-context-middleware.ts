@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { generateRequestId, REQUEST_ID_HEADER } from '../constant';
-import { context } from '../../context';
+import { context } from '@practica/global-context';
+import { randomUUID } from 'node:crypto';
 
 /**
  * This is an express middleware that:
@@ -9,6 +9,9 @@ import { context } from '../../context';
  *
  * **Important:** this should be your first middleware
  */
+
+const REQUEST_ID_HEADER = 'x-request-id';
+
 export function addRequestId(
   req: IncomingMessage,
   res: ServerResponse,
@@ -17,7 +20,7 @@ export function addRequestId(
   let requestId = req.headers[REQUEST_ID_HEADER];
 
   if (!requestId) {
-    requestId = generateRequestId();
+    requestId = randomUUID();
     req.headers[REQUEST_ID_HEADER] = requestId;
   }
 

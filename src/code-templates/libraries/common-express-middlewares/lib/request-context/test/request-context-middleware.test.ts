@@ -2,10 +2,11 @@ import express, { Express } from 'express';
 import { Server } from 'http';
 import { AddressInfo } from 'net';
 import axios from 'axios';
-import { addRequestIdExpressMiddleware, context } from '../index';
-import { REQUEST_ID_HEADER } from '../src/request-id/constant';
+import { context } from '@practica/global-context';
+import { addRequestId } from '../index';
 
-let currentServer: Server;
+let currentServer!: Server;
+const REQUEST_ID_HEADER = 'x-request-id';
 
 async function setupExpressServer(setupRoutes: (app: Express) => void) {
   const app = express();
@@ -33,8 +34,6 @@ describe('Request ID express middleware', () => {
       await new Promise<void>((resolve, reject) => {
         currentServer.close((error) => (error ? reject(error) : resolve()));
       });
-
-      currentServer = undefined;
     }
   });
 
@@ -44,7 +43,7 @@ describe('Request ID express middleware', () => {
       const requestId = '801d9251-5916-4b26-85d9-7a33aaa86c9d';
 
       const client = await setupExpressServer((app) => {
-        app.use(addRequestIdExpressMiddleware);
+        app.use(addRequestId);
 
         app.get('/', (req, res) => {
           res.send({});
@@ -73,7 +72,7 @@ describe('Request ID express middleware', () => {
       const requestId = '801d9251-5916-4b26-85d9-7a33aaa86c9d';
 
       const client = await setupExpressServer((app) => {
-        app.use(addRequestIdExpressMiddleware);
+        app.use(addRequestId);
       });
 
       // Act
@@ -98,7 +97,7 @@ describe('Request ID express middleware', () => {
       const requestId = '801d9251-5916-4b26-85d9-7a33aaa86c9d';
 
       const client = await setupExpressServer((app) => {
-        app.use(addRequestIdExpressMiddleware);
+        app.use(addRequestId);
 
         app.get('/', (req, res) => {
           res.send({ ...context().getStore() });
@@ -126,7 +125,7 @@ describe('Request ID express middleware', () => {
     test('when sending a request to an EXISTING route WITHOUT request ID in the request header it should generate one and it to the response header', async () => {
       // Arrange
       const client = await setupExpressServer((app) => {
-        app.use(addRequestIdExpressMiddleware);
+        app.use(addRequestId);
 
         app.get('/', (req, res) => {
           res.send({});
@@ -149,7 +148,7 @@ describe('Request ID express middleware', () => {
     test('when sending a request to MISSING route WITH request ID in the request header it should add it to the response header', async () => {
       // Arrange
       const client = await setupExpressServer((app) => {
-        app.use(addRequestIdExpressMiddleware);
+        app.use(addRequestId);
       });
 
       // Act
@@ -169,7 +168,7 @@ describe('Request ID express middleware', () => {
       // Arrange
 
       const client = await setupExpressServer((app) => {
-        app.use(addRequestIdExpressMiddleware);
+        app.use(addRequestId);
 
         app.get('/', (req, res) => {
           res.send({ ...context().getStore() });
@@ -192,7 +191,7 @@ describe('Request ID express middleware', () => {
       // Arrange
 
       const client = await setupExpressServer((app) => {
-        app.use(addRequestIdExpressMiddleware);
+        app.use(addRequestId);
 
         app.get('/', (req, res) => {
           res.send({ ...context().getStore() });
@@ -226,7 +225,7 @@ describe('Request ID express middleware', () => {
         context().run({ ...existingContextData }, () => next());
       });
 
-      app.use(addRequestIdExpressMiddleware);
+      app.use(addRequestId);
 
       app.get('/', (req, res) => {
         res.send({ ...context().getStore() });

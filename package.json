@@ -1,6 +1,6 @@
 {
   "name": "@practica/create-node-app",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Create Node.js app that is packed with best practices AND strive for simplicity",
   "main": "./src/code-generator/index.js",
   "directories": {

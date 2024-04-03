@@ -50,7 +50,7 @@ afterAll(async () => {
 // ️️️✅ Best Practice: Structure tests by routes and stories
 describe('/api', () => {
   describe('GET /order', () => {
-    test('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
+    test.only('When asked for an existing order, Then should retrieve it and receive 200 response', async () => {
       // Arrange
       const orderToAdd = {
         userId: 1,

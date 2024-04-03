@@ -7,9 +7,11 @@ import Fastify, { FastifyInstance } from 'fastify';
 import { Server } from 'http';
 import { AddressInfo } from 'net';
 import { fastifyErrorMiddleware } from '@practica/error-handling';
+import { JWTVerifier, RequestContext } from '@practica/common-fastify-plugins';
 import { OpenAPIOptions, OpenAPIUIOptions } from './open-api-options';
 import configurationSchema from '../../config';
 import { routes } from './routes';
+import { requestContextPlugin } from './request-context';
 
 let httpServer: Server;
 
@@ -65,6 +67,11 @@ async function listenToRequests(app: FastifyInstance): Promise<AddressInfo> {
 }
 
 async function registerCommonPlugins(app: FastifyInstance) {
+  app.register(RequestContext);
+  app.register(JWTVerifier, {
+    secret: configurationProvider.getValue('jwtTokenSecret'),
+  });
+  app.register(requestContextPlugin);
   app.register(cors, {
     origin: '*',
     methods: ['POST'],
