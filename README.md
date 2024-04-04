@@ -14,7 +14,7 @@
 
 # A One Paragraph Overview
 
-Although Node.js has great frameworks 💚, they were never meant to be dev & production ready immediately (e.g., no app layers, DB schemas, docker file, etc). Practica.js aims to bridge the gap. Based on your preferred framework, we generate example code that demonstrates a full Microservice flow, from API to DB, that is packed with good practices. For example, we include a battle-tested error handler, sanitized API response, hardened dockerfile, thoughtful 3-tier folder structure, great testing templates with DB, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](https://practica.dev/decisions). We strive to keep things as simple and standard as possible and base our work on the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+Although Node.js has great frameworks 💚, they were never meant to be dev & production ready immediately (e.g., no architecture layers, DB schemas, docker file, etc etc). Practica.js aims to bridge the gap. Based on your preferred framework, we generate example code that demonstrates a full Microservice flow, from API to DB, that is packed with good practices. For example, we include a battle-tested error handler, sanitized API response, hardened dockerfile, thoughtful 3-tier folder structure, great testing templates with DB, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](https://practica.dev/decisions). We strive to keep things as simple and standard as possible and base our work on the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
 
 **1 min video 👇, ensure audio is activated**
 
@@ -71,6 +71,8 @@ Prefer express and Prisma? Just pass the right flags to the CLI:
 npx @practica/create-node-app immediate --install-dependencies --web-framework=express --orm=prisma
 ```
 
+Prefer other DB? We use standard ORMs, read its docs and switch DB. This is your code, do whatever you like
+
 
 <br />
 
@@ -112,7 +114,7 @@ You just got a Node.js Monorepo solution with one example component/Microservice
 
 ### 1. Best Practices _on top of_ known Node.js frameworks
 
-We don't re-invent the wheel. Rather, we use your favorite framework and empower it with structure and real examples. With a single command you can get an Express/Fastify-based codebase with ~100 examples of best practices inside
+We don't re-invent the wheel. Rather, we use your favorite framework and empower it with structure and real examples. With a single command you can get an Express/Fastify-based codebase with many thoughtful best practices inside
 
 ![Built on top of known frameworks](/static/images/on-top-of-frameworks.png)
 
@@ -120,13 +122,13 @@ We don't re-invent the wheel. Rather, we use your favorite framework and empower
 
 Keeping it simple, flat, and based on native Node/JS capabilities is part of this project's DNA. We believe that too many abstractions, high-complexity or fancy language features can quickly become a stumbling block for the team
 
-To name a few examples, our code flow is flat with almost no level of indirection, although using TypeScript - almost no features are being used besides types, for modularization we simply use Node.js modules
+To name a few examples, our code flow is flat with almost no level of indirection, no DI - it's just simple functions calling other functions. Although using TypeScript, almost no features are being used besides types, for modularization we simply use... Node.js modules
 
 ![Simplicity!](/static/images/abstractions-vs-simplicity.png)
 
 ### 3. Supports many technologies and frameworks
 
-Good Practices and Simplicity is the name of the game with Practica. There is no need to narrow our code to a specific framework or database. We aim to support a majority of popular Node.js frameworks and databases.
+Good Practices and Simplicity is the name of the game with Practica. There is no need to narrow our code to a specific framework or database. We aim to support the popular Node.js frameworks and data access approaches
 
 ![Built on top of known frameworks](/static/images/tech-stack.png)
 

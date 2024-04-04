@@ -9,7 +9,7 @@ export default {
     env: 'JWT_TOKEN_SECRET',
   },
   port: {
-    doc: 'The API listening port. By default is 0 (ephemeral) which serves as a dynamic port for testing purposes. For production use, a specific port must be assigned',
+    doc: 'The API listening port. Testing will pass 0 (ephemeral) which serves as a dynamic port for testing purposes. For production use, a specific port must be assigned',
     format: 'Number',
     default: 3000,
     nullable: true,

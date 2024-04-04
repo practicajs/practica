@@ -37,16 +37,14 @@ export async function routes(app: FastifyWithTypeProvider) {
         ...commonHTTPResponses,
       },
       params: Type.Object({
-        id: Type.String(),
+        id: Type.Number(),
       }),
     },
     handler: async (request, response) => {
       logger.info(
         `Order API was called to get user by id ${request.params.id}`
       );
-      const result = await newOrderUseCase.getOrder(
-        parseInt(request.params.id, 10)
-      );
+      const result = await newOrderUseCase.getOrder(request.params.id);
 
       if (!result) {
         return response.status(404).send();
@@ -63,12 +61,12 @@ export async function routes(app: FastifyWithTypeProvider) {
         ...commonHTTPResponses,
       },
       params: Type.Object({
-        id: Type.String(),
+        id: Type.Number(),
       }),
     },
     handler: async (request, response) => {
       logger.info(`Order API was called to delete order ${request.params.id}`);
-      await newOrderUseCase.deleteOrder(parseInt(request.params.id, 10));
+      await newOrderUseCase.deleteOrder(request.params.id);
       response.status(204).send();
     },
   });

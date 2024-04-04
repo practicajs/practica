@@ -3,9 +3,9 @@ export const OpenAPIOptions = {
     info: {
       title: 'Order service',
       description: 'The order service API ',
-      version: '1.0.0',
+      version: '0.8.0',
     },
-    tags: [{ name: 'v0.1', description: 'Current version in production' }],
+    tags: [{ name: 'v0.8', description: 'Current version in production' }],
   },
 };
 
