@@ -64,7 +64,7 @@
     "jest-watch-typeahead": "^2.2.2",
     "jsonwebtoken": "^8.5.1",
     "nock": "^13.2.4",
-    "nodemon": "^2.0.15",
+    "nodemon": "^3.1.0",
     "prisma": "^4.6.1",
     "sequelize-cli": "^6.4.1",
     "sinon": "^13.0.1",

@@ -77,7 +77,7 @@
     "jest-watch-suspend": "^1.1.2",
     "jest-watch-typeahead": "^2.2.2",
     "node-notifier": "^10.0.1",
-    "nodemon": "^2.0.15",
+    "nodemon": "^3.1.0",
     "prettier": "2.6.2",
     "sinon": "^13.0.1",
     "ts-jest": "^29.1.2",
