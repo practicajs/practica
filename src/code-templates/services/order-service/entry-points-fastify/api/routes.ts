@@ -1,4 +1,4 @@
-import { IncomingMessage, Server, ServerResponse } from 'http';
+import { IncomingMessage, Server, ServerResponse } from 'node:http';
 import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { Type } from '@sinclair/typebox';
 import { FastifyBaseLogger, FastifyInstance } from 'fastify';
@@ -41,16 +41,17 @@ export async function routes(app: FastifyWithTypeProvider) {
       }),
     },
     handler: async (request, response) => {
-      logger.info(
-        `Order API was called to get user by id ${request.params.id}`
-      );
+      logger.info(`Order API was called to get order by id`, {
+        orderId: request.params.id,
+      });
       const result = await newOrderUseCase.getOrder(request.params.id);
 
       if (!result) {
-        return response.status(404).send();
+        response.status(404);
+        return;
       }
 
-      return result;
+      response.send(result);
     },
   });
 
@@ -65,7 +66,9 @@ export async function routes(app: FastifyWithTypeProvider) {
       }),
     },
     handler: async (request, response) => {
-      logger.info(`Order API was called to delete order ${request.params.id}`);
+      logger.info(`Order API was called to delete order`, {
+        orderId: request.params.id,
+      });
       await newOrderUseCase.deleteOrder(request.params.id);
       response.status(204).send();
     },
