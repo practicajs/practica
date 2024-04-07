@@ -5,6 +5,7 @@
     "noImplicitAny": false,
     "removeComments": true,
     "outDir": "./.dist",
+    "sourceMap": true,
     "esModuleInterop": true
   },
   "exclude": ["node_modules"]

@@ -1,8 +1,8 @@
 {
   "name": "@practica/logger",
-  "version": "1.0.0",
+  "version": "0.0.5",
   "description": "",
-  "main": "./.dist/index.js",
+  "main": "./index.ts",
   "scripts": {
     "test": "jest --forceExit",
     "test:dev": "jest --watch --silent --runInBand",
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/practicajs/practica.git"
   },
   "dependencies": {
-    "@practica/request-context": "^0.1.0",
+    "@practica/global-context": "^0.1.0",
     "@practica/configuration-provider": "^0.0.1-alpha.1",
     "pino": "^8.5.0"
   },

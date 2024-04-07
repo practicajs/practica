@@ -20,14 +20,17 @@
   },
   "homepage": "https://github.com/practicajs/practica#readme",
   "devDependencies": {
-    "@types/node": "^17.0.33",
+    "@types/node": "^20.10.0",
     "ts-jest": "^28.0.3",
-    "typescript": "4.6.4"
+    "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@practica/logger": "^0.0.1-alpha.4",
+    "@practica/logger": "^0.0.5",
     "jest": "^28.1.0",
     "jest-sinon": "^1.0.4",
     "sinon": "^14.0.0"
+  },
+  "peerDependencies": {
+    "fastify": "4.24.3"
   }
 }

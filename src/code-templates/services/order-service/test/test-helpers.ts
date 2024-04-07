@@ -14,7 +14,11 @@ export const getAxiosInstance = (address) => {
 };
 
 export function signValidTokenWithDefaultUser() {
-  return internalSignTokenSynchronously('joe', 'admin', Date.now() + 60 * 60);
+  return internalSignTokenSynchronously(
+    'joe',
+    'admin',
+    Date.now() + 60 * 60 * 60 * 100000
+  );
 }
 
 export function signValidToken(user, role) {
@@ -40,4 +44,4 @@ function internalSignTokenSynchronously(user, roles, expirationInUnixTime) {
   return token;
 }
 
-export const exampleSecret = 'secret';
+export const exampleSecret = 'just-a-default-secret';

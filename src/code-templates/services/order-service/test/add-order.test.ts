@@ -1,7 +1,10 @@
 import axios from 'axios';
 import sinon from 'sinon';
 import nock from 'nock';
-import { startWebServer, stopWebServer } from '../entry-points/api/server';
+import {
+  startWebServer,
+  stopWebServer,
+} from '../entry-points-fastify/api/server';
 import * as testHelpers from './test-helpers';
 
 // Configuring file-level HTTP client with base URL will allow
@@ -110,6 +113,7 @@ describe('/api', () => {
       // Arrange
       const orderToAdd = {
         userId: 1,
+        countryId: 1,
         deliveryAddress: '123 Main St, New York, NY 10001',
         paymentTermsInDays: 30,
       };
