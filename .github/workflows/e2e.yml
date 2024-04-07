@@ -1,4 +1,4 @@
-name: e2e-fastify
+name: e2e
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
       - run: npm ci
 
       - name: Test
-        run: npm t -- --collectCoverage e2e-fastify
+        run: npm t -- --collectCoverage e2e
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
