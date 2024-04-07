@@ -41,6 +41,7 @@ export async function routes(app: FastifyWithTypeProvider) {
       }),
     },
     handler: async (request, response) => {
+      // Validation runs before the handler, request.params.id must be a number
       logger.info(`Order API was called to get order by id`, {
         orderId: request.params.id,
       });

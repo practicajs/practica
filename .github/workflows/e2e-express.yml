@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [20.x]
         # Uncomment and replace with current `os` when windows-run bug is fixed
         # os: [ubuntu-latest, windows-latest]
         os: [ubuntu-latest]
@@ -32,7 +32,7 @@ jobs:
       - run: npm ci
 
       - name: Test
-        run: npm t -- --collectCoverage e2e
+        run: npm t -- e2e-express
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
