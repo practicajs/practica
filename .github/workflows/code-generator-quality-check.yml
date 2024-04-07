@@ -39,7 +39,7 @@ jobs:
         with:
           directory: ./test-reports/coverage
           env_vars: OS
-          fail_ci_if_error: true
+          fail_ci_if_error: false
           flags: generator
           name: codecov-umbrella
           verbose: true

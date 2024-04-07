@@ -1,4 +1,4 @@
-name: generator-e2e
+name: e2e-express
 
 on:
   push:
@@ -32,14 +32,14 @@ jobs:
       - run: npm ci
 
       - name: Test
-        run: npm t -- e2e-express
+        run: npm t -- --collectCoverage e2e-express
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           directory: ./test-reports/coverage
           env_vars: OS
-          fail_ci_if_error: true
+          fail_ci_if_error: false
           flags: generator
           name: codecov-umbrella
           verbose: true
