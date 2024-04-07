@@ -22,7 +22,6 @@ export async function startWebServer(): Promise<AddressInfo> {
   const app = Fastify({
     logger: true,
   });
-
   app.setErrorHandler(fastifyErrorMiddleware);
   await generateOpenAPI(app);
   registerCommonPlugins(app);

@@ -85,9 +85,10 @@ Now visit our [online POSTMAN collection](https://documenter.getpostman.com/view
 
 **Note:** The API routes authorize requests, a valid token must be provided. You may generate one yourself ([see here how](../questions-and-answers.md)), or just use the default _development_ token that we generated for you 👇. Put it inside an 'Authorization' header:
 
-```Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NjIwMTY5NjIsImV4cCI6MTY5MzU1Mjk2MiwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.65ACAjHy2ZE5i_uS5hyiEkOQfkqOqdj-WtBm-w23qZQ```
+```Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzM4NTIyMTk5NzEsImRhdGEiOnsidXNlciI6ImpvZSIsInJvbGVzIjoiYWRtaW4ifSwiaWF0IjoxNzEyMjUyMjE5fQ.kUS7AnwtGum40biJYt0oyOH_le1KfVD2EOrs-ozclY0```
 
 We have the ground ready 🐥. Let's code now, just remember to run the tests (or POSTMAN) once in a while to ensure nothing breaks
+
 ## The 3 layers of a component
 
 A typical component (e.g., Microservice) contains 3 main layers. This is a known and powerful pattern that is called ["3-Tiers"](https://www.techopedia.com/definition/24649/three-tier-architecture). It's an architectural structure that strikes a great balance between simplicity and robustness. Unlike other fancy architectures (e.g. hexagonal architecture, etc), this style is more likely to keep things simple and organized. The three layers represent the physical flow of a request with no abstractions:

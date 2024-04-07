@@ -30,7 +30,7 @@
     "@practica/common-fastify-plugins": "^0.0.1",
     "@practica/configuration-provider": "^0.0.2",
     "@practica/error-handling": "^0.0.3",
-    "@practica/logger": "^0.0.4",
+    "@practica/logger": "^0.0.5",
     "@practica/validation": "^0.0.3",
     "@prisma/client": "^4.6.1",
     "@sinclair/typebox": "^0.31.28",

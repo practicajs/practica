@@ -46,6 +46,7 @@ const verifyTokenOnRequest = (
   let token: string;
   // A token comes in one of two forms: 'token' or 'Bearer token'
   const authHeaderParts = authenticationHeader.split(' ');
+
   if (authHeaderParts.length > 2) {
     // It should have 1 or 2 parts (separated by space), the incoming string has unknown structure
     return { success: false };

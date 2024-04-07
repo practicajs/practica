@@ -10,6 +10,5 @@ export function fastifyErrorMiddleware(
   const standardAppError = covertUnknownToAppError(error);
   standardAppError.isCatastrophic = false;
   const responseToRequest = errorHandler.handleError(standardAppError);
-
   reply.status(responseToRequest).send({});
 }
