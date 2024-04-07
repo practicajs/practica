@@ -8,6 +8,7 @@ export async function handleNonInteractiveCommand(options: any) {
       installDependencies: options.installDependencies,
       overrideIfExists: options.overrideIfExists,
       ORM: options.orm,
+      webFramework: options.webFramework,
       targetDirectory: options.targetDirectory || process.cwd(),
       appName: options.appName,
     });

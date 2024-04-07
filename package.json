@@ -1,6 +1,6 @@
 {
   "name": "@practica/create-node-app",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Create Node.js app that is packed with best practices AND strive for simplicity",
   "main": "./src/code-generator/index.js",
   "directories": {
@@ -11,7 +11,7 @@
     "create-node-app": "bin/cli.js"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:quick": "jest \"^((?!slow).)*$\"",
     "test:dev": "jest --silent --watch \"^((?!slow).)*$\"",
     "test:dev:verbose": "jest --watch \"^((?!slow).)*$\"",
@@ -73,15 +73,15 @@
     "@types/sinon": "^10.0.11",
     "axios": "^0.27.2",
     "execa": "^5.1.1",
-    "jest": "^27.5.1",
+    "jest": "^29.7.0",
     "jest-watch-suspend": "^1.1.2",
-    "jest-watch-typeahead": "^1.1.0",
+    "jest-watch-typeahead": "^2.2.2",
     "node-notifier": "^10.0.1",
-    "nodemon": "^2.0.15",
+    "nodemon": "^3.1.0",
     "prettier": "2.6.2",
     "sinon": "^13.0.1",
-    "ts-jest": "^27.1.5",
+    "ts-jest": "^29.1.2",
     "ts-node": "^10.7.0",
-    "typescript": "4.6.2"
+    "typescript": "5.2.2"
   }
 }

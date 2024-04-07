@@ -4,6 +4,7 @@ import execa from "execa";
 import { generationOptions } from "./generation-options";
 import { AppError } from "../error-handling";
 import { chooseORM } from "./features/choose-orm";
+import { chooseWebFramework } from "./features/choose-web-framework";
 // This is where the code generation logic lives. In high-level, based on the provided option, it creates
 // a folder, decides which code to generate, run the code through a templating engine and emit it to the target folder
 export const generateApp = async (options: generationOptions) => {
@@ -67,6 +68,10 @@ async function adjustCodeBasedOnFeatures(
   generatedAppRoot: string,
   options: generationOptions
 ) {
+  console.debug(
+    `About to adjust the copied code based on the provided options`,
+    options
+  );
   await chooseORM(generatedAppRoot, options);
-  // Other features will be added here
+  await chooseWebFramework(generatedAppRoot, options);
 }
