@@ -2,11 +2,11 @@
 
 ## You belong with us
 
-If you reached down to this page, you probably belong with us 💜. We are in an ever-going quest for better software practices. This journey can bring two things to your benefit: A lot of learning and global impact on many people's craft. Does this sounds attractive? 
+If you reached down to this page, you probably belong with us 💜. We are in an ever-going quest for better software practices. This journey can bring two things to your benefit: A lot of learning and global impact on many people's craft. Does this sounds attractive?
 
 ## Consider the shortened guide first
 
-Every small change can make this repo much better. If you intend to contribute a relatively small change like documentation change, small code enhancement or anything that is small and obvious - start by reading the [shortened guide here](/docs/docs/contribution/contribution-short-guide). As you'll expand your engagement with this repo, it might be a good idea to visit this long guide again
+Every small change can make this repo much better. If you intend to contribute a relatively small change like documentation change, small code enhancement or anything that is small and obvious - start by reading the [shortened guide here](/docs/docs/contribution/contribution-short-guide.md). As you'll expand your engagement with this repo, it might be a good idea to visit this long guide again
 
 
 ## Philosophy
@@ -17,7 +17,7 @@ Our main selling point is our philosophy, our philosophy is 'make it SIMPLE'. Th
 
 Big words, how exactly? Here are few examples:
 
-**- Simple language -** We use TypeScript because we believe in types, but we minimize advanced features. This boils down to using functions only, sometimes also classes. No abstracts, generic, complex types or anything that demand more CPU cycles from the reader. 
+**- Simple language -** We use TypeScript because we believe in types, but we minimize advanced features. This boils down to using functions only, sometimes also classes. No abstracts, generic, complex types or anything that demand more CPU cycles from the reader.
 
 **- Less generic -** Yes, you read it right. If you can code a function that covers less scenarios but is shorter and simpler to understand - Consider this option first. Sometimes one if forced to make things generic - That's fine, at least we minimized the amount of complex code locations
 
@@ -25,7 +25,7 @@ Big words, how exactly? Here are few examples:
 
 **- Prefer Node/JavaScript built-in tooling -** Some new frameworks have abstractions over some standard tooling. They have their way of defining modules, libraries and others which demand learning one more concept and being exposed to unnecessary layer of bugs. Our preferred way is the vanilla way, if it's part of JavaScript/Node - We use it. For example, should we need to group a bunch of files as a logical modules - We use ESM to export the relevant files and functions
 
-[Our full coding guide will come here soon](./docs/coding-guide.md)
+<!-- [Our full coding guide will come here soon](./docs/coding-guide.md) -->
 
 
 
@@ -93,13 +93,13 @@ The entry-point of the generated code is an example Microservice that exposes AP
 graph
       A[Services] -->|Where the API, logic and data lives| D(Example Microservice)
       A -->|Almost empty, used to exemplify<br/> Microservice communication| E(Collaborator Microservice)
-      D -->|The web layer with REST/Graph| G(Web/API layer) 
+      D -->|The web layer with REST/Graph| G(Web/API layer)
       N -->|Docker-compose based DB, MQ and Cache| F(Infrastructure)
-      D -->|Where the business lives| M(Domain layer) 
+      D -->|Where the business lives| M(Domain layer)
       D -->|Anything related with database| N(Data-access layer)
       D -->|Component-wide testing| S(Testing)
       style D stroke:#333,stroke-width:4px
-```   
+```
 
 **Libraries**
 
@@ -124,7 +124,7 @@ graph
 This solution is built around independent domains that share _almost_ nothing with others. It is recommended to start with understanding a single and small domain (package), then expanding and getting acquainted with more. This is also an opportunity to master a specific topic that you're passionate about. Following is our packages list, choose where you wish to contribute first
 
 
-    
+
 
 
 | **Package**                      	| **What**                                                  	| **Status**                                          	| **Chosen libs**                                                                                                                                                                         	| **Quick links**                             	|
