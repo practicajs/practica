@@ -68,10 +68,6 @@ async function adjustCodeBasedOnFeatures(
   generatedAppRoot: string,
   options: generationOptions
 ) {
-  console.debug(
-    `About to adjust the copied code based on the provided options`,
-    options
-  );
   await chooseORM(generatedAppRoot, options);
   await chooseWebFramework(generatedAppRoot, options);
 }

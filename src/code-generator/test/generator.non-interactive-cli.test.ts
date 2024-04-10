@@ -7,7 +7,6 @@ let emptyFolderForATest: string;
 
 beforeEach(async () => {
   emptyFolderForATest = await testHelpers.createUniqueFolder();
-  console.log(emptyFolderForATest);
 });
 
 afterEach(async () => {
@@ -132,7 +131,6 @@ describe("Non-interactive CLI component tests", () => {
 
     test("When ORM type is sequelize, then the created DAL folder has only sequelize dependency and files", async () => {
       // Arrange
-      console.log(emptyFolderForATest);
 
       // Act
       await execa("ts-node", [

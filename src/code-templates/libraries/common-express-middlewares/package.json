@@ -2,7 +2,7 @@
   "name": "@practica/common-express-middlewares",
   "version": "0.0.1",
   "description": "Common middlewares for the Express library",
-  "main": "index.ts",
+  "main": ".dist/index.js",
   "scripts": {
     "installDependencies": "npm install",
     "build": "tsc",
@@ -16,7 +16,7 @@
     "jsonwebtoken": "^8.5.1"
   },
   "keywords": [
-  "jwt",
+    "jwt",
     "authentication",
     "practica",
     "fastify"

@@ -28,12 +28,12 @@ async function adjustTheCodeToFastifyFramework(
   librariesPath: string
 ) {
   const expressFolder = path.join(microservicePath, "entry-points-express");
-  await fsExtra.rmdir(expressFolder, { recursive: true });
+  await fsExtra.rm(expressFolder, { recursive: true });
   const expressMiddlewaresFolder = path.join(
     librariesPath,
     "common-express-middlewares"
   );
-  await fsExtra.rmdir(expressMiddlewaresFolder, { recursive: true });
+  await fsExtra.rm(expressMiddlewaresFolder, { recursive: true });
   const fastifyFolderOldName = path.join(
     microservicePath,
     "entry-points-fastify"
@@ -60,12 +60,12 @@ async function adjustTheCodeToExpressFramework(
   librariesPath: string
 ) {
   const fastifyFolder = path.join(microservicePath, "entry-points-fastify");
-  await fsExtra.rmdir(fastifyFolder, { recursive: true });
+  await fsExtra.rm(fastifyFolder, { recursive: true });
   const fastifyMiddlewaresFolder = path.join(
     librariesPath,
     "common-fastify-plugins"
   );
-  await fsExtra.rmdir(fastifyMiddlewaresFolder, { recursive: true });
+  await fsExtra.rm(fastifyMiddlewaresFolder, { recursive: true });
   const expressFolderOldName = path.join(
     microservicePath,
     "entry-points-express"
