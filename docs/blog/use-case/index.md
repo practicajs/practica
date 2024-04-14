@@ -1,8 +1,8 @@
 ---
-slug: a-compilation-of-outstanding-testing-articles-with-javaScript
+slug: temporary-name
 date: 2023-08-06T10:00
 hide_table_of_contents: true
-title: The merits of the beautiful and forgotten use-case pattern
+title: About the sweet and powerful 'use case' code pattern
 authors: [goldbergyoni]
 tags:
   [
@@ -122,39 +122,50 @@ export async function addOrderUseCase(orderRequest: OrderRequest): Promise<Order
 }
 ```
 
-Quite easy to understand the flow, right? Whether the underlying implementation is 500 lines, or 50K lines, wouldn't you want to start the exploration this way? I believe it's a gift to the reader. Note how it doesn't share too much details, but tells enough for one to understand WHAT is happening here and WHO is doing that. In a way, it's kind of the code yellow pages.
+Quite easy to understand the flow, right? Whether the underlying implementation is 500 lines, or 50K lines, wouldn't you want to start the exploration this way? I believe it's a gift to the reader. Note how it doesn't share too much details, but tells enough for one to understand WHAT is happening here and WHO is doing that.
 
 Implementation-wise, one create a use-case file with a single function per each interaction with the system (e.g., a new post comment, a request to delete a user, etc). The use case function is called by the API controller, then it orchestrates various services and repositories.
 
 Easy start, but doing it right demand a little thinking about the hidden merits of it, some gotchas and a few implementation best practices
 
 
-## Some surprising merits
+## The merits, including some unusual ones
 
-### 1. The navigation catalog your reader always craved for
+### 1. A navigation index
 
-Ideas: When visiting a books library, one doesn't skim through all the books to find a specific topic of interest. We use a navigational system to find our paths in this information system
-
-Like-wise in code, the reader usually seek a specific area to put some new feature or bug fix. 
-
-Fix the problem, in the domain layer, show code, I can know navigate, avoid accidental complexity, but wait' there are some surprising merits here
-
-The sudden huge service, a gift to the reader, hitchuker guide to the system, yellow pages
-
-Visual: better tree, Library Card Catalog?
+When seeking a specific book in the local library, the visitor doesn't have to skim through all the shelves to find a specific topic of interest. A Library is an information system that uses a navigational system, wayfinding signage, to highlight the path to a specific information area.
 
 
-### 2. Deferred complexity
+![Library catalog](./library-catalog.webp)
+*The library catalog redirects the reader to the area of interest*
 
-Ideas: Tree visual, 1. Reduced complexity - spread it, avoid meeting it, make it smaller, deferred complexity, spreaded complexity, "tackle complexity at the heart of software"
+Likewise in our story, the developer seeks to find the pricing code so she can fix that nasty bug. The 'use case' is her hitchhikers guide to the app, or the yellow pages showing her where to find her desired entry. True, there are alternative techniques to make a self-explanatory design like modules and folders. Use case though is a much more intuitive: it shows only the relevant areas (and not 50 unrelated modules), it tells *when specifically*  this module is used, what is the *specific* entry point and which *specific* parameters are passed.
 
-Small units
+ 
+### 2. Deferred and spread complexity
 
-Nice phrasing: one second before falling the complexity cliff, give your reader a grace and a mapOne can't eliminate complexity, but we can reduce the chances of someone to meet it
+As the code reader begins her journey with implementation services, she is immediately plunged into the details.
+
+As the code reader journey starts with implementation-services, she is by design plunged into the details. This immersion exposes her to both product and technical complexities right from the start. In our typical code example, the code must first use a dependency injection system to factor some classes, check for nulls in the state and get some values from the distributed config system - all before addressing the task at hand. This is called *accidental complexity*. Tackling complexity is one of the finest art of app design, as the code planner you can't just eliminate complexity, but you may at least reduce the chances of someone meeting it.
+
+![The blocking-complexity tree](./blocking-complexity-tree.jpg)
+*The accidental-complexity tree: A visitor aiming to reach a specific leaf must navigate through all the intervening poisoned fruits.*
+
+This is where the 'Use Case' approach shines: it encourages using first only high-level product steps and lightweight-technical details. It shifts the coder's and reader's brain into thinking about 'What', and 'Who', rather than the 'How'. She can easily ignore steps that are unrelated with her work, complexity was avoided. A true strategic win.
+
+![The spread-complexity tree](./deferred-complexity-tree.jpg)
+*The spread-complexity tree: Complexity is pushed to the periphery, allowing the reader to navigate directly to the essential fruits only.*
+
 
 ### 3. A practical workflow that combines outside-in and inside-out
 
 Ideas: before delving into the bits and bits, functions, start your implementation journey by deciding who are the key services, repositories that will act here. Put an empty skeletons, this become your TODO list. This is also an ideal chance to think about the design, see next
+
+Some steps might call for early actions like...
+
+Now you're not the reader but rather the coder
+
+The use-case is your todo list that highlights actions items and risks
 
 When looking from high-level standpoint you might realize dependencies and risks - "
 
