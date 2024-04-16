@@ -144,7 +144,6 @@ Likewise in our story, the developer seeks to find the pricing code so she can f
  
 ### 2. Deferred and spread complexity
 
-As the code reader begins her journey with implementation services, she is immediately plunged into the details.
 
 As the code reader journey starts with implementation-services, she is by design plunged into the details. This immersion exposes her to both product and technical complexities right from the start. In our typical code example, the code must first use a dependency injection system to factor some classes, check for nulls in the state and get some values from the distributed config system - all before addressing the task at hand. This is called *accidental complexity*. Tackling complexity is one of the finest art of app design, as the code planner you can't just eliminate complexity, but you may at least reduce the chances of someone meeting it.
 
@@ -157,63 +156,121 @@ This is where the 'Use Case' approach shines: it encourages using first only hig
 *The spread-complexity tree: Complexity is pushed to the periphery, allowing the reader to navigate directly to the essential fruits only.*
 
 
-### 3. A practical workflow that combines outside-in and inside-out
+### 3. A practical workflow that promotes efficiency
 
-Ideas: before delving into the bits and bits, functions, start your implementation journey by deciding who are the key services, repositories that will act here. Put an empty skeletons, this become your TODO list. This is also an ideal chance to think about the design, see next
+When tasked with coding a new flow, how do you start? Probably with some requirements reading, then creating an API route, and potentially some high-level tests (e.g., component tests). What is the next sensible step to start the coding phase? Starting with a use-case pushes you toward a great outside-in workflow that reveals risks early.
 
-Some steps might call for early actions like...
-
-Now you're not the reader but rather the coder
-
-The use-case is your todo list that highlights actions items and risks
-
-When looking from high-level standpoint you might realize dependencies and risks - "
-
-Risk-based development, identify integrations, example: no email token!,
-
-### 3. The optimal design viewpoint
-
-Code example: design doesn't fit
-
-It's not just a nice lego craft, it's a verification that the various pieces fit
-
-Ideas: A sensible break-down of the overall problem into smaller units that make sense. It's the perfect design stand-point: not just 10,000ft diagram, not high-level layers, but rather a description of the concrete units that will solve the problem, including the technology! (e.g., validation framework). It's a perfect angle to realize where things don't make sense: 
-
-sendEmail(fullOrder)
-saveOrder(OrderInsert)
-
-Design-wise, it's much better than TDD as it doesn't deal with one-unit, 
-
-small services!
-
-show how service breakdown doesn't make sense - high level view, better than TDD, 2. concise domain. The story when elad screwed
-
-### 4. Better coverage reports that prioritize testing
+While coding a new use-case the various steps are noted down. Each step is a call to some service or repository functions, sometimes before they even exist. These steps naturally become your TODO list, a live document that tells not only what should be implemented but also where risky gotchas hide. Consider this use case:
 
 
-Ideas: coverage reports - Genuine test coverage insights as it tells which Features are covered. Someone tells you that 70% of your code are covered, with testing, how bad? not sure. On the other hand, 90% covered, but then you open the report and see that add-order - your main revenue generator - 
+```javascript
+export async function addOrderUseCase(orderRequest: OrderRequest) {
+  const orderWithPricing = calculateOrderPricing(validatedOrder);
+  const purchasingCustomer = await assertCustomerExists(orderWithPricing.customerId);
+  const savedOrder = await insertOrder(orderWithPricing);
+  await sendSuccessEmailToCustomer(savedOrder, purchasingCustomer.email);
+}
+```
 
-Visual: picture of coverage report
+Looking at these steps above, before you're bogged with the implementation details, call for imperative early actions:
 
-it prioritizes coverage report by *business* priority
+- sendSuccessEmailToCustomer - You didn't get from the Ops team a mail sending service with a valid token! Sometimes this demands an approval and might last more than a week (believe me, I know). Acting *now*, before spending 3 days on coding, can make a big difference
+- calculateOrderPricing - This reminds you that the product team didn't share with you the last pricing definition, pinging them *now* before they are off for a vacation can make a great deal to the delivery date
+- assertCustomerExists - This call goes to an external Microservice which belongs to the User Management team. Do they even provide a route to check for customer existence? If they don't, asking too late will be your blocker down the road
+
+Not only this high-level thinking highlights your tasks and risks, it's also an optimal spot to start the design from:
 
 
-### 5. Achieving a domain-driven code in a simple manner
+### 4. The optimal design viewpoint
 
-We all heard high-words about aligning our code with the product domain, DDD, screaming architecture, to name a few. In fact, the commonality among all the reputable software architecture is the advice to separate the domain code from the technical layers. This advice strike as abstract theoretic advice to many. The use case pattern brings these ideas to our code in a simple form - this is where the product lingo is formalized
+Early when coding a use-case, the various types and functions signature must be defined. Maybe even return some example dummy data from these functions. This implicitly becomes a great design drill that break-down the overall problem into small units that actually fit. 
 
-Ideas: Great communication asset - share with team lead, domain language/screaming (the hook between product and code), , some quote from DDD, 
+This allows discovering early when the puzzle pieces don't fit while taking into the account the underlying technologies. For example, once I coded a use case like the follows:
 
-### 6. Natural observability spans
+```javascript
+await sendSuccessEmailToCustomer(savedOrder, purchasingCustomer.email, orderId);
+const savedOrder = await insertOrder(orderWithPricing);
+```
 
- Open-telemetry, show abstraction, show Jaegear, 
+In my initial plan, the order is saved after sending the email. Then I realized that the Order Id is needed for the email, but to obtain one the order must be saved to DB first. Unfortunately, it turned out that my ORM is not returning the ID of saved entities. My design didn't work, I realized this before spending days on details. Unlike 10,000 ft design diagrams, designing with a use-case mind the reality constraints.
+
+
+### 5. Better coverage reports
+
+Say you have 82.35% testing code coverage, are you happy and confident to deploy? Anyone having below 100% must ask - which code *exactly* is not covered with testing. Is this some nitty-gritty niche code or actually critical business operations that are not fully tested? Not easy to tell by looking at typical coverage reports, the viewer has to to go through many implementation files to draw a conclusion. 
+
+Use-cases make this a little better. When looking specifically into the use-cases folder, we get *'features coverage'*, it's shown which user features and steps are not covered by testing:
+
+![Use case coverage](./use-case-coverage.PNG)
+*The use-cases folder test coverage report, some use-cases are only partially tested*
+
+In the example above, the code has nice overall coverage, 82.35%. What about the remaining 17.65% code? Looking at the report, it's easy to note that the 'payment-use-case' is not tested. This is the flow where revenues are generated, a critical financial process which has a very low test coverage. This significant data obviously calls for actions. Use-cases coverage allow prioritizing testing by business priority rather than by technical function.
+
+### 6. Practical domain-driven code
+
+"Commit the team to exercising that domain language relentlessly in all communication within the team and in the code", this advice from the book 'Domain-Driven Design' suggests that the code should embrace product narratives. By doing so, the various stakeholders will share a common language. While this sounds sensible, it is also a little vague - how and where should this happen?
+
+Use-cases bring this idea down to earth: the use-case files are named after user journeys in the system (e.g., purchase-new-goods), the use-case code itself is encouraged to describe the flow in a product language. Should the word 'cut' in used by folks nearby the company water-cooler to describe a price deduction, then the use case should call a function 'calculatePriceCut' to be aligned with the domain language.
+
+### 7. Consistent observability
+
+I bet you encountered the situation when you turn the log level to 'Debug' (or any other verbose mode) and gets gazillion, overwhelming, and unbearable amount of log statements. Great chances that you also met the opposite when setting the logger level to 'Info' but there are also almost zero logging for the routes that you're looking into. It's hard to formalize when exactly each type of logging should be invoked, the result is a typical inconsistent and lacking observability.
+
+Use-cases can drive trustworthy and consistent monitoring by taking advantage of the produced use-case steps. Since the precious work of breaking-down the flow into meaningful steps was already done (e.g., send-email, charge-credit-card), each step can produce the desired level of logging. For example, one team's approach might be to emit logger.info on a use-case start and use-case end, and then each step will emit logger.debug. Whatever the chosen specific level is, use-case steps bring consistency and automation. Put aside logging, the same can be applied with any other observability technique like OpenTelemetry to produce custom spans for every flow step.
+
+
+The implementation though demands some thinking, we better not mess a use-case with tons of log statement:
+
+```javascript
+// ❗️Verbose use case
+export async function addOrderUseCase(orderRequest: OrderRequest): Promise<Order> {
+  logger.info("Add order use case - Adding order starts now", orderRequest);
+  const validatedOrder = validateAndCoerceOrder(orderRequest);
+  logger.debug("Add order use case - The order was validated", validatedOrder);
+  const orderWithPricing = calculateOrderPricing(validatedOrder);
+  logger.debug("Add order use case - The order pricing was decided", validatedOrder);
+  const purchasingCustomer = await assertCustomerHasEnoughBalance(orderWithPricing);
+  logger.debug("Add order use case - Verified the user balance already", purchasingCustomer);
+  const returnOrder = mapFromRepositoryToDto(purchasingCustomer as unknown as OrderRecord);
+  logger.info("Add order use case - About to return result", returnOrder);
+  return returnOrder;
+}
+```
+
+One way around this is creating a step wrapper function that takes care to make each step observable. The following function will get called for each step:
+
+```javascript
+import { openTelemetry } from "@opentelemetry";
+async function runUseCaseStep(stepName: string, stepFunction: () => unknown) {
+  logger.debug(`Use case step ${stepName} starts now`);
+  // Create Open Telemetry custom span
+  openTelemetry.startSpan(stepName);
+  return await stepFunction();
+}
+```
+
+Now the use-case gets automated and consistent observability:
+
+```javascript
+export async function addOrderUseCase(orderRequest: OrderRequest) {
+  // 🖼 This is a use case - the story of the flow. Only simple, flat and high-level code is allowed
+  const validatedOrder = await runUseCaseStep("Validation", validateAndCoerceOrder.bind(null, orderRequest));
+  const orderWithPricing = await runUseCaseStep("Calculate price", calculateOrderPricing.bind(null, validatedOrder));
+  await runUseCaseStep("Send email", sendSuccessEmailToCustomer.bind(null, orderWithPricing));
+}
+```
+
+The code is a little simplified, in real-world wrapper you'll have to put try-catch and cover other corner cases, but it makes the core point: each step is a meaningful milestone in the user's journey that gets *automated and consistent* observability.
 
 ## Some gotchas to be prepared for
 
-
 ### 1. Transactions
 
+Not the level of details the reader is interested at, Aggregate steps, or externalize the transaction, 
+
 ### 2. Small and simple API calls
+
+Straightforward routes, not journey, CRUD app? don't use
 
 ## Best practices for implementation
 
