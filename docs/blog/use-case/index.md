@@ -18,7 +18,7 @@ tags:
 
 ## Intro: A sweet pattern that got lost in time
 
-When was the last time you introduced a new pattern to your code? Your API controller is probably calling a code 'service', how about we place some mediator between the two and gain a handful of advantages? The 'use case' code pattern is a sweet, powerful, and easy to implement idea that can strategically elevate your code quality in a short time.
+When was the last time you introduced a new pattern to your code? Your API controller is probably calling a code 'service', how about we place some mediator between the two and gain a handful of advantages? The 'use case' code pattern is a sweet, powerful, and easy to implement idea that can strategically elevate your backend code quality in a short time.
 
 The term 'use case' means many different things in our industry. It's being used by product folks to describe a user journey, also being used in multiple architecture books to describe vague high-level concepts (e.g., clean-architecture use case, DDD application layer). This article is about the _code level_ pattern which emphasize how practically it can be implemented and the surprising merit it brings. Since it's sensible and intuitive, I bet that you already apply it implicitly to some extent - but it's only when properly formalizing it and doing it _right_ will truly unleash all of its power.
 
@@ -30,11 +30,14 @@ But let's start first by looking at a common problem and related code that calls
 
 ## The problem: too many details, too soon
 
-Consider a typical case where a developer is asked to fix some bug over a codebase she didn't deal with in the last couple of months. The app is about some electronic shop, our developer has to fix something related with the new orders flow and _specifically_ something related with the price calculation.
+Imagine a developer, returning to a codebase she hasn't touched in months, tasked with fixing a bug in the 'new orders flow'—specifically, an issue with price calculation in an electronic shop app.
 
-She starts her journey, and for a start all feels dandy and peachy:
 
-**- 🤗 Testing -** She starts her journey off the automated tests to learn about the flow from outside-in approach. The code is short and standard as should be:
+Her journey begins promisingly smooth:  
+
+She starts her journey, and for a start all feels smooth and peachy:
+
+**- 🤗 Testing -** She starts her journey off the automated tests to learn about the flow from an outside-in approach. The testing code is short and standard, as should be:
 
 ```javascript
 test("When adding an order with 100$ product, then the price charge should be 100$ ", async () => {
@@ -42,7 +45,7 @@ test("When adding an order with 100$ product, then the price charge should be 10
 })
 ```
 
-**- 🤗 Controller -** She moves to skim through the implementation and start from the API routes. It hard to mess a controller code which is by design thin and simple:
+**- 🤗 Controller -** She moves to skim through the implementation and starts from the API routes. Unsurprisingly, the Controller code is straightforward:
 
 ```javascript
 app.post("/api/order", async (req: Request, res: Response) => {
@@ -52,9 +55,9 @@ app.post("/api/order", async (req: Request, res: Response) => {
 });
 ```
 
-Smooth sailing thus far. In ~90% of the apps that I reviewed, a controller would call a Service where the actual implementation starts. She navigates into the order service to find where and how to fix that pricing bug
+Smooth sailing thus far, almost zero complexity. Typically, the controller would now hand off to a Service where the real implementation begins, she navigates into the order service to find where and how to fix that pricing bug.
 
-**- 😲 The service -** Suddenly! She is thrown into hundred lins of code (at best) with tons of details. The majority of the information she is exposed to is not relevant to her task. There is a class with some state, and a base class it inherits from, and a dependency injection framework that wire all the dependent services, and more. Here is a sneak peak from a real-world service, I removed many of the details to simplify a bit. Read it, feel it:
+**- 😲 The service -** Suddenly! She is thrown into hundred lins of code (at best) with tons of details. She encounters classes with intricate states, inheritance hierarchies, a dependency injection framework that wire all the dependent services, and other boilerplate code. Here is a sneak peak from a real-world service, already simplified for brevity. Read it, feel it:
 
 
 ```javascript
@@ -80,25 +83,14 @@ export class OrderService : ServiceBase<OrderDto> {
       const savedOrder = await tryAddUserWithLegacySystem(validatedOrder);
       return savedOrder;
     }
-    // And it goes on and on with the help of a handful other functions
+    // And it goes on and on until the pricing module is mentioned
 }
-
 
 ```
 
-So many details upfront, which of them is important for her to learn now? How can she find that pricing module? 
+So many details and things to learn upfront, which of them is crucial for her to learn now before dealing with her task? How can she find where is that pricing module?
 
-She is not happy:
-
-**🗺 1. Hard to find her way -** It's hard to tell which pieces are involved, easily get the high-level flow, and from there easily deepen into the module of interest.
-
-**🎨2. Bad design viewpoint -** If she need to adjust the flow, it's hard to reason about it and propose changes when all the pieces and details are tightly coupled.
-
-**🧩2. Accidental complexity -** Right off the batt, she must make herself acquaintance with a handful of product and technical narratives. She just fell off the complexity cliff, from a zero-complexity controller straight into a 1000 pieces puzzle. Many of them are unrelated with her task. This moment in time is called 'accidental complexity', where a system is designed in a way that details meet the occasional reader early and unnecessarily. Some may suggest that pushing complexity to the edges is the holy grail of a well designed software.
- 
-
-[Image the complexity tree]
-
+She is not happy. Right off the bat, she must make herself acquaintance with a handful of product and technical narratives. She just fell off the complexity cliff: from a zero-complexity controller straight into a 1000-piece puzzle. Many of them are unrelated to her task.
 
 ## The use-case pattern 
 
@@ -122,7 +114,7 @@ export async function addOrderUseCase(orderRequest: OrderRequest): Promise<Order
 }
 ```
 
-Quite easy to understand the flow, right? Whether the underlying implementation is 500 lines, or 50K lines, wouldn't you want to start the exploration this way? I believe it's a gift to the reader. Note how it doesn't share too much details, but tells enough for one to understand WHAT is happening here and WHO is doing that.
+Quite easy to understand the flow, right? Whether the underlying implementation is 500 lines, or 5000 lines, wouldn't you want to start the exploration this way? I believe it's a gift to the reader. Note how it doesn't share too much details, but tells enough for one to understand WHAT is happening here and WHO is doing that.
 
 Implementation-wise, one create a use-case file with a single function per each interaction with the system (e.g., a new post comment, a request to delete a user, etc). The use case function is called by the API controller, then it orchestrates various services and repositories.
 
@@ -241,7 +233,7 @@ One way around this is creating a step wrapper function that takes care to make 
 
 ```javascript
 import { openTelemetry } from "@opentelemetry";
-async function runUseCaseStep(stepName: string, stepFunction: () => unknown) {
+async function runUseCaseStep(stepName, stepFunction) {
   logger.debug(`Use case step ${stepName} starts now`);
   // Create Open Telemetry custom span
   openTelemetry.startSpan(stepName);
@@ -249,7 +241,7 @@ async function runUseCaseStep(stepName: string, stepFunction: () => unknown) {
 }
 ```
 
-Now the use-case gets automated and consistent observability:
+Now the use-case gets automated and consistent transparency:
 
 ```javascript
 export async function addOrderUseCase(orderRequest: OrderRequest) {
@@ -262,32 +254,97 @@ export async function addOrderUseCase(orderRequest: OrderRequest) {
 
 The code is a little simplified, in real-world wrapper you'll have to put try-catch and cover other corner cases, but it makes the core point: each step is a meaningful milestone in the user's journey that gets *automated and consistent* observability.
 
-## Some gotchas to be prepared for
+## Implementation best practices
 
-### 1. Transactions
+### 1. Dead-simple 'no code'
 
-Not the level of details the reader is interested at, Aggregate steps, or externalize the transaction, 
+Since use-cases are mostly about zero complexity, use no code constructs but flat calls to functions. No If/Else, no switch, no try/catch, nothing, only a simple list of steps. While ago I decided to put *only one* If/Else in a use-case: 
 
-### 2. Small and simple API calls
+```javascript
+export async function addOrderUseCase(orderRequest: OrderRequest) {
+  const validatedOrder = validateAndCoerceOrder(orderRequest);
+  const purchasingCustomer = await assertCustomerHasEnoughBalance(validatedOrder);
+  if (purchasingCustomer.isPremium) {//❗️
+    sendEmailToPremiumCustomer(purchasingCustomer);
+    // This easily will grow with time to multiple if/else
+  }
+}
+```
 
-Straightforward routes, not journey, CRUD app? don't use
+A month later when I visited the code above there were already three nested If/elses. Year from now the function above will host a typical imperative code with many nested branches. Avoid this slippery road by putting a very strict border, put the conditions within the step functions:
 
-## Best practices for implementation
 
-### 1. Combine product and tech language
+```javascript
+export async function addOrderUseCase(orderRequest: OrderRequest) {
+  const validatedOrder = validateAndCoerceOrder(orderRequest);
+  const purchasingCustomer = await assertCustomerHasEnoughBalance(validatedOrder);
+  await sendEmailIfPremiumCustomer(purchasingCustomer); //🙂
+}
+```
 
-### 2. Combine product and tech language
-- Best practices - meaningful params - make it a story, no destructure, no if/else, the product language, one calls another, 
-- No try-catch
-- Less than 10 dead-simple lines
-- Bonus: linter
-- File name
-- No destruct
-- Immutable
-- Mappers
-- A use-case might another use-case
-- No specifics, know WHICH, not WHAT, not HOW
+### 2. Find the right level of specificity
 
+The finest art of a great use case is finding the right level of details. At this early stage, the reader is like a traveler who uses the map to get some sense of the area, or find a specific road. Definitely not learn about every road in the country. On the other hand, a good map doesn't show only the main highway and nothing else. For example, the following use-case is too short and vague:
+
+```javascript
+export async function addOrderUseCase(orderRequest: OrderRequest) {
+  const validatedOrder = validateAndCoerceOrder(orderRequest);
+  const finalOrderToSave = await applyAllBusinessLogic(validatedOrder);//🤔
+  await insertOrder(finalOrderToSave);
+}
+```
+
+The code above doesn't tell a story, neither eliminate some paths from the journey. Conversely, the following code is doing better in telling the story brief:
+
+```javascript
+export async function addOrderUseCase(orderRequest: OrderRequest) {
+  const validatedOrder = validateAndCoerceOrder(orderRequest);
+  const pricedOrder = await calculatePrice(validatedOrder);
+  const purchasingCustomer = await assertCustomerHasEnoughBalance(orderWithPricing);
+  const orderWithShippingInstructions = await addShippingInfo(pricedOrder, purchasingCustomer);
+  await insertOrder(orderWithShippingInstructions);
+}
+```
+
+Things get a little more challenging when dealing with long flows. What if there a handful of important steps, say 20? what if multiple use-case have a lot of repetition and shared step? Consider the case where 'admin approval' is a multi-step process which is invoked by a handful of different use-cases? When facing this, consider breaking-down into multiple use-cases where one is allowed to call the other.
+
+### 3. When have no choice, control the DB transaction from the use-case
+
+What if step 2 and step 5 both deal with data and must be atomic (fail or succeed together)? Typically you'll handle this with DB transactions, but since each step is discrete, how can a transaction be shared among the coupled steps?
+
+If the steps take place one after the other, it makes sense to let the downstream service/repository handle them together and abstract the transaction from the use-case. What if the atomic steps are not consecutive? In this case, though not ideal, there is no escape from making the use-case acquaintance with a transaction object:
+
+```javascript
+export async function addOrderUseCase(orderRequest: OrderRequest) {
+  // 🖼 This is a use case - the story of the flow. Only simple, flat and high-level code is allowed
+  const transaction = Repository.startTransaction();
+  const purchasingCustomer = await assertCustomerHasEnoughBalance(orderRequest, transaction);
+  const orderWithPricing = calculateOrderPricing(purchasingCustomer);
+  const savedOrder = await insertOrder(orderWithPricing, transaction);
+  const returnOrder = mapFromRepositoryToDto(savedOrder);
+  Repository.commitTransaction(transaction);
+  return returnOrder;
+}
+```
+
+### 4. Aggregate small use-cases in a single file
+
+A use-case file is created per user-flow that is triggered from an API route. This model make sense for significant flows, how about small operations like getting an order by id? A 'get-order-by-id' use case is likely to have 1 line of code, seems like an unnecessary overhead to create a use-case file for every small request. In this case, consider aggregating multiple operations under a single conceptual use-case file. Here below for example, all the order queries co-live under the query-orders use-case file:
+
+```javascript
+// query-orders-use-cases.ts
+export async function getOrder(id) {
+  // 🖼 This is a use case - the story of the flow. Only simple, flat and high-level code is allowed
+  const result = await orderRepository.getOrderByID(id);
+  return result;
+}
+
+export async function getAllOrders(criteria) {
+  // 🖼 This is a use case - the story of the flow. Only simple, flat and high-level code is allowed
+  const result = await orderRepository.queryOrders(criteria);
+  return result;
+}
+```
 
 ## Closing: start today, almost zero overhead
 
@@ -295,5 +352,30 @@ Just save time, no tooling, no big changes, it's a sweet pattern that meant to l
 
 
 ## Tasks
-Titles: title: The beautiful, powerful, and overlooked 'use case' code pattern
 
+Titles:
+
+- The beautiful, powerful, and overlooked 'use case' code pattern
+- The beautiful use-case code pattern
+- About the beautiful use-case code pattern
+- The Power and beauty of the Use-Case Code Pattern in Application Development
+- The Power and beauty of the Use-Case Code Pattern
+
+## Ideas
+
+- Title
+- Nice logging view
+- Nice open-telemetry view
+- Bonus: linter
+- No destruct
+- BP: Immutable, Mappers
+- meaningful params - make it a story, 
+- Diagram for 1st paragraph that shows where
+
+## How to promote
+
+- Reddits with upvotes buy
+- HN
+- FB
+- Whatsapps
+- 
