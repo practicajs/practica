@@ -327,41 +327,8 @@ export async function getAllOrders(criteria) {
 
 ## Closing: Easy to start, use everywhere
 
-Start tomorrow - ROI, No tooling, close to zero learning, no refactor
+If you find it valuable, you'll also get great return for your modest investment: No fancy tooling is needed, the learning time is close to zero (in fact, you just read one of the longest article on this matter...). There is also no need to refactor a whole system rather gradually implement per-feature.
 
-Expand - Use in many places. While it fits great a backend app that host user flows, it can be expanded to be a facade... Creating a library? make it the facade for new contributors. Crafting a frontend component? declare the core actors at the function top, events, initial data, declare the core hooks, the reader get introduced. Module
+Once you become accustomed to using it, you’ll find that this technique extends well beyond API routes. It’s equally beneficial for managing message queues subscriptions and scheduled jobs. Backend-aside, use it as the facade of every module or library - the code that is being called by the entry file and orchestrates the internals. The same idea can be applied in Frontend as well: declare the core actors at the component top level. Without implementation details, just put the reference to the component's event handlers and hooks - now the reader knows about the key events that will drive this component.
 
-Simplicity wins - Maybe by this stage, you think a little like me: It's a sweet pattern that meant to live in every piece of software. Yes, we didn't go through rocket science, AI, deep. In a land where complexity is the key enemy, simple simple ideas can be more powerful than sophisticated tooling. 'Simplicity complexity'
-
-State of mind
-
-## Personal notes, Yoni
-
-Titles:
-
-- The beautiful, powerful, and overlooked 'use case' code pattern
-- The beautiful use-case code pattern
-- About the beautiful use-case code pattern
-- The Power and beauty of the Use-Case Code Pattern in Application Development
-- The Power and beauty of the Use-Case Code Pattern
-- The hidden power of the Use-Case Code Pattern
-
-## Ideas
-
-- Title
-- Opening, closing
-- Nice logging view
-- Nice open-telemetry view
-- Bonus: linter
-- No destruct
-- BP: Immutable, Mappers
-- meaningful params - make it a story, 
-- Diagram for 1st paragraph that shows where
-
-## How to promote
-
-- Reddits with upvotes buy
-- HN
-- FB
-- Whatsapps
-- 
+You might think this all sounds remarkably straightforward—and it is. My apologies, this article wasn't about cutting-edge technologies. Neither did it cover shiny new dev toolings or AI-based rocket-science. In a land where complexity is the key enemy, simple ideas can be more impactful than sophisticated tooling and the Use-case is a powerful and sweet pattern that meant to live in every piece of software.
