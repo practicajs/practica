@@ -2,7 +2,7 @@
   "name": "@practica/common-fastify-plugins",
   "version": "0.0.1",
   "description": "Common plugins for the Fastify framework",
-  "main": "index.ts",
+  "main": ".dist/index.js",
   "scripts": {
     "installDependencies": "npm install",
     "build": "tsc",
