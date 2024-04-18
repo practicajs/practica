@@ -1,6 +1,6 @@
 ---
 slug: about-the-sweet-and-powerful-use-case-code-pattern
-date: 2023-08-06T10:00
+date: 2024-04-22T10:00
 hide_table_of_contents: true
 title: About the sweet and powerful 'use case' code pattern
 authors: [goldbergyoni]
@@ -8,6 +8,7 @@ tags:
   [
     node.js,
     use-case,
+    clean-architecture,
     javascript,
     tdd,
     workflow,
