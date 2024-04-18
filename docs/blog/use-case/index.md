@@ -174,7 +174,7 @@ Say you have 82.35% testing code coverage, are you happy and feeling confident t
 
 Use-cases simplifies the coverage coverage digest: when looking directly into the use-cases folder, one gets *'features coverage'*, a unique look into which user features and steps lack testing:
 
-![Use case coverage](./use-case-coverage.PNG)
+![Use case coverage](./use-case-coverage.png)
 *The use-cases folder test coverage report, some use-cases are only partially tested*
 
 See how the code above has an excellent overall coverage, 82.35%. But what about the remaining 17.65% code? Looking at the report triggers a red flag: the unusual 'payment-use-case' is not tested. This flow is where revenues are generated, a critical financial process which as turns out has a very low test coverage. This significant observation calls for immediate actions. Use-case coverage thus not only helps in understanding what parts of your application are tested but also prioritizes testing efforts based on business criticality rather than mere technical functionality.
