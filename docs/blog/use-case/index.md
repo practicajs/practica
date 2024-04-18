@@ -22,7 +22,7 @@ When was the last time you introduced a new pattern to your code? The use-case p
 
 The term 'use case' means many different things in our industry. It's being used by product folks to describe a user journey, mentioned by various famous architecture books to describe vague high-level concepts. this article focuses on its practical application at the *code level* by emphasizing its surprising merits how to implement it correctly.
 
-Technically, the use-case pattern code belongs between the controller (e.g., API routes) and the business logic services (like those calculating or saving data). The use-case code is called by the controller and tells in high-level words the flow that is about to happen in a simple manner. Doing so increases the code readability, navigability, pushes complexity toward the edges, improves observability and 3 other merits that are shown below with examples.
+Technically, the use-case pattern code belongs between the controller (e.g., API routes)**** and the business logic services (like those calculating or saving data). The use-case code is called by the controller and tells in high-level words the flow that is about to happen in a simple manner. Doing so increases the code readability, navigability, pushes complexity toward the edges, improves observability and 3 other merits that are shown below with examples.
 
 But before we delve into its mechanics, let's first touch on a common problem it aims to address and see some code that calls for trouble.
 
