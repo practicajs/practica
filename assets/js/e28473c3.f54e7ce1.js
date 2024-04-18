@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpractica_docs=self.webpackChunkpractica_docs||[]).push([[7886],{118:a=>{a.exports=JSON.parse('{"label":"dotenv","permalink":"/blog/tags/dotenv","allTagsPath":"/blog/tags","count":2}')}}]);

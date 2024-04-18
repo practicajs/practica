@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpractica_docs=self.webpackChunkpractica_docs||[]).push([[5273],{2016:a=>{a.exports=JSON.parse('{"label":"node.js","permalink":"/blog/tags/node-js","allTagsPath":"/blog/tags","count":7}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpractica_docs=self.webpackChunkpractica_docs||[]).push([[3255],{5104:a=>{a.exports=JSON.parse('{"label":"clean-architecture","permalink":"/blog/tags/clean-architecture","allTagsPath":"/blog/tags","count":1}')}}]);
