@@ -1,0 +1,17 @@
+# build artifacts
+node_modules/
+.dist/
+
+# editor files
+.vscode/
+.idea/
+
+# bundler cache
+.turbo/
+
+# coverage reports
+test-reports/
+coverage/
+
+# tmp files
+tmp/
