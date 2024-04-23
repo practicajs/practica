@@ -25,7 +25,7 @@ Your developer experience would look as follows: Generate our starter using the 
 
 ## 90 seconds video
 
-<iframe width="1024" height="768" src="https://www.youtube.com/embed/F6kAs2VEcKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="768" src="https://www.youtube.com/embed/F6kAs2VEcKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## How to get started
 
