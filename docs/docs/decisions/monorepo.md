@@ -30,35 +30,35 @@ sidebar_label: Monorepo
   </tr>
   <tr valign="top">
     <td><b>Community and maintenance</b></td>
-    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Huge eco-system and commercial-grade maintenance</td>
-    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Trending, commercial-grade maintenance</td>
+    <td><img src="/docs/static/img/docs/decisions/full.png"/><br/><br/>Huge eco-system and commercial-grade maintenance</td>
+    <td><img src="/docs/static/img/docs/decisions/full.png"/><br/><br/>Trending, commercial-grade maintenance</td>
     <td>
-      <img src="/img/docs/decisions/partial.png"/><br/><br/>Not maintained anymore</td>
-    <td><img src="/img/docs/decisions/almost-full.png"/><br/><br/>Solid</td>
+      <img src="/docs/static/img/docs/decisions/partial.png"/><br/><br/>Not maintained anymore</td>
+    <td><img src="/docs/static/img/docs/decisions/almost-full.png"/><br/><br/>Solid</td>
   </tr>
   <tr valign="top">
     <td><b>❗Encourage component autonomy</b></td>
-    <td><img src="/img/docs/decisions/partial.png"/><br/><br/>Packages are highly coupled</td>
-    <td><img src="/img/docs/decisions/almost-full.png"/><br/><br/>Workflow is coupled</td>
-    <td><img src="/img/docs/decisions/almost-full.png"/><br/><br/>npm link bypasses the SemVer</td>
+    <td><img src="/docs/static/img/docs/decisions/partial.png"/><br/><br/>Packages are highly coupled</td>
+    <td><img src="/docs/static/img/docs/decisions/almost-full.png"/><br/><br/>Workflow is coupled</td>
+    <td><img src="/docs/static/img/docs/decisions/almost-full.png"/><br/><br/>npm link bypasses the SemVer</td>
     <td>
-      <img src="/img/docs/decisions/full.png"/><br/><br/>Minor concern: shared NODE_MODULES on the root</td>
+      <img src="/docs/static/img/docs/decisions/full.png"/><br/><br/>Minor concern: shared NODE_MODULES on the root</td>
   </tr>
   <tr valign="top">
     <td><b>Build speed</b></td>
-    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Smart inference and execution plan, shared dependencies, cache</td>
-    <td><img src="/img/docs/decisions/full.png"/><br/><br/>Smart inference and execution plan, shared dependencies, cache</td>
-    <td><img src="/img/docs/decisions/partial.png"/><br/><br/>Parallel tasks execution, copied dependencies</td>
+    <td><img src="/docs/static/img/docs/decisions/full.png"/><br/><br/>Smart inference and execution plan, shared dependencies, cache</td>
+    <td><img src="/docs/static/img/docs/decisions/full.png"/><br/><br/>Smart inference and execution plan, shared dependencies, cache</td>
+    <td><img src="/docs/static/img/docs/decisions/partial.png"/><br/><br/>Parallel tasks execution, copied dependencies</td>
     <td>
-      <img src="/img/docs/decisions/partial.png"/><br/><br/>Shared dependencies</td>
+      <img src="/docs/static/img/docs/decisions/partial.png"/><br/><br/>Shared dependencies</td>
   </tr>
     <tr valign="top">
       <td><b>Standardization</b></td>
-    <td><img src="/img/docs/decisions/partial.png"/><br/><br/>Non standard Node.js stuff: One single root package.json by default, TS-paths for linking</td>
-    <td><img src="/img/docs/decisions/full.png"/><br/><br/>An external build layer</td>
-    <td><img src="/img/docs/decisions/full.png"/><br/><br/>An external build layer</td>
+    <td><img src="/docs/static/img/docs/decisions/partial.png"/><br/><br/>Non standard Node.js stuff: One single root package.json by default, TS-paths for linking</td>
+    <td><img src="/docs/static/img/docs/decisions/full.png"/><br/><br/>An external build layer</td>
+    <td><img src="/docs/static/img/docs/decisions/full.png"/><br/><br/>An external build layer</td>
     <td>
-      <img src="/img/docs/decisions/full.png"/><br/><br/>An external package centralizer</td>
+      <img src="/docs/static/img/docs/decisions/full.png"/><br/><br/>An external package centralizer</td>
   </tr>
     <tr>
     <td class="tg-ho3n" colspan="5" align="center"><h2>Tasks and build pipeline</h2></td>
