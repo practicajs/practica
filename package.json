@@ -50,7 +50,7 @@
     "figlet": "^1.5.2",
     "fs-extra": "^10.0.1",
     "import-jsx": "^4.0.1",
-    "ink": "^3.2.0",
+    "ink": "^4.0.0",
     "ink-big-text": "^1.2.0",
     "ink-image": "^2.0.0",
     "ink-multi-select": "^2.0.0",
