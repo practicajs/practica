@@ -126,3 +126,6 @@ output-folders-for-testing
 
 # temp files
 tmp/
+
+#EarlyAI
+.early.coverage

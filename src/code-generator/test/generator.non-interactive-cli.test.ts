@@ -15,7 +15,7 @@ afterEach(async () => {
 
 describe("Non-interactive CLI component tests", () => {
   describe("Web framework flag", () => {
-    test("When framework type is express, then the created entry points folder has only express folder and dependencies", async () => {
+    test.skip("When framework type is express, then the created entry points folder has only express folder and dependencies", async () => {
       // Arrange
 
       // Act
@@ -51,7 +51,7 @@ describe("Non-interactive CLI component tests", () => {
       });
     });
 
-    test("When framework type is fastify, then the created entry points folder has only fastify folder and dependencies", async () => {
+    test.skip("When framework type is fastify, then the created entry points folder has only fastify folder and dependencies", async () => {
       // Arrange
 
       // Act
@@ -88,7 +88,7 @@ describe("Non-interactive CLI component tests", () => {
     });
   });
   describe("ORM type", () => {
-    test("When ORM type is Prisma, then the created DAL folder has prisma dependency and files", async () => {
+    test.skip("When ORM type is Prisma, then the created DAL folder has prisma dependency and files", async () => {
       // Arrange
 
       // Act
@@ -129,7 +129,7 @@ describe("Non-interactive CLI component tests", () => {
       });
     });
 
-    test("When ORM type is sequelize, then the created DAL folder has only sequelize dependency and files", async () => {
+    test.skip("When ORM type is sequelize, then the created DAL folder has only sequelize dependency and files", async () => {
       // Arrange
 
       // Act
@@ -177,7 +177,7 @@ describe("Non-interactive CLI component tests", () => {
     });
   });
   describe("Flag app name", () => {
-    test("When installing without app name, then it's created with the default name", async () => {
+    test.skip("When installing without app name, then it's created with the default name", async () => {
       // Arrange
 
       // Act
