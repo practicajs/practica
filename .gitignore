@@ -111,9 +111,9 @@ dist
 # TernJS port file
 .tern-port
 
-
 # Editor files
-.idea
+.idea/
+.vscode/
 
 # Test artifacts
 output-folders-for-testing
@@ -123,3 +123,6 @@ output-folders-for-testing
 
 # Jest joint reports directory
 **/test-reports
+
+# temp files
+tmp/

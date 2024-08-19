@@ -1,3 +1,4 @@
+import { logger } from '@practica/logger';
 import { getCountryModel } from './models/country-model';
 import { getOrderModel } from './models/order-model';
 
@@ -14,13 +15,14 @@ type OrderRecord = {
 
 // ️️️✅ Best Practice: The repository pattern - Wrap the entire DB layer with a simple interface that returns plain JS objects
 export async function getOrderById(id: number): Promise<OrderRecord | null> {
+  logger.info(`Getting order by id ${id}`);
   const foundOrder = await getOrderModel().findOne({
     where: { id },
     include: getCountryModel(),
     // ✅ Best Practice: The data access layer should return a plain JS object and avoid leaking DB narratives outside
     // The 'Raw' option below instructs to include only pure data within the response
     raw: true,
-    nest: true,
+    nest: false,
   });
 
   return foundOrder;

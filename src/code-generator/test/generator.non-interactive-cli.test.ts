@@ -10,10 +10,83 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  //await fsExtra.remove(emptyFolderForATest);
+  await fsExtra.remove(emptyFolderForATest);
 });
 
 describe("Non-interactive CLI component tests", () => {
+  describe("Web framework flag", () => {
+    test("When framework type is express, then the created entry points folder has only express folder and dependencies", async () => {
+      // Arrange
+
+      // Act
+      await execa("ts-node", [
+        "./bin/cli.ts",
+        "immediate",
+        `--target-directory=${emptyFolderForATest}`,
+        `--app-name=test`,
+        `--web-framework=express`,
+      ]);
+
+      // Assert
+      const rootPath = path.join(
+        emptyFolderForATest,
+        "test",
+        "services",
+        "order-service"
+      );
+      const isFastifyInPackageJSON = await testHelpers.doesFileContainPhrase(
+        path.join(rootPath, "package.json"),
+        "fastify"
+      );
+      const doesEntryPointFolderExists =
+        await testHelpers.doesFolderExistInPath(
+          path.join(rootPath, "entry-points")
+        );
+      expect({
+        isFastifyInPackageJSON,
+        doesEntryPointFolderExists,
+      }).toStrictEqual({
+        isFastifyInPackageJSON: false,
+        doesEntryPointFolderExists: true,
+      });
+    });
+
+    test("When framework type is fastify, then the created entry points folder has only fastify folder and dependencies", async () => {
+      // Arrange
+
+      // Act
+      await execa("ts-node", [
+        "./bin/cli.ts",
+        "immediate",
+        `--target-directory=${emptyFolderForATest}`,
+        `--app-name=test`,
+        `--web-framework=fastify`,
+      ]);
+
+      // Assert
+      const rootPath = path.join(
+        emptyFolderForATest,
+        "test",
+        "services",
+        "order-service"
+      );
+      const isExpressInPackageJSON = await testHelpers.doesFileContainPhrase(
+        path.join(rootPath, "package.json"),
+        "express"
+      );
+      const doesEntryPointFolderExists =
+        await testHelpers.doesFolderExistInPath(
+          path.join(rootPath, "entry-points")
+        );
+      expect({
+        isFastifyInPackageJSON: isExpressInPackageJSON,
+        doesEntryPointFolderExists,
+      }).toStrictEqual({
+        isFastifyInPackageJSON: false,
+        doesEntryPointFolderExists: true,
+      });
+    });
+  });
   describe("ORM type", () => {
     test("When ORM type is Prisma, then the created DAL folder has prisma dependency and files", async () => {
       // Arrange
@@ -58,7 +131,6 @@ describe("Non-interactive CLI component tests", () => {
 
     test("When ORM type is sequelize, then the created DAL folder has only sequelize dependency and files", async () => {
       // Arrange
-      console.log(emptyFolderForATest);
 
       // Act
       await execa("ts-node", [

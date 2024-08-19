@@ -2,19 +2,19 @@
 
 <br/>
 
-### Generate a Node.js app that is packed with best practices AND simplicity in mind. Based off our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (80,500 stars)
+### Generate a Node.js app that is packed with best practices AND simplicity in mind. Based off our repo [Node.js best practices](https://github.com/goldbergyoni/nodebestpractices) (96,100 stars)
 
 <br />
 
 
-![Discord](/static/images/discord-logo.png) [Discord discussions](https://discord.gg/SrM68BJPqR) | ![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices) | ![Site](/docs/static/img/site-icon.png) [Documentation site](https://practica.dev/)
+![Twitter](/static/images/twitter-icon.png) [Twitter](https://twitter.com/nodepractices) | ![Site](/docs/static/img/site-icon.png) [Documentation site](https://practica.dev/)
 
 
 <br/>
 
 # A One Paragraph Overview
 
-Although Node.js has great frameworks 💚, they were never meant to be production ready immediately. Practica.js aims to bridge the gap. Based on your preferred framework, we generate example code that demonstrates a full Microservice flow, from API to DB, that is packed with good practices. For example, we include a battle-tested error handler, sanitize API response, hardened dockerfile, thoughtful 3-tier folder structure, great testing templates with DB, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](https://practica.dev/decisions). We strive to keep things as simple and standard as possible and base our work on the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+Although Node.js has great frameworks 💚, they were never meant to be dev & production ready immediately (e.g., no architecture layers, DB schemas, docker file, etc etc). Practica.js aims to bridge the gap. Based on your preferred framework, we generate example code that demonstrates a full Microservice flow, from API to DB, that is packed with good practices. For example, we include a battle-tested error handler, sanitized API response, hardened dockerfile, thoughtful 3-tier folder structure, great testing templates with DB, and more. This saves a great deal of time and can prevent painful mistakes. All decisions made are [neatly and thoughtfully documented](https://practica.dev/decisions). We strive to keep things as simple and standard as possible and base our work on the popular guide: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
 
 **1 min video 👇, ensure audio is activated**
 
@@ -63,15 +63,15 @@ Run practica CLI and generate our default app (you can customize it using differ
 npx @practica/create-node-app immediate --install-dependencies
 ```
 
-✨ And you're done! That's it. The code's all been generated.
+✨ And you're done! That's it, the code's all been generated. Our default setup includes Fastify for the web layer, Sequelize for the data access and PostgreSQL
 
-We also have a CLI interactive mode:
+Prefer express and Prisma? Just pass the right flags to the CLI:
 
 ```bash
-npx @practica/create-node-app interactive
+npx @practica/create-node-app immediate --install-dependencies --web-framework=express --orm=prisma
 ```
 
-Note that for now, it can generate an app that is based on Express and PostgreSQL only. Other options will get added soon
+Prefer other DB? We use standard ORMs, read its docs and switch DB. This is your code, do whatever you like
 
 
 <br />
@@ -95,9 +95,9 @@ or run the tests:
 npm test
 ```
 
-Pretty straight forward, right?
+Pretty straightforward, right?
 
-You just got a Node.js Monorepo solution with one example component/Microservice and multiple libraries. Based on this hardened solution you can build a robust application. The example component/Microservice is located under: *{your chosen folder name}/services/order-service*. This is where you'll find the API and a good spot to start your journey from.
+You just got a Node.js Monorepo solution with one example component/Microservice and multiple libraries. Based on this hardened solution you can build a robust application. The example component/Microservice is located under: *{your chosen folder name}/services/order-service*. This is where you'll find the API and a good spot to start your journey from
 
 <br />
 
@@ -114,21 +114,21 @@ You just got a Node.js Monorepo solution with one example component/Microservice
 
 ### 1. Best Practices _on top of_ known Node.js frameworks
 
-We don't re-invent the wheel. Rather, we use your favorite framework and empower it with structure and real examples. With a single command you can get an Express/Fastify-based codebase with ~100 examples of best practices inside.
+We don't re-invent the wheel. Rather, we use your favorite framework and empower it with structure and real examples. With a single command you can get an Express/Fastify-based codebase with many thoughtful best practices inside
 
 ![Built on top of known frameworks](/static/images/on-top-of-frameworks.png)
 
 ### 2. Simplicity, how Node.js was intended
 
-Keeping it simple, flat, and based on native Node/JS capabilities is part of this project's DNA. We believe that too many abstractions, high-complexity or fancy language features can quickly become a stumbling block for the team. 
+Keeping it simple, flat, and based on native Node/JS capabilities is part of this project's DNA. We believe that too many abstractions, high-complexity or fancy language features can quickly become a stumbling block for the team
 
-To name a few examples, our code flow is flat with almost no level of indirection, although using TypeScript - almost no features are being used besides types, for modularization we simply use Node.js modules.
+To name a few examples, our code flow is flat with almost no level of indirection, no DI - it's just simple functions calling other functions. Although using TypeScript, almost no features are being used besides types, for modularization we simply use... Node.js modules
 
-![Built on top of known frameworks](/static/images/abstractions-vs-simplicity.png)
+![Simplicity!](/static/images/abstractions-vs-simplicity.png)
 
 ### 3. Supports many technologies and frameworks
 
-Good Practices and Simplicity is the name of the game with Practica. There is no need to narrow our code to a specific framework or database. We aim to support a majority of popular Node.js frameworks and databases.
+Good Practices and Simplicity is the name of the game with Practica. There is no need to narrow our code to a specific framework or database. We aim to support the popular Node.js frameworks and data access approaches
 
 ![Built on top of known frameworks](/static/images/tech-stack.png)
 
@@ -136,7 +136,7 @@ Good Practices and Simplicity is the name of the game with Practica. There is no
 
 # Practices and Features
 
-We apply more than 100 practices and optimizations. You can opt in or out for most of these features using option flags on our CLI. The following table lists just a few examples out of the [full list of features we provide](https://practicajs.org/features).
+We apply dozens of practices and optimizations. You can opt in or out for most of these features using option flags on our CLI. The following table lists just a few examples out of the [full list of features we provide](https://practicajs.org/features).
 
 | **Feature** | **Explanation** | **Flag** | **Docs** |
 | ----------- | --------------- | -------- | -------- |

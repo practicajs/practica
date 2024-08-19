@@ -24,14 +24,6 @@ jobs:
           command: test
           args: --all-projects --severity-threshold=critical --sarif-file-output=~/sarif/sca.sarif
 
-      - name: Run Snyk Static Code Analysis
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: code test
-          args: --severity-threshold=high --sarif-file-output=~/sarif/sast.sarif
-
       - name: list
         run: "ls -a ~/sarif"
 

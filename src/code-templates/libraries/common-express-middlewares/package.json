@@ -1,0 +1,38 @@
+{
+  "name": "@practica/common-express-middlewares",
+  "version": "0.0.1",
+  "description": "Common middlewares for the Express library",
+  "main": ".dist/index.js",
+  "scripts": {
+    "installDependencies": "npm install",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "jest --forceExit",
+    "test:dev": "jest --silent --runInBand --watch",
+    "test:dev:verbose": "jest --watch --verbose=true"
+  },
+  "dependencies": {
+    "@practica/global-context": "^0.1.0",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "keywords": [
+    "jwt",
+    "authentication",
+    "practica",
+    "fastify"
+  ],
+  "author": "The Practica Team",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.5.0",
+    "@types/jsonwebtoken": "^8.5.8",
+    "axios": "^1.6.8",
+    "express": "^4.19.2",
+    "jest": "^28.0.3",
+    "node-mocks-http": "^1.11.0",
+    "node-notifier": "^10.0.1",
+    "sinon": "^13.0.2",
+    "ts-jest": "^28.0.1",
+    "typescript": "5.2.2"
+  }
+}

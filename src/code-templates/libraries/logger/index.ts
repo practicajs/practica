@@ -1,4 +1,4 @@
-import { context } from '@practica/request-context';
+import { context } from '@practica/global-context';
 import { Logger, LoggerConfiguration } from './definition';
 import PinoLogger from './pino.logger';
 
@@ -7,7 +7,6 @@ export class LoggerWrapper implements Logger {
 
   #getInitializeLogger(): Logger {
     this.configureLogger({}, false);
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return this.#underlyingLogger!;
   }
 
@@ -42,7 +41,6 @@ export class LoggerWrapper implements Logger {
   }
 
   info(message: string, metadata?: object): void {
-    // If never initialized, the set default configuration
     this.#getInitializeLogger().info(
       message,
       LoggerWrapper.#insertContextIntoMetadata(metadata)
@@ -59,8 +57,7 @@ export class LoggerWrapper implements Logger {
   static #insertContextIntoMetadata(metadata?: object): object | undefined {
     const currentContext = context().getStore();
 
-    // Doing this to avoid merging objects...
-    if (currentContext == null) {
+    if (currentContext === null || typeof currentContext !== 'object') {
       return metadata;
     }
 
@@ -68,7 +65,6 @@ export class LoggerWrapper implements Logger {
       return currentContext;
     }
 
-    // Metadata would override the current context
     return { ...currentContext, ...metadata };
   }
 }
