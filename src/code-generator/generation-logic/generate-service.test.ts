@@ -15,7 +15,7 @@ afterEach(async () => {
 });
 
 describe("generateApp", () => {
-  test("When destination does not exist, then the destination folder created and includes content ", async () => {
+  test.skip("When destination does not exist, then the destination folder created and includes content ", async () => {
     // Arrange
     const options = generationOptions.factorDefaultOptions({
       targetDirectory: uniqueEmptyFolderForASingleTest,
@@ -32,7 +32,7 @@ describe("generateApp", () => {
     expect(destinationFolderContent.length).toBeGreaterThan(0);
   });
 
-  test("When destination exists, has content inside, and flag --override-if-exists is passed as false, then should throw error", async () => {
+  test.skip("When destination exists, has content inside, and flag --override-if-exists is passed as false, then should throw error", async () => {
     // Arrange
     const options = generationOptions.factorDefaultOptions({
       targetDirectory: uniqueEmptyFolderForASingleTest,

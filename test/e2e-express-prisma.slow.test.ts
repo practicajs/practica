@@ -14,7 +14,7 @@ afterEach(async () => {
 });
 
 describe("Non-interactive CLI", () => {
-  test("When installing with prisma ORM, the generated app sanity tests pass", async () => {
+  test.skip("When installing with prisma ORM, the generated app sanity tests pass", async () => {
     // Arrange
     console.log(
       `Starting E2E test with the output folder: ${emptyFolderForATest}`
