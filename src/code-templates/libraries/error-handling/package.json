@@ -28,7 +28,7 @@
     "@practica/logger": "^0.0.5",
     "jest": "^28.1.0",
     "jest-sinon": "^1.0.4",
-    "sinon": "^14.0.0"
+    "sinon": "^19.0.0"
   },
   "peerDependencies": {
     "fastify": "4.24.3"
