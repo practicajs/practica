@@ -29,6 +29,7 @@ const config = {
         blog: {
           showReadingTime: true,
           editUrl: "https://github.com/practicajs/practica/tree/main/docs/",
+          blogSidebarCount: "ALL",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

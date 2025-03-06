@@ -1,6 +1,6 @@
 ---
 slug: about-the-sweet-and-powerful-use-case-code-pattern
-date: 2024-04-22T10:00
+date: 2025-03-05T10:00
 hide_table_of_contents: true
 title: About the sweet and powerful 'use case' code pattern
 authors: [goldbergyoni]
