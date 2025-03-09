@@ -27,6 +27,10 @@ Technically, the use-case pattern code belongs between the controller (e.g., API
 
 But before we delve into its mechanics, let's first touch on a common problem it aims to address and see some code that calls for trouble.
 
+_Prefer a 10 min video? Watch here, or keep reading below_
+<iframe width="1024" height="768" src="https://youtu.be/cuH9p2XLXSA" title="About the use-case code pattern" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 ## The problem: too many details, too soon
 
 Imagine a developer, returning to a codebase she hasn't touched in months, tasked with fixing a bug in the 'new orders flow'—specifically, an issue with price calculation in an electronic shop app.
@@ -132,7 +136,7 @@ This is where the 'Use Case' approach shines: by prioritizing high-level product
 
 ### 3. A practical workflow that promotes efficiency
 
-When embarking on a new coding flow, where do you start? After digesting the requirements and setting up some initial API routes and high-level component tests, the next logical step might be less obvious. Here’s a strategy: begin with a use-case. This approach promotes an outside-in workflow that not only streamlines development but also exposes potential risks early on.
+When embarking on a new coding flow, where do you start? After digesting the requirements and setting up some initial API routes and high-level component tests, the next logical step might be less obvious. Here's a strategy: begin with a use-case. This approach promotes an outside-in workflow that not only streamlines development but also exposes potential risks early on.
 
 While drafting a new use-case, you essentially map out the various steps of the process. Each step is a call to some service or repository functions, sometimes before they even exist. Effortlessly and spontaneously, these steps become your TODO list, a live document that tells not only what should be implemented rather also where risky gotchas hide. Take, for instance, this straightforward use-case for adding an order:
 
@@ -330,6 +334,6 @@ export async function getAllOrders(criteria) {
 
 If you find it valuable, you'll also get great return for your modest investment: No fancy tooling is needed, the learning time is close to zero (in fact, you just read one of the longest article on this matter...). There is also no need to refactor a whole system rather gradually implement per-feature.
 
-Once you become accustomed to using it, you’ll find that this technique extends well beyond API routes. It’s equally beneficial for managing message queues subscriptions and scheduled jobs. Backend-aside, use it as the facade of every module or library - the code that is being called by the entry file and orchestrates the internals. The same idea can be applied in Frontend as well: declare the core actors at the component top level. Without implementation details, just put the reference to the component's event handlers and hooks - now the reader knows about the key events that will drive this component.
+Once you become accustomed to using it, you'll find that this technique extends well beyond API routes. It's equally beneficial for managing message queues subscriptions and scheduled jobs. Backend-aside, use it as the facade of every module or library - the code that is being called by the entry file and orchestrates the internals. The same idea can be applied in Frontend as well: declare the core actors at the component top level. Without implementation details, just put the reference to the component's event handlers and hooks - now the reader knows about the key events that will drive this component.
 
 You might think this all sounds remarkably straightforward—and it is. My apologies, this article wasn't about cutting-edge technologies. Neither did it cover shiny new dev toolings or AI-based rocket-science. In a land where complexity is the key enemy, simple ideas can be more impactful than sophisticated tooling and the Use-case is a powerful and sweet pattern that meant to live in every piece of software.
