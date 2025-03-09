@@ -28,7 +28,7 @@ Technically, the use-case pattern code belongs between the controller (e.g., API
 But before we delve into its mechanics, let's first touch on a common problem it aims to address and see some code that calls for trouble.
 
 _Prefer a 10 min video? Watch here, or keep reading below_
-<iframe width="1024" height="768" src="https://www.youtube.com/embed/cuH9p2XLXSA?si=nHUVxa2Zv3JZDuuT" title="About the use-case code pattern" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="1024" height="768" src="https://www.youtube.com/embed/y4mBg920UZA?si=A_ZTVzG0AjVhzQcd" title="About the use-case code pattern" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## The problem: too many details, too soon
