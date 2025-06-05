@@ -40,7 +40,7 @@
   "homepage": "https://github.com/bestpractices/practica#readme",
   "dependencies": {
     "@docusaurus/core": "^2.1.0",
-    "@docusaurus/preset-classic": "^2.1.0",
+    "@docusaurus/preset-classic": "^3.5.0",
     "@types/blessed": "^0.1.19",
     "@types/commander": "^2.12.2",
     "@types/fs-extra": "^9.0.13",
